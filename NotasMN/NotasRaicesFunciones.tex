@@ -1,0 +1,1877 @@
+\chapter{Ra\'ices de Funciones}
+%===========================================
+%\section{Ra\'ices de Funciones}
+%===========================================
+
+%===========================================
+\section{M\'etodo de Bisecci\'on}
+%===========================================
+
+Dada una funci\'on continua $f:[a,b]\to\mathbb{R}$ con $f(a)\,f(b)<0$, por el \textbf{Teorema de Bolzano} existe al menos una ra\'iz en $(a,b)$. 
+El \textbf{m\'etodo de bisecci\'on} explota este cambio de signo: divide el intervalo a la mitad, selecciona la submitad donde persiste el cambio de signo, y repite. 
+Es un m\'etodo \emph{robusto} (garantiza convergencia si se mantienen las hip\'otesis) y con \emph{tasa lineal}.
+
+\begin{Algthm} Para encontrar la ra\'iz de una funci\'on utilizando el m\'etodo de la bisecci\'on es
+\begin{enumerate}
+  \item Verificar continuidad de $f$ en $[a,b]$ (al menos de forma razonable) y que $f(a)\,f(b)<0$.
+  \item Repetir para $n=1,2,\dots$:
+  \begin{enumerate}
+    \item $c=\dfrac{a+b}{2}$, evaluar $f(c)$.
+    \item Si $f(c)=0$ (o $|f(c)|$ peque\~no), \textbf{parar}: $c$ es la ra\'iz aproximada.
+    \item Si $f(a)\,f(c)<0$, poner $b\leftarrow c$; en caso contrario, $a\leftarrow c$.
+    \item Criterio de paro: \textit{ancho} $(b-a)/2 < \varepsilon$ o $|f(c)|<\varepsilon$, o alcanzar $n_{\max}$.
+  \end{enumerate}
+\end{enumerate}
+\end{Algthm}
+
+\textbf{Cota del error}: Si $(a_0,b_0)$ es el intervalo inicial, tras $n$ iteraciones el punto medio $c_n$ satisface
+\begin{eqnarray}
+  |c_n - \alpha| \leq \frac{b_0-a_0}{2^{\,n}},
+\end{eqnarray}
+donde $\alpha$ es alguna ra\'iz en $(a_0,b_0)$. 
+Para asegurar $(b_n-a_n)/2 < \varepsilon$, basta con
+\begin{eqnarray}
+  n \geq \left\lceil \log_2\!\left(\frac{b_0-a_0}{\varepsilon}\right) \right\rceil.
+\end{eqnarray}
+
+\begin{Result}
+Si $f(x)$ es continua en $[a,b]$ y $f(a)\,f(b)<0$, por el \textbf{Teorema de Bolzano} existe al menos una ra\'iz en $(a,b)$.  
+El m\'etodo de bisecci\'on consiste en:
+\begin{eqnarray}
+c_k = \frac{a_k + b_k}{2}, \qquad
+\text{y se actualiza el intervalo de b\'usqueda } 
+\begin{cases}
+b_{k+1} = c_k & \text{si } f(a_k)f(c_k) < 0,\\
+a_{k+1} = c_k & \text{si } f(a_k)f(c_k) > 0.
+\end{cases}
+\end{eqnarray}
+La cota del error despu\'es de $n$ iteraciones es
+\begin{eqnarray}
+|c_n - \alpha| \le \frac{b_0 - a_0}{2^n}.
+\end{eqnarray}
+\end{Result}
+
+\begin{Ejem}
+\begin{verbatim}
+# ============================================
+# M\'ETODO DE BISECCI\'oN PARA UNA C\'UBICA GENERAL
+# ============================================
+# ---- Coeficientes del polinomio c\'ubico ----
+A <- 1     # coeficiente de x^3
+B <- -6    # coeficiente de x^2
+C <- 11    # coeficiente de x
+D <- -6    # t\'ermino independiente
+
+# ---- Definici\'on de la funci\'on c\'ubica ----
+f <- function(x) {
+  A*x^3 + B*x^2 + C*x + D
+}
+
+# ---- Intervalo inicial ----
+a1 <- 0
+b1 <- 2.5   # aseg\'urate que f(a1)*f(b1) < 0
+
+# ==== Iteraci\'on 1 ====
+c1  <- (a1 + b1)/2
+fa1 <- f(a1)
+fb1 <- f(b1)
+fc1 <- f(c1)
+s1a <- sign(fa1 * fc1)
+s1b <- sign(fb1 * fc1)
+e1  <- (b1 - a1)/2
+a2 <- if (fa1 * fc1 < 0) a1 else c1
+b2 <- if (fa1 * fc1 < 0) c1 else b1
+
+# ==== Iteraci\'on 2 ====
+c2  <- (a2 + b2)/2
+fa2 <- f(a2)
+fb2 <- f(b2)
+fc2 <- f(c2)
+s2a <- sign(fa2 * fc2)
+s2b <- sign(fb2 * fc2)
+e2  <- (b2 - a2)/2
+a3 <- if (fa2 * fc2 < 0) a2 else c2
+b3 <- if (fa2 * fc2 < 0) c2 else b2
+
+# ==== Iteraci\'on 3 ====
+c3  <- (a3 + b3)/2
+fa3 <- f(a3)
+fb3 <- f(b3)
+fc3 <- f(c3)
+s3a <- sign(fa3 * fc3)
+s3b <- sign(fb3 * fc3)
+e3  <- (b3 - a3)/2
+a4 <- if (fa3 * fc3 < 0) a3 else c3
+b4 <- if (fa3 * fc3 < 0) c3 else b3
+
+# ==== Iteraci\'on 4 ====
+c4  <- (a4 + b4)/2
+fa4 <- f(a4)
+fb4 <- f(b4)
+fc4 <- f(c4)
+s4a <- sign(fa4 * fc4)
+s4b <- sign(fb4 * fc4)
+e4  <- (b4 - a4)/2
+a5 <- if (fa4 * fc4 < 0) a4 else c4
+b5 <- if (fa4 * fc4 < 0) c4 else b4
+
+# ==== Iteraci\'on 5 ====
+c5  <- (a5 + b5)/2
+fa5 <- f(a5)
+fb5 <- f(b5)
+fc5 <- f(c5)
+s5a <- sign(fa5 * fc5)
+s5b <- sign(fb5 * fc5)
+e5  <- (b5 - a5)/2
+a6 <- if (fa5 * fc5 < 0) a5 else c5
+b6 <- if (fa5 * fc5 < 0) c5 else b5
+
+# ==== Iteraci\'on 6 ====
+c6  <- (a6 + b6)/2
+fa6 <- f(a6)
+fb6 <- f(b6)
+fc6 <- f(c6)
+s6a <- sign(fa6 * fc6)
+s6b <- sign(fb6 * fc6)
+e6  <- (b6 - a6)/2
+
+# ---- Aproximaci\'on final ----
+raiz_aprox <- c6
+error_cota <- e6
+
+cat("Ra\'iz aproximada (6 iteraciones):", raiz_aprox, "\n")
+cat("Cota m\'axima del error:", error_cota, "\n\n")
+
+# ---- Tabla resumen ----
+iter <- 1:6
+Acol <- c(a1,a2,a3,a4,a5,a6)
+Bcol <- c(b1,b2,b3,b4,b5,b6)
+Ccol <- c(c1,c2,c3,c4,c5,c6)
+FA   <- c(fa1,fa2,fa3,fa4,fa5,fa6)
+FB   <- c(fb1,fb2,fb3,fb4,fb5,fb6)
+FC   <- c(fc1,fc2,fc3,fc4,fc5,fc6)
+signFAFC <- c(s1a,s2a,s3a,s4a,s5a,s6a)
+signFBFC <- c(s1b,s2b,s3b,s4b,s5b,s6b)
+ERR  <- c(e1,e2,e3,e4,e5,e6)
+
+TAB <- data.frame(iter, a=Acol, b=Bcol, c=Ccol,
+                  fa=FA, fb=FB, fc=FC,
+                  "sign(fa*fc)"=signFAFC,
+                  "sign(fb*fc)"=signFBFC,
+                  error=ERR)
+
+print(round(TAB, 6))
+
+\end{verbatim}
+\end{Ejem}
+%===========================================
+\subsection{Ejemplos}
+%===========================================
+
+\begin{Ejem}
+Consideremos la funci\'on $f(x) = x^2 - 5x + 6$. para $a=1,b=-5,c=6$.  
+
+\begin{itemize}
+\item Verificar cambio de signo.  
+Evaluamos:
+$f(1) = 1 - 5 + 6 = 2 > 0, \qquad f(2.5) = 6.25 - 12.5 + 6 = -0.25 < 0.$
+Existe cambio de signo entre $x=1$ y $x=2.5$, por lo tanto, hay al menos una ra\'iz en $[1,2.5]$.
+
+\item  El punto medio inicial es: $c_1 = \frac{1+2.5}{2} = 1.75, \quad f(1.75) = 3,0625 - 8,75 + 6 = 0,3125 > 0$. Como $f(1.75)>0$ y $f(2.5)<0$, el nuevo intervalo es $[1.75,2.5]$.
+
+\item Segunda iteraci\'on: $c_2 = \frac{1.75+2.5}{2} = 2.125, \quad f(2.125) = 4,5156 - 10,625 + 6 = -0.1094 < 0$. Nuevo intervalo: $[1.75,2.125]$.
+
+\item Tercera iteraci\'on: $c_3 = \frac{1.75+2.125}{2} = 1.9375, \quad f(1.9375) = 3,754 - 9,6875 + 6 = 0.0665 > 0$. Nuevo intervalo: $[1.9375,2.125]$.
+
+\item  Cuarta iteraci\'on:$c_4 = \frac{1.9375+2.125}{2} = 2.03125, \quad f(2.03125) = 4,126 - 10,156 + 6 = -0.030 < 0$. Nuevo intervalo: $[1.9375,2.03125]$.
+
+\item Despu\'es de unas pocas iteraciones, la ra\'iz se aproxima a $x\approx 2.0$.
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+Iteraci\'on & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.000 & 2.500 & 1.750 & $+0.3125$ \\
+2 & 1.750 & 2.500 & 2.125 & $-0.1094$ \\
+3 & 1.750 & 2.125 & 1.9375 & $+0.0665$ \\
+4 & 1.9375 & 2.125 & 2.0313 & $-0.030$ \\
+5 & 1.9375 & 2.0313 & 1.9844 & $+0.017$ \\
+\end{tabular}
+\end{center}
+
+\end{itemize}
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem} Sea $f(x)=x^2-2$ con $a=1$, $b=-2$. Entonces $f(1)=-1<0$, $f(2)=2>0$ $\Rightarrow$ hay ra\'iz en $[1,2]$.
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+Iter. & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.000000 & 2.000000 & 1.500000 & $+0.250000$ \\
+2 & 1.000000 & 1.500000 & 1.250000 & $-0.437500$ \\
+3 & 1.250000 & 1.500000 & 1.375000 & $-0.109375$ \\
+4 & 1.375000 & 1.500000 & 1.437500 & $+0.066406$ \\
+5 & 1.375000 & 1.437500 & 1.406250 & $-0.022461$ \\
+6 & 1.406250 & 1.437500 & 1.421875 & $+0.021729$ \\
+7 & 1.406250 & 1.421875 & 1.414063 & $-0.000427$ \\
+8 & 1.414063 & 1.421875 & 1.417969 & $+0.010635$ \\
+\end{tabular}
+\end{center}
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem} Sea la funci\'on $f(x) = x^3 - 6x^2 + 11x - 6$, con $a=1, b=-6,c=11,d=-6$, en el intervalo $[1.5,2.5]$.
+\begin{itemize}
+
+
+\item Verificar cambio de signo.
+$f(1.5) = 1.5^3 - 6(1.5)^2 + 11(1.5) - 6 = 3.375 - 13.5 + 16.5 - 6 = 0.375 > 0$, $f(2.5) = 15.625 - 37.5 + 27.5 - 6 = -0.375 < 0$. Existe cambio de signo, por lo que hay al menos una ra\'iz en el intervalo $[1.5,2.5]$.
+
+\item Aplicar el m\'etodo de bisecci\'on. $c_1 = \frac{1.5+2.5}{2} = 2.0, \qquad f(2.0) = 8 - 24 + 22 - 6 = 0$. Se obtiene exactamente la ra\'iz en la primera iteraci\'on.
+
+\item Para ilustrar mejor, tomemos el intervalo m\'as amplio $[1,3]$: $f(1) = 0, \quad f(3) = 0$. Aqu\'i no hay cambio de signo estricto (ya que ambos extremos son ra\'ices), por tanto el m\'etodo se aplica en un subintervalo, por ejemplo $[1.2, 2.8]$.
+
+\item Iteraciones del m\'etodo:
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+Iteraci\'on & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.200 & 2.800 & 2.000 & $0.000$ \\
+\end{tabular}
+\end{center}
+
+\item Nuevas evaluaciones:
+$f(1.5) = 3.375 - 13.5 + 16.5 - 5.5 = 0.875 > 0$, $f(2.5) = 15.625 - 37.5 + 27.5 - 5.5 = 0.125 > 0$, $f(1.0) = 1 - 6 + 11 - 5.5 = 0.5 > 0$, $f(3.0) = 27 - 54 + 33 - 5.5 = 0.5 > 0$.
+
+\item Busquemos ahora en el intervalo $[1.5, 2.5]$ ajustando un poco los valores hasta encontrar cambio de signo: $f(1.7) \approx 0.28$, $f(1.9) \approx 0.03$, $f(2.0) \approx -0.5$. Entonces hay cambio de signo en $[1.8, 2.0]$.
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+%toprule
+Iteraci\'on & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.800 & 2.000 & 1.900 & $+0.030$ \\
+2 & 1.900 & 2.000 & 1.950 & $-0.210$ \\
+3 & 1.800 & 1.950 & 1.875 & $+0.130$ \\
+4 & 1.875 & 1.950 & 1.9125 & $-0.040$ \\
+5 & 1.875 & 1.9125 & 1.8937 & $+0.040$ \\
+6 & 1.8937 & 1.9125 & 1.9031 & $-0.005$ \\
+\end{tabular}
+\end{center}
+
+La ra\'iz aproximada se encuentra en $x \approx 1.903$.
+\end{itemize}
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem}
+Consideremos la c\'ubica $f(x)=x^3-6x^2+11x-5.5$, con intervalo inicial $[a_0,b_0]=[0.8,0.9]$ donde hay cambio de signo. Las primeras 8 iteraciones (valores redondeados) son:
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+Iter. & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 0.8000000 & 0.9000000 & 0.8500000 & $+1.29125\times10^{-1}$ \\
+2 & 0.8000000 & 0.8500000 & 0.8250000 & $+5.27656\times10^{-2}$ \\
+3 & 0.8000000 & 0.8250000 & 0.8125000 & $+1.29395\times10^{-2}$ \\
+4 & 0.8000000 & 0.8125000 & 0.8062500 & $-7.39038\times10^{-3}$ \\
+5 & 0.8062500 & 0.8125000 & 0.8093750 & $+2.80942\times10^{-3}$ \\
+6 & 0.8062500 & 0.8093750 & 0.8078125 & $-2.28175\times10^{-3}$ \\
+7 & 0.8078125 & 0.8093750 & 0.8085938 & $+2.66016\times10^{-4}$ \\
+8 & 0.8078125 & 0.8085938 & 0.8082031 & $-1.00732\times10^{-3}$ \\
+\end{tabular}
+\end{center}
+
+Despu\'es de 8 iteraciones, la aproximaci\'on de la ra\'iz es $c_8 \approx 0{,}8082031$ y la cota de error por ancho de intervalo es
+$\frac{b_8-a_8}{2} = \texttt{error\_cota} = \frac{0.8085938-0.8078125}{2} \approx 3{,}906\times10^{-4}.$
+
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem}
+
+Sea $f(x)=x^2 - 2x$ con $a=1$ y $b=-3$ pues $ax^2+bx+x=x^2-3x+x=x^2-2x$. Usamos el intervalo $[1.2,3.0]$: $f(1.2)=1.44-2.4=-0.96<0$, $f(3)=9-6=3>0$.
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+Iter. & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.200000 & 3.000000 & 2.100000 & $+0.210000$ \\
+2 & 1.200000 & 2.100000 & 1.650000 & $-0.577500$ \\
+3 & 1.650000 & 2.100000 & 1.875000 & $-0.234375$ \\
+4 & 1.875000 & 2.100000 & 1.987500 & $-0.024844$ \\
+5 & 1.987500 & 2.100000 & 2.043750 & $+0.089414$ \\
+6 & 1.987500 & 2.043750 & 2.015625 & $+0.031494$ \\
+7 & 1.987500 & 2.015625 & 2.001563 & $+0.003127$ \\
+8 & 1.987500 & 2.001563 & 1.994531 & $-0.010908$ \\
+\end{tabular}
+\end{center}
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem} Sea la funci\'on $f(x)=x^2-2x$ en el intervalo elegido: $[1.2,3.0]$  
+
+\begin{itemize}
+\item $f(1.2)=1.44-2.4=-0.96, \quad f(3)=9-6=3$.
+
+\item Iteraci\'on 1: $c_1=\frac{1.2+3}{2}=2.1, \quad f(2.1)=4.41-4.2=0.21>0 $ entonces $[1.2,2.1]$.
+
+\item Iteraci\'on 2: $c_2=\frac{1.2+2.1}{2}=1.65, \quad f(1.65)=2.7225-3.3=-0.5775<0 $ entonces $[1.65,2.1]$.
+
+\item Iteraci\'on 3: $c_3=1.875, \quad f(1.875)=3.516-3.75=-0.234<0 $ entonces $[1.875,2.1]$. Y as\'i sucesivamente hasta $c_8\approx1.9945$.
+
+\begin{center}
+\begin{tabular}{@{}rrrrr@{}}
+$n$ & $a_n$ & $b_n$ & $c_n$ & $f(c_n)$ \\
+1 & 1.200 & 3.000 & 2.100 & +0.210 \\
+2 & 1.200 & 2.100 & 1.650 & -0.577 \\
+3 & 1.650 & 2.100 & 1.875 & -0.234 \\
+4 & 1.875 & 2.100 & 1.987 & -0.024 \\
+5 & 1.987 & 2.100 & 2.043 & +0.089 \\
+6 & 1.987 & 2.043 & 2.015 & +0.031 \\
+7 & 1.987 & 2.015 & 2.001 & +0.003 \\
+8 & 1.987 & 2.001 & 1.994 & -0.011 \\
+\end{tabular}
+\end{center}
+\end{itemize}
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem}
+$f(x)=x^3-x-2$ en $[1,2]$. Se verifica $f(1)=-2<0$ y $f(2)=4>0$.
+
+Primeras iteraciones (hasta alcanzar $10^{-6}$ t\'ipicamente se requieren $\sim 20$ pasos desde $[1,2]$):
+
+\begin{table}[H]
+\centering
+\caption{M\'etodo de bisecci\'on para $f(x)=x^3-x-2$, intervalo inicial $[-3,2]$.}
+\scalebox{0.8}{
+\begin{tabular}{|c|r|r|r|r|r|r|c|c|}
+\hline
+Iter. & $a$ & $b$ & $c=\tfrac{a+b}{2}$ & $f(a)$ & $f(b)$ & $f(c)$ & $\mathrm{sign}(f(a)f(c))$ & $\mathrm{sign}(f(b)f(c))$ \\
+\hline
+1  & -3.000000000 &  2.000000000 & -0.500000000 & -26.000000000 &  4.000000000 & -1.625000000 & $+$ & $-$ \\
+2  & -0.500000000 &  2.000000000 &  0.750000000 & -1.625000000  &  4.000000000 & -2.328125000 & $+$ & $-$ \\
+3  &  0.750000000 &  2.000000000 &  1.375000000 & -2.328125000  &  4.000000000 & -0.775390625 & $+$ & $-$ \\
+4  &  1.375000000 &  2.000000000 &  1.687500000 & -0.775390625  &  4.000000000 &  1.117919922 & $-$ & $+$ \\
+5  &  1.375000000 &  1.687500000 &  1.531250000 & -0.775390625  &  1.117919922 &  0.059112549 & $-$ & $+$ \\
+6  &  1.375000000 &  1.531250000 &  1.453125000 & -0.775390625  &  0.059112549 & -0.392456055 & $+$ & $-$ \\
+7  &  1.453125000 &  1.531250000 &  1.492187500 & -0.392456055  &  0.059112549 & -0.172897339 & $+$ & $-$ \\
+8  &  1.492187500 &  1.531250000 &  1.511718750 & -0.172897339  &  0.059112549 & -0.058979273 & $+$ & $-$ \\
+9  &  1.511718750 &  1.531250000 &  1.521484375 & -0.058979273  &  0.059112549 &  0.000622176 & $-$ & $+$ \\
+10 &  1.511718750 &  1.521484375 &  1.516601562 & -0.058979273  &  0.000622176 & -0.029292628 & $+$ & $-$ \\
+11 &  1.516601562 &  1.521484375 &  1.519042969 & -0.029292628  &  0.000622176 & -0.013864168 & $+$ & $-$ \\
+12 &  1.519042969 &  1.521484375 &  1.520263672 & -0.013864168  &  0.000622176 & -0.006627792 & $+$ & $-$ \\
+\hline
+\end{tabular}}
+\end{table}
+
+Con tolerancia $\varepsilon=10^{-6}$, el resultado se estabiliza alrededor de $\alpha \approx 1{,}52138$.
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Ejem}
+$f(x)=\cos x - x$ en $[0,1]$. Se verifica $f(0)=1>0$ y $f(1)\approx -0{,}4597<0$.
+
+Primeras iteraciones:
+\begin{table}[H]
+\centering
+\caption{M\'etodo de bisecci\'on para $f(x)=\cos x - x$ en $[0,1]$.}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|r|r|r|r|r|r|c|c|}
+\hline
+Iter. & $a$ & $b$ & $c=\tfrac{a+b}{2}$ & $f(a)$ & $f(b)$ & $f(c)$ & $\mathrm{sign}(f(a)f(c))$ & $\mathrm{sign}(f(b)f(c))$ \\
+\hline
+1 & 0.000000000 & 1.000000000 & 0.500000000 & 1.000000000 & -0.459697694 & 0.377582562 & $-$ & $+$ \\
+2 & 0.500000000 & 1.000000000 & 0.750000000 & 0.377582562 & -0.459697694 & -0.018311132 & $+$ & $-$ \\
+3 & 0.500000000 & 0.750000000 & 0.625000000 & 0.377582562 & -0.018311132 & 0.185963120 & $-$ & $+$ \\
+4 & 0.625000000 & 0.750000000 & 0.687500000 & 0.185963120 & -0.018311132 & 0.085334946 & $-$ & $+$ \\
+5 & 0.687500000 & 0.750000000 & 0.718750000 & 0.085334946 & -0.018311132 & 0.033879372 & $-$ & $+$ \\
+6 & 0.718750000 & 0.750000000 & 0.734375000 & 0.033879372 & -0.018311132 & 0.007874725 & $-$ & $+$ \\
+7 & 0.734375000 & 0.750000000 & 0.742187500 & 0.007874725 & -0.018311132 & -0.005195711 & $+$ & $-$ \\
+8 & 0.734375000 & 0.742187500 & 0.738281250 & 0.007874725 & -0.005195711 & 0.001345150 & $-$ & $+$ \\
+9 & 0.738281250 & 0.742187500 & 0.740234375 & 0.001345150 & -0.005195711 & -0.001923872 & $+$ & $-$ \\
+10 & 0.738281250 & 0.740234375 & 0.739257812 & 0.001345150 & -0.001923872 & -0.000289009 & $+$ & $-$ \\
+11 & 0.738281250 & 0.739257812 & 0.738769531 & 0.001345150 & -0.000289009 & 0.000528158 & $-$ & $+$ \\
+12 & 0.738769531 & 0.739257812 & 0.739013672 & 0.000528158 & -0.000289009 & 0.000119610 & $-$ & $+$ \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+Con $\varepsilon=10^{-6}$ se obtiene aproximadamente $\alpha \approx 0{,}739085$.
+\end{Ejem}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+
+%===========================================
+%\subsubsection{Ejercicios}
+%===========================================
+
+\begin{Ejem}
+Aplica el m\'etodo de la bisecci\'on para las siguientes funciones:
+\begin{enumerate}
+  \item Encuentra una ra\'iz de $x^3-6x+2$ en $[0,2]$.
+  
+\begin{table}[H]
+\centering
+\caption{M\'etodo de la Bisecci\'on para $f(x)=x^3-6x+2$ en $[0,2]$ (12 iteraciones).}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|r|r|r|r|r|r|c|c|}
+\hline
+Iter. & $a$ & $b$ & $c=\tfrac{a+b}{2}$ & $f(a)$ & $f(b)$ & $f(c)$ & $\mathrm{sign}(f(a)f(c))$ & $\mathrm{sign}(f(b)f(c))$ \\
+\hline
+1 & 0.000000000 & 2.000000000 & 1.000000000 & 2.000000000 & -2.000000000 & -3.000000000 & $-$ & $+$ \\
+2 & 0.000000000 & 1.000000000 & 0.500000000 & 2.000000000 & -3.000000000 & -0.875000000 & $-$ & $+$ \\
+3 & 0.000000000 & 0.500000000 & 0.250000000 & 2.000000000 & -0.875000000 & 0.515625000 & $+$ & $-$ \\
+4 & 0.250000000 & 0.500000000 & 0.375000000 & 0.515625000 & -0.875000000 & -0.197265625 & $-$ & $+$ \\
+5 & 0.250000000 & 0.375000000 & 0.312500000 & 0.515625000 & -0.197265625 & 0.155517578 & $+$ & $-$ \\
+6 & 0.312500000 & 0.375000000 & 0.343750000 & 0.155517578 & -0.197265625 & -0.021881104 & $-$ & $+$ \\
+7 & 0.312500000 & 0.343750000 & 0.328125000 & 0.155517578 & -0.021881104 & 0.066577911 & $+$ & $-$ \\
+8 & 0.328125000 & 0.343750000 & 0.335937500 & 0.066577911 & -0.021881104 & 0.022286892 & $+$ & $-$ \\
+9 & 0.335937500 & 0.343750000 & 0.339843750 & 0.022286892 & -0.021881104 & 0.000187337 & $+$ & $-$ \\
+10 & 0.339843750 & 0.343750000 & 0.341796875 & 0.000187337 & -0.021881104 & -0.010850795 & $-$ & $+$ \\
+11 & 0.339843750 & 0.341796875 & 0.340820312 & 0.000187337 & -0.010850795 & -0.005332704 & $-$ & $+$ \\
+12 & 0.339843750 & 0.340820312 & 0.340332031 & 0.000187337 & -0.005332704 & -0.002572927 & $-$ & $+$ \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+  \item Estudia $f(x)=e^{-x}-x$ en $[0,1]$. 
+\begin{table}[H]
+\centering
+\caption{M\'etodo de Bisecci\'on para $f(x)=e^{-x}-x$ en $[0,1]$ (12 iteraciones).}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|r|r|r|r|r|r|c|c|}
+\hline
+Iter. & $a$ & $b$ & $c=\tfrac{a+b}{2}$ & $f(a)$ & $f(b)$ & $f(c)$ & $\mathrm{sign}(f(a)f(c))$ & $\mathrm{sign}(f(b)f(c))$ \\
+\hline
+1 & 0.000000000 & 1.000000000 & 0.500000000 & 1.000000000 & -0.632120559 & 0.106530660 & $+$ & $-$ \\
+2 & 0.500000000 & 1.000000000 & 0.750000000 & 0.106530660 & -0.632120559 & -0.277633447 & $-$ & $+$ \\
+3 & 0.500000000 & 0.750000000 & 0.625000000 & 0.106530660 & -0.277633447 & -0.089738571 & $-$ & $+$ \\
+4 & 0.500000000 & 0.625000000 & 0.562500000 & 0.106530660 & -0.089738571 & 0.007282825 & $+$ & $-$ \\
+5 & 0.562500000 & 0.625000000 & 0.593750000 & 0.007282825 & -0.089738571 & -0.041497550 & $-$ & $+$ \\
+6 & 0.562500000 & 0.593750000 & 0.578125000 & 0.007282825 & -0.041497550 & -0.017175839 & $-$ & $+$ \\
+7 & 0.562500000 & 0.578125000 & 0.570312500 & 0.007282825 & -0.017175839 & -0.004963760 & $-$ & $+$ \\
+8 & 0.562500000 & 0.570312500 & 0.566406250 & 0.007282825 & -0.004963760 & 0.001155202 & $+$ & $-$ \\
+9 & 0.566406250 & 0.570312500 & 0.568359375 & 0.001155202 & -0.004963760 & -0.001905360 & $-$ & $+$ \\
+10 & 0.566406250 & 0.568359375 & 0.567382812 & 0.001155202 & -0.001905360 & -0.000375349 & $-$ & $+$ \\
+11 & 0.566406250 & 0.567382812 & 0.566894531 & 0.001155202 & -0.000375349 & 0.000389859 & $+$ & $-$ \\
+12 & 0.566894531 & 0.567382812 & 0.567138672 & 0.000389859 & -0.000375349 & 0.000007238 & $+$ & $-$ \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+\item Sea la funci\'on cuadr\'atica $f(x)=x^2-4$ en $(-1,4)$.
+\begin{table}[H]
+\centering
+\caption{M\'etodo de Bisecci\'on para $f(x)=x^2-4$ en $(-1,4)$ (12 iteraciones).}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|r|r|r|r|r|r|c|c|}
+\hline
+Iter. & $a$ & $b$ & $c=\tfrac{a+b}{2}$ & $f(a)$ & $f(b)$ & $f(c)$ & $\mathrm{sign}(f(a)f(c))$ & $\mathrm{sign}(f(b)f(c))$ \\
+\hline
+1 & -1.000000000 & 4.000000000 & 1.500000000 & -3.000000000 & 12.000000000 & -1.750000000 & $+$ & $-$ \\
+2 & 1.500000000 & 4.000000000 & 2.750000000 & -1.750000000 & 12.000000000 & 3.562500000 & $-$ & $+$ \\
+3 & 1.500000000 & 2.750000000 & 2.125000000 & -1.750000000 & 3.562500000 & 0.515625000 & $-$ & $+$ \\
+4 & 1.500000000 & 2.125000000 & 1.812500000 & -1.750000000 & 0.515625000 & -0.714843750 & $+$ & $-$ \\
+5 & 1.812500000 & 2.125000000 & 1.968750000 & -0.714843750 & 0.515625000 & -0.122558594 & $+$ & $-$ \\
+6 & 1.968750000 & 2.125000000 & 2.046875000 & -0.122558594 & 0.515625000 & 0.189208984 & $-$ & $+$ \\
+7 & 1.968750000 & 2.046875000 & 2.007812500 & -0.122558594 & 0.189208984 & 0.031494141 & $-$ & $+$ \\
+8 & 1.968750000 & 2.007812500 & 1.988281250 & -0.122558594 & 0.031494141 & -0.063354492 & $+$ & $-$ \\
+9 & 1.988281250 & 2.007812500 & 1.998046875 & -0.063354492 & 0.031494141 & -0.007873535 & $+$ & $-$ \\
+10 & 1.998046875 & 2.007812500 & 2.002929688 & -0.007873535 & 0.031494141 & 0.011726379 & $-$ & $+$ \\
+11 & 1.998046875 & 2.002929688 & 2.000488281 & -0.007873535 & 0.011726379 & 0.001953602 & $-$ & $+$ \\
+12 & 1.998046875 & 2.000488281 & 1.999267578 & -0.007873535 & 0.001953602 & -0.002960747 & $+$ & $-$ \\
+\hline
+\end{tabular}
+}
+\end{table}
+\end{enumerate}
+\end{Ejem}
+
+
+%========================================
+\subsection{Implementaciones num\'ericas}
+%========================================
+\begin{Algthm}
+Pseudoc\'odigo
+
+\begin{verbatim}
+Inicio
+    Definir f(x)
+    Leer a, b, tolerancia, iter_max
+
+    Si f(a)*f(b) > 0 Entonces
+        Imprimir "No hay cambio de signo en [a,b]"
+        Terminar
+    FinSi
+
+    iter <-- 0
+    error <-- |b - a|
+
+    Mientras (error > tolerancia) Y (iter < iter_max) Hacer
+        c <- (a + b)/2
+
+        Si f(a)*f(c) < 0 Entonces
+            b <-- c
+        Sino
+            a <-- c
+        FinSi
+
+        error <-- |b - a|
+        iter <-- iter + 1
+    FinMientras
+
+    Imprimir "Ra\'iz aproximada:", c
+    Imprimir "Iteraciones:", iter
+Fin
+
+\end{verbatim}
+
+
+Implementaci\'on num\'erica
+
+\begin{verbatim}
+# M\'etodo de Bisecci\'on
+biseccion <- function(f, a, b, tol = 1e-6, iter_max = 100){
+  if(f(a)*f(b) > 0){
+    cat("Error: no hay cambio de signo en el intervalo [a,b].\n")
+    return(NA)
+  }
+  
+  iter <- 0
+  error <- abs(b - a)
+  
+  while(error > tol && iter < iter_max){
+    c <- (a + b)/2
+    
+    if(f(a)*f(c) < 0){
+      b <- c
+    } else {
+      a <- c
+    }
+    
+    error <- abs(b - a)
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", c, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(c)
+}
+
+# Ejemplo de uso:
+# f(x) = x^3 - x - 2  
+f <- function(x) x^3 - x - 2
+biseccion(f, a = 1, b = 2)
+
+\end{verbatim}
+\end{Algthm}
+
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Algthm}
+\begin{verbatim}
+# Definir f(x) (la funci\'on matem\'atica a evaluar)
+f <- function(x) x^3 - 6*x^2 + 11*x - 5.5
+
+# Intervalo inicial con cambio de signo
+a <- 0.8;  b <- 0.9
+fa <- f(a); fb <- f(b)
+if (fa * fb >= 0) stop("El intervalo inicial no tiene cambio de signo.")
+
+# Estructura para guardar el historial (n, a, b, c, f(c), ancho)
+hist <- data.frame(
+  n = integer(), a = numeric(), b = numeric(),
+  c = numeric(), fc = numeric(), ancho = numeric(),
+  stringsAsFactors = FALSE
+)
+
+# Ejecutar exactamente 8 iteraciones, sin usar ninguna funcion/recursividad
+for (n in 1:8) {
+  c  <- (a + b)/2
+  fc <- f(c)
+  ancho <- (b - a)/2
+  
+  # Guardar fila
+  hist[n,] <- list(n, a, b, c, fc, ancho)
+  
+  # Mostrar en consola (opcional)
+  cat(sprintf("Iter %2d | a=%.7f b=%.7f c=%.7f f(c)=%.7e ancho=%.7e\n",
+              n, a, b, c, fc, ancho))
+  
+  # Actualizar el intervalo seg\'un el signo
+  if (fa * fc < 0) {
+    b <- c; fb <- fc
+  } else {
+    a <- c; fa <- fc
+  }
+}
+
+# Resultado aproximado tras 8 iteraciones:
+c_aprox <- hist$c[8]
+error_cota <- hist$ancho[8]  # (b - a)/2 despu\'es del paso 8
+c_aprox; error_cota
+hist
+\end{verbatim}
+\end{Algthm}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Algthm}
+\begin{verbatim}
+f <- function(x) x^2 - 2
+a <- 1.0; b <- 2.0
+fa <- f(a); fb <- f(b)
+if (fa*fb >= 0) stop("Sin cambio de signo en [a,b].")
+histA <- data.frame(n=integer(), a=numeric(), b=numeric(),
+                    c=numeric(), fc=numeric(), ancho=numeric())
+for (n in 1:8) {
+  c  <- (a + b)/2
+  fc <- f(c)
+  histA[n,] <- list(n, a, b, c, fc, (b-a)/2)
+  cat(sprintf("A-%2d | a=%.6f b=%.6f c=%.6f f(c)=%.6e ancho=%.6e\n",
+              n, a, b, c, fc, (b-a)/2))
+  if (fa * fc < 0) { b <- c; fb <- fc } else { a <- c; fa <- fc }
+}
+\end{verbatim}
+\end{Algthm}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\begin{Algthm}
+\begin{verbatim}
+f <- function(x) x^2 - 2*x
+a <- 1.2; b <- 3.0
+fa <- f(a); fb <- f(b)
+if (fa*fb >= 0) stop("Sin cambio de signo en [a,b].")
+histB <- data.frame(n=integer(), a=numeric(), b=numeric(),
+                    c=numeric(), fc=numeric(), ancho=numeric())
+for (n in 1:8) {
+  c  <- (a + b)/2
+  fc <- f(c)
+  histB[n,] <- list(n, a, b, c, fc, (b-a)/2)
+  cat(sprintf("B-%2d | a=%.6f b=%.6f c=%.6f f(c)=%.6e ancho=%.6e\n",
+              n, a, b, c, fc, (b-a)/2))
+  if (fa * fc < 0) { b <- c; fb <- fc } else { a <- c; fa <- fc }
+}
+\end{verbatim}
+\end{Algthm}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\section{M\'etodo de la Secante}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+
+El m\'etodo de la secante aproxima la derivada mediante la pendiente de la recta que une dos puntos de la curva, evitando calcular $f'(x)$.
+\begin{Algthm}
+Dado $x_{k-1}$ y $x_k$, definimos
+\begin{eqnarray*}
+x_{k+1} \;=\; x_k \;-\; f(x_k)\,\frac{x_k-x_{k-1}}{\,f(x_k)-f(x_{k-1})\,}.
+\end{eqnarray*}
+\begin{itemize}
+\item \textbf{Criterios de paro:} $|x_{k+1}-x_k|<\varepsilon$ o $|f(x_{k+1})|<\varepsilon$.  
+\item \textbf{Ventajas:} no requiere derivada; suele ser m\'as r\'apido que bisecci\'on.  
+\item \textbf{Sugerencia:} elegir dos semillas razonables; evitar $f(x_k)\approx f(x_{k-1})$ (divisi\'on por n\'umero muy peque\~no).
+\end{itemize}
+\end{Algthm}
+
+
+\begin{Ejem} Funci\'on Cuadr\'atica: $f(x)=x^2-4$. Semillas: $x_0=1$, $x_1=3$. Buscamos la ra\'iz positiva (2). Consideremos la aproximaci\'on inicial $x_0,x_1$ y el nuevo punto $x_2$ es el punto donde se intersecta la secante con el eje $x$.
+\begin{eqnarray*}
+f(x)=x^2-4,\quad f(1)=-3,\quad f(3)=5.
+\end{eqnarray*}
+\begin{itemize}
+\item Iteraci\'on 1.
+\begin{eqnarray*}
+x_2=3-5\frac{(3-1)}{5-(-3)}=1.75,\qquad |x_2-x_1|=1.25.
+\end{eqnarray*}
+\item Iteraci\'on 2. $x_0=3$, $x_1=1.75$, $f(1.75)=-0.9375$,
+\begin{eqnarray*}
+x_3=1.75-(-0.9375)\frac{(1.75-3)}{-0.9375-5}=1.947368421.
+\end{eqnarray*}
+\item Iteraci\'on 3. $f(1.947368421)=-0.207756233$,
+\begin{eqnarray*}
+x_4=1.947368421-(-0.207756233)\frac{(1.947368421-1.75)}{-0.207756233-(-0.9375)}=2.003558719.
+\end{eqnarray*}
+\item Iteraci\'on 4. $f(2.003558719)=0.014247540$,
+\begin{eqnarray*}
+x_5=2.003558719-(0.014247540)\frac{(2.003558719-1.947368421)}{0.014247540-(-0.207756233)}=1.999952593.
+\end{eqnarray*}
+\item Iteraci\'on 5. $f(1.999952593)=-1.89625\times 10^{-4}$, y $x_6=1.999999958$, por lo tanto $x\approx 2.000000000$.
+\end{itemize}
+
+Soluci\'on en R:
+\begin{verbatim}
+# f(x) = x^2 - 4   (x0=1, x1=3)
+x0 <- 1.0; x1 <- 3.0
+# Iteraci\'on 1
+f0 <- x0^2 - 4; f1 <- x1^2 - 4
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 2
+f0 <- x0^2 - 4; f1 <- x1^2 - 4
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 3
+f0 <- x0^2 - 4; f1 <- x1^2 - 4
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 4
+f0 <- x0^2 - 4; f1 <- x1^2 - 4
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 5
+f0 <- x0^2 - 4; f1 <- x1^2 - 4
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+root_aprox <- x2
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Ejem} $f(x)=x^3-x-2$. Aproximaci\'on inicial: $x_0=1$, $x_1=2$, entonces
+\begin{eqnarray*}
+f(1)=-2,\qquad f(2)=4.
+\end{eqnarray*}
+\begin{itemize}
+\item Iteraci\'on 1.
+\begin{eqnarray*}
+x_2=2-(4)\frac{(2-1)}{4-(-2)}=1.333333333.
+\end{eqnarray*}
+\item Iteraci\'on 2. $f(1.333333333)=-0.962962963$; $x_3=1.462686567$.
+
+\item Iteraci\'on 3. $f(1.462686567)=-0.333338875$; $x_4=1.531169432$.
+
+\item Iteraci\'on 4. $f(1.531169432)=0.058626418$; $x_5=1.520926421$.
+
+\item Iteraci\'on 5.$f(1.520926421)=-0.002693300$; $x_6=1.521376317$; 
+\end{itemize}
+
+
+Soluci\'on en R
+\begin{verbatim}
+# f(x) = x^3 - x - 2   (x0=1, x1=2)
+x0 <- 1.0; x1 <- 2.0
+# Iteraci\'on 1
+f0 <- x0^3 - x0 - 2; f1 <- x1^3 - x1 - 2
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 2
+f0 <- x0^3 - x0 - 2; f1 <- x1^3 - x1 - 2
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 3
+f0 <- x0^3 - x0 - 2; f1 <- x1^3 - x1 - 2
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 4
+f0 <- x0^3 - x0 - 2; f1 <- x1^3 - x1 - 2
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 5
+f0 <- x0^3 - x0 - 2; f1 <- x1^3 - x1 - 2
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+root_aprox <- x2
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+\begin{Ejem} $f(x)=\cos x - x$. Aproximaci\'on inicial: $x_0=0.5$, $x_1=1.0$, por tanto $f(0.5)=0.37758256$ y $f(1.0)=-0.45969769$.
+\begin{itemize}
+\item Iteraci\'on 1. $x_2=0.725481587$, $f(x_2)\approx 0.022698391$.
+
+\item Iteraci\'on 2. $x_3=0.738398620$, $f(x_3)\approx 0.001148782$.
+
+\item Iteraci\'on 3. $x_4=0.739087211$, $f(x_4)\approx -3.4771\times 10^{-6}$.
+
+\item Iteraci\'on 4. $x_5=0.739085133$; entonces $x\approx 0.739085133$.
+
+\end{itemize}
+Soluci\'on en R
+\begin{verbatim}
+# f(x) = cos(x) - x   (x0=0.5, x1=1.0)
+x0 <- 0.5; x1 <- 1.0
+# Iteraci\'on 1
+f0 <- cos(x0) - x0; f1 <- cos(x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 2
+f0 <- cos(x0) - x0; f1 <- cos(x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 3
+f0 <- cos(x0) - x0; f1 <- cos(x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 4
+f0 <- cos(x0) - x0; f1 <- cos(x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+root_aprox <- x2
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+\begin{Ejem} $f(x)=e^{-x}-x$. Aproximaci\'on inicial: $x_0=0$, $x_1=1$, por tanto  $f(0)=1$, $f(1)=e^{-1}-1\approx -0.632120559$.
+
+\item Iteraci\'on 1. $x_2=0.612699837$, $f(x_2)\approx -0.070813948$.
+
+\item Iteraci\'on 2. $x_3=0.563838389$, $f(x_3)\approx 0.005182355$.
+
+\item Iteraci\'on 3. $x_4=0.567170358$, $f(x_4)\approx -4.2419\times 10^{-5}$.
+
+\item Iteraci\'on 4. $x_5=0.567143307$, $f(x_5)\approx -2.5380\times 10^{-8}$.
+
+\item Iteraci\'on 5. $x_6=0.567143290$, $x\approx 0.567143290$.
+
+
+Soluci\'on con R
+\begin{verbatim}
+# f(x) = exp(-x) - x   (x0=0, x1=1)
+x0 <- 0.0; x1 <- 1.0
+# Iteraci\'on 1
+f0 <- exp(-x0) - x0; f1 <- exp(-x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 2
+f0 <- exp(-x0) - x0; f1 <- exp(-x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 3
+f0 <- exp(-x0) - x0; f1 <- exp(-x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 4
+f0 <- exp(-x0) - x0; f1 <- exp(-x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+x0 <- x1; x1 <- x2
+# Iteraci\'on 5
+f0 <- exp(-x0) - x0; f1 <- exp(-x1) - x1
+x2 <- x1 - f1*(x1 - x0)/(f1 - f0)
+root_aprox <- x2
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Algthm}
+
+Pseudoc\'odigo
+\begin{verbatim}
+Algoritmo: M\'etodo de la Secante
+
+Entrada:
+    f(x)        --> funci\'on
+    x0, x1      --> valores iniciales
+    tol         --> tolerancia (por ejemplo, 1e-6)
+    iter_max    --> n\'umero m\'aximo de iteraciones
+
+Proceso:
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tol) Y (iter < iter_max) Hacer
+        fx0 <-- f(x0)
+        fx1 <-- f(x1)
+
+        Si |fx1 - fx0| < 1e-12 Entonces
+            Imprimir "Error: divisi\'on por cero"
+            Salir
+        FinSi
+
+        x2 <-- x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+        error <-- |x2 - x1|
+
+        x0 <-- x1
+        x1 <-- x2
+        iter <-- iter + 1
+    FinMientras
+
+Salida:
+    Imprimir "Ra\'iz aproximada:", x2
+    Imprimir "Iteraciones:", iter
+FinAlgoritmo
+
+\end{verbatim}
+
+Implememtaci\'on num\'erica
+
+\begin{verbatim}
+# M\'etodo de la Secante
+secante <- function(f, x0, x1, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    fx0 <- f(x0)
+    fx1 <- f(x1)
+    
+    # Evitar divisi\'on por cero
+    if(abs(fx1 - fx0) < 1e-12){
+      cat("Error: Divisi\'on por cero (f(x1) - f(x0) approx 0)\n")
+      return(NA)
+    }
+    
+    x2 <- x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+    error <- abs(x2 - x1)
+    
+    # Actualizar valores
+    x0 <- x1
+    x1 <- x2
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x2, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x2)
+}
+
+# Ejemplo de uso:
+# f(x) = x^3 - 2x^2 + 3x - 5
+f <- function(x) x^3 - 2*x^2 + 3*x - 5
+secante(f, x0 = 1, x1 = 2)
+
+\end{verbatim}
+\end{Algthm}
+
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\section{M\'etodo de Newton-Raphson}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+Se busca una ra\'iz de $f(x)=0$ usando la recta \emph{tangente} en $x_k$. El siguiente punto est\'a dado por
+\begin{equation}
+x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}.
+\end{equation}
+
+El criterio de paro es $|x_{k+1}-x_k|<\varepsilon$ o $|f(x_{k+1})|<\varepsilon$.
+
+\begin{Algthm}
+\begin{verbatim}
+Entrada: f(x), f'(x), x0, tolerancia eps, Nmax
+x = x0
+Para k = 1..Nmax:
+    fx = f(x); dfx = f'(x)
+    si dfx = 0: detener (tangente horizontal)
+    x1 = x - fx/dfx
+    si |x1 - x| < eps o |f(x1)| < eps: retornar x1
+    x = x1
+Fin
+\end{verbatim}
+\end{Algthm}
+
+\begin{Ejem} $f(x)=x^2-4$, $f'(x)=2x$.  Aproximaci\'on inicial $x_0=3$
+
+\begin{eqnarray*}
+x_1&=&3 - \frac{9-4}{2\cdot 3} = 3 - \frac{5}{6} = 2.166666667.\\
+x_2&=&2.166666667 - \frac{(2.166666667)^2-4}{2\cdot 2.166666667}
+   =2.166666667 - \frac{0.694444444}{4.333333334}= 2.006410256.\\
+x_3&=&2.006410256 - \frac{(2.006410256)^2-4}{2\cdot 2.006410256}\approx 2.000006410.\\
+x_4&\approx& 2.000000000.
+\end{eqnarray*}
+Ra\'iz aproximada $x\approx 2$.
+
+Soluci\'on con R:
+\begin{verbatim}
+# f(x) = x^2 - 4,  f'(x) = 2*x,  x0 = 3; x <- 3.0
+# k=1
+fx <- x^2 - 4; dfx <- 2*x
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+# k=2
+fx <- x^2 - 4; dfx <- 2*x
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+# k=3
+fx <- x^2 - 4; dfx <- 2*x
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+\begin{Ejem} $f(x)=x^3-x-2$, $f'(x)=3x^2-1$.  Valor inicial $x_0=1.5$
+
+\begin{eqnarray*}
+f(1.5)&=&-0.125; f'(1.5)=5.75,\\
+x_1&=&1.5 - \frac{-0.125}{5.75}=1.521739130.\\
+f(1.521739130)&\approx& 0.002137; f'(1.521739130)\approx 5.947070,\\
+x_2 &=& 1.521739130 - \frac{0.002137}{5.947070} \approx 1.521380215.\\
+f(1.521380215)&\approx& 6.03\times 10^{-7},\;\; f'(1.521380215)\approx 5.943790,\\
+x_3 &\approx& 1.521380005,\\
+x_4 &\approx& 1.521379706.
+\end{eqnarray*}
+por tanto $x\approx 1.521379706$. Soluci\'on con R
+\begin{verbatim}
+# f(x) = x^3 - x - 2,  f'(x) = 3*x^2 - 1,  x0 = 1.5
+x <- 1.5
+
+# k=1
+fx <- x^3 - x - 2; dfx <- 3*x^2 - 1
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+
+# k=2
+fx <- x^3 - x - 2; dfx <- 3*x^2 - 1
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+
+# k=3
+fx <- x^3 - x - 2; dfx <- 3*x^2 - 1
+x1 <- x - fx/dfx; err <- abs(x1 - x); x <- x1
+
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+\begin{Ejem} $f(x)=\cos x - x$, $f'(x)=-\sin x - 1$.  Aproximaci\'on inicial $x_0=0.5$
+
+\begin{eqnarray*}
+f(0.5)&=&0.37758256,\;\; f'(0.5)=-\sin(0.5)-1\approx -1.47942554,\\
+x_1& =& 0.5 - \frac{0.37758256}{-1.47942554} = 0.755222.\\
+f(0.755222)&\approx& -0.027103,\;\; f'(0.755222)\approx -1.685451,\\
+x_2 &=& 0.755222 - \frac{-0.027103}{-1.685451} \approx 0.739142.\\
+f(0.739142)&\approx& -9.46\times 10^{-5},\;\; f'(0.739142)\approx -1.673654,\\
+x_3 &\approx& 0.739085;\\
+x_4 &\approx& 0.739085133.
+\end{eqnarray*}
+por lo tanto $x\approx 0.739085133$.
+\end{Ejem}
+
+\begin{Ejem} $f(x)=e^{-x}-x$, $f'(x)=-e^{-x}-1$.  Aproximaci\'on inicial $x_0=0$
+\begin{eqnarray*}
+f(0)&=&1,\;\; f'(0)=-2 \;\Rightarrow\; x_1 = 0 - \frac{1}{-2} = 0.5.\\
+f(0.5)&=&e^{-0.5}-0.5\approx 0.10653066,\;\; f'(0.5)=-e^{-0.5}-1\approx -1.60653066,\\
+x_2 &=& 0.5 - \frac{0.10653066}{-1.60653066} \approx 0.566311.\\
+f(0.566311)&\approx& 0.001157,\;\; f'(0.566311)\approx -1.567468,\\
+x_3&\approx& 0.567049,\;\; x_4 \approx 0.56714329.
+\end{eqnarray*}
+por lo tanto la ra\'iz se encuentra en $x\approx 0.56714329$.
+\end{Ejem}
+
+
+\begin{Algthm}
+Pseudoc\'odigo
+
+
+\begin{verbatim}
+Inicio
+    Definir f(x) y f'(x)
+    Leer x0, tolerancia, iter_max
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tolerancia) Y (iter < iter_max) Hacer
+        x1 <-- x0 - f(x0)/f'(x0)
+        error <-- |x1 - x0|
+        x0 <-- x1
+        iter <-- iter + 1
+    FinMientras
+
+    Imprimir "Ra\'iz aproximada:", x1
+    Imprimir "Iteraciones:", iter
+Fin
+\end{verbatim}
+
+Implementaci\'on num\'erica
+
+\begin{verbatim}
+# M\'etodo de Newton-Raphson
+newton <- function(f, df, x0, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    x1 <- x0 - f(x0)/df(x0)
+    error <- abs(x1 - x0)
+    x0 <- x1
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x1, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x1)
+}
+
+# Ejemplo de uso:
+# f(x) = x^2 - 2 
+f  <- function(x) x^2 - 2
+df <- function(x) 2*x
+newton(f, df, x0 = 1)
+
+\end{verbatim}
+\end{Algthm}
+
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+\section{M\'etodo del punto fijo}
+%<>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<><>===<>
+
+Dada una ecuaci\'on $f(x)=0$, elegimos una funci\'on $g$ tal que
+\begin{eqnarray*}
+f(x)=0 \quad \textrm{s\'i y s\'olo s\'i }x=g(x).
+\end{eqnarray*}
+El m\'etodo de \textbf{punto fijo} construye la sucesi\'on
+\begin{eqnarray*}
+x_{k+1}=g(x_k),\qquad k=0,1,2,\dots
+\end{eqnarray*}
+
+\begin{Teo}Si $g$ es continua en un intervalo $I$ que contiene a la ra\'iz $r$, $g(I)\subset I$ y
+$\displaystyle \max_{x\in I}|g'(x)|=L<1$, entonces existe un \'unico punto fijo $r\in I$ y para $x_0\in I$ se cumple $x_k\to r$ con convergencia al menos lineal (factor $\le L$).
+\end{Teo}
+
+\begin{Algthm}
+\begin{verbatim}
+Entrada: g(x), x0, tolerancia eps, Nmax
+x = x0
+Para k = 1..Nmax:
+    x1 = g(x)
+    si |x1 - x| < eps  o  |f(x1)| < eps: retornar x1
+    x = x1
+Fin
+\end{verbatim}
+\end{Algthm}
+
+\begin{Ejem} $f(x)=x^2-4=0$
+\begin{eqnarray*}
+g(x)=\frac{1}{2}\Big(x+\frac{4}{x}\Big)\quad\text{(iteraci\'on de Her\'on para }\sqrt{4}\text{)}.
+\end{eqnarray*}
+Entonces $x_{k+1}=g(x_k)$ y el punto fijo es $r=2$. Tomamos $x_0=3$.
+
+\begin{eqnarray*}
+x_1&=&\frac{1}{2}(3+\tfrac{4}{3})=2.166666667.\\
+x_2&=&\frac{1}{2}\!\Big(2.166666667+\tfrac{4}{2.166666667}\Big)=2.006410256.\\
+x_3&=&\frac{1}{2}\!\Big(2.006410256+\tfrac{4}{2.006410256}\Big)=2.000003626.\\
+x_4&=&\frac{1}{2}\!\Big(2.000003626+\tfrac{4}{2.000003626}\Big)=2.000000000.\\
+x_5&\approx& 2.000000000.
+\end{eqnarray*}
+por lo tanto $r\approx 2$. Aqu\'i $|g'(r)|=\frac{1}{2}(1-\tfrac{4}{r^2})=0$, por eso converge muy r\'apido. Soluci\'on con R
+\begin{verbatim}
+# g(x) = 0.5*(x + 4/x)   (x0 = 3)
+x <- 3.0
+
+# Iteraci\'on 1
+x1 <- 0.5*(x + 4/x); x <- x1
+
+# Iteraci\'on 2
+x1 <- 0.5*(x + 4/x); x <- x1
+
+# Iteraci\'on 3
+x1 <- 0.5*(x + 4/x); x <- x1
+
+# Iteraci\'on 4
+x1 <- 0.5*(x + 4/x); x <- x1
+
+# Iteraci\'on 5
+x1 <- 0.5*(x + 4/x); x <- x1
+
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Ejem} $f(x)=x^3-x-2=0$. Reescribimos $x=\sqrt[3]{x+2}$
+\begin{eqnarray*}
+g(x)=(x+2)^{1/3}.
+\end{eqnarray*}
+Cerca de la ra\'iz $r\approx 1.52138$, $|g'(r)|=\frac{1}{3}(r+2)^{-2/3}<1$. Tomamos $x_0=1$.
+
+\begin{eqnarray*}
+x_1&=&(1+2)^{1/3}=1.44224957.\\
+x_2&=&(1.44224957+2)^{1/3}=1.51571657.\\
+x_3&=&(1.51571657+2)^{1/3}=1.52137900.\\
+x_4&=&(1.52137900+2)^{1/3}=1.52137966.\\
+x_5&=&(1.52137966+2)^{1/3}=1.52137971.\\
+\end{eqnarray*}
+por lo tanto $r\approx 1.52137971$. Soluci\'on con R
+\begin{verbatim}
+# g(x) = (x + 2)^(1/3)   (x0 = 1)
+x <- 1.0
+
+# Iteraci\'on 1
+x1 <- (x + 2)^(1/3); x <- x1
+
+# Iteraci\'on 2
+x1 <- (x + 2)^(1/3); x <- x1
+
+# Iteraci\'on 3
+x1 <- (x + 2)^(1/3); x <- x1
+
+# Iteraci\'on 4
+x1 <- (x + 2)^(1/3); x <- x1
+
+# Iteraci\'on 5
+x1 <- (x + 2)^(1/3); x <- x1
+
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+\begin{Ejem} $f(x)=\cos x - x=0$
+Se selecciona $x=\cos x$:
+\begin{eqnarray*}
+g(x)=\cos x.
+\end{eqnarray*}
+$|g'(r)|=|\!- \sin r|\approx 0.673<1$. Tomamos $x_0=0.5$.
+
+\begin{eqnarray*}
+x_1&=&\cos(0.5)=0.87758256.\\
+x_2&=&\cos(0.87758256)=0.63901249.\\
+x_3&=&\cos(0.63901249)=0.80268510.\\
+x_4&=&\cos(0.80268510)=0.69477803.\\
+x_5&=&\cos(0.69477803)=0.76819583.
+\end{eqnarray*}
+
+Soluci\'on con R
+\begin{verbatim}
+# g(x) = cos(x)   (x0 = 0.5)
+x <- 0.5
+
+# Iteraci\'on 1
+x1 <- cos(x); x <- x1
+
+# Iteraci\'on 2
+x1 <- cos(x); x <- x1
+
+# Iteraci\'on 3
+x1 <- cos(x); x <- x1
+
+# Iteraci\'on 4
+x1 <- cos(x); x <- x1
+
+# Iteraci\'on 5
+x1 <- cos(x); x <- x1
+
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Ejem} $f(x)=e^{-x}-x=0$, se toma
+\begin{eqnarray*}
+g(x)=e^{-x}.
+\end{eqnarray*}
+En la ra\'iz $r\approx 0.567143$, $|g'(r)|=e^{-r}\approx 0.567<1$. Tomamos $x_0=1$.
+
+\begin{eqnarray*}
+x_1&=&e^{-1}=0.36787944.\\
+x_2&=&e^{-0.36787944}=0.69220063.\\
+x_3&=&e^{-0.69220063}=0.50047350.\\
+x_4&=&e^{-0.50047350}=0.60624354.\\
+x_5&=&e^{-0.60624354}=0.54539579.\\
+\end{eqnarray*}
+
+Soluci\'on con R
+\begin{verbatim}
+# g(x) = exp(-x)   (x0 = 1)
+x <- 1.0
+
+# Iteraci\'on 1
+x1 <- exp(-x); x <- x1
+
+# Iteraci\'on 2
+x1 <- exp(-x); x <- x1
+
+# Iteraci\'on 3
+x1 <- exp(-x); x <- x1
+
+# Iteraci\'on 4
+x1 <- exp(-x); x <- x1
+
+# Iteraci\'on 5
+x1 <- exp(-x); x <- x1
+
+root_aprox <- x
+print(root_aprox)
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Algthm}
+Pseudoc\'odigo
+\begin{verbatim}
+Inicio
+    Definir f(x) y g(x)
+    Leer x0, tolerancia, iter_max
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tolerancia) Y (iter < iter_max) Hacer
+        x1 <-- g(x0)
+        error <-- |x1 - x0|
+        x0 <-- x1
+        iter <-- iter + 1
+    FinMientras
+
+    Imprimir "Ra\'iz aproximada:", x1
+    Imprimir "Iteraciones:", iter
+Fin
+
+\end{verbatim}
+
+
+Implementaci\'on num\'erica:
+
+\begin{verbatim}
+# M\'etodo del Punto Fijo
+fijo <- function(g, x0, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    x1 <- g(x0)
+    error <- abs(x1 - x0)
+    x0 <- x1
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x1, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x1)
+}
+
+# Ejemplo de uso:
+# f(x) = cos(x) - x  -->  g(x) = cos(x)
+g <- function(x) cos(x)
+fijo(g, x0 = 0.5)
+
+\end{verbatim}
+\end{Algthm}
+
+%=========================================================
+\section{Ejercicios}
+%=========================================================
+
+\subsubsection{M\'etodo de Bisecci\'on}\label{Secc_Biseccion}
+
+\textbf{Instrucciones:}
+\begin{enumerate}
+    \item Para cada funci\'on \(f(x)\), encuentre un intervalo \([a,b]\) tal que \(f(a)\cdot f(b) < 0\).
+    \item Realice al menos 8 iteraciones del m\'etodo de bisecci\'on.
+    \item Registre los valores \(a_k, b_k, c_k, f(a_k), f(b_k), f(c_k), \text{signo}(f(a_k)f(c_k))\) y el error \(|b_k-a_k|\).
+    \item Grafique la funci\'on y los intervalos de reducci\'on en cada paso.
+\end{enumerate}
+
+
+\begin{Ejer} Resuelve los siguientes ejercicioes aplicando el m\'etodo de la bisecci\'on
+\begin{enumerate}
+\begin{multicols}{2}
+\item $f(x) = x^2 - 5$ en $[2,3]$
+\item $f(x) = x^3 - 4x + 1$ en $[0,1]$
+\item $f(x) = x^4 - 8x + 2$ en $[0,3]$
+\item $f(x) = e^{-x} - \frac{x}{2}$ en $[0,2]$
+\item $f(x) = \cos(x) - x^2$ en $[0,1]$
+\item $f(x)=3x^{2}-7x-2$. $[a,b]=[-1,\,0]$.
+\item $f(x)=-4x^{2}+5x+6$.$[a,b]=[-1,\,0]$.
+\item $f(x)=2x^{2}+3x-5$. $[a,b]=[0,\,2]$.
+\item $f(x)=x^{3}-5x+1$. $[a,b]=[0,\,1]$.
+\item $f(x)=x^{4}-6x^{3}+5x^{2}+8x-4$.  $[a,b]=[0,\,1]$.
+\item $f(x)=-2x^{4}+4x^{3}+6x^{2}-3x+2$. $[a,b]=[-2,\,-1]$.
+\item $f(x)=2x^{4}-x^{3}-7x^{2}+4x+3$.  $[a,b]=[-1,\,0]$.
+\item $f(x)=x^{4}+2x^{3}-10x^{2}-x+5$.  $[a,b]=[0,\,1]$.
+\item $f(x)=5\,e^{0.6x-1}-3$.  $[a,b]=[0,\,2]$.
+\item $f(x)=7-4\,e^{-0.9x+0.2}$.  $[a,b]=[-2,\,0]$.
+\item $f(x)=\sin(2x)-\dfrac{x}{2}$. $[a,b]=[1,\,2]$.
+\item $f(x)=(2x+1.4)\,\cos\!\bigl(3x+\tfrac{\pi}{4}\bigr)$. $[a,b]=[0.1,\,0.6]$.
+\item $f(x)=(-1.5x+0.9)\,\sin\!\bigl(4x-\tfrac{\pi}{6}\bigr)$. $[a,b]=[0.2,\,0.9]$.
+\end{multicols}
+\end{enumerate}
+\end{Ejer}
+\noindent\textbf{Formato sugerido de tabla:}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{c|c|c|c|c|c|c|c|c|}
+\hline
+$k$ & $a$ & $b$ & $c$ & $f(a)$ & $f(b)$ & $f(c)$ & $signo(f(a)*f(c))$ & $error$ \\
+\hline
+1 &     &     &     &     &     &     &     \\
+2 &     &     &     &     &     &     &     \\
+3 &     &     &     &     &     &     &     \\
+4 &     &     &     &     &     &     &     \\
+5 &     &     &     &     &     &     &     \\
+6 &     &     &     &     &     &     &     \\
+7 &     &     &     &     &     &     &     \\
+8 &     &     &     &     &     &     &     \\
+9 &     &     &     &     &     &     &     \\
+10 &     &     &     &     &     &     &     \\
+... &  &  &  &  &  &  &  \\
+\hline
+\end{tabular}
+\caption{Iteraciones del m\'etodo de bisecci\'on para $f(x)$.}
+\end{table}
+
+\bigskip
+
+%===================== SECANTE =====================
+\subsection{M\'etodo de la Secante}\label{Secc_Secante}
+
+\textbf{Instrucciones:}
+\begin{enumerate}
+    \item Para cada funci\'on \(f(x)\), elija dos puntos iniciales \(x_0, x_1\) cercanos a la ra\'iz.
+    \item Aplique iterativamente:
+    \[
+    x_{k+1} = x_k - f(x_k)\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}
+    \]
+    \item Realice al menos 6 iteraciones o hasta alcanzar una tolerancia de \(10^{-5}\).
+    \item Compare el n\'umero de iteraciones con el m\'etodo de bisecci\'on.
+    \item Grafique las secantes de cada iteraci\'on y el punto de intersecci\'on con el eje \(x\).
+\end{enumerate}
+
+\begin{Ejer}
+Resuelva los siguientes ejercicios aplicando el m\'etodo de la secante:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item \(f(x) = x^2 - 2x - 3\), con \(x_0=0\), $x_1=3$
+\item $f(x)=x^{4}-10x^{2}+9$, $x_0=0$, $x_1=2$
+\item $f(x)=2x^2 - 5*x + 3$, $x_0=-1$, $x_1=2$
+\item $f(x)=-3x^2+4*x + 2$, $x_0=-1$, $x_1=3$
+\item $f(x) = x^3 +4x^2 - x - 1$, con $x_0=-3$, $x_1=1.5$
+\item $f(x) = x^4-5x^3 +6x^2 +4x - 8$, con $x_0=0$, $x_1=3$
+\item $f(x) = x^4 - 5$, con $x_0=1$, $x_1=2$
+\item $f(x) = -2x^4+3x^3+7x^2-5x+1$, con $x_0=2$, $x_1=4$
+\item $f(x) = 4e^{-0.8x-0.5} - 7$, con $x_0=0$, $x_1=1.5$
+\item $f(x) = -3e^{-1.2x+0.4} +2$, con $x_0=0$, $x_1=1.1$
+\item $f(x) = \sin(x) - \frac{x}{3}$, con $x_0=0$, $x_1=1$
+\item $f(x) = (3x+3.1)\cos(2x+\pi/6)$, con $x_0=0.3$, $x_1=0.8$
+\item $f(x) = (-2x+1.1)\sin(5x-\pi/3)$, con $x_0=0.05$, $x_1=0.35$
+\end{multicols}
+\end{enumerate}
+
+\end{Ejer}
+
+\noindent\textbf{Formato sugerido de tabla:}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{c|c|c|c|c|c|}
+\hline
+$k$ & $x_{k-1}$ & $x_k$ & $f(x_k)$ & $x_{k+1}$ & $e_{k}=\|x_{k+1}-x_{k}\|$\\
+\hline
+1 &     &     &     &     \\
+2 &     &     &     &     \\
+3 &     &     &     &     \\
+4 &     &     &     &     \\
+5 &     &     &     &     \\
+6 &     &     &     &     \\
+7 &     &     &     &     \\
+8 &     &     &     &     \\
+9 &     &     &     &     \\
+10 &     &     &     &     \\
+... &  &  &  &  \\
+\hline
+\end{tabular}
+\caption{Iteraciones del m\'etodo de la secante para $f(x)$.}
+\end{table}
+
+\subsubsection{M\'etodo de Newton}\label{Secc_Newton}
+\textbf{Instrucciones:}
+Resuelve los siguientes ejercicios aplicando el \textbf{m\'etodo de Newton}.
+Para cada funci\'on \( f(x) \):
+\begin{enumerate}
+    \item Verifica que exista un intervalo \([a,b]\) donde \(f(a)\cdot f(b) < 0\).
+    \item Realiza al menos 8 iteraciones del m\'etodo.
+    \item Registra los valores \(x_k, f(x_k), f'(x_k)\) y el error \(|x_{k+1}-x_k|\).
+    \item Grafica la funci\'on y marca el punto donde converge la ra\'iz.
+\end{enumerate}
+
+
+\begin{Ejer}
+\begin{multicols}{2}
+\begin{enumerate}
+\item $f(x)=x^3-7x+6$, \quad $[a,b]=[0,1]$
+\item $f(x)=x^3+2x^2-5$, \quad $[a,b]=[1,2]$
+\item $f(x)=x^4-3x^3+2$, \quad $[a,b]=[0,1]$
+\item $f(x)=\sin(x)-\dfrac{x}{3}$, \quad $[a,b]=[0,2]$
+\item $f(x)=e^{-x}-x$, \quad $[a,b]=[0,1]$
+\item $f(x)=x^3-2x-5$, \quad $[a,b]=[2,3]$
+\item $f(x)=x^5-3x+1$, \quad $[a,b]=[0,1]$
+\item $f(x)=\cos(x)-2x$, \quad $[a,b]=[0,1]$
+\item $f(x)=\ln(x+2)+x-1$, \quad $[a,b]=[-1,0]$
+\item $f(x)=x\,e^{-x}-0.1$, \quad $[a,b]=[0,1]$
+\item $f(x)=x^3-4\sin(x)$, \quad $[a,b]=[1,2]$
+\item $f(x)=e^x-3x^2$, \quad $[a,b]=[0,1]$
+\item $f(x)=x^2-\cos(x)$, \quad $[a,b]=[0,1]$
+\item $f(x)=x^3+4x^2-10$, \quad $[a,b]=[1,2]$
+\item $f(x)=2x\,\sin(x)-1$, \quad $[a,b]=[0,1]$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\noindent\textbf{Formato sugerido de tabla para Newton:}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{c|c|c|c|c|}
+\hline
+$k$ & $x_k$ & $f(x_k)$ & $f'(x_k)$ & $|x_{k+1}-x_k|$ \\
+\hline
+1 &     &     &     &     \\
+2 &     &     &     &     \\
+3 &     &     &     &     \\
+4 &     &     &     &     \\
+5 &     &     &     &     \\
+6 &     &     &     &     \\
+7 &     &     &     &     \\
+8 &     &     &     &     \\
+9 &     &     &     &     \\
+10 &    &     &     &     \\
+\hline
+\end{tabular}
+\caption{Iteraciones del m\'etodo de Newton para $f(x)$.}
+\end{table}
+
+\subsubsection{M\'etodo del Punto Fijo}\label{Secc_PtoFijo}
+
+\textbf{Instrucciones:}
+Resuelve los siguientes ejercicios aplicando el \textbf{m\'etodo del punto fijo}.
+\begin{enumerate}
+    \item Reescriba la ecuaci\'on \(f(x)=0\) en forma \(x=g(x)\).
+    \item Verifique que la funci\'on \(g(x)\) cumpla la condici\'on de convergencia local \(|g'(x)| < 1\) en el intervalo considerado.
+    \item Realice al menos 8 iteraciones partiendo de un valor inicial \(x_0\).
+    \item Registre los valores \(x_k, g(x_k), |x_{k+1}-x_k|\).
+    \item Grafique \(y=g(x)\) y \(y=x\) para visualizar el punto de intersecci\'on.
+\end{enumerate}
+
+
+\begin{Ejer}
+\begin{enumerate}
+\item $f(x)=\cos(x)-x$, Sugerencia: $g(x)=\cos(x)$, \quad $x_0=0.5$
+\item $f(x)=x^3+x-1$, Sugerencia: $g(x)=1-x^3$, \quad $x_0=0.6$
+\item $f(x)=e^{-x}-x$, Sugerencia: $g(x)=e^{-x}$, \quad $x_0=0.7$
+\item $f(x)=x^2-4x+1$, Sugerencia: $g(x)=\dfrac{x^2+1}{4}$, \quad $x_0=1$
+\item $f(x)=x^3-2x-5$ , Sugerencia: $g(x)=\sqrt[3]{2x+5}$, \quad $x_0=2$
+\item $f(x)=x^2-e^{x}+2$, Sugerencia: $g(x)=\sqrt{e^x-2}$, \quad $x_0=0.5$
+\item $f(x)=\ln(x+1)+x-2$, Sugerencia: $g(x)=2-\ln(x+1)$, \quad $x_0=0.5$
+\item $f(x)=x^3-3x+1$, Sugerencia: $g(x)=\sqrt[3]{3x-1}$, \quad $x_0=0.8$
+\item $f(x)=x-\sin(x)-1$, Sugerencia: $g(x)=\sin(x)+1$, \quad $x_0=1$
+\item $f(x)=x^2-3$, Sugerencia: $g(x)=\dfrac{3}{x}$, \quad $x_0=1.5$
+\item $f(x)=2x-e^{-x}$, Sugerencia: $g(x)=\dfrac{e^{-x}}{2}$, \quad $x_0=0$
+\item $f(x)=x^3+4x^2-10$, Sugerencia: $g(x)=\sqrt{\dfrac{10-x^3}{4}}$, \quad $x_0=1.5$
+\item $f(x)=x^2-\cos(x)$, Sugerencia: $g(x)=\sqrt{\cos(x)}$, \quad $x_0=0.5$
+\item $f(x)=x-e^{-x^2}$, Sugerencia: $g(x)=e^{-x^2}$, \quad $x_0=0.5$
+\item $f(x)=x^3-2$, Sugerencia: $g(x)=\sqrt[3]{2}$, \quad $x_0=1$
+\end{enumerate}
+\end{Ejer}
+
+\noindent\textbf{Formato sugerido de tabla para el m\'etodo del punto fijo:}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{c|c|c|c|}
+\hline
+$k$ & $x_k$ & $g(x_k)$ & $|x_{k+1}-x_k|$ \\
+\hline
+1 &     &     &     \\
+2 &     &     &     \\
+3 &     &     &     \\
+4 &     &     &     \\
+5 &     &     &     \\
+6 &     &     &     \\
+7 &     &     &     \\
+8 &     &     &     \\
+9 &     &     &     \\
+10 &    &     &     \\
+\hline
+\end{tabular}
+\caption{Iteraciones del m\'etodo del punto fijo para $f(x)=0$.}
+\end{table}
+
+
+
+\newpage
+
+
+\section{Para impresi\'on}
+
+
+\subsection{Punto fijo}
+
+Pseudoc\'odigo
+
+\begin{verbatim}
+Algoritmo: M\'etodo del Punto Fijo
+
+Entrada:
+    g(x)        --> funci\'on de iteraci\'on
+    x0          --> valor inicial
+    tol         --> tolerancia (por ejemplo, 1e-6)
+    iter_max    --> n\'umero m\'aximo de iteraciones
+
+Proceso:
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tol) Y (iter < iter_max) Hacer
+        x1 <-- g(x0)
+        error <-- |x1 - x0|
+        x0 <-- x1
+        iter <-- iter + 1
+    FinMientras
+
+Salida:
+    Imprimir "Ra\'iz aproximada:", x1
+    Imprimir "Iteraciones:", iter
+FinAlgoritmo
+\end{verbatim}
+
+Implementaci\'on num\'erica
+
+\begin{verbatim}
+\begin{lstlisting}[language=R, caption={M\'etodo del Punto Fijo en R}]
+fijo <- function(g, x0, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    x1 <- g(x0)
+    error <- abs(x1 - x0)
+    x0 <- x1
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x1, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x1)
+}
+
+# Ejemplo de uso:
+g <- function(x) cos(x)
+fijo(g, x0 = 0.5)
+\end{lstlisting}
+
+\end{verbatim}
+
+\subsection{Newton-Raphson}
+
+Pseudoc\'odigo
+
+\begin{verbatim}
+
+Algoritmo: M\'etodo de Newton–Raphson
+
+Entrada:
+    f(x)        --> funci\'on
+    f'(x)       --> derivada de f(x)
+    x0          --> valor inicial
+    tol         --> tolerancia
+    iter_max    --> n\'umero m\'aximo de iteraciones
+
+Proceso:
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tol) Y (iter < iter_max) Hacer
+        x1 <-- x0 - f(x0)/f'(x0)
+        error <-- |x1 - x0|
+        x0 <-- x1
+        iter <-- iter + 1
+    FinMientras
+
+Salida:
+    Imprimir "Ra\'iz aproximada:", x1
+    Imprimir "Iteraciones:", iter
+FinAlgoritmo
+\end{verbatim}
+
+Implementaci\'on num\'erica
+
+\begin{verbatim}
+
+newton <- function(f, df, x0, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    x1 <- x0 - f(x0)/df(x0)
+    error <- abs(x1 - x0)
+    x0 <- x1
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x1, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x1)
+}
+
+# Ejemplo:
+f  <- function(x) x^2 - 2
+df <- function(x) 2*x
+newton(f, df, x0 = 1)
+
+
+\end{verbatim}
+
+\subsection{Bisecci\'on}
+
+Pseudoc\'odigo
+
+\begin{verbatim}
+
+Algoritmo: M\'etodo de Bisecci\'on
+
+Entrada:
+    f(x)        --> funci\'on continua
+    a, b        --> intervalo [a,b] con f(a)*f(b) < 0
+    tol         --> tolerancia
+    iter_max    --> n\'umero m\'aximo de iteraciones
+
+Proceso:
+    Si f(a)*f(b) > 0 Entonces
+        Imprimir "No hay cambio de signo"
+        Salir
+    FinSi
+
+    iter <-- 0
+    error <-- |b - a|
+
+    Mientras (error > tol) Y (iter < iter_max) Hacer
+        c <-- (a + b)/2
+
+        Si f(a)*f(c) < 0 Entonces
+            b <-- c
+        Sino
+            a <-- c
+        FinSi
+
+        error <-- |b - a|
+        iter <-- iter + 1
+    FinMientras
+
+Salida:
+    Imprimir "Ra\'iz aproximada:", c
+    Imprimir "Iteraciones:", iter
+FinAlgoritmo
+\end{verbatim}
+
+Implementaci\'on num\'erica
+
+\begin{verbatim}
+biseccion <- function(f, a, b, tol = 1e-6, iter_max = 100){
+  if(f(a)*f(b) > 0){
+    cat("Error: no hay cambio de signo en [a,b].\n")
+    return(NA)
+  }
+  
+  iter <- 0
+  error <- abs(b - a)
+  
+  while(error > tol && iter < iter_max){
+    c <- (a + b)/2
+    if(f(a)*f(c) < 0){
+      b <- c
+    } else {
+      a <- c
+    }
+    error <- abs(b - a)
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", c, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(c)
+}
+
+# Ejemplo:
+f <- function(x) x^3 - x - 2
+biseccion(f, a = 1, b = 2)
+\end{verbatim}
+
+\subsection{Secante}
+
+Pseudoc\'odigo
+
+\begin{verbatim}
+
+
+Algoritmo: M\'etodo de la Secante
+
+Entrada:
+    f(x)        --> funci\'on
+    x0, x1      --> valores iniciales
+    tol         --> tolerancia
+    iter_max    --> n\'umero m\'aximo de iteraciones
+
+Proceso:
+    iter <-- 0
+    error <-- 1
+
+    Mientras (error > tol) Y (iter < iter_max) Hacer
+        fx0 <-- f(x0)
+        fx1 <-- f(x1)
+
+        Si |fx1 - fx0| < 1e-12 Entonces
+            Imprimir "Error: divisi\'on por cero"
+            Salir
+        FinSi
+
+        x2 <-- x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+        error <-- |x2 - x1|
+
+        x0 <-- x1
+        x1 <-- x2
+        iter <-- iter + 1
+    FinMientras
+
+Salida:
+    Imprimir "Ra\'iz aproximada:", x2
+    Imprimir "Iteraciones:", iter
+FinAlgoritmo
+\end{verbatim}
+
+Implementaci\'on num\'erica
+
+
+\begin{verbatim}
+secante <- function(f, x0, x1, tol = 1e-6, iter_max = 100){
+  iter <- 0
+  error <- 1
+  
+  while(error > tol && iter < iter_max){
+    fx0 <- f(x0)
+    fx1 <- f(x1)
+    
+    if(abs(fx1 - fx0) < 1e-12){
+      cat("Error: Divisi\'on por cero (f(x1) - f(x0) approxx 0)\n")
+      return(NA)
+    }
+    
+    x2 <- x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+    error <- abs(x2 - x1)
+    
+    x0 <- x1
+    x1 <- x2
+    iter <- iter + 1
+  }
+  
+  cat("Ra\'iz aproximada:", x2, "\n")
+  cat("Iteraciones:", iter, "\n")
+  return(x2)
+}
+
+# Ejemplo:
+f <- function(x) x^3 - 2*x^2 + 3*x - 5
+secante(f, x0 = 1, x1 = 2)
+
+\end{verbatim}
+
+\newpage
+%=========================================================
+\section{Tarea para el portafolio}
+%=========================================================
+\begin{centering} 
+\textbf{ A continuaci\'on se presentan las indicaciones sobre los ejercicios que se van a a incluir en el portafolio del curso de M\'etodos Num\'ericos}
+\end{centering}
+
+\begin{enumerate}
+\item Del m\'etodo de Bisecci\'on,  (subsecci\'on \ref{Secc_Biseccion}) del ejercicio 1, resolver de los numerales impares: 3 ejercicios \textit{a mano} y 5 ejercicios con el \textit{c\'odigo automatizado}.
+
+\item Del m\'etodo de la Secante (subsecci\'on \ref{Secc_Secante}), del ejercicio 2, resolver de los ejercicios impares 3: \textit{a mano} y de los ejercicios pares 5: con el \textit{c\'odigo automatizado}.
+
+
+\item De la subsecci\'on \ref{Secc_Newton}, Del m\'etodo de Newton (subsecci\'on \ref{Secc_Newton}), del ejercicio 3, resolver de los ejercicios pares: 3 \textit{a mano} y de los ejercicios impares 5: con el \textit{c\'odigo automatizado}.
+
+\item De la subsecci\'on \ref{Secc_PtoFijo}, Del m\'etodo del Punto Fijo (subsecci\'on \ref{Secc_PtoFijo}), del ejercicio 4, resolver de los:  3 \textit{a mano} y  5 con el \textit{c\'odigo automatizado}.
+
+
+
+
+\end{enumerate}
+

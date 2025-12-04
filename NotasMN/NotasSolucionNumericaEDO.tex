@@ -1,0 +1,651 @@
+
+\chapter{Soluci\'on num\'erica de Ecuaciones Diferenciales}
+
+Muchas ecuaciones diferenciales ordinarias (EDO) que aparecen en ingeniería, física, química, biología, economía y otras ciencias no tienen solución analítica cerrada. En tales casos recurrimos a \textbf{métodos numéricos} para aproximar la solución con una precisión controlada.
+
+Consideraremos problemas de valor inicial (PVI) de la forma
+\[
+y' = f(t,y), \qquad y(t_0) = y_0.
+\]
+
+La idea general es aproximar la solución $y(t)$ en un conjunto discreto de puntos
+\[
+t_n = t_0 + n h, \qquad n = 0, 1, 2, \dots, N,
+\]
+donde $h>0$ es el \textbf{tamaño de paso}, y construir una sucesión $\{y_n\}$ que aproxime
+\[
+y_n \approx y(t_n).
+\]
+
+Un $h$ más pequeño suele producir mayor precisión pero requiere más cómputo; un $h$ demasiado grande puede llevar a errores grandes o incluso inestabilidades numéricas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Método de Euler (explícito)}
+
+
+
+Partimos del PVI
+\[
+y' = f(t,y), \qquad y(t_0) = y_0.
+\]
+
+La derivada se interpreta como razón de cambio:
+\[
+y'(t) \approx \frac{y(t+h)-y(t)}{h}.
+\]
+
+Aproximando $y'(t_n)$ por $f(t_n,y_n)$, se obtiene
+\[
+\frac{y_{n+1} - y_n}{h} \approx f(t_n,y_n),
+\]
+es decir,
+\[
+\boxed{
+y_{n+1} = y_n + h\,f(t_n,y_n)
+}
+\]
+
+Este es el \textbf{método de Euler explícito}.
+
+\textbf{Ejemplo 1 (Euler): cálculo a mano}
+
+Resolver numéricamente el PVI
+\[
+y' = y - t^2 + 1,\qquad y(0) = 0.5,
+\]
+en el intervalo $[0,1]$ con tamaño de paso $h = 0.2$.
+
+Definimos
+\[
+f(t,y) = y - t^2 + 1.
+\]
+
+Los puntos de malla son:
+\[
+t_0 = 0.0,\quad t_1 = 0.2,\quad t_2 = 0.4,\quad t_3 = 0.6,\quad t_4 = 0.8,\quad t_5 = 1.0.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+t_0 = 0,\qquad y_0 = 0.5.
+\]
+
+\paragraph{Paso 1: de $t_0=0$ a $t_1=0.2$.}
+\[
+f(t_0,y_0) = f(0,0.5) = 0.5 - 0^2 + 1 = 1.5.
+\]
+\[
+y_1 = y_0 + h f(t_0,y_0) = 0.5 + 0.2(1.5) = 0.5 + 0.3 = 0.8.
+\]
+
+\paragraph{Paso 2: de $t_1=0.2$ a $t_2=0.4$.}
+\[
+f(t_1,y_1) = f(0.2,0.8) = 0.8 - 0.2^2 + 1 = 0.8 - 0.04 + 1 = 1.76.
+\]
+\[
+y_2 = y_1 + 0.2 f(t_1,y_1) = 0.8 + 0.2(1.76) = 0.8 + 0.352 = 1.152.
+\]
+
+\paragraph{Paso 3: de $t_2=0.4$ a $t_3=0.6$.}
+\[
+f(t_2,y_2) = f(0.4,1.152) = 1.152 - 0.4^2 + 1 = 1.152 - 0.16 + 1 = 1.992.
+\]
+\[
+y_3 = 1.152 + 0.2(1.992) = 1.152 + 0.3984 = 1.5504.
+\]
+
+\paragraph{Paso 4: de $t_3=0.6$ a $t_4=0.8$.}
+\[
+f(t_3,y_3) = f(0.6,1.5504) = 1.5504 - 0.6^2 + 1 = 1.5504 - 0.36 + 1 = 2.1904.
+\]
+\[
+y_4 = 1.5504 + 0.2(2.1904) = 1.5504 + 0.43808 = 1.98848.
+\]
+
+\paragraph{Paso 5: de $t_4=0.8$ a $t_5=1.0$.}
+\[
+f(t_4,y_4) = f(0.8,1.98848) = 1.98848 - 0.8^2 + 1 = 1.98848 - 0.64 + 1 = 2.34848.
+\]
+\[
+y_5 = 1.98848 + 0.2(2.34848) = 1.98848 + 0.469696 = 2.458176.
+\]
+
+\paragraph{Tabla resumen (Euler).}
+\[
+\begin{array}{c|c|c|c}
+n & t_n & f(t_n,y_n) & y_n \\ \hline
+0 & 0.0 & 1.50000 & 0.50000 \\
+1 & 0.2 & 1.76000 & 0.80000 \\
+2 & 0.4 & 1.99200 & 1.15200 \\
+3 & 0.6 & 2.19040 & 1.55040 \\
+4 & 0.8 & 2.34848 & 1.98848 \\
+5 & 1.0 &   -     & 2.45818 \\
+\end{array}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler, versión manual)}
+
+\begin{verbatim}
+# Método de Euler para y' = y - t^2 + 1, y(0) = 0.5
+
+f <- function(t, y) {
+  y - t^2 + 1
+}
+
+t0 <- 0
+y0 <- 0.5
+T  <- 1
+h  <- 0.2
+
+t_vals <- seq(t0, T, by = h)
+N <- length(t_vals)
+
+y_vals <- numeric(N)
+y_vals[1] <- y0  # condición inicial
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  y_vals[n+1] <- y_n + h * f(t_n, y_n)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler, versión automatizada)}
+
+\begin{verbatim}
+# Implementación genérica del método de Euler
+
+euler <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    y_vals[n+1] <- y_vals[n] + h * f(t_vals[n], y_vals[n])
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso:
+f <- function(t, y) y - t^2 + 1
+sol_euler <- euler(f = f, t0 = 0, y0 = 0.5, T = 1, h = 0.2)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Método de Euler Mejorado (Heun)}
+
+
+El método de Euler mejorado (Heun) utiliza dos evaluaciones de $f$ por paso.
+
+\[
+k_1 = f(t_n, y_n),
+\]
+\[
+\tilde{y}_{n+1} = y_n + h k_1,
+\]
+\[
+k_2 = f(t_n + h, \tilde{y}_{n+1}),
+\]
+\[
+\boxed{
+y_{n+1} = y_n + \frac{h}{2}(k_1 + k_2)
+}
+\]
+
+Este método es de orden 2 en el error global, por lo que proporciona mayor precisión que Euler con el mismo tamaño de paso.
+
+\textbf{Ejemplo 2 (Heun): cálculo a mano}
+
+Resolvámos el PVI
+\[
+y' = y + t, \qquad y(0) = 1,
+\]
+en el intervalo $[0,0.3]$ con $h=0.1$.
+
+Definimos
+\[
+f(t,y) = y + t.
+\]
+
+Los puntos de malla:
+\[
+t_0 = 0.0,\quad t_1 = 0.1,\quad t_2 = 0.2,\quad t_3 = 0.3.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+t_0 = 0,\qquad y_0 = 1.
+\]
+
+\paragraph{Paso 1: de $t_0=0$ a $t_1=0.1$.}
+\[
+k_1 = f(0, 1) = 1 + 0 = 1.
+\]
+\[
+\tilde{y}_1 = y_0 + h k_1 = 1 + 0.1(1) = 1.1.
+\]
+\[
+k_2 = f(0.1, 1.1) = 1.1 + 0.1 = 1.2.
+\]
+\[
+y_1 = y_0 + \frac{h}{2}(k_1 + k_2)
+    = 1 + 0.05(1 + 1.2)
+    = 1 + 0.05(2.2)
+    = 1.11.
+\]
+
+Los pasos siguientes se calculan de forma análoga.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Heun, versión manual)}
+
+\begin{verbatim}
+# Método de Heun para y' = y + t, y(0) = 1
+
+f <- function(t, y) {
+  y + t
+}
+
+t0 <- 0
+y0 <- 1
+T  <- 0.3
+h  <- 0.1
+
+t_vals <- seq(t0, T, by = h)
+N <- length(t_vals)
+y_vals <- numeric(N)
+y_vals[1] <- y0
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  
+  k1 <- f(t_n, y_n)
+  y_tilde <- y_n + h * k1
+  k2 <- f(t_n + h, y_tilde)
+  
+  y_vals[n+1] <- y_n + (h/2) * (k1 + k2)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (Heun)}
+
+\begin{verbatim}
+# Implementación genérica del método de Heun
+
+heun <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_n <- t_vals[n]
+    y_n <- y_vals[n]
+    
+    k1 <- f(t_n, y_n)
+    y_tilde <- y_n + h * k1
+    k2 <- f(t_n + h, y_tilde)
+    
+    y_vals[n+1] <- y_n + (h/2) * (k1 + k2)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso
+f <- function(t, y) y + t
+sol_heun <- heun(f = f, t0 = 0, y0 = 1, T = 0.3, h = 0.1)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Método de Runge--Kutta de cuarto orden (RK4)}
+
+
+El método de Runge--Kutta de cuarto orden (RK4) calcula cuatro pendientes:
+
+\[
+\begin{aligned}
+k_1 &= f(t_n, y_n),\\
+k_2 &= f\!\left(t_n+\frac{h}{2},\, y_n+\frac{h}{2}k_1\right),\\
+k_3 &= f\!\left(t_n+\frac{h}{2},\, y_n+\frac{h}{2}k_2\right),\\
+k_4 &= f\!\left(t_n+h,\, y_n+h k_3\right).
+\end{aligned}
+\]
+
+La actualización es
+\[
+\boxed{
+y_{n+1} = y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+}
+\]
+
+Este método es de orden 4, con error global $O(h^4)$.
+
+\textbf{Ejemplo 3 (RK4): cálculo a mano}
+
+Consideremos
+\[
+y' = -3y, \qquad y(0) = 5,
+\]
+con $h=0.2$. El primer paso (de $t_0=0$ a $t_1=0.2$) se calcula como:
+
+\[
+k_1 = f(0,5) = -3\cdot 5 = -15,
+\]
+\[
+k_2 = f\left(0.1, 5 + \frac{0.2}{2}(-15)\right)
+    = f(0.1, 3.5) = -3\cdot 3.5 = -10.5,
+\]
+\[
+k_3 = f\left(0.1, 5 + \frac{0.2}{2}(-10.5)\right)
+    = f(0.1,3.95) = -3\cdot 3.95 = -11.85,
+\]
+\[
+k_4 = f\left(0.2, 5 + 0.2(-11.85)\right)
+    = f(0.2,2.63) = -3\cdot 2.63 = -7.89.
+\]
+
+\[
+y_1 = 5 + \frac{0.2}{6}\bigl(k_1 + 2k_2 + 2k_3 + k_4\bigr).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (RK4 manual)}
+
+\begin{verbatim}
+# Método RK4 para y' = -3y, y(0) = 5
+
+f <- function(t,y) {
+  -3*y
+}
+
+t0 <- 0
+y0 <- 5
+T  <- 0.6
+h  <- 0.2
+
+t_vals <- seq(t0, T, by=h)
+N <- length(t_vals)
+y_vals <- numeric(N)
+y_vals[1] <- y0
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  
+  k1 <- f(t_n, y_n)
+  k2 <- f(t_n + h/2, y_n + h*k1/2)
+  k3 <- f(t_n + h/2, y_n + h*k2/2)
+  k4 <- f(t_n + h,   y_n + h*k3)
+  
+  y_vals[n+1] <- y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (RK4)}
+
+\begin{verbatim}
+# Implementación genérica del método RK4
+
+rk4 <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by=h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_n <- t_vals[n]
+    y_n <- y_vals[n]
+    
+    k1 <- f(t_n, y_n)
+    k2 <- f(t_n + h/2, y_n + h*k1/2)
+    k3 <- f(t_n + h/2, y_n + h*k2/2)
+    k4 <- f(t_n + h,   y_n + h*k3)
+    
+    y_vals[n+1] <- y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso
+f <- function(t, y) -3*y
+sol_rk4 <- rk4(f = f, t0 = 0, y0 = 5, T = 0.6, h = 0.2)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Método de Euler implícito}
+
+
+Para el PVI
+\[
+y' = f(t,y), \qquad y(t_0) = y_0,
+\]
+el método de Euler implícito define
+\[
+\boxed{
+y_{n+1} = y_n + h\,f(t_{n+1}, y_{n+1}).
+}
+\]
+
+Aquí $y_{n+1}$ aparece en ambos lados. En general, para $f$ no lineal en $y$, se debe resolver en cada paso la ecuación
+\[
+G(y_{n+1}) := y_{n+1} - h\,f(t_{n+1}, y_{n+1}) - y_n = 0
+\]
+mediante un método numérico (por ejemplo, Newton).
+
+\textbf{Caso lineal: $f(t,y) = a(t)y + b(t)$}
+
+Si
+\[
+f(t,y) = a(t)y + b(t),
+\]
+entonces
+\[
+y_{n+1} = y_n + h\,[a(t_{n+1}) y_{n+1} + b(t_{n+1})].
+\]
+Reordenando:
+\[
+y_{n+1}\bigl(1 - h a(t_{n+1})\bigr) = y_n + h b(t_{n+1}),
+\]
+\[
+\boxed{
+y_{n+1} = \frac{y_n + h b(t_{n+1})}{1 - h a(t_{n+1})}.
+}
+\]
+
+\textbf{Ejemplo 4 (Euler implícito): cálculo a mano}
+
+Consideremos la ecuación rígida
+\[
+y' = -50y + 10,\qquad y(0)=0,
+\]
+en el intervalo $[0,0.2]$ con $h=0.05$.
+
+Aquí
+\[
+a(t) = -50,\qquad b(t) = 10.
+\]
+
+Entonces
+\[
+y_{n+1} = \frac{y_n + h\cdot 10}{1 - h(-50)}
+= \frac{y_n + 0.5}{1 + 2.5}
+= \frac{y_n + 0.5}{3.5}.
+\]
+
+Puntos de malla:
+\[
+t_0 = 0.00,\quad t_1 = 0.05,\quad t_2 = 0.10,\quad t_3 = 0.15,\quad t_4 = 0.20.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+y_0 = 0.
+\]
+
+\paragraph{Paso 1.}
+\[
+y_1 = \frac{0 + 0.5}{3.5} \approx 0.142857.
+\]
+
+\paragraph{Paso 2.}
+\[
+y_2 = \frac{y_1 + 0.5}{3.5}
+    = \frac{0.142857 + 0.5}{3.5}
+    \approx 0.183673.
+\]
+
+\paragraph{Paso 3.}
+\[
+y_3 = \frac{0.183673 + 0.5}{3.5}
+    \approx 0.195335.
+\]
+
+\paragraph{Paso 4.}
+\[
+y_4 = \frac{0.195335 + 0.5}{3.5}
+    \approx 0.198667.
+\]
+
+\paragraph{Tabla resumen (Euler implícito).}
+\[
+\begin{array}{c|c|c}
+n & t_n & y_n \\ \hline
+0 & 0.00 & 0.000000 \\
+1 & 0.05 & 0.142857 \\
+2 & 0.10 & 0.183673 \\
+3 & 0.15 & 0.195335 \\
+4 & 0.20 & 0.198667 \\
+\end{array}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler implícito, versión manual)}
+
+\begin{verbatim}
+# Euler implícito para y' = -50y + 10, y(0) = 0, h = 0.05
+
+h <- 0.05
+t_vals <- seq(0, 0.2, by = h)
+N <- length(t_vals)
+
+y_vals <- numeric(N)
+y_vals[1] <- 0  # y0
+
+for (n in 1:(N-1)) {
+  y_vals[n+1] <- (y_vals[n] + 0.5) / 3.5
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (Euler implícito lineal)}
+
+\begin{verbatim}
+# Euler implícito para y' = a(t)*y + b(t)
+
+euler_imp_lineal <- function(a_fun, b_fun, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_next <- t_vals[n+1]
+    a_next <- a_fun(t_next)
+    b_next <- b_fun(t_next)
+    
+    # y_{n+1} = (y_n + h*b_next) / (1 - h*a_next)
+    y_vals[n+1] <- (y_vals[n] + h * b_next) / (1 - h * a_next)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo: y' = -50y + 10
+a_fun <- function(t) -50
+b_fun <- function(t) 10
+
+sol_imp <- euler_imp_lineal(a_fun = a_fun,
+                            b_fun = b_fun,
+                            t0 = 0, y0 = 0,
+                            T = 0.2, h = 0.05)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ejercicios propuestos}
+
+
+Resuelva numéricamente con Euler, construyendo la tabla de iteraciones y, si es posible, comparando con la solución exacta.
+
+\begin{enumerate}
+  \item $y' = y - t$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 3t^2 - y$, \quad $y(0) = 2$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = \sin(t) - y^2$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t y$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = e^{-t} - y$, \quad $y(0) = 3$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y(1-y)$ (modelo logístico), \quad $y(0) = 0.2$, \quad $h = 0.1$, \quad intervalo $[0,2]$.
+  \item $y' = 4y + t$, \quad $y(0) = 1$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = \cos(t) + y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = -5y$, \quad $y(0) = 2$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = t^3 - y^2$, \quad $y(0) = 1$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Aplique el método de Euler mejorado (Heun), mostrando los valores de $k_1$ y $k_2$ en cada paso.
+
+\begin{enumerate}
+  \item $y' = y + t^2$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = \cos(t) - y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t - y^2$, \quad $y(0) = 0.5$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = 2y + e^t$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y(1+t)$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = -3y + t$, \quad $y(0) = 2$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t^2\sqrt{y}$ (suponer $y\ge 0$), \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y^2 - y$, \quad $y(0) = 0.1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 1 - t y$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 5 - 4y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Use el método de Runge--Kutta de cuarto orden, calculando explícitamente $k_1, k_2, k_3, k_4$.
+
+\begin{enumerate}
+  \item $y' = y - t^2 + 1$, \quad $y(0) = 0.5$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = -2y + \sin(t)$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y^2 + t$, \quad $y(0) = 0$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = e^{-t} - y$, \quad $y(0) = 2$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 3y(1-y)$ (modelo logístico), \quad $y(0) = 0.1$, \quad $h = 0.1$, \quad intervalo $[0,2]$.
+  \item $y' = t\cos(y)$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = -5y + 5$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = \sqrt{t + y}$ (suponer $t+y \ge 0$), \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y\ln(t+1)$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,2]$.
+  \item $y' = -50y + \cos(t)$, \quad $y(0) = 0$, \quad $h = 0.02$, \quad intervalo $[0,0.4]$.
+\end{enumerate}

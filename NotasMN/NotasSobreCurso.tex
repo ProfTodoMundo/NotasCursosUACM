@@ -1,0 +1,384 @@
+\chapter{Introducci\'on}
+
+%===========================================
+\section{Sobre el curso}
+%===========================================
+
+El curso se llevar\'a a cabo tres veces a la semana,  con sesiones de 1.5 horas,  de las cuales una de ellas se realizar\'a en el laboratorio de c\'omputo 3.
+
+%---------------------------------------------------
+\section{Requisitos para acreditar la materia}
+%---------------------------------------------------
+
+El curso por su naturaleza implica que la/el estudiante implemente los distintos algoritmos que se revisan en el curso,  por lo tanto es importante que demuestre que efectivamente puede implementar, revisar y mejorar los algoritmos ya existentes.\bigskip
+
+Hay dos maneras de certificar la materia: a) Portafolio y b) Examen de certificaci\'on.  Al menos una semana antes de que termine el curso las y los estudiantes tendr\'an conocimiento de sus calificaciones parciales y por tanto de la calificaci\'on promedio obtenida al momento, para que sea el/la mismo(a) estudiante qui\'en decida si certifica por la modalidad de portafolio,  o por la modalidad de examen de certificaci\'on.\bigskip
+
+
+El portafolio se conforma de evaluaciones ($40\%$), programas, ($40\%$) tareas ($10\%$), tareitas ($5\%$)y trabajos adicionales ($5\%$). Mientras que la certificaci\'on es un examen elaborado por el comit\'e de certificaci\'on y que ser\'a presentado por todas y todos los estudiantes que se inscriban en esta modalidad en las fechas establecidas por la Coordinaci\'on de Certificaci\'on y Registro.  En cualquiera de las dos modalidades es indispensable que el/la estudiante se registre a este proceso para que su calificaci\'on pueda ser asignada al final del proceso de Certificaci\'on.
+
+%---------------------------------------------------
+\section{De la naturaleza del curso}
+%---------------------------------------------------
+
+El curso tiene un fuerte sustento en la programaci\'on constante, sin embargo, es importante resaltar que los conceptos te\'oricos deben ser dominados por las y los estudiantes, por lo tanto las evaluaciones y las tareas tendr\'an estas dos componentes principales.  Al contrario de lo que pueda pensarse la asistencia al curso es obligatoria pero no influye directamente en la calificaci\'on obtenida.  Sin embargo,  hay que mencionar que si la asistencia se realiza de manera intermitente es probable que cueste un poco de trabajo reincorporarse a la din\'amica de trabajo que se ir\'a construyendo con el grupo con el transcurso de las clases. 
+
+%===========================================
+\section{Introducci\'on}
+%===========================================
+
+En este curso estudiaremos los elementos b\'asicos de los m\'etodos num\'ericos, utilizando el programa de distribuci\'on libre \textit{R}. Antes de iniciar propiamente con el estudio de los m\'etodos num\'ericos realizaremos un breve repaso de algunos conceptos de \'algebra lineal, c\'alculo diferencial mismos que son fundamentales en esta materia y de la que se supone las y los estudiantes se encuentran familiarizados con ellos.\medskip
+
+\textit{An\'alisis Num\'erico} es una rama de las matem\'aticas que, mediante el uso de algoritmos iterativos, obtiene soluciones num\'ericas a problemas en los cuales la matem\'atica simb\'olica (o anal\'itica) resulta poco eficiente o no puede ofrecer un resultado. En particular, a estos algoritmos se les denomina \textit{m\'etodos num\'ericos}.Por lo general los m\'etodos num\'ericos se componen de un n\'umero de pasos finitos que se ejecutan de manera l\'ogica, mejorando aproximaciones iniciales a cierta cantidad, tal como la ra\'iz de una ecuaci\'on, hasta que se cumple con cierta cota de error. A esta operaci\'on c\'iclica de mejora del valor se le conoce como \textit{iteraci\'on}. El an\'alisis num\'erico es una alternativa muy eficiente para la resoluci\'on de ecuaciones, tanto algebraicas (polinomios) como trascendentes teniendo una ventaja muy importante respecto a otro tipo de m\'etodos: La repetici\'on de instrucciones l\'ogicas (iteraciones), proceso que permite mejorar los valores inicialmente considerados como soluci\'on. Dado que se trata siempre de la misma operaci\'on l\'ogica, resulta muy pertinente el uso de recursos de c\'omputo para realizar esta tarea. Sin embargo, debe haber claridad en el sentido de que el an\'alisis num\'erico no es la panacea en la soluci\'on de problemas matem\'aticos; los m\'etodos num\'ericos arrojan \textit{aproximaciones}, es decir, est\'an sujetos a un error. Esto quiere decir que si se puede ser tan preciso como los recursos de c\'alculo lo permitan, siempre est\'a presente y debe considerarse su manejo en el desarrollo de las soluciones requeridas. El uso de diversos sistemas de c\'omputo determina qu\'e soluciones anal\'itico-num\'ericas son viables en la pr\'actica, lo que implica que se deben tomar en cuenta el proceso iterativo, el costo de los recursos f\'isicos que se emplean en el an\'alisis, y el tipo de pr\'actica de la Ingenier\'ia. 
+
+%===========================================
+\section{Revisi\'on de temas importantes}
+%===========================================
+
+%-------------------------------------------
+\subsection{C\'alculo}
+%-------------------------------------------
+
+Comenzamos el cap\'itulo con un repaso de algunos aspectos importantes del c\'alculo que son necesarios a lo largo del texto. Suponemos que los estudiantes que lean este texto conocen la terminolog\'ia, la notaci\'on y los resultados que se dan en un curso t\'ipico de c\'alculo.
+
+%...............................................................
+\subsubsection{L\'imites y continuidad}
+%...............................................................
+
+El l\'imite de una funci\'on nos dice qu\'e tan cerca se encuentran las im\'agenes de una funci\'on si dos elementos de su dominio se encuentran lo suficientemente cerca, es decir, decimos que una funci\'on $f(x)$ definida en el intervalo $(a,b)$ tiene \textbf{l\'imite} $L$ en el punto $x = x_0$, lo que denotamos por $$\lim_{x \to x_0} f(x) = L,$$ si para cualquier $\varepsilon > 0$, existe un n\'umero real $\delta > 0$ tal que $|f(x) - L| < \varepsilon$ siempre que $0 < |x - x_0| < \delta $. Es decir, que los valores de la funci\'on estar\'an cerca de $L$ siempre que $x$ est\'e suficientemente cerca de $x_0$.
+\bigskip
+
+Se dice que una funci\'on $f$ es continua en $a$ si cuando $x$ se aproxima al valor de $a$, entonces tambi\'en $f(x)$ se aproxima a $f(a)$, es decir, $f(x)$ es \textbf{continua} en el punto $x = a $ si $$\lim_{x \to a} f(x) = f(a),$$
+y se dice que $f$ es \textbf{continua en el conjunto} $(a,b)$ si es continua en cada uno de los puntos del intervalo. Denotaremos el conjunto de todas las funciones $f$ que son continuas en $E=(a,b)$ por $C(E)$. \bigskip
+
+Se dice que una sucesi\'on $\{x_n\}_{n=1}^\infty$ \textbf{converge} a un n\'umero $x$, si
+$\lim_{n \to \infty} x_n = x$ o bien, $x_n \to x$ cuando $n \to \infty$, si para cualquier $\varepsilon > 0$, existe un n\'umero natural $N(\varepsilon)$ tal que $|x_n - x| < \varepsilon$ para cada $n > N(\varepsilon)$. Cuando una sucesi\'on tiene l\'imite, se dice que la \textbf{sucesi\'on converge}.
+
+%........................................................
+\subsubsection{Continuidad y convergencia de sucesiones}
+%........................................................
+
+Si $f(x)$ es una funci\'on definida en un conjunto $S$ de n\'umeros reales y $x_0 \in S$, entonces las siguientes afirmaciones son equivalentes:
+\begin{enumerate}
+\item $f(x) $ es continua en $x = x_0 $,
+\item Si $\{x_n\}_{n=1}^\infty $ es cualquier sucesi\'on en $S $ que converge a $x_0 $, entonces $\lim_{n \to \infty} f(x_n) = f(x_0).$
+\end{enumerate}
+
+\begin{Teo}[Teorema del valor intermedio o de Bolzano.]
+Si $f \in C[a, b] $ y $\ell $ es un n\'umero cualquiera entre $f(a) $ y $f(b) $, entonces existe al menos un n\'umero $c \in (a, b) $ tal que $f(c) = \ell $. V\'ease la Figura~\ref{fig:bolzano}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig1.png}
+\caption{Teorema del valor intermedio o de Bolzano}
+\label{fig:bolzano}
+\end{figure}
+\end{Teo}
+
+
+\begin{Note}
+Todas las funciones con las que se van a trabajar en este curso de m\'etodos num\'ericos ser\'an continuas, ya que esto es lo m\'inimo que debemos exigir para asegurar que la conducta de un m\'etodo se puede predecir.
+\end{Note}
+
+%........................................................
+\subsection{Derivabilidad}
+%........................................................
+
+Si $f(x) $ es una funci\'on definida en un intervalo abierto que contiene un punto $x_0 $, entonces se dice que $f(x) $ es \textbf{derivable} en $x = x_0 $ cuando existe el l\'imite
+$$f'(x_0) = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}.$$
+
+El n\'umero $f'(x_0)$ se llama \textbf{derivada} de $f$ en $x_0$ y coincide con la pendiente de la recta tangente a la gr\'afica de $f$ en el punto $(x_0, f(x_0))$, Figura~\ref{fig:derivada}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig2.png}
+\caption{Derivada de una funci\'on en un punto}
+\label{fig:derivada}
+\end{figure}
+
+\textbf{Derivabilidad implica continuidad.} Si la funci\'on $f(x)$ es derivable en $x = x_0$, entonces $f(x)$ es continua en $x = x_0$. El conjunto de todas las funciones que admiten $n$ derivadas continuas en $S $ se denota por $C^n(S)$, mientras que el conjunto de todas las funciones indefinidamente derivables en $S$ se denota por $C^\infty(S)$. Las funciones polin\'omicas, racionales, trigonom\'etricas, exponenciales y logar\'itmicas est\'an en $C^\infty(S)$, siendo $S$ el conjunto de puntos en los que est\'an definidas.
+
+\begin{Teo}[Teorema del valor medio o de Lagrange.]
+Si $f\in C[a, b]$ y es derivable en $(a,b)$, entonces existe un punto $c\in (a,b)$ tal que
+$$f'(c) = \frac{f(b) - f(a)}{b - a}.$$
+\end{Teo}
+
+Geom\'etricamente hablando, Figura~\ref{fig:lagrange}, el teorema del valor medio dice que hay al menos un n\'umero $c \in (a, b) $ tal que la pendiente de la recta tangente a la curva $y = f(x) $ en el punto $(c, f(c)) $ es igual a la pendiente de la recta secante que pasa por los puntos $(a, f(a)) $ y $(b, f(b)) $.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig3.png}
+\caption{Teorema del valor medio o de Lagrange}
+\label{fig:lagrange}
+\end{figure}
+
+\begin{Teo}[Teorema de los valores extremos.]  
+Si $f \in C[a,b] $, entonces existen $c_1 $ y $c_2 $ en $(a,b) $ tales que $f(c_1) \leq f(x) \leq f(c_2) $ para todo $x \in [a,b] $. Si adem\'as, $f $ es derivable en $(a,b) $, entonces los puntos $c_1 $ y $c_2 $ est\'an en los extremos de $[a,b] $ o bien son puntos cr\'iticos.
+\end{Teo}
+
+%........................................................
+\subsection{Integraci\'on}
+%........................................................
+
+
+\begin{Teo}[Primer teorema fundamental o regla de Barrow.]
+  Si $f \in C[a, b] $ y $F $ es una primitiva cualquiera de $f $ en $[a, b] $ (es decir, $F'(x) = f(x) $), entonces $$\int_a^b f(x) \, dx = F(b) - F(a). $$
+\end{Teo}
+
+\begin{Teo}[Segundo teorema fundamental.]
+  Si $f \in C[a, b] $ y $x \in (a, b) $, entonces $$\frac{d}{dx} \int_a^x f(t) \, dt = f(x).$$
+\end{Teo}
+
+\begin{Teo}[Teorema del valor medio para integrales.]
+  Si $f \in C[a, b] $, $g $ es integrable en $[a, b] $ y $g(x) $ no cambia de signo en $[a, b] $, entonces existe un punto $c \in (a, b) $ tal que  $$\int_a^b f(x)g(x) \, dx = f(c) \int_a^b g(x) \, dx.$$
+\end{Teo}
+
+\begin{Note}
+Cuando $g(x) = 1 $, v\'ease la Figura~\ref{fig:valormedio-integral}, este resultado es el habitual teorema del valor medio para integrales y proporciona el valor medio de la funci\'on $f $ en el intervalo $[a, b] $, que est\'a dado por $$f(c) = \frac{1}{b-a} \int_a^b f(x) \, dx.$$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig4.png}
+\caption{Teorema del valor medio para integrales}
+\label{fig:valormedio-integral}
+\end{figure}
+\end{Note}
+
+%...............................................................
+\subsection{Polinomios de Taylor}
+%...............................................................
+
+\begin{Teo}[Teorema de Taylor.]
+Supongamos que $f \in C^{(n)}[a,b] $ y que $f^{(n+1)} $ existe en $[a,b] $. Sea $x_0 $ un punto en $[a,b] $. Entonces, para cada $x $ en $[a,b] $, existe un punto $\xi(x) $ entre $x_0 $ y $x $ tal que
+$$f(x) = P_n(x) + R_n(x),$$
+donde
+\begin{eqnarray}
+P_n(x) &=& f(x_0) + f'(x_0)h + \frac{f''(x_0)}{2!}h^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}h^n = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} h^k,\\
+R_n(x)&=& \frac{f^{(n+1)}(\xi(x))}{(n+1)!} h^{n+1}, \quad \text{y} \quad h = x - x_0.
+\end{eqnarray}
+\end{Teo}
+
+
+El polinomio $P_n(x) $ se llama \textbf{n-\'esimo polinomio de Taylor} de $f $ alrededor de $x_0 $ (v\'ease la Figura~\ref{fig:taylor}).   $R_n(x) $ se llama \textbf{error de truncamiento} (o \textit{resto de Taylor}) asociado a $P_n(x) $.   Como el punto $\xi(x) $ en el error de truncamiento $R_n(x) $ depende del punto $x $ en el que se eval\'ua el polinomio $P_n(x) $, podemos verlo como una funci\'on de la variable $x $.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Fig5.png}
+\caption{Gr\'aficas de $y = f(x) $ y de su polinomio de Taylor $y = P_2(x) $ alrededor de $x_0 $.}
+\label{fig:taylor}
+\end{figure}
+
+\begin{Note}
+La serie infinita que resulta al tomar l\'imite en la expresi\'on de $P_n(x) $ cuando $n \to \infty $ se llama \textbf{serie de Taylor} de $f $ alrededor de $x_0 $. Cuando $x_0 = 0 $, el polinomio de Taylor se suele denominar \textbf{polinomio de Maclaurin}, y la serie de Taylor se llama \textbf{serie de Maclaurin}.\bigskip
+
+La denominaci\'on \textit{error de truncamiento} en el teorema de Taylor se refiere al error que se comete al usar una suma truncada al aproximar la suma de una serie infinita.
+\end{Note}
+
+%...............................................................
+\subsection{Teoremas adicionales}
+%...............................................................
+
+A continuaci\'on enunciaremos algunas de las definiciones y teoremas b\'asicos que utilizaremos a lo largo de estas notas.
+
+\begin{Def}$f$ es de clase $C^1$ en el intervalo $[a;b]$ si $f'$ es continua en $[a;b]$.
+\end{Def}
+
+\begin{Def}$f$ es de clase $C^n$ en el intervalo $[a;b]$ si $f^{(n)}$ es continua en $[a;b]$.
+\end{Def}
+
+\begin{Def}$f$ es de clase $C^\infty$ en el intervalo $I$ si $f$ es infinitas veces derivable y continua en $I$.
+\end{Def}
+
+\begin{Teo} (Teorema de los valores intermedios). Sea $f$ continua en el intervalo $[a;b]$. Si $k \in \mathbb{R}$ es un n\'umero comprendido entre $f(a)$ y $f(b)$, entonces existe al menos un punto $\xi$ perteneciente al intervalo $(a;b)$ tal que $f(\xi) = k$.
+\end{Teo}
+
+\begin{Teo}[Bolzano]Si $f$ es continua en el intervalo $[a;b]$ y $f(a) \cdot f(b) < 0$, entonces existe un $\xi$ perteneciente al $(a;b)$ tal que $f(\xi) = 0$.
+\end{Teo}
+
+\begin{Teo}[Teorema de acotabilidad] Si $f : [a;b] \mapsto \mathbb{R}$ es continua en $[a;b]$, entonces $f$ est\'a acotada en $[a;b]$.
+\end{Teo}
+
+\begin{Teo}[Teorema de Weierstrass] Si $f : [a;b] \mapsto \mathbb{R}$ es continua en $[a;b]$, entonces $f$ tiene un m\'aximo global y un m\'inimo global en $[a;b]$.
+\end{Teo}
+
+\begin{Teo}[Teorema Generalizado de Rolle] Si $f$ continua en $[a;b]$, y existen las derivadas $f'(x), f''(x), \ldots, f^{(n)}(x)$ en $(a;b)$ y $f(x_0) = f(x_1) = \cdots = f(x_n) = 0$ (con $x_0, x_1, \ldots, x_n \in [a;b]$) entonces existe $\xi$ perteneciente al $(a;b)$ tal que $f^{(n)}(\xi) = 0$.
+\end{Teo}
+
+\begin{Teo}[Teorema de Lagrange] Si $f$ continua en $[a;b]$ y derivable en $(a;b)$ entonces existe $\xi$ perteneciente al $(a;b)$ tal que $f(b) - f(a) = f'(\xi)(b - a)$.
+\end{Teo}
+
+\begin{Teo}[Teorema del valor medio ponderado] Sea $f$ continua en $[a,b]$ y $g$ una funci\'on integrable Riemann en $[a,b]$. Si $g$ no cambia de signo en $[a,b]$, entonces existe un n\'umero $c \in (a,b)$ tal que:
+$$\int_a^b f(x)g(x)dx = f(c) \int_a^b g(x)dx$$
+\end{Teo}
+
+%-------------------------------------------
+\section{\'algebra Lineal}
+%-------------------------------------------
+
+%...............................................................
+\subsection{Matrices}
+%...............................................................
+
+Una \textbf{matriz} es un arreglo multidimensional de escalares, llamados \textit{elementos}, ordenados en filas y columnas.  Una matriz de $ m $ filas y $ n $ columnas, o \textit{matriz (de orden) $ m \times n $}, es un conjunto de $ m \cdot n $ elementos $ a_{ij} $, con $ i = 1, 2, \ldots, m $ y $ j = 1, 2, \ldots, n $, que se representa de la siguiente forma:
+$$A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}$$
+
+Se puede abreviar la representaci\'on de la matriz anterior de la forma $ A = (a_{ij}) $ con $ i = 1, 2, \ldots, m $; $ j = 1, 2, \ldots, n $.
+
+Hay una relaci\'on directa entre matrices y vectores puesto que podemos pensar una matriz como una composici\'on de vectores fila o de vectores columna. Adem\'as, un vector es un caso especial de matriz: un \textit{vector fila} es una matriz con una sola fila y varias columnas, y un \textit{vector columna} es una matriz con varias filas y una sola columna. 
+
+%...............................................................
+\subsection{Operaciones con matrices}
+%...............................................................
+
+\begin{itemize}
+\item Si $ A = (a_{ij}) $ y $ B = (b_{ij}) $ son dos matrices que tienen el mismo orden, $ m \times n $, decimos que $ A $ y $ B $ son \textbf{iguales} si $ a_{ij} = b_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ y $ B = (b_{ij}) $ son dos matrices que tienen el mismo orden $ m \times n $, la \textbf{suma} de $ A $ y $ B $ es una matriz $ C = (c_{ij}) $ del mismo orden con $ c_{ij} = a_{ij} + b_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times n $, la \textbf{multiplicaci\'on de $ A $ por un escalar} $ \lambda $ es una matriz $ C = (c_{ij}) $ del mismo orden $ m \times n $ con $ c_{ij} = \lambda a_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times n $, la \textbf{matriz traspuesta} de $ A $ es la matriz que resulta de intercambiar sus filas por sus columnas, se denota por $ A^T $ y es de orden $ n \times m $.
+
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times p $ y $ B = (b_{ij}) $ es una matriz de orden $ p \times n $, el \textbf{producto de $ A $ por $ B $} es una matriz $ C = (c_{ij}) $ de orden $ m \times n $ con $$c_{ij} = \sum_{k=1}^p a_{ik}b_{kj}, \quad \text{para todo } i = 1, \ldots, m \text{ y } j = 1, \ldots, n.$$ Obs\'ervese que el producto de dos matrices solo est\'a definido si el n\'umero de columnas de la primera matriz coincide con el n\'umero de filas de la segunda.
+\end{itemize}
+
+%...............................................................
+\subsection{Matrices especiales}
+%...............................................................
+\begin{itemize}
+
+\item Una matriz $ A = (a_{ij}) $ es \textbf{cuadrada} si tiene el mismo n\'umero de filas que de columnas, y de orden $ n $ si tiene $ n $ filas y $ n $ columnas. Se llama \textbf{diagonal principal} al conjunto de elementos $ a_{11}, a_{22}, \ldots, a_{nn} $.
+
+\item Una \textbf{matriz diagonal} es una matriz cuadrada que tiene alg\'un elemento distinto de cero en la diagonal principal y ceros en el resto de elementos.
+
+\item Una matriz cuadrada con ceros en todos los elementos por encima (debajo) de la diagonal principal se llama \textbf{matriz triangular inferior (superior)}.
+
+\item Una matriz diagonal con unos en la diagonal principal se denomina \textbf{matriz identidad} y se denota por $I$. Es la \'unica matriz cuadrada tal que $ AI = IA = A $ para cualquier matriz cuadrada $A$.
+
+\item Una \textbf{matriz sim\'etrica} es una matriz cuadrada $A$ tal que $A=A^T$.
+
+\item La \textbf{matriz cero} es una matriz con todos sus elementos iguales a cero.
+
+\item Decimos que una matriz cuadrada $A$ es \textbf{invertible} (o \textit{regular} o \textit{no singular}) si existe una matriz cuadrada $ B $ tal que $AB = BA = I$. Se dice entonces que $ B $ es la \textbf{matriz inversa} de $A$ y se denota por $A^{-1}$. (Una matriz que no es invertible se dice \textit{singular}.)
+
+\item Si una matriz $ A $ es invertible, su inversa tambi\'en lo es y $A^{-1})^{-1} = A$.
+
+\item Si $A$ y $B$ son dos matrices invertibles, su producto tambi\'en lo es y $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{itemize}
+
+
+%...............................................................
+\subsection{Determinante de una matriz}
+%...............................................................
+
+El \textbf{determinante} de una matriz solo est\'a definido para matrices cuadradas y su valor es un escalar.  El determinante de una matriz $ A $ cuadrada de orden $ n $ se denota por $ |A| $ o $ \det(A) $, y se define como
+$$\det(A) = \sum_{j} (-1)^{i+j} a_{ij} \cdot \det(A_{ij}),$$
+donde la suma se toma para todas las $ n! $ permutaciones de grado $n$ y $s$ es el n\'umero de intercambios necesarios para poner el segundo sub\'indice en el orden $1, 2, \ldots, n$.
+
+\textbf{Algunas propiedades de los determinantes son:}
+\begin{itemize}
+\item $\det(A^T) = \det(A)$
+\item $\det(AB) = \det(A)\det(B)$
+\item $\det(A^{-1}) = \frac{1}{\det(A)}$
+\item Si dos filas o dos columnas de una matriz coinciden, el determinante de esta matriz es cero.
+\item Cuando se intercambian dos filas o dos columnas de una matriz, su determinante cambia de signo.
+\item El determinante de una matriz diagonal es el producto de los elementos de la diagonal.
+\item Si denotamos por $A_{ij}$ la matriz de orden $ (n-1) $ que se obtiene de eliminar la fila $i$ y la columna $j$ de la matriz $A$, llamamos \textbf{menor complementario} asociado al elemento $a_{ij}$ de la matriz $A$ al $\det(A_{ij})$.
+
+\item Se llama \textbf{$k$-\'esimo menor principal} de la matriz $A$ al determinante de la submatriz principal de orden $k$.
+
+\item Definimos el \textbf{cofactor} del elemento $a_{ij}$ de la matriz $A$ por $\Delta_{ij} = (-1)^{i+j} \det(A_{ij})$.
+
+\item Si $A$ es una matriz invertible de orden $ n $, entonces $$A^{-1} = \frac{1}{\det(A)} C,$$ donde $ C $ es la matriz de elementos $\Delta_{ij}$ para todo $i,j = 1,2,\ldots,n$. Obs\'ervese entonces que una matriz cuadrada es invertible si y s\'olo si su determinante es distinto de cero.
+\end{itemize}
+
+%...............................................................
+\subsection{Valores propios y vectores propios}
+%...............................................................
+
+\begin{itemize}
+\item Si $A$ es una matriz cuadrada de orden $n$, un n\'umero $\lambda$ es un \textbf{valor propio} de $A$ si existe un vector no nulo $v$ tal que $Av = \lambda v$. Al vector $v$ se le llama \textbf{vector propio} asociado al valor propio $\lambda$.
+
+\item El valor propio $\lambda$ es soluci\'on de la \textbf{ecuaci\'on caracter\'istica} $$\det(A - \lambda I) = 0,$$ donde $\det(A - \lambda I)$ se llama \textbf{polinomio caracter\'istico}.  Este polinomio es de grado $n$ en $\lambda$  y tiene $n$ valores propios (no necesariamente distintos).
+\end{itemize}
+
+%...............................................................
+\subsection{Normas vectoriales y normas matriciales}
+%...............................................................
+Para medir la \textbf{longitud} de los vectores y el \textbf{tama\~no} de las matrices se suele utilizar el concepto de \textbf{norma}, que es una funci\'on que toma valores reales. Un ejemplo simple en el espacio euclidiano tridimensional es un vector $v = (v_1, v_2, v_3)$, donde $v_1, v_2$ y $v_3$ son las distancias a lo largo de los ejes $x, y, z$ respectivamente.  \bigskip
+
+La \textbf{longitud del vector} $v$ (es decir, la distancia del punto $(0,0,0)$ al punto $(v_1, v_2, v_3)$) se calcula como $$\|v\| = \sqrt{v_1^2 + v_2^2 + v_3^2},$$
+donde la notaci\'on $\|v\|$ indica que esta longitud se refiere a la \textit{norma euclidiana} del vector $v$.   De forma similar, para un vector $v$ de dimensi\'on $n$, $v = (v_1, v_2, \ldots, v_n)$, la norma euclidiana se calcula como $$\|v\| = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.$$ Este concepto puede extenderse a una matriz $ m \times n $, $ A = (a_{ij}) $, de la siguiente manera: $$\|A\|_F = \sqrt{ \sum_{i=1}^m \sum_{j=1}^n a_{ij}^2 },$$
+que recibe el nombre de \textbf{norma de Frobenius}.
+
+Hay otras alternativas a las normas euclidiana y de Frobenius. Dos normas usuales son la \textbf{norma 1} y la \textbf{norma infinito}:
+
+\begin{itemize}
+\item La \textbf{norma 1} de un vector $ v = (v_1, v_2, \ldots, v_n) $ se define como $ \|v\|_1 = \sum_{i=1}^n |v_i| $.  De forma similar, la norma 1 de una matriz $ m \times n $, $ A = (a_{ij}) $, se define como $$\|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|.$$
+
+\item La \textbf{norma infinito} de un vector $ v = (v_1, v_2, \ldots, v_n) $ se define como $ \|v\|_\infty = \max_i |v_i| $.   La norma infinito de una matriz $ m \times n $, $ A = (a_{ij}) $, se define como  $$\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|.$$
+
+\item Todas las normas son equivalentes en un espacio vectorial de dimensi\'on finita. 
+
+\end{itemize}
+
+
+
+\section{Breve historia de los M\'etodos Num\'ericos}
+
+
+Un \textit{m\'etodo num\'erico} es un proceso matem\'atico \textit{iterativo} cuyo objetivo es encontrar la aproximaci\'on a una soluci\'on espec\'ifica con un cierto error previamente determinado. Los m\'etodos num\'ericos requieren de una aproximaci\'on a la soluci\'on real al problema, misma que es corregida a trav\'es de la repetici\'on de un cierto proceso que debe arrojar soluciones cada vez m\'as cercanas al valor real. Cada correcci\'on de un valor inicial se conoce como \textit{iteraci\'on}. El proceso es controlado por medio de la medici\'on de una cantidad de error predefinido entre dos aproximaciones sucesivas.
+
+La historia de los m\'etodos num\'ericos es la colecci\'on de acontecimientos matem\'aticos en los que se resuelven problemas sin el uso de la matem\'atica anal\'itica. Algunos de los m\'etodos m\'as utilizados en la actualidad fueron creados mucho antes de la invenci\'on de la computadora; su aplicaci\'on era extenuante y complicada porque cada iteraci\'on requer\'ia de una diversidad de operaciones aritm\'eticas que se realizaban por grupos enteros de calculistas, evidentemente, de forma manual. La historia de los m\'etodos num\'ericos es paralela, al menos desde la mitad del siglo XIX, a la historia de la computaci\'on. Las contribuciones m\'as actuales radican en la creaci\'on de software que minimiza los errores y mejora las aproximaciones de los resultados \cite{Isaacson}.
+
+\begin{itemize}
+    \item 1650 a.C. Se crean los Papiros de Rhynd en los que se escribe un m\'etodo para resolver expresiones matem\'aticas sin \'algebra.
+    \item 250 a.C. Euclides crea el M\'etodo de Exhausti\'on, que consiste en aproximar figuras geom\'etricas (tri\'angulos, cuadrados, pent\'agonos, etc.) consecutivamente dentro de un c\'irculo para obtener una aproximaci\'on a $\pi$.
+    \item Siglo IX d.C. Al Juarismi crea los \textit{algoritmos}.
+    \item 1623. John Napier inventa los \textit{huesos de Napier}, que son arreglos pr\'acticos de logaritmos en tablas.
+    \item Siglo XVII. Isaac Newton crea los procesos de interpolaci\'on polinomial.
+    \item Siglo XVIII. Leibnitz crea el C\'alculo diferencial.
+    \item 1768. Euler crea soluciones aproximadas a ecuaciones diferenciales con el principio de la integraci\'on num\'erica. Jacob Stirling y Brook Taylor presentan el C\'alculo de diferencias finitas.
+    \item 1822. Charles Babbage inventa la \textit{M\'aquina diferencial}.
+    \item 1843. Ada, condesa de Lovelace, publica sus notas sobre la m\'aquina anal\'itica de Charles Babbage.
+    \item 1890. (IBM) Tabula el censo estadounidense empleando las m\'aquinas de tarjetas perforadas de Herman Hollerith.
+    \item 1931. Vannebar Bush dise\~na el analizador diferencial, un computador anal\'ogico electromec\'anico. En 1945 publicar\'a el art\'iculo \textit{C\'omo podremos pensar} en el que describe la computaci\'on personal.    \item 1937. Alan Turing publica \textit{Sobre los n\'umeros computables}, en el que describe un computador universal. En este mismo a\~no, Howard Aiken propone la construcci\'on de un gran computador y descubre partes de la m\'aquina diferencial de Babbage en Harvard; tambi\'en John Vincent Atanasoff conceptualiza el computador electr\'onico (la cual completar\'a en 1939).
+    
+    \item 1938. William Hewlett y David Packard crean su empresa en Palo Alto, California, Estados Unidos.
+    
+    \item 1939. Turing comienza a descifrar los c\'odigos secretos alemanes.
+    
+    \item 1944. John Von Neumann redacta el primer informe sobre EDVAC. En distintas universidades de Estados Unidos se desarrollan proyectos sobre computadoras cuya aplicaci\'on (secreta) ser\'a apoyar a la milicia en c\'alculos bal\'isticos (ecuaciones diferenciales).
+    
+    \item 1950. Turing crea su famosa prueba sobre la inteligencia artificial; se suicidar\'a en 1954. J.H. Wilkinson acudi\'o al Laboratorio Nacional de F\'isica de Reino Unido para construir una versi\'on m\'as simple de la m\'aquina de Turing; construy\'o la \textit{ACE (Automatic Computing Engine)} para resolver c\'alculos con matrices.
+    
+    \item 1953. John W. Backus, empleado de IBM, desarrolla \textit{FORTRAN (Formulae Translating)}, como una alternativa al uso del lenguaje ensamblador; se us\'o por primera vez en una IBM 704.
+    
+    \item 1958. Se anuncia la creaci\'on de la Agencia de Proyectos de Investigaci\'on Avanzada (ARPA).
+    
+    \item 1962. Doug Engelbart publica \textit{Aumentar el intelecto humano}; en 1963, junto con Bill English inventar\'a el rat\'on.
+    
+    \item 1968. Noyce y Moore fundan \textit{INTEL}.
+    
+    \item 1969. Misi\'on Apolo 11. Katherine Johnson calcula la trayectoria del cohete Mercurio. Dorothy Vaughan se convierte en la supervisora de IBM dentro de la NASA. Mary Jackson es la primera ingeniera aeroespacial en Estados Unidos. Margaret Hamilton escribe el c\'odigo del programa que control\'o la nave. Todas ellas tuvieron una participaci\'on fundamental para que la misi\'on fuera un \'exito.
+    
+    \item 1970. Investigadores visitantes en el \textit{Argone National Laboratory} de Estados Unidos traducen c\'odigos de \textit{ALGOL} para obtener eigenvalores planteados por Wilkinson para incluirlos en \textit{FORTRAN}. De esta labor nace \textit{EISPACK} en 1976 y posteriormente \textit{LINPACK} en 1976.
+    
+    \item 1973. Vint Cerf y Bob Kahn completan los protocolos TCP/IP.
+    
+    \item 1975. Bill Gates y Paul Allen desarrollan el lenguaje de programaci\'on \textit{BASIC}; fundan \textit{Microsoft}. Steve Jobs y Steve Wozniak lanzan el \textit{Apple I}.
+    
+    \item 1983. Richard Stallman empieza a desarrollar el proyecto \textit{GNU}.
+    
+    \item 1986. Cleve Moler, a partir de \textit{EISPACK} y \textit{LINPACK}, crea \textit{MATLAB}; funda la empresa \textit{MathWorks}.
+    
+    \item 1991. Linus Torvalds lanza la primera versi\'on de \textit{Linux}. Tim Berbers-Lee anuncia la \textit{World Wide Web}.
+\end{itemize}
+
+
+

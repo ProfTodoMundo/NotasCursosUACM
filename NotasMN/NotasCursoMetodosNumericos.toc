@@ -1,0 +1,183 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Sobre el curso}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Requisitos para acreditar la materia}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}De la naturaleza del curso}{1}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Introducci\'on}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Revisi\'on de temas importantes}{2}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}C\'alculo}{2}{subsection.1.5.1}%
+\contentsline {subsubsection}{L\'imites y continuidad}{3}{subsection.1.5.1}%
+\contentsline {subsubsection}{Continuidad y convergencia de sucesiones}{3}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Derivabilidad}{4}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Integraci\'on}{5}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Polinomios de Taylor}{6}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Teoremas adicionales}{7}{subsection.1.5.5}%
+\contentsline {section}{\numberline {1.6}\'algebra Lineal}{8}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Matrices}{8}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Operaciones con matrices}{8}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Matrices especiales}{9}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Determinante de una matriz}{9}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Valores propios y vectores propios}{10}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Normas vectoriales y normas matriciales}{11}{subsection.1.6.6}%
+\contentsline {section}{\numberline {1.7}Breve historia de los M\'etodos Num\'ericos}{11}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Sistemas de Punto Flotante}{14}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Operaciones de punto flotante}{14}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Sistemas decimal y binario}{14}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}N\'umeros en punto flotante}{16}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Representaci\'on}{18}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Errores}{18}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}Cuantificaci\'on de errores}{20}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.1.6}Errores en punto flotante}{21}{subsection.2.1.6}%
+\contentsline {subsection}{\numberline {2.1.7}Aproximaci\'on num\'erica y errores}{22}{subsection.2.1.7}%
+\contentsline {subsection}{\numberline {2.1.8}Ejercicios}{23}{subsection.2.1.8}%
+\contentsline {chapter}{\numberline {3}Soluci\'on de Sistemas de Ecuaciones Lineales}{24}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Definiciones sobre matrices}{24}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Eliminaci\'on gaussiana simple}{25}{section.3.2}%
+\contentsline {paragraph}{Planteamiento.}{25}{section.3.2}%
+\contentsline {paragraph}{Etapas de eliminaci\'on.}{25}{section.3.2}%
+\contentsline {paragraph}{Ejemplo simb\'olico $3\times 3$.}{25}{section.3.2}%
+\contentsline {paragraph}{Idea general.}{26}{section.3.2}%
+\contentsline {paragraph}{Ejemplo.}{26}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Eliminaci\'on con pivoteo y escalamiento}{26}{section.3.3}%
+\contentsline {paragraph}{Idea.}{27}{section.3.3}%
+\contentsline {paragraph}{Ejemplo.}{27}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Eliminaci\'on con Pivoteo y Escalamiento}{27}{subsection.3.3.1}%
+\contentsline {paragraph}{Idea.}{27}{subsection.3.3.1}%
+\contentsline {paragraph}{Comentario.}{27}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Pivoteo y escalamiento}{27}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Gauss--Jordan y c\'alculo de inversas}{27}{section.3.4}%
+\contentsline {paragraph}{Idea.}{27}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Gauss--Jordan e inversas}{28}{subsection.3.4.1}%
+\contentsline {paragraph}{Ejemplo.}{28}{subsection.3.4.1}%
+\contentsline {paragraph}{Resultado.}{29}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Factorizaci\'on $LU$}{29}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}M\'etodo con permutaciones}{31}{subsection.3.5.1}%
+\contentsline {paragraph}{1. Resolver $Ly=b$.}{33}{Ejem.9}%
+\contentsline {paragraph}{2. Resolver $Ux=y$.}{34}{Ejem.9}%
+\contentsline {paragraph}{Soluci\'on final:}{34}{Ejem.9}%
+\contentsline {subsection}{\numberline {3.5.2}Factorizaci\'on de Cholesky}{34}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Factorizaci\'on de Doolittle}{36}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}Descomposici\'on de $A$}{39}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}M\'etodo de Jacobi}{40}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}M\'etodo de Gauss--Seidel}{40}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}M\'etodo SOR (Successive Over-Relaxation)}{41}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Descomposici\'on de la matriz}{41}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}M\'etodo de Jacobi}{42}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}M\'etodo de Gauss--Seidel}{42}{subsection.3.6.6}%
+\contentsline {subsection}{\numberline {3.6.7}Condiciones de convergencia}{42}{subsection.3.6.7}%
+\contentsline {section}{\numberline {3.7}Ejercicios SEL}{45}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Ra\'ices de Funciones}{55}{chapter.4}%
+\contentsline {section}{\numberline {4.1}M\'etodo de Bisecci\'on}{55}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Ejemplos}{58}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Implementaciones num\'ericas}{63}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}M\'etodo de la Secante}{66}{section.4.2}%
+\contentsline {section}{\numberline {4.3}M\'etodo de Newton-Raphson}{71}{section.4.3}%
+\contentsline {section}{\numberline {4.4}M\'etodo del punto fijo}{74}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Ejercicios}{79}{section.4.5}%
+\contentsline {subsubsection}{M\'etodo de Bisecci\'on}{79}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}M\'etodo de la Secante}{80}{subsection.4.5.1}%
+\contentsline {subsubsection}{M\'etodo de Newton}{81}{table.caption.13}%
+\contentsline {subsubsection}{M\'etodo del Punto Fijo}{82}{table.caption.14}%
+\contentsline {section}{\numberline {4.6}Para impresi\'on}{84}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Punto fijo}{84}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Newton-Raphson}{85}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Bisecci\'on}{86}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Secante}{87}{subsection.4.6.4}%
+\contentsline {section}{\numberline {4.7}Tarea para el portafolio}{90}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Interpolaci\'on Num\'erica}{91}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conceptos Fundamentales}{91}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Forma General del Polinomio Interpolante}{92}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Interpolaci\'on de Lagrange}{95}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Interpolaci\'on de Newton--Diferencias Finitas}{96}{section.5.4}%
+\contentsline {paragraph}{Paso 1: Primera columna (valores de la funcion).}{98}{Ejem.49}%
+\contentsline {paragraph}{Paso 2: Diferencias divididas de primer orden.}{98}{Ejem.49}%
+\contentsline {paragraph}{Paso 3: Diferencia dividida de segundo orden.}{98}{Ejem.49}%
+\contentsline {paragraph}{Paso 4: Polinomio de Newton.}{98}{Ejem.49}%
+\contentsline {paragraph}{Paso 5: Verificacion en los nodos.}{99}{Ejem.49}%
+\contentsline {paragraph}{Paso 6: Evaluacion en un punto intermedio (por ejemplo, $x=3$).}{99}{Ejem.49}%
+\contentsline {paragraph}{Tabla triangular resumida.}{99}{Ejem.49}%
+\contentsline {section}{\numberline {5.5}Polinomio de Newton}{99}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Ejemplos del m\'etodo de Newton con diferencias finitas}{104}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}Splines}{116}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Error de Interpolaci\'on}{119}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Ejercicios }{121}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Implementaciones Computacionales}{127}{section.5.9}%
+\contentsline {chapter}{\numberline {6}Soluci\'on num\'erica de Ecuaciones Diferenciales}{137}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Método de Euler (explícito)}{137}{section.6.1}%
+\contentsline {paragraph}{Paso 0. Condición inicial.}{138}{section.6.1}%
+\contentsline {paragraph}{Paso 1: de $t_0=0$ a $t_1=0.2$.}{138}{section.6.1}%
+\contentsline {paragraph}{Paso 2: de $t_1=0.2$ a $t_2=0.4$.}{138}{section.6.1}%
+\contentsline {paragraph}{Paso 3: de $t_2=0.4$ a $t_3=0.6$.}{138}{section.6.1}%
+\contentsline {paragraph}{Paso 4: de $t_3=0.6$ a $t_4=0.8$.}{138}{section.6.1}%
+\contentsline {paragraph}{Paso 5: de $t_4=0.8$ a $t_5=1.0$.}{138}{section.6.1}%
+\contentsline {paragraph}{Tabla resumen (Euler).}{139}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Método de Euler Mejorado (Heun)}{140}{section.6.2}%
+\contentsline {paragraph}{Paso 0. Condición inicial.}{140}{section.6.2}%
+\contentsline {paragraph}{Paso 1: de $t_0=0$ a $t_1=0.1$.}{141}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Método de Runge--Kutta de cuarto orden (RK4)}{142}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Método de Euler implícito}{144}{section.6.4}%
+\contentsline {paragraph}{Paso 0. Condición inicial.}{145}{section.6.4}%
+\contentsline {paragraph}{Paso 1.}{145}{section.6.4}%
+\contentsline {paragraph}{Paso 2.}{145}{section.6.4}%
+\contentsline {paragraph}{Paso 3.}{145}{section.6.4}%
+\contentsline {paragraph}{Paso 4.}{145}{section.6.4}%
+\contentsline {paragraph}{Tabla resumen (Euler implícito).}{145}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Ejercicios propuestos}{147}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Tareas del curso}{149}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Introducción al uso de R}{160}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Sesiones en RStudio}{160}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Uso de R}{160}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Funciones}{161}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Clase en Laboratorio de Cómputo}{162}{section.8.4}%
+\contentsline {paragraph}{Sesión 1}{166}{Item.371}%
+\contentsline {section}{\numberline {8.5}Operadores lógicos}{166}{section.8.5}%
+\contentsline {section}{\numberline {8.6}OPERADORES ARITMETICOS}{166}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}SUMA, RESTA, MULTIPLICACION, DIVISION, POTENCIA, MODULO, DIVISION ENTERA}{166}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}LOGARITMOS Y EXPONENCIALES}{166}{subsection.8.6.2}%
+\contentsline {subsection}{\numberline {8.6.3}FUNCIONES TRIGONOMETRICAS}{166}{subsection.8.6.3}%
+\contentsline {subsection}{\numberline {8.6.4}FUNCIONES VARIAS}{167}{subsection.8.6.4}%
+\contentsline {subsection}{\numberline {8.6.5}EJERCICIOS DE PRACTICA}{167}{subsection.8.6.5}%
+\contentsline {paragraph}{Sesión 2}{167}{subsection.8.6.5}%
+\contentsline {section}{\numberline {8.7}EJERCICIOS DE PRACTICA}{167}{section.8.7}%
+\contentsline {subsection}{\numberline {8.7.1}DEFINICION DE CONSTANTES}{167}{subsection.8.7.1}%
+\contentsline {subsection}{\numberline {8.7.2}CONCATENAR Y PEGAR EXPRESIONES}{168}{subsection.8.7.2}%
+\contentsline {subsection}{\numberline {8.7.3}ASIGNACION E IMPRESION}{168}{subsection.8.7.3}%
+\contentsline {subsection}{\numberline {8.7.4}LISTADO DE OBJETOS DEFINIDOS}{168}{subsection.8.7.4}%
+\contentsline {subsection}{\numberline {8.7.5}IMPRIMIR PEGAR AVANZADO}{168}{subsection.8.7.5}%
+\contentsline {subsection}{\numberline {8.7.6}EJERCICIOS DE PRACTICA}{168}{subsection.8.7.6}%
+\contentsline {paragraph}{Sesión 3}{168}{subsection.8.7.6}%
+\contentsline {subsection}{\numberline {8.7.7}DEFINICION DE FUNCIONES}{168}{subsection.8.7.7}%
+\contentsline {subsection}{\numberline {8.7.8}Ejemplo 1}{168}{subsection.8.7.8}%
+\contentsline {subsection}{\numberline {8.7.9}Ejemplo 2}{169}{subsection.8.7.9}%
+\contentsline {subsection}{\numberline {8.7.10}GRAFICAS}{169}{subsection.8.7.10}%
+\contentsline {subsection}{\numberline {8.7.11}EJEMPLOS DE PRACTICA}{169}{subsection.8.7.11}%
+\contentsline {section}{\numberline {8.8}Introducción a Factorización LU}{169}{section.8.8}%
+\contentsline {subsection}{\numberline {8.8.1}Inversa de una matriz}{169}{subsection.8.8.1}%
+\contentsline {subsection}{\numberline {8.8.2}Factorización LU}{172}{subsection.8.8.2}%
+\contentsline {subsection}{\numberline {8.8.3}Notas importantes}{176}{subsection.8.8.3}%
+\contentsline {section}{\numberline {8.9}M\'etodos de Eliminaci\'on directa}{177}{section.8.9}%
+\contentsline {subsection}{\numberline {8.9.1}Gaussiana Simple}{177}{subsection.8.9.1}%
+\contentsline {subsection}{\numberline {8.9.2}Gaussiana con pivoteo parcial}{178}{subsection.8.9.2}%
+\contentsline {subsection}{\numberline {8.9.3}Gauss Jordan}{179}{subsection.8.9.3}%
+\contentsline {subsection}{\numberline {8.9.4}Cálculo de Inversa}{180}{subsection.8.9.4}%
+\contentsline {subsection}{\numberline {8.9.5}Factorización LU}{182}{subsection.8.9.5}%
+\contentsline {subsection}{\numberline {8.9.6}Resolucion con pivoteo}{185}{subsection.8.9.6}%
+\contentsline {subsection}{\numberline {8.9.7}Factorización de Cholesky}{185}{subsection.8.9.7}%
+\contentsline {subsection}{\numberline {8.9.8}Solución vía Cholesky}{186}{subsection.8.9.8}%
+\contentsline {section}{\numberline {8.10}Métodos Iterativos}{187}{section.8.10}%
+\contentsline {subsection}{\numberline {8.10.1}Gauss Jacobi}{187}{subsection.8.10.1}%
+\contentsline {subsection}{\numberline {8.10.2}Gauss Seidel}{187}{subsection.8.10.2}%
+\contentsline {section}{\numberline {8.11}Clases}{189}{section.8.11}%
+\contentsline {subsection}{\numberline {8.11.1}M\'etodos Iterativos}{189}{subsection.8.11.1}%
+\contentsline {subsection}{\numberline {8.11.2}Gauss-Jacobi}{189}{subsection.8.11.2}%
+\contentsline {paragraph}{Iteración 1:}{189}{subsection.8.11.2}%
+\contentsline {paragraph}{Iteración 2}{189}{subsection.8.11.2}%
+\contentsline {paragraph}{Iteración 3}{190}{subsection.8.11.2}%
+\contentsline {paragraph}{Iteración 4}{190}{subsection.8.11.2}%
+\contentsline {paragraph}{Iteración 5}{190}{subsection.8.11.2}%
+\contentsline {subsection}{\numberline {8.11.3}Gauss-Seidel}{191}{subsection.8.11.3}%
+\contentsline {paragraph}{Iteraci\'on 1}{192}{subsection.8.11.3}%
+\contentsline {paragraph}{Iteraci\'on 2}{192}{subsection.8.11.3}%
+\contentsline {paragraph}{Iteraci\'on 3}{192}{subsection.8.11.3}%
+\contentsline {paragraph}{Iteraci\'on 4}{192}{subsection.8.11.3}%
+\contentsline {paragraph}{Iteraci\'on 5}{193}{subsection.8.11.3}%

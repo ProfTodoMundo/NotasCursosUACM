@@ -1,0 +1,2049 @@
+
+%===========================================
+\chapter{Soluci\'on de Sistemas de Ecuaciones Lineales}
+%===========================================
+
+\section{Definiciones sobre matrices}
+
+\begin{Def}[Matriz transpuesta]
+Sea $A=(a_{ij})\in \mathbb{R}^{m\times n}$.  
+La \textbf{matriz transpuesta} de $A$, denotada $A^\top$, es la matriz $n\times m$ definida por
+\begin{eqnarray*}
+(A^\top)_{ij}=a_{ji}.
+\end{eqnarray*}
+\end{Def}
+
+\begin{Def}[Matriz sim\'etrica]
+Una matriz $A\in \mathbb{R}^{n\times n}$ es \textbf{sim\'etrica} si
+\begin{eqnarray*}
+A^\top=A.
+\end{eqnarray*}
+\end{Def}
+
+\begin{Def}[Matriz definida positiva]
+Una matriz sim\'etrica $A\in \mathbb{R}^{n\times n}$ es \textbf{definida positiva} si
+\begin{eqnarray*}
+x^\top A x > 0 \quad \text{para todo } x\in \mathbb{R}^n, \; x\neq 0.
+\end{eqnarray*}
+\end{Def}
+
+\begin{Def}[Matriz semidefinida positiva]
+Una matriz sim\'etrica $A\in \mathbb{R}^{n\times n}$ es \textbf{semidefinida positiva} si
+\begin{eqnarray*}
+x^\top A x \geq 0 \quad \text{para todo } x\in \mathbb{R}^n.
+\end{eqnarray*}
+\end{Def}
+
+
+Hasta ahora hemos visto m\'etodos \textbf{directos} (eliminaci\'on Gaussiana, factorizaciones $LU$, Doolittle, Cholesky).  
+En problemas de gran tama\~no, estos m\'etodos pueden ser muy costosos en tiempo y memoria.  
+Por ello se usan \textbf{m\'etodos iterativos}, que generan una sucesi\'on de aproximaciones $\{x^{(k)}\}$ que converge a la soluci\'on exacta $x$ de
+\begin{eqnarray*}
+Ax=b.
+\end{eqnarray*}
+
+
+Un sistema de ecuaciones lineales puede escribirse como:
+\begin{eqnarray*}
+Ax=b, \qquad A=(a_{ij})\in\mathbb{R}^{n\times n},\quad x,b\in\mathbb{R}^n.
+\end{eqnarray*}
+
+Nuestro objetivo es encontrar $x$. La eliminaci\'on gaussiana consiste en aplicar operaciones de filas equivalentes que transforman $A$ en una matriz triangular superior $U$, de modo que el sistema resultante pueda resolverse por sustituci\'on regresiva.
+
+\section{Eliminaci\'on gaussiana simple}
+
+\paragraph{Planteamiento.}
+Sea $A=(a_{ij})\in\mathbb{R}^{n\times n}$ y $b=(b_i)\in\mathbb{R}^n$.  
+El sistema $Ax=b$ se expresa como:
+\begin{eqnarray*}
+\sum_{j=1}^n a_{ij}x_j=b_i,\qquad i=1,\dots,n.
+\end{eqnarray*}
+
+\paragraph{Etapas de eliminaci\'on.}
+En el paso $k$ se anulan las entradas de la columna $k$ por debajo del pivote $a_{kk}^{(k)}$.  
+Para cada $i=k+1,\dots,n$:
+\begin{eqnarray*}
+m_{ik}=\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}},\qquad
+a_{ij}^{(k+1)}=a_{ij}^{(k)}-m_{ik}\,a_{kj}^{(k)},\quad
+b_i^{(k+1)}=b_i^{(k)}-m_{ik}\,b_k^{(k)}.
+\end{eqnarray*}
+
+\paragraph{Ejemplo simb\'olico $3\times 3$.}
+\begin{eqnarray*}
+A=\begin{bmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix},\quad
+b=\begin{bmatrix}b_1\\b_2\\b_3\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 1 ($k=1$):}  
+\begin{eqnarray*}
+m_{21}=\tfrac{a_{21}}{a_{11}},\qquad m_{31}=\tfrac{a_{31}}{a_{11}}.
+\end{eqnarray*}
+\begin{eqnarray*}
+\begin{aligned}
+a_{22}^{(2)}&=a_{22}-m_{21}a_{12}, & a_{23}^{(2)}&=a_{23}-m_{21}a_{13}, & b_2^{(2)}&=b_2-m_{21}b_1,\\
+a_{32}^{(2)}&=a_{32}-m_{31}a_{12}, & a_{33}^{(2)}&=a_{33}-m_{31}a_{13}, & b_3^{(2)}&=b_3-m_{31}b_1.
+\end{aligned}
+\end{eqnarray*}
+
+\emph{Paso 2 ($k=2$):}  
+\begin{eqnarray*}
+m_{32}=\frac{a_{32}^{(2)}}{a_{22}^{(2)}},\quad
+a_{33}^{(3)}=a_{33}^{(2)}-m_{32}a_{23}^{(2)},\quad
+b_3^{(3)}=b_3^{(2)}-m_{32}b_2^{(2)}.
+\end{eqnarray*}
+
+Resultado: sistema triangular superior $Ux=c$.  
+
+En el paso $k$ de la eliminaci\'on:
+\begin{eqnarray*}
+a_{ij}^{(k+1)}=a_{ij}^{(k)}-m_{ik}a_{kj}^{(k)},\qquad
+b_i^{(k+1)}=b_i^{(k)}-m_{ik}b_k^{(k)},
+\end{eqnarray*}
+para $i=k+1,\dots,n$ y $j=k,\dots,n$, donde
+\begin{eqnarray*}
+m_{ik}=\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}}.
+\end{eqnarray*}
+
+Es decir:
+\begin{itemize}
+  \item $m_{ik}$ mide cu\'antas veces la fila $k$ debe restarse a la fila $i$ para anular $a_{ik}$.
+  \item Cada $m_{ik}$ se almacena en la matriz $L$.
+\end{itemize}
+
+\paragraph{Idea general.}
+Transformar el sistema $Ax=b$ en uno triangular superior $Ux=c$ mediante operaciones elementales de filas, y resolver luego por sustituci\'on regresiva.
+
+\paragraph{Ejemplo.}
+Resolver el sistema
+\begin{eqnarray*}
+\begin{cases}
+2x+y-z=8,\\
+-3x-y+2z=-11,\\
+-2x+y+2z=-3.
+\end{cases}
+\end{eqnarray*}
+Forma matricial:
+\begin{eqnarray*}
+\begin{bmatrix}
+2&1&-1\\
+-3&-1&2\\
+-2&1&2
+\end{bmatrix}
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+=
+\begin{bmatrix}8\\-11\\-3\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 1.} Pivote en $a_{11}=2$.  
+Eliminamos en la primera columna:
+\begin{eqnarray*}
+m_{21}=\tfrac{-3}{2},\quad m_{31}=\tfrac{-2}{2}=-1.
+\end{eqnarray*}
+Se obtiene
+\begin{eqnarray*}
+\begin{bmatrix}
+2 & 1 & -1 & | & 8\\
+0 & 0.5 & 0.5 & | & 1\\
+0 & 2 & 1 & | & 5
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 2.} Pivote en $a_{22}=0.5$.  
+Eliminamos debajo:
+\begin{eqnarray*}
+m_{32}=\tfrac{2}{0.5}=4.
+\end{eqnarray*}
+\begin{eqnarray*}
+\begin{bmatrix}
+2 & 1 & -1 & | & 8\\
+0 & 0.5 & 0.5 & | & 1\\
+0 & 0 & -1 & | & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 3.} Sustituci\'on regresiva:
+\begin{eqnarray*}
+z=-1,\quad 0.5y+0.5z=1 \Rightarrow y=3,\quad 2x+y-z=8 \Rightarrow x=2.
+\end{eqnarray*}
+\begin{eqnarray*}
+\boxed{x=2,\;y=3,\;z=-1}.
+\end{eqnarray*}
+
+
+\section{Eliminaci\'on con pivoteo y escalamiento}
+
+Mismo proceso, pero en cada paso $k$ se intercambia la fila $k$ con la fila $p$ tal que
+\begin{eqnarray*}
+|a_{pk}^{(k)}|=\max_{i\geq k}|a_{ik}^{(k)}|.
+\end{eqnarray*}
+Esto asegura que $a_{kk}^{(k)}$ sea lo suficientemente grande.  
+
+
+Antes de seleccionar pivote, cada fila $i$ se escala por
+\begin{eqnarray*}
+s_i=\max_j |a_{ij}|,
+\end{eqnarray*}
+y se elige como pivote aquel que maximiza
+\begin{eqnarray*}
+\frac{|a_{ik}^{(k)}|}{s_i}.
+\end{eqnarray*}
+
+\paragraph{Idea.}
+Si en alg\'un paso el pivote es $0$ o muy peque\~no, se intercambia la fila pivote con otra fila inferior que tenga el mayor valor absoluto en la misma columna. Esto aumenta la estabilidad.
+
+\paragraph{Ejemplo.}
+\begin{eqnarray*}
+\begin{bmatrix}
+0 & 2 & 1 & | & 4\\
+1 & -1 & 2 & | & 6\\
+2 & 1 & -1 & | & 1
+\end{bmatrix}.
+\end{eqnarray*}
+\emph{Problema:} $a_{11}=0$.  
+\emph{Soluci\'on:} intercambiamos fila 1 con fila 2.  
+
+Nuevo sistema:
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & -1 & 2 & | & 6\\
+0 & 2 & 1 & | & 4\\
+2 & 1 & -1 & | & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+Ahora se procede con eliminaci\'on gaussiana simple. El pivoteo evita la divisi\'on por cero.
+
+\subsection{Eliminaci\'on con Pivoteo y Escalamiento}
+\paragraph{Idea.}
+Si los coeficientes var\'ian mucho en magnitud, usar s\'olo pivoteo puede ser insuficiente.  
+\emph{Escalamiento}: dividir cada fila por su elemento de mayor valor absoluto antes de seleccionar pivote.  
+As\'i, se compara \(|a_{ik}|/s_i\), donde $s_i=\max_j |a_{ij}|$ es el factor de escala de la fila $i$.
+
+\paragraph{Comentario.}
+Esto evita que n\'umeros muy grandes o muy peque\~nos enmascaren el pivote real, aumentando la precisi\'on num\'erica en c\'omputo.
+
+\subsection{Pivoteo y escalamiento}
+\begin{itemize}
+  \item \textbf{Pivoteo parcial:} intercambiar la fila $k$ con la fila $p$ tal que 
+  \(|a_{pk}^{(k)}|=\max_{i\geq k}|a_{ik}^{(k)}|\).
+  \item \textbf{Escalamiento:} definir factores $s_i=\max_j |a_{ij}|$ y escoger como pivote el mayor cociente
+  \begin{eqnarray*}
+  \frac{|a_{ik}^{(k)}|}{s_i}.
+  \end{eqnarray*}
+  Esto controla la propagaci\'on de errores de redondeo.
+\end{itemize}
+
+
+\section{Gauss--Jordan y c\'alculo de inversas}
+\paragraph{Idea.}
+Extender la eliminaci\'on hasta reducir $A$ a la matriz identidad. Si se parte de la matriz aumentada $(A|I)$, el resultado final es $(I|A^{-1})$.
+
+Si extendemos la eliminaci\'on a toda la matriz (no solo a triangular superior), obtenemos:
+\begin{eqnarray*}
+A \;\longrightarrow\; I, \quad (A|I)\;\longrightarrow\;(I|A^{-1}).
+\end{eqnarray*}
+
+Algebraicamente:
+\begin{eqnarray*}
+A^{-1}=M^{(n-1)^{-1}}\cdots M^{(2)^{-1}}M^{(1)^{-1}},
+\end{eqnarray*}
+donde cada $M^{(k)}$ es la matriz elemental usada en la etapa $k$ de la eliminaci\'on.
+
+\subsection{Gauss--Jordan e inversas}
+En vez de detener la eliminaci\'on en forma triangular superior, se contin\'ua hasta obtener la matriz identidad:
+\begin{eqnarray*}
+(A|I)\;\longrightarrow\;(I|A^{-1}).
+\end{eqnarray*}
+As\'i, cada paso se formaliza como multiplicaci\'on por matrices elementales:
+\begin{eqnarray*}
+A^{-1}=M_1^{-1}M_2^{-1}\cdots M_r^{-1}.
+\end{eqnarray*}
+\paragraph{Ejemplo.}
+Calcular $A^{-1}$ con
+\begin{eqnarray*}
+A=\begin{bmatrix}
+2 & 1\\
+5 & 3
+\end{bmatrix}.
+\end{eqnarray*}
+Matriz aumentada:
+\begin{eqnarray*}
+\begin{bmatrix}
+2 & 1 & | & 1 & 0\\
+5 & 3 & | & 0 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 1.} Pivote $2$. Normalizar fila 1:
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & 0.5 & | & 0.5 & 0\\
+5 & 3 & | & 0 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 2.} Eliminar columna 1 de fila 2:
+\begin{eqnarray*}
+R_2 \leftarrow R_2-5R_1.
+\end{eqnarray*}
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & 0.5 & | & 0.5 & 0\\
+0 & 0.5 & | & -2.5 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 3.} Normalizar fila 2:
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & 0.5 & | & 0.5 & 0\\
+0 & 1 & | & -5 & 2
+\end{bmatrix}.
+\end{eqnarray*}
+
+\emph{Paso 4.} Eliminar columna 2 de fila 1:
+\begin{eqnarray*}
+R_1 \leftarrow R_1-0.5R_2.
+\end{eqnarray*}
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & 0 & | & 3 & -1\\
+0 & 1 & | & -5 & 2
+\end{bmatrix}.
+\end{eqnarray*}
+
+\paragraph{Resultado.}
+\begin{eqnarray*}
+A^{-1}=
+\begin{bmatrix}
+3 & -1\\
+-5 & 2
+\end{bmatrix}.
+\end{eqnarray*}
+
+\section{Factorizaci\'on  $LU$}
+
+La \textbf{factorizaci\'on $LU$} consiste en descomponer una matriz cuadrada 
+\begin{eqnarray*}A \in \mathbb{R}^{n \times n}\end{eqnarray*}
+en el producto de dos matrices:
+\begin{eqnarray}A = LU,\end{eqnarray}
+donde:
+\begin{itemize}
+    \item $L$ es una matriz \textbf{triangular inferior} con unos en la diagonal.
+    \item $U$ es una matriz \textbf{triangular superior}.
+\end{itemize}
+
+\begin{Note}
+En algunos casos es necesario introducir una matriz de permutaci\'on $P$ para realizar el proceso de eliminaci\'on gaussiana de manera estable:
+\begin{eqnarray}
+PA = LU.
+\end{eqnarray}
+\end{Note}
+
+\begin{eqnarray}
+L=\begin{bmatrix}
+1 & 0 & \cdots & 0\\
+m_{21} & 1 & \cdots & 0\\
+\vdots & \ddots & \ddots & \vdots\\
+m_{n1} & \cdots & m_{n,n-1} & 1
+\end{bmatrix},\end{eqnarray}
+
+\begin{eqnarray*}
+U=\text{matriz triangular superior obtenida tras la eliminaci\'on}.
+\end{eqnarray*}
+
+Por tanto:
+\begin{eqnarray*}A=LU.\end{eqnarray*}
+
+El procedimiento se basa en la eliminaci\'on gaussiana. Dada
+\begin{eqnarray}
+A = (a_{ij}) \in \mathbb{R}^{n \times n},
+\end{eqnarray}
+se definen los \textbf{multiplicadores}:
+\begin{eqnarray}
+m_{ij} = \frac{a_{ij}^{(k)}}{a_{kk}^{(k)}} \quad \text{para } i > k,
+\end{eqnarray}
+donde $a_{ij}^{(k)}$ denota la entrada de la matriz en la etapa $k$ de la eliminaci\'on.
+
+Los pasos son:
+\begin{enumerate}
+    \item Inicialmente $L = I_n$ y $U = A$.
+    \item Para cada paso $k = 1,2,\dots,n-1$:
+    \begin{enumerate}
+        \item Calcular los multiplicadores
+        \begin{eqnarray}l_{ik} = \frac{u_{ik}}{u_{kk}}, \quad i = k+1, \dots, n.\end{eqnarray}
+        \item Restar $l_{ik}$ veces la fila $k$ a la fila $i$ de $U$.
+        \item Almacenar cada $l_{ik}$ en la posici\'on correspondiente de $L$.
+    \end{enumerate}
+\end{enumerate}
+
+De este modo se obtiene:
+\begin{eqnarray}
+A = LU, \qquad
+L = \begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+l_{21} & 1 & 0 & \cdots & 0 \\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+l_{n1} & \cdots & l_{n,n-1} & 1
+\end{bmatrix}, \qquad
+U = \begin{bmatrix}
+u_{11} & u_{12} & \cdots & u_{1n} \\
+0 & u_{22} & \cdots & u_{2n} \\
+\vdots & \ddots & \ddots & \vdots \\
+0 & \cdots & 0 & u_{nn}
+\end{bmatrix}.
+\end{eqnarray}
+
+\begin{Note}
+\begin{itemize}
+    \item La factorizaci\'on $LU$ es el coraz\'on de la eliminaci\'on gaussiana.
+    \item Permite resolver sistemas lineales $Ax = b$ mediante:
+    \begin{eqnarray*}Ax = b \quad \Rightarrow \quad LUx = b.\end{eqnarray*}
+    \item Se resuelve en dos etapas:
+    \begin{eqnarray*}Ly = b, \qquad Ux = y,\end{eqnarray*}
+    usando sustituci\'on progresiva y regresiva.
+\end{itemize}
+\end{Note}
+
+\begin{Note}
+En los m\'etodos directos como $LU$ o Cholesky, al factorizar la matriz $A$ en dos bloques (p.ej.\ $A=LU$ o $A=LL^\top$), la resoluci\'on de $Ax=b$ se divide en dos etapas fundamentales:
+
+\begin{Note}[Sustituci\'on hacia adelante (forward substitution).]
+Se aplica cuando se resuelve un sistema triangular inferior:
+\begin{eqnarray}
+Ly=b,\qquad L=(\ell_{ij})\ \text{triangular inferior con $\ell_{ii}\neq 0$}.
+\end{eqnarray}
+El proceso es:
+\begin{eqnarray}
+y_1=\frac{b_1}{\ell_{11}},\qquad
+y_i=\frac{1}{\ell_{ii}}\left(b_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right),\quad i=2,\dots,n.
+\end{eqnarray}
+\end{Note}
+
+\begin{Note}[Sustituci\'on hacia atr\'as (backward substitution).]
+Se aplica cuando se resuelve un sistema triangular superior:
+\begin{eqnarray}
+Ux=y,\qquad U=(u_{ij})\ \text{triangular superior con $u_{ii}\neq 0$}.
+\end{eqnarray}
+El proceso es:
+\begin{eqnarray}
+x_n=\frac{y_n}{u_{nn}},\qquad
+x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^n u_{ij}x_j\right),\quad i=n-1,\dots,1.
+\end{eqnarray}
+\end{Note}
+
+\begin{Ejem}
+Sea
+\begin{eqnarray}
+U=\begin{bmatrix}
+u_{11} & u_{12} & u_{13}\\
+0 & u_{22} & u_{23}\\
+0 & 0 & u_{33}
+\end{bmatrix},\qquad
+y=\begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix}.
+\end{eqnarray}
+La sustituci\'on hacia atr\'as da:
+\begin{eqnarray}
+x_3=\tfrac{y_3}{u_{33}},\quad
+x_2=\tfrac{y_2-u_{23}x_3}{u_{22}},\quad
+x_1=\tfrac{y_1-u_{12}x_2-u_{13}x_3}{u_{11}}.
+\end{eqnarray}
+\end{Ejem}
+\end{Note}
+
+\subsection{M\'etodo con permutaciones}
+
+Si en alg\'un paso se cumple $u_{kk} = 0$, el algoritmo falla. Para evitarlo se aplica \textbf{pivoteo parcial}: se intercambia la fila $k$ con otra fila $p > k$ tal que
+\begin{eqnarray}
+|u_{pk}| = \max_{i \geq k} |u_{ik}|.
+\end{eqnarray}
+Esto se representa mediante una matriz de permutaci\'on $P$, resultando:
+\begin{eqnarray*}
+PA = LU.
+\end{eqnarray*}
+
+
+
+\begin{Ejem} $A=LU$]
+Sea
+\begin{eqnarray*}
+A=\begin{bmatrix}
+2 & 3 & 1\\
+4 & 7 & 7\\
+-2 & 4 & 5
+\end{bmatrix}.
+\end{eqnarray*}
+Aplicamos eliminaci\'on gaussiana guardando los multiplicadores en $L$ (con $1$'s en la diagonal).
+\begin{itemize}
+\item Paso $k=1$.
+Pivote $u_{11}=2$. Multiplicadores:
+\begin{eqnarray*}
+\ell_{21}=\frac{4}{2}=2,\qquad \ell_{31}=\frac{-2}{2}=-1.
+\end{eqnarray*}
+Actualizamos filas de $U$:
+\begin{eqnarray*}
+R_2 \leftarrow R_2-2R_1,\quad R_3 \leftarrow R_3-(-1)R_1=R_3+R_1.
+\end{eqnarray*}
+Esto produce
+\begin{eqnarray*}
+U^{(1)}=\begin{bmatrix}
+2 & 3 & 1\\
+0 & 1 & 5\\
+0 & 7 & 6
+\end{bmatrix},\qquad
+L^{(1)}=\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+-1 & 0 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\item Paso $k=2$.
+Pivote $u_{22}=1$. Multiplicador:
+\begin{eqnarray*}
+\ell_{32}=\frac{7}{1}=7.
+\end{eqnarray*}
+Actualizamos fila 3 de $U$:
+\begin{eqnarray*}
+R_3 \leftarrow R_3-7R_2 \;\;\Longrightarrow\;\;
+U=\begin{bmatrix}
+2 & 3 & 1\\
+0 & 1 & 5\\
+0 & 0 & -29
+\end{bmatrix}.
+\end{eqnarray*}
+Insertamos $\ell_{32}$ en $L$:
+\begin{eqnarray*}
+L=\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+-1 & 7 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\item Resultado. Se tiene
+\begin{eqnarray*}
+\boxed{
+A=LU,\quad
+L=\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+-1 & 7 & 1
+\end{bmatrix},\quad
+U=\begin{bmatrix}
+2 & 3 & 1\\
+0 & 1 & 5\\
+0 & 0 & -29
+\end{bmatrix}.
+}
+\end{eqnarray*}
+(Verificaci\'on r\'apida: $LU=A$ por multiplicaci\'on directa).
+\end{itemize}
+
+
+\end{Ejem}
+\bigskip
+
+\begin{Ejem} [$PA=LU$]
+Sea
+\begin{eqnarray*}
+A=\begin{bmatrix}
+0 & 2 & 1\\
+1 & -2 & -3\\
+-1 & 1 & 2
+\end{bmatrix}.
+\end{eqnarray*}
+El pivote inicial $a_{11}=0$ es inv\'alido; aplicamos \textbf{pivoteo parcial} intercambiando $R_1 \leftrightarrow R_2$.
+La matriz de permutaci\'on que permuta las primeras dos filas es
+\begin{eqnarray*}
+P=\begin{bmatrix}
+0 & 1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
+\end{bmatrix},\qquad
+PA=\begin{bmatrix}
+1 & -2 & -3\\
+0 &  2 &  1\\
+-1&  1 &  2
+\end{bmatrix}.
+\end{eqnarray*}
+\begin{itemize}
+\item Paso $k=1$ sobre $PA$.
+Pivote $u_{11}=1$. Multiplicador:
+\begin{eqnarray*}
+\ell_{31}=\frac{-1}{1}=-1.
+\end{eqnarray*}
+Actualizamos fila 3:
+\begin{eqnarray*}
+R_3 \leftarrow R_3-(-1)R_1=R_3+R_1 \;\;\Longrightarrow\;\;
+U^{(1)}=\begin{bmatrix}
+1 & -2 & -3\\
+0 &  2 &  1\\
+0 & -1 & -1
+\end{bmatrix},\quad
+L^{(1)}=\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+-1& 0 & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\item Paso $k=2$. Pivote $u_{22}=2$. Multiplicador:
+\begin{eqnarray*}
+\ell_{32}=\frac{-1}{2}=-\tfrac{1}{2}.
+\end{eqnarray*}
+Actualizamos fila 3:
+\begin{eqnarray*}
+R_3 \leftarrow R_3-(-\tfrac{1}{2})R_2=R_3+\tfrac{1}{2}R_2 \;\;\Longrightarrow\;\;
+U=\begin{bmatrix}
+1 & -2 & -3\\
+0 &  2 &  1\\
+0 &  0 & -\tfrac{1}{2}
+\end{bmatrix}.
+\end{eqnarray*}
+Insertamos $\ell_{32}$ en $L$:
+\begin{eqnarray*}
+L=\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+-1& -\tfrac{1}{2} & 1
+\end{bmatrix}.
+\end{eqnarray*}
+
+\item Resultado. Se obtiene
+\begin{eqnarray*}
+\boxed{
+PA=LU,\quad
+P=\begin{bmatrix}
+0 & 1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
+\end{bmatrix},\quad
+L=\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+-1& -\tfrac{1}{2} & 1
+\end{bmatrix},\quad
+U=\begin{bmatrix}
+1 & -2 & -3\\
+0 &  2 &  1\\
+0 &  0 & -\tfrac{1}{2}
+\end{bmatrix}.
+}
+\end{eqnarray*}
+(Comprobaci\'on: $LU=PA$ y, por tanto, $A=P^{\!\top}LU$ ya que $P^{-1}=P^{\!\top}$.)
+\end{itemize}
+
+
+\end{Ejem}
+
+\begin{Ejem}Resolver $Ax=b$ v\'ia $LU$
+Consideremos
+\begin{eqnarray*}
+A=\begin{bmatrix}
+2 & 3 & 1\\
+4 & 7 & 7\\
+-2 & 4 & 5
+\end{bmatrix}, 
+\qquad 
+b=\begin{bmatrix}
+1\\
+2\\
+3
+\end{bmatrix}.
+\end{eqnarray*}
+
+Ya hemos obtenido la factorizaci\'on
+\begin{eqnarray*}
+A=LU,\quad
+L=\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+-1 & 7 & 1
+\end{bmatrix},\quad
+U=\begin{bmatrix}
+2 & 3 & 1\\
+0 & 1 & 5\\
+0 & 0 & -29
+\end{bmatrix}.
+\end{eqnarray*}
+
+El sistema $Ax=b$ se resuelve en dos etapas:
+
+\paragraph{1. Resolver $Ly=b$.}
+\begin{eqnarray*}
+\begin{bmatrix}
+1 & 0 & 0\\
+2 & 1 & 0\\
+-1 & 7 & 1
+\end{bmatrix}
+\begin{bmatrix}
+y_1\\y_2\\y_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+\end{eqnarray*}
+De aqu\'i:
+\begin{eqnarray*}
+y_1=1, \quad
+2y_1+y_2=2 \;\Rightarrow\; y_2=0, \quad
+-1\cdot y_1+7y_2+y_3=3 \;\Rightarrow\; y_3=4.
+\end{eqnarray*}
+Por lo tanto,
+\begin{eqnarray*}
+y=\begin{bmatrix}1\\0\\4\end{bmatrix}.
+\end{eqnarray*}
+
+\paragraph{2. Resolver $Ux=y$.}
+\begin{eqnarray*}
+\begin{bmatrix}
+2 & 3 & 1\\
+0 & 1 & 5\\
+0 & 0 & -29
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\x_2\\x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\\0\\4
+\end{bmatrix}.
+\end{eqnarray*}
+De abajo hacia arriba:
+\begin{eqnarray*}
+-29x_3=4 \;\Rightarrow\; x_3=-\tfrac{4}{29},
+\end{eqnarray*}
+\begin{eqnarray*}
+x_2+5x_3=0 \;\Rightarrow\; x_2=-5x_3=\tfrac{20}{29},
+\end{eqnarray*}
+\begin{eqnarray*}
+2x_1+3x_2+x_3=1 \;\Rightarrow\; 2x_1+3\cdot\tfrac{20}{29}-\tfrac{4}{29}=1.
+\end{eqnarray*}
+\begin{eqnarray*}
+2x_1+\tfrac{60-4}{29}=1 \;\Rightarrow\; 2x_1+\tfrac{56}{29}=1.
+\end{eqnarray*}
+\begin{eqnarray*}
+2x_1=\tfrac{29}{29}-\tfrac{56}{29}=-\tfrac{27}{29} \;\Rightarrow\;
+x_1=-\tfrac{27}{58}.
+\end{eqnarray*}
+
+\paragraph{Soluci\'on final:}
+\begin{eqnarray*}
+\boxed{
+x=\begin{bmatrix}
+-\tfrac{27}{58}\\begin{eqnarray*}6pt]
+\tfrac{20}{29}\\begin{eqnarray*}6pt]
+-\tfrac{4}{29}
+\end{bmatrix}.
+}
+\end{eqnarray*}
+\end{Ejem}
+
+
+\subsection{Factorizaci\'on de Cholesky}
+
+Si $A$ es sim\'etrica y definida positiva, entonces admite una factorizaci\'on especial:
+\begin{eqnarray*}
+A = LL^\top,
+\end{eqnarray*}
+donde $L$ es triangular inferior con entradas reales y diagonales positivas.  
+Esta factorizaci\'on es m\'as eficiente y estable que la $LU$ en estos casos.
+
+Sea $A\in\mathbb{R}^{n\times n}$ sim\'etrica definida positiva. La factorizaci\'on de Cholesky busca
+\begin{eqnarray*}
+A = LL^\top,
+\end{eqnarray*}
+con $L$ triangular inferior y diagonal positiva. Las f\'ormulas recursivas son, para $i=1,\dots,n$:
+\begin{eqnarray*}
+\ell_{ii}=\sqrt{\,a_{ii}-\sum_{k=1}^{i-1}\ell_{ik}^2\,},\qquad
+\ell_{ji}=\frac{1}{\ell_{ii}}\Bigl(a_{ji}-\sum_{k=1}^{i-1}\ell_{jk}\,\ell_{ik}\Bigr)\quad (j=i+1,\dots,n).
+\end{eqnarray*}
+
+\begin{Ejem}
+Consid\'erese
+\begin{eqnarray*}
+A=\begin{bmatrix}
+4 & 2 & 2\\
+2 & 2 & 1\\
+2 & 1 & 2
+\end{bmatrix}.
+\end{eqnarray*}
+Es sim\'etrica y definida positiva (sus menores principales son positivos). Apliquemos las f\'ormulas:
+\begin{itemize}
+\item Columna $i=1$.
+\begin{eqnarray*}
+\ell_{11}=\sqrt{4}=2,\qquad
+\ell_{21}=\frac{2}{2}=1,\qquad
+\ell_{31}=\frac{2}{2}=1.
+\end{eqnarray*}
+
+\item Columna $i=2$.
+\begin{eqnarray*}
+\ell_{22}=\sqrt{\,2-\ell_{21}^2\,}=\sqrt{2-1}=1,\qquad
+\ell_{32}=\frac{1-\ell_{31}\ell_{21}}{\ell_{22}}=\frac{1-1\cdot1}{1}=0.
+\end{eqnarray*}
+
+\item Columna $i=3$.
+\begin{eqnarray*}
+\ell_{33}=\sqrt{\,2-\ell_{31}^2-\ell_{32}^2\,}=\sqrt{2-1-0}=1.
+\end{eqnarray*}
+
+\item Resultado.
+\begin{eqnarray*}
+L=\begin{bmatrix}
+2&0&0\\
+1&1&0\\
+1&0&1
+\end{bmatrix},\qquad
+\boxed{A=LL^\top}.
+\end{eqnarray*}
+(Verificaci\'on r\'apida: $LL^\top=\begin{bmatrix}4&2&2\\2&2&1\\2&1&2\end{bmatrix}$.)
+
+\end{itemize}
+\end{Ejem}
+\bigskip
+
+\begin{Ejem}
+Consid\'erese
+\begin{eqnarray*}
+A=\begin{bmatrix}
+9 & 3 & 6\\
+3 & 5 & 3\\
+6 & 3 & 14
+\end{bmatrix}.
+\end{eqnarray*}
+Tambi\'en es sim\'etrica definida positiva. Procedamos:
+\begin{itemize}
+\item Columna $i=1$.
+\begin{eqnarray*}
+\ell_{11}=\sqrt{9}=3,\qquad
+\ell_{21}=\frac{3}{3}=1,\qquad
+\ell_{31}=\frac{6}{3}=2.
+\end{eqnarray*}
+
+\item Columna $i=2$.
+\begin{eqnarray*}
+\ell_{22}=\sqrt{\,5-\ell_{21}^2\,}=\sqrt{5-1}=2,\qquad
+\ell_{32}=\frac{3-\ell_{31}\ell_{21}}{\ell_{22}}=\frac{3-2\cdot1}{2}=\tfrac{1}{2}.
+\end{eqnarray*}
+
+\item Columna $i=3$.
+\begin{eqnarray*}
+\ell_{33}=\sqrt{\,14-\ell_{31}^2-\ell_{32}^2\,}
+=\sqrt{\,14-4-\tfrac{1}{4}\,}
+=\sqrt{\tfrac{39}{4}}=\frac{\sqrt{39}}{2}.
+\end{eqnarray*}
+
+\item Resultado.
+\begin{eqnarray*}
+L=\begin{bmatrix}
+3&0&0\\
+1&2&0\\
+2&\tfrac{1}{2}&\tfrac{\sqrt{39}}{2}
+\end{bmatrix},\qquad
+\boxed{A=LL^\top}.
+\end{eqnarray*}
+(Verificaci\'on: $LL^\top$ reproduce $A$; la \'ultima diagonal verifica $2^2+(\tfrac{1}{2})^2+(\tfrac{\sqrt{39}}{2})^2=14$.)
+\end{itemize}
+\end{Ejem}
+
+\begin{itemize}
+  \item \textbf{Forma:} $A=LL^\top$, con $L$ triangular inferior y diagonal positiva.
+  \item \textbf{Requisitos:} $A$ debe ser \textbf{sim\'etrica definida positiva (SDP)}.
+  \item \textbf{Pivoteo:} No requiere pivoteo si $A$ es SDP (bien condicionada).
+  \item \textbf{Ventajas:} M\'as r\'apida y estable (sin pivoteo) para matrices SDP; mejor aprovechamiento de memoria (simetr\'ia).
+  \item \textbf{Cu\'ando usarla:} Sistemas sim\'etricos definidos positivos (p.ej.\ matrices de Gram, problemas de m\'inimos cuadrados regulares, discretizaciones el\'ipticas).
+\end{itemize}
+
+\begin{Note}Si $A$ es SDP, use Cholesky. En caso general, use $LU$ con pivoteo.
+\end{Note}
+
+
+\subsection{Factorizaci\'on de Doolittle}
+
+Es una variante de la factorizaci\'on $LU$ en la cual la matriz $L$ tiene $1$'s en la diagonal principal:
+\begin{eqnarray*}
+A = LU, \quad L \text{ con unos en la diagonal}, \; U \text{ triangular superior}.
+\end{eqnarray*}
+
+\begin{itemize}
+  \item \textbf{Forma:} $A=LU$, con $L$ triangular inferior con $1$ en la diagonal y $U$ triangular superior.
+  \item \textbf{Requisitos:} V\'alida para matrices cuadradas no singulares (en la pr\'actica, puede requerir permutaciones: $PA=LU$).
+  \item \textbf{Pivoteo:} Suele emplear \emph{pivoteo parcial} para estabilidad num\'erica.
+  \item \textbf{Cu\'ando usarla:} Sistemas generales (no necesariamente sim\'etricos ni definidos positivos), m\'ultiples RHS $b$ con la misma $A$.
+\end{itemize}
+
+
+\begin{Note}[Esquema general]
+Si $A=LL^\top$ con $L$ triangular inferior y diagonal positiva, resolver $Ax=b$ equivale a:
+\begin{eqnarray*}
+Ly=b \quad\text{(sustituci\'on progresiva)}, \qquad
+L^\top x=y \quad\text{(sustituci\'on regresiva)}.
+\end{eqnarray*}
+\end{Note}
+
+\begin{Ejem}
+Sea
+\begin{eqnarray*}
+A=\begin{bmatrix}
+4 & 2 & 2\\
+2 & 2 & 1\\
+2 & 1 & 2
+\end{bmatrix}, 
+\qquad
+b=\begin{bmatrix}1\\2\\3\end{bmatrix}.
+\end{eqnarray*}
+Su factorizaci\'on de Cholesky es
+\begin{eqnarray*}
+L=\begin{bmatrix}
+2&0&0\\
+1&1&0\\
+1&0&1
+\end{bmatrix}
+\quad\Longrightarrow\quad
+A=LL^\top.
+\end{eqnarray*}
+\begin{itemize}
+
+\item Paso 1: $Ly=b$.
+
+\begin{eqnarray*}
+\begin{bmatrix}
+2&0&0\\
+1&1&0\\
+1&0&1
+\end{bmatrix}
+\begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix}
+=
+\begin{bmatrix}1\\2\\3\end{bmatrix}
+\end{eqnarray*}
+\begin{eqnarray*}
+2y_1=1 \ \Rightarrow\ y_1=\tfrac{1}{2},\\
+y_1+y_2=2 \ \Rightarrow\ y_2=\tfrac{3}{2},\\
+y_1+y_3=3 \ \Rightarrow\ y_3=\tfrac{5}{2}.
+\end{eqnarray*}
+Por tanto, $y=\left[\tfrac{1}{2},\ \tfrac{3}{2},\ \tfrac{5}{2}\right]^\top$.
+
+\item Paso 2: $L^\top x=y$.
+\begin{eqnarray*}
+L^\top=\begin{bmatrix}
+2&1&1\\
+0&1&0\\
+0&0&1
+\end{bmatrix},\quad
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\begin{bmatrix}
+2&1&1\\
+0&1&0\\
+0&0&1
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+=
+\begin{bmatrix}\tfrac{1}{2}\\
+\tfrac{3}{2}\\
+\tfrac{5}{2}
+\end{bmatrix}
+\Rightarrow
+\begin{cases}
+x_3=\tfrac{5}{2},\\
+x_2=\tfrac{3}{2},\\
+2x_1+x_2+x_3=\tfrac{1}{2}\ \Rightarrow\ 2x_1=\tfrac{1}{2}-\tfrac{3}{2}-\tfrac{5}{2}=-\tfrac{7}{2}\ \Rightarrow\ x_1=-\tfrac{7}{4}.
+\end{cases}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\boxed{
+x=\begin{bmatrix}
+-\tfrac{7}{4}\\
+\tfrac{3}{2}\\
+\tfrac{5}{2}
+\end{bmatrix}}
+\end{eqnarray*}
+\end{itemize}
+\end{Ejem}
+
+
+\begin{Ejem}
+Sea
+\begin{eqnarray*}
+A=\begin{bmatrix}
+9 & 3 & 6\\
+3 & 5 & 3\\
+6 & 3 & 14
+\end{bmatrix}, 
+\qquad
+b=\begin{bmatrix}1\\2\\3\end{bmatrix}.
+\end{eqnarray*}
+Una factorizaci\'on de Cholesky es
+\begin{eqnarray*}
+L=\begin{bmatrix}
+3&0&0\\
+1&2&0\\
+2&\tfrac{1}{2}&\tfrac{\sqrt{39}}{2}
+\end{bmatrix}
+\quad\Longrightarrow\quad
+A=LL^\top.
+\end{eqnarray*}
+
+\begin{itemize}
+\item Paso 1: $Ly=b$.
+
+\begin{eqnarray*}
+\begin{bmatrix}
+3&0&0\\
+1&2&0\\
+2&\tfrac{1}{2}&\tfrac{\sqrt{39}}{2}
+\end{bmatrix}
+\begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix}
+=
+\begin{bmatrix}1\\2\\3\end{bmatrix}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+3y_1&=&1 \ \Rightarrow\ y_1=\tfrac{1}{3},\\
+y_1+2y_2&=&2 \ \Rightarrow\ y_2=\tfrac{2-\tfrac{1}{3}}{2}=\tfrac{5}{6},\\
+2y_1+\tfrac{1}{2}y_2+\tfrac{\sqrt{39}}{2}y_3&=&3 
+\ \Rightarrow\ 
+\tfrac{\sqrt{39}}{2}y_3=3-\tfrac{2}{3}-\tfrac{5}{12}=\tfrac{23}{12}\\
+y_3&=&\frac{23}{12}\cdot\frac{2}{\sqrt{39}}=\frac{23}{6\sqrt{39}}.
+\end{eqnarray*}
+
+Por tanto, $y=\bigl[\tfrac{1}{3},\ \tfrac{5}{6},\ \tfrac{23}{6\sqrt{39}}\bigr]^\top$.
+
+\item Paso 2: $L^\top x=y$.
+
+\begin{eqnarray*}
+L^\top=\begin{bmatrix}
+3&1&2\\
+0&2&\tfrac{1}{2}\\
+0&0&\tfrac{\sqrt{39}}{2}
+\end{bmatrix},
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+\begin{bmatrix}
+3&1&2\\
+0&2&\tfrac{1}{2}\\
+0&0&\tfrac{\sqrt{39}}{2}
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+=
+\begin{bmatrix}\tfrac{1}{3}\\
+\tfrac{5}{6}\\
+\tfrac{23}{6\sqrt{39}}\end{bmatrix}
+\Rightarrow
+\begin{cases}
+\tfrac{\sqrt{39}}{2}\,x_3=\tfrac{23}{6\sqrt{39}} \ \Rightarrow\ x_3=\tfrac{23}{117},\\
+2x_2+\tfrac{1}{2}x_3=\tfrac{5}{6} \ \Rightarrow\ 2x_2=\tfrac{5}{6}-\tfrac{1}{2}\cdot\tfrac{23}{117}=\tfrac{86}{117} \ \Rightarrow\ x_2=\tfrac{43}{117},\\
+3x_1+x_2+2x_3=\tfrac{1}{3}=\tfrac{39}{117} \ \Rightarrow\ 3x_1=\tfrac{39-43-46}{117}=-\tfrac{50}{117} \ \Rightarrow\\\
+x_1=-\tfrac{50}{351}.
+\end{cases}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\boxed{
+x=\begin{bmatrix}
+-\tfrac{50}{351}\\
+\tfrac{43}{117}\\
+\tfrac{23}{117}
+\end{bmatrix}}
+\end{eqnarray*}
+\end{itemize}
+\end{Ejem}
+
+
+\begin{Ejem}
+\begin{eqnarray*}
+A=\begin{pmatrix}
+2 & -1 & 3\\
+0 & 4 & 5\\
+0 & 0 & -2
+\end{pmatrix},\qquad
+L=\begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}=L^{T},\qquad
+U=\begin{pmatrix}
+2 & -1 & 3\\
+0 & 4 & 5\\
+0 & 0 & -2
+\end{pmatrix}.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+A = LU = I \cdot U = U, \quad \text{y } L=L^{T}.
+\end{eqnarray*}
+\end{Ejem}
+
+
+\begin{Ejem}
+\begin{eqnarray*}
+\text{Tomemos } 
+L=\begin{pmatrix}
+2 & 0 & 0\\
+0 & 3 & 0\\
+0 & 0 & 4
+\end{pmatrix}
+\quad\text{(sim\'etrica y triangular inferior, }L=L^{T}\text{),}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+U=\begin{pmatrix}
+1 & -1 & 2\\
+0 & 2  & 5\\
+0 & 0  & -3
+\end{pmatrix}\ \text{(triangular superior).}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+A=LU=
+\begin{pmatrix}
+2 & 0 & 0\\
+0 & 3 & 0\\
+0 & 0 & 4
+\end{pmatrix}
+\begin{pmatrix}
+1 & -1 & 2\\
+0 & 2  & 5\\
+0 & 0  & -3
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & -2 & 4\\
+0 & 6  & 15\\
+0 & 0  & -12
+\end{pmatrix}.
+\end{eqnarray*}
+\end{Ejem}
+
+
+
+\begin{Ejem}
+\begin{eqnarray*}
+A=\begin{pmatrix}
+2 & -1 & 1 & 3\\
+4 &  1 & 0 & 2\\
+-2 & 2 & 5 & 1\\
+6 & 0 & 2 & 4
+\end{pmatrix}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+L=\begin{pmatrix}
+1 & 0 & 0 & 0\\
+2 & 1 & 0 & 0\\
+-1 & 1 & 1 & 0\\
+3 & -1 & 0 & 1
+\end{pmatrix}, \qquad
+U=\begin{pmatrix}
+2 & -1 & 1 & 3\\
+0 & 3 & -2 & -4\\
+0 & 0 & 6 & 3\\
+0 & 0 & 0 & -2
+\end{pmatrix}.
+\end{eqnarray*}
+
+\end{Ejem}
+
+\section{Descomposici\'on de $A$}
+
+Sea $A=D+L+U$, con:
+\begin{eqnarray*}
+D&=&\text{diag}(a_{11},\dots,a_{nn}),\\
+L&=&\text{parte estrictamente triangular inferior},\\
+U&=&\text{parte estrictamente triangular superior}.
+\end{eqnarray*}
+
+De $Ax=b$ obtenemos:
+\begin{eqnarray}
+x = -D^{-1}(L+U)x + D^{-1}b,
+\end{eqnarray}
+lo que sugiere la iteraci\'on:
+\begin{eqnarray}
+x^{(k+1)}&=&Tx^{(k)}+c,\\
+T&=&-D^{-1}(L+U),\\
+c&=&D^{-1}b.
+\end{eqnarray}
+
+\subsection{M\'etodo de Jacobi}
+
+\begin{eqnarray}
+x_i^{(k+1)}=\frac{1}{a_{ii}}\Biggl(b_i-\sum_{\substack{j=1\\j\neq i}}^n a_{ij}x_j^{(k)}\Biggr).
+\end{eqnarray}
+Se calcula cada $x_i^{(k+1)}$ s\'olo con valores de la iteraci\'on anterior.
+
+En forma matricial:
+\begin{eqnarray}
+T_J=-D^{-1}(L+U),\quad c_J=D^{-1}b.
+\end{eqnarray}
+
+
+
+\begin{Ejem}
+\begin{eqnarray*}
+\begin{cases}
+a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1,\\
+a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2,\\
+a_{31}x_1+a_{32}x_2+a_{33}x_3=b_3.
+\end{cases}
+\end{eqnarray*}
+Iteraci\'on:
+\begin{eqnarray*}
+x_1^{(k+1)}&=&\tfrac{1}{a_{11}}(b_1-a_{12}x_2^{(k)}-a_{13}x_3^{(k)}),\\
+x_2^{(k+1)}&=&\tfrac{1}{a_{22}}(b_2-a_{21}x_1^{(k)}-a_{23}x_3^{(k)}),\\
+&\dots&
+\end{eqnarray*}
+\end{Ejem}
+
+
+\subsection{M\'etodo de Gauss--Seidel}
+
+Aprovecha los valores nuevos tan pronto como se calculan:
+
+\begin{eqnarray}
+x^{(k+1)}=(D+L)^{-1}\bigl(-Ux^{(k)}+b\bigr).
+\end{eqnarray}
+
+Por componentes:
+\begin{eqnarray}
+x_i^{(k+1)}=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)}-\sum_{j=i+1}^n a_{ij}x_j^{(k)}\right).
+\end{eqnarray}
+
+
+\begin{Note}[Condiciones de convergencia]
+Ambos m\'etodos convergen si el radio espectral de la matriz de iteraci\'on es menor que uno:
+\begin{eqnarray*}
+\rho(T)<1.
+\end{eqnarray*}
+Casos suficientes:
+\begin{itemize}
+  \item $A$ diagonalmente dominante $\;\Rightarrow\;$ Jacobi y Gauss--Seidel convergen.
+  \item $A$ sim\'etrica definida positiva $\;\Rightarrow\;$ Gauss--Seidel converge.
+\end{itemize}
+
+\begin{itemize}
+  \item Convergencia $\iff \rho(T)<1$, donde $\rho$ es el radio espectral.
+  \item Suficiente: $A$ diagonalmente dominante estricta $\Rightarrow$ Jacobi y GS convergen.
+  \item Suficiente: $A$ sim\'etrica definida positiva $\Rightarrow$ GS siempre converge.
+\end{itemize}
+\end{Note}
+
+
+\subsection{M\'etodo SOR (Successive Over-Relaxation)}
+
+Generaliza Gauss--Seidel:
+\begin{eqnarray*}
+x_i^{(k+1)}=(1-\omega)x_i^{(k)}+
+\frac{\omega}{a_{ii}}\left(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}-\sum_{j>i}a_{ij}x_j^{(k)}\right).
+\end{eqnarray*}
+
+donde
+\begin{itemize}
+  \item $\omega=1$ reproduce Gauss--Seidel.
+  \item $1<\omega<2$: \emph{sobrerrelajaci\'on}, posible aceleraci\'on.
+  \item $0<\omega<1$: \emph{sub-relajaci\'on}, usada en algunos problemas mal condicionados.
+\end{itemize}
+
+Reescribiendo $Ax=b$:
+\begin{eqnarray}
+x&=&Tx+c,\\
+T&=&-D^{-1}(L+U),\\
+c&=&D^{-1}b.
+\end{eqnarray}
+De aqu\'i nace el esquema iterativo:
+\begin{eqnarray}
+x^{(k+1)}=Tx^{(k)}+c.
+\end{eqnarray}
+
+
+
+\begin{Note}
+\begin{eqnarray*}
+T_J &=& -D^{-1}(L+U),  c_J=D^{-1}b,\\
+T_{GS}&=&-(D+L)^{-1}U,  c_{GS}=(D+L)^{-1}b,\\
+T_{SOR}&=&(D+\omega L)^{-1}\big((1-\omega)D-\omega U\big), c_{SOR}=\omega(D+\omega L)^{-1}b.
+\end{eqnarray*}
+\end{Note}
+
+
+
+
+
+\subsection{Descomposici\'on de la matriz}
+Sea $A\in\mathbb{R}^{n\times n}$. Se descompone como
+\begin{eqnarray*}
+A = D - L - U,
+\end{eqnarray*}
+donde:
+\begin{itemize}
+  \item $D$: matriz diagonal de $A$,
+  \item $-L$: parte estrictamente triangular inferior,
+  \item $-U$: parte estrictamente triangular superior.
+\end{itemize}
+As\'i,
+\begin{eqnarray*}
+A = D + L + U, \quad
+Ax=b \;\;\Longleftrightarrow\;\; (D+L+U)x=b.
+\end{eqnarray*}
+
+\subsection{M\'etodo de Jacobi}
+A partir de la descomposici\'on, se obtiene el esquema iterativo de Jacobi:
+\begin{eqnarray*}
+x^{(k+1)} = D^{-1}\bigl(b - (L+U)x^{(k)}\bigr).
+\end{eqnarray*}
+De manera componente a componente:
+\begin{eqnarray*}
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left(b_i - \sum_{\substack{j=1 \\ j\neq i}}^n a_{ij} x_j^{(k)}\right), 
+\quad i=1,\dots,n.
+\end{eqnarray*}
+\begin{itemize}
+  \item Cada componente $x_i^{(k+1)}$ se calcula usando exclusivamente valores de la iteraci\'on previa $x^{(k)}$.
+  \item Es f\'acil de implementar en paralelo.
+\end{itemize}
+
+\subsection{M\'etodo de Gauss--Seidel}
+En Gauss--Seidel se aprovecha que, en cada paso, los nuevos valores calculados pueden usarse de inmediato:
+\begin{eqnarray*}
+x^{(k+1)} = (D+L)^{-1}\bigl(b - Ux^{(k)}\bigr).
+\end{eqnarray*}
+En forma componente:
+\begin{eqnarray*}
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left(b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} - \sum_{j=i+1}^{n} a_{ij} x_j^{(k)}\right).
+\end{eqnarray*}
+\begin{itemize}
+  \item La diferencia clave con Jacobi: $x_j^{(k+1)}$ ya calculados se usan de inmediato.
+  \item Suele converger m\'as r\'apido que Jacobi.
+\end{itemize}
+
+\subsection{Condiciones de convergencia}
+Un resultado cl\'asico:
+\begin{itemize}
+  \item Si $A$ es \textbf{diagonal dominante estricta} (es decir, $|a_{ii}| > \sum_{j\neq i}|a_{ij}|$ para todo $i$), entonces Jacobi y Gauss--Seidel convergen.
+  \item Si $A$ es \textbf{sim\'etrica definida positiva}, Gauss--Seidel siempre converge.
+  \item En general, la convergencia depende de que el radio espectral de la matriz de iteraci\'on sea menor que $1$:
+  \begin{eqnarray*}
+  \rho(T)<1.
+  \end{eqnarray*}
+\end{itemize}
+
+\begin{Note}[Esquema general] Se procede de la siguiente manera:
+
+\begin{enumerate}
+  \item Elegir un vector inicial $x^{(0)}$ (p.ej.\ el vector nulo).
+  \item Repetir hasta convergencia:
+  \begin{enumerate}
+    \item Calcular $x^{(k+1)}$ seg\'un el m\'etodo elegido (Jacobi o Gauss--Seidel).
+    \item Medir el error, p.ej.\ $\|x^{(k+1)}-x^{(k)}\|$.
+    \item Detenerse cuando el error sea menor que una tolerancia $\varepsilon$.
+  \end{enumerate}
+\end{enumerate}
+\end{Note}
+
+\begin{Ejem} Sistema de prueba (diagonalmente dominante)
+Consideremos
+\begin{eqnarray*}
+A=
+\begin{bmatrix}
+10 & -1 & 2 & 0\\
+-1 & 11 & -1 & 3\\
+2 & -1 & 10 & -1\\
+0 & 3 & -1 & 8
+\end{bmatrix},\qquad
+b=\begin{bmatrix}6\\25\\-11\\15\end{bmatrix},
+\end{eqnarray*}
+con vector inicial \(x^{(0)}=\mathbf{0}\).
+Este sistema es \emph{diagonalmente dominante}, por lo que Jacobi y Gauss--Seidel convergen.
+
+La soluci\'on exacta es
+\begin{eqnarray*}
+x^\ast=\begin{bmatrix}1\\
+2\\
+-1\\
+1\end{bmatrix}.
+\end{eqnarray*}
+\end{Ejem}
+
+
+\begin{Ejem} [M\'etodo de Jacobi]
+Recordemos que
+\begin{eqnarray*}
+x^{(k+1)}=D^{-1}\bigl(b-(L+U)\,x^{(k)}\bigr),\qquad
+x_i^{(k+1)}=\frac{1}{a_{ii}}\!\left(b_i-\sum_{j\neq i}a_{ij}\,x_j^{(k)}\right).
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+x^{(0)}=\begin{bmatrix}0\\0\\0\\0\end{bmatrix},\quad
+x^{(1)}=\begin{bmatrix}
+0.6\\ 2.272727\\ -1.100000\\ 1.875000
+\end{bmatrix},\quad
+x^{(2)}=\begin{bmatrix}
+1.047273\\ 1.715909\\ -0.805227\\ 0.885227
+\end{bmatrix},\quad
+x^{(3)}=\begin{bmatrix}
+0.932636\\ 2.053306\\ -1.049341\\ 1.130881
+\end{bmatrix}.
+\end{eqnarray*}
+
+Errores (norma infinito)
+\begin{eqnarray*}
+\|x^{(0)}-x^\ast\|_\infty=2.000000,\\
+\|x^{(1)}-x^\ast\|_\infty=0.875000,\\
+\|x^{(2)}-x^\ast\|_\infty=0.284091,\\
+\|x^{(3)}-x^\ast\|_\infty=0.130881.
+\end{eqnarray*}
+\end{Ejem}
+
+\begin{Ejem}[M\'etodo de Gauss--Seidel]
+\begin{eqnarray*}
+x^{(k+1)}&=&(D+L)^{-1}\bigl(b-U\,x^{(k)}\bigr),\\
+x_i^{(k+1)}&=&\frac{1}{a_{ii}}\!\left(b_i-\sum_{j<i}a_{ij}\,x_j^{(k+1)}-\sum_{j>i}a_{ij}\,x_j^{(k)}\right).
+\end{eqnarray*}
+
+Iteraciones (redondeadas a 6 decimales).
+\begin{eqnarray*}
+x^{(0)}=\begin{bmatrix}0\\0\\0\\0\end{bmatrix},\quad
+x^{(1)}=\begin{bmatrix}
+0.6\\ 2.327273\\ -0.987273\\ 0.878864
+\end{bmatrix},\quad
+x^{(2)}=\begin{bmatrix}
+1.030182\\ 2.036938\\ -1.014456\\ 0.984341
+\end{bmatrix},\quad
+x^{(3)}=\begin{bmatrix}
+1.006585\\ 2.003555\\ -1.002527\\ 0.998351
+\end{bmatrix}.
+\end{eqnarray*}
+
+Errores (norma infinito) frente a \(x^\ast\).
+\begin{eqnarray*}
+\|x^{(0)}-x^\ast\|_\infty=2.000000,\\
+\|x^{(1)}-x^\ast\|_\infty=0.400000,\\
+\|x^{(2)}-x^\ast\|_\infty=0.036938,\\
+\|x^{(3)}-x^\ast\|_\infty=0.006585.
+\end{eqnarray*}
+\end{Ejem}
+\begin{Note}
+\begin{itemize}
+  \item Ambos m\'etodos convergen (la matriz es diagonalmente dominante), pero \textbf{Gauss--Seidel} reduce el error notablemente m\'as r\'apido al reutilizar los valores nuevos dentro de la misma iteraci\'on.
+  \item Criterio de paro t\'ipico: detener cuando \(\|x^{(k+1)}-x^{(k)}\| \le \varepsilon\) o \(\|Ax^{(k)}-b\| \le \varepsilon\).
+  \item Para paralelizaci\'on masiva, \textbf{Jacobi} es m\'as simple; para rapidez en CPU \'unica, \textbf{Gauss--Seidel} suele ser preferible.
+\end{itemize}
+\end{Note}
+
+\begin{Ejem}[SOR en una sola iteraci\'on (comparaci\'on con Gauss--Seidel)]\medskip
+
+Consideremos el mismo sistema diagonalmente dominante:
+\begin{eqnarray*}
+A=
+\begin{bmatrix}
+10 & -1 & 2 & 0\\
+-1 & 11 & -1 & 3\\
+2 & -1 & 10 & -1\\
+0 & 3 & -1 & 8
+\end{bmatrix},
+\qquad
+b=\begin{bmatrix}6\\25\\-11\\15\end{bmatrix},
+\qquad
+x^{(0)}=\mathbf{0}.
+\end{eqnarray*}
+
+con $\omega=1.2$
+\begin{eqnarray*}
+x_i^{(k+1)}=(1-\omega)\,x_i^{(k)}
++\frac{\omega}{a_{ii}}\!\left(b_i-\sum_{j<i}a_{ij}\,x_j^{(k+1)}-\sum_{j>i}a_{ij}\,x_j^{(k)}\right).
+\end{eqnarray*}
+
+Una iteraci\'on desde $x^{(0)}=\mathbf{0}$ (redondeado a $6$ decimales).
+\begin{eqnarray*}
+x_{\text{SOR}}^{(1)}=
+\begin{bmatrix}
+0.720000\\
+2.805818\\
+-1.156102\\
+0.813967
+\end{bmatrix}.
+\end{eqnarray*}
+
+Gauss--Seidel, una iteraci\'on
+\begin{eqnarray*}
+x_{\text{GS}}^{(1)}=
+\begin{bmatrix}
+0.600000\\
+2.327273\\
+-0.987273\\
+0.878864
+\end{bmatrix}.
+\end{eqnarray*}
+
+
+\begin{itemize}
+  \item Con $\omega>1$ (sobrerrelajaci\'on), SOR puede \emph{acelerar} la convergencia, pero la \textbf{primera} iteraci\'on puede mostrar un \textit{sobre-disparo} respecto a la soluci\'on exacta.
+  \item La elecci\'on de $\omega$ es clave: en la pr\'actica se prueba $\omega\in[1.1,1.5]$ y se observa el comportamiento; si $\omega$ es muy grande, puede empeorar o incluso hacer divergir el m\'etodo.
+  \item Si $A$ es SPD, m\'etodos como \textbf{Cholesky} (directo) o iterativos tipo \textbf{Gradiente Conjugado} suelen ser preferibles por estabilidad y rapidez.
+\end{itemize}
+\end{Ejem}
+
+\begin{Note} [Esquema general]
+Dado $Ax=b$ y un vector inicial $x^{(0)}$, el m\'etodo SOR genera la sucesi\'on:
+\begin{eqnarray*}
+x_i^{(k+1)} = (1-\omega)\,x_i^{(k)} + 
+\frac{\omega}{a_{ii}}
+\left(b_i - \sum_{j<i} a_{ij} x_j^{(k+1)} - \sum_{j>i} a_{ij} x_j^{(k)}\right),
+\quad i=1,\dots,n.
+\end{eqnarray*}
+
+\begin{itemize}
+  \item Si $\omega=1$, se recupera exactamente el m\'etodo de Gauss--Seidel.
+  \item Si $0<\omega<1$, se llama \emph{relajaci\'on sub-sucessiva}, \'util para estabilizar ciertos casos.
+  \item Si $1<\omega<2$, se llama \emph{sobrerrelajaci\'on}, y puede acelerar notablemente la convergencia.
+  \item La elecci\'on \'optima de $\omega$ depende de la matriz $A$; en la pr\'actica, se prueba con valores como $\omega\approx 1.1$ a $1.5$.
+  \item El m\'etodo es \'util en problemas grandes, como los provenientes de discretizaci\'on de ecuaciones diferenciales.
+\end{itemize}
+
+\begin{itemize}
+  \item Jacobi: usa valores viejos.  
+  \item Gauss--Seidel: usa valores nuevos en cuanto est\'an disponibles.  
+  \item SOR: Gauss--Seidel + par\'ametro $\omega$ que acelera la convergencia si se elige bien.
+\end{itemize}
+\end{Note}
+
+%===========================================
+\section{Ejercicios SEL}
+%===========================================
+
+
+
+\begin{Ejer}
+Resolver por eliminaci\'on Gaussiana Simple los siguientes sistemas de ecuaciones lineales
+
+\begin{enumerate}
+\item \begin{eqnarray*}
+x_1-2x_2+0.5x_3&=&-5\\
+-2x_1+5x_{2}-1.5x_3&=&0\\
+-0.2x_1+1.75x_2-x_3&=&10
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+3x_1-x_2+6x_4&=&2.3\\
+4x_1+2x_2-x_3-5x_4&=&6.9\\
+-5x_1+x_2-3x_3&=&-36\\
+10x_2-4x_3+7x_4&=&-36
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+0.003000x_1+59.14x_2&=&59.17\\
+5.291x_1-6.130x_2&=&46.78
+\end{eqnarray*}
+utilizar redondeo a 4 cifras significativas.
+
+\item \begin{eqnarray*}
+4x_1+2x_2&=&2\\
+2x_1+3x_2+x_3&=&-1\\
+x_2+\frac{5}{2}x_3&=&3
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+3x_1-0.1x_2-0.2x_3&=&7.85\\
+0.1x_{1}+7x_2-0.3x_3=-19.3\\
+0.3x_1-0.2x_2+10x_3&=&71.4
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+8x_1+2x_2-2x_3&=&-2\\
+10x_1+2x_2+4x_3&=&4\\
+12x_1+2x_2+2x_3&=&6
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+5x_1 + 2x_2 + x_3 - x_4 = 1\\
+2x_1 - x_2 + 3x_3 + 2x_4 = 12\\
+4x_1 + x_2 - 2x_3 + 3x_4 = 5\\
+-2x_1 + 2x_2 + x_3 + x_4 = 2
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+2x_1+3x_2+2x_3+4x_4&=&4\\
+4x_1+10x_2-4x_3&=&-8\\
+-3x_1-2x_2-5x_3-2x_4&=&-4\\
+-2x_1+4x_2+4x_3-7x_4&=&-1
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+1.133x_1+5.281x_2-2.454x_3&=&6.414\\
+24.14x_1-1.21x_2+5.281x_3&=&113.8\\
+-10.123x_1+6.387x_2-x_3&=&1
+\end{eqnarray*}
+
+\item $A=\left(\begin{array}{ccccc}
+2 & 3 & 2 & 4\\
+4 & 10 &-4 & 0\\
+-3 & -2 & -5 &-2\\
+-2 & 4 & 4 &-7\\
+\end{array}\right)$ y $b=\left(\begin{array}{c}\\
+9 \\
+-15\\
+6 \\
+2\\
+\end{array}\right)$
+
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}
+Resolver por eliminaci\'on gaussiana con pivoteo parcial los siguientes sistemas de ecuaciones lineales
+
+\begin{enumerate}
+\item \begin{eqnarray*}
+0.4x_1-1.5x_2+0.75x_3&=&-20\\
+-0.5x_1-15x_2+10x_3&=&-10\\
+-10x_1-9x_2+2.5x_3&=&30
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+5x_1-8x_2+x_3&=&-71\\
+-2x_1+6x_2-9x_3&=&134\\
+3x_1-5x_2+2x_3&=&-58
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+0.003000x_1+59.14x_2&=&59.17\\
+5.291x_1-6.130x_2&=&46.78
+\end{eqnarray*}
+utilizar redondeo a 4 cifras significativas.
+
+
+\item \begin{eqnarray*}
+-x_2+4x_3-x_4&=&-1\\
+-x_1+4x_2-x_3&=&2\\
+-x_1-x_3+4x_4&=&4\\
+4x_1-x_2&=&10
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+0.00031000x_1+1.000000x_2&=&3.000000\\
+1.00045534x_1+1.00034333x_2&=&7.000
+\end{eqnarray*}
+
+
+\item Resolver para $A=\left(\begin{array}{ccccc}\\
+14 & 14 & -9 & 3 & -5\\
+14 & 52 & -15 & 2 & -32\\
+-9 & -15 & 36 &-5 & 16\\
+3 &2 &-5&47 & 49\\
+-5 & 32 & 16 &49 & 79\end{array}\right)$,  $b=\left(\begin{array}{c}\\
+-15\\
+-100\\
+106\\
+329\\
+463\end{array}\right)$ y  $X=\left(\begin{array}{c}\\
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+x_5\end{array}\right)$
+
+
+\item Resolver para $A=\left(\begin{array}{ccccc}
+\frac{1}{4} &\frac{1}{5} &\frac{1}{6}\\
+ \frac{1}{3} & \frac{1}{4} & \frac{1}{5} \\  
+  \frac{1}{2} &  1& 2
+\end{array}\right)$,  $b=\left(\begin{array}{c}
+9\\
+8\\
+8\\\end{array}\right)$ y  $X=\left(\begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+\end{array}\right)$
+
+\item  Resolver para $A=\left(\begin{array}{ccccc}
+1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4}  \\
+ \frac{1}{2} & \frac{1}{3} & \frac{1}{4} & \frac{1}{5}\\
+ \frac{1}{3} & \frac{1}{4} & \frac{1}{5} & \frac{1}{6}\\
+ \frac{1}{4} & \frac{1}{5} & \frac{1}{6} & \frac{1}{7}
+ \end{array}\right)$,  $b=\left(\begin{array}{c}
+ \frac{1}{6} \\
+ \frac{1}{7} \\
+  \frac{1}{8}\\ 
+ \frac{1}{9} \\\end{array}\right)$ y  $X=\left(\begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+x_4
+\end{array}\right)$
+
+\item Resolver el sistema
+\begin{eqnarray*}
+2x_1+x_2-x_3+x_4-3x_5&=&7\\
+x_1+2x_3-x_4+x_5&=&2\\
+-2x_2-x_3+x_4-x_5&=&-5\\
+3x_1+x_2-4x_3+5x_5&=&6\\
+x_1-x_2-x_3-x_4+x_5&=&3
+\end{eqnarray*}
+
+
+
+\item Resolver el sistema
+\begin{eqnarray*}
+3.333x_1+15920x_2-10.333x_3&=&15913\\
+2.222x_1+16.71x_29.612x_2&=&28.544\\
+1.5611x_1+5.1791x_2+1.6852x_3&=&8.4254
+\end{eqnarray*}
+
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer}
+Resolver por el m\'etodo de Gauss-Jordan los siguientes sistemas de ecuaciones lineales
+
+\begin{enumerate}
+\item \begin{eqnarray*}
+x_1+2x_2+3x_3&=&1\\
+-0.4x_1+2x_2-x_3&=&10\\
+0.5x_1-3x_2+x_3&=&15
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+2x_1-0.9x_2+3x_3&=&-3.61\\
+-0.5x_1+0.1x_2-x_3&=&2.035\\
+x_1-6.35x_2-0.45x_3&=&15.401
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+0.7x_1+2.7x_2-6x_3+0.7x_4&=&1.6487\\
+2x_1-0.8x_2+3x_3-x_4&=&-2.342\\
+-x_1-1.5x_2+1.4x_3+3x_4&=&-4.189\\
+7x_2-1.56x_3+x_4=15.792
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+3x_1-0.1x_2-0.2x_3&=&7.85\\
+0.1x_1+7x_2-0.3x_3&=&-19.3\\
+0.3x_1-0.2x_2+10x_3&=&71.4
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+10x_1+2x_2-x_3&=&27\\
+-3x_1-6x_2+2x3&=&-61.5\\
+x_1+x_2+5x_3&=&-21.5
+\end{eqnarray*}
+
+\item $A=\left(\begin{array}{ccccc}\\
+1 &3 & -2 & 1\\
+1  &3 & -1 & 2\\
+0  &1 & -1 & 4\\
+2  &6 & 1 & 2\\
+\end{array}\right)$ y $b=\left(\begin{array}{c}
+4 \\
+1 \\
+5\\ 
+2\\\end{array}\right)$
+
+\item \begin{eqnarray*}
+6x_1-x_2-x_3+4x_4&=&17\\
+x_1-10x_2+2x_3-x_4&=&-17\\
+3x_1-2x_2+8x_3-x_4&=&19\\
+x_1+x_2+x_3-5x_4&=&-14
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+x+2y+3z+4w&=&1\\
+x-4y+z+11w&=&2\\
+-x+8y+7z+6w&=&-2\\
+16x+8y-5z+6w&=&11
+\end{eqnarray*}
+
+
+\item \begin{eqnarray*}
+x_1+x_2&=&3\\
+x_1+2x_2+x_3&=&-1\\
+x_2+3x_3+x_4&=&2\\
+x_3+4x_4+x_5&=&1\\
+x_4+5x_5&=&3
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+15x_1-18x_2+15x_3-3x_4&=&11\\
+-18x_1+24_2-18x_3+4x_4&=&10\\
+15x_1-18x_2+18x_3-3x_4&=&11\\
+-3x_1+4x_2-3x_3+x_4&=&13
+\end{eqnarray*}
+
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}
+Resolver por el m\'etodo de Gauss-Seidel los siguientes sistemas de ecuaciones lineales
+
+\begin{enumerate}
+\item \begin{eqnarray*}
+3x_1-0.2x_2-0.5x_3&=&8\\
+0.1x_1+7x_2+0.4x_3&=&-19.5\\
+0.4x_1-0.1x_2+10x_3&=&72.4
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+-5x_1+1.4x_2-2.7x_3&=&94.2\\
+0.7x_1-2.5x_2+15x_3&=&-6\\
+3.3x_1-11x_2+4.4x_3&=&-27.5
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+3x_1-0.5x_2+0.6x_3&=&5.24\\
+0.3x_1-4x_2-x_3&=&-0.387\\
+-0.7x_1+2x_2+7x_3&=&14.803
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+5x_1-0.2x_2+x_3&=&1.5\\
+0.1x_1+3x_2-0.5x_3&=&-2.7\\
+-0.3x_1+x_2-7x_3&=&9.5
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+-3x_2+7x_3&=&2\\
+x_1+2x_2-x_3&=&3\\
+12x_1+2x_2+2x_3&=&6
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+0.15_1+2.11x_2+30.75x_3&=&-26.38\\
+0.64x_1+1.21x_2+2.05x_3&=&1.01\\
+3.21x_1+1.53x_2+1.04x_3&=&5.23
+\end{eqnarray*}
+
+
+\item \begin{eqnarray*}
+x_1+x_2-x_3&=&-3\\
+6x_1+2x_2+2x_3&=&2\\
+-3x_1+4x_2+x_3&=&1
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+2x_1+x_2-x3&=&1\\
+5x_1+2x_2+2x_3&=&-4\\
+3x_1+x_2+x_3&=&5
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+3x-0.1y-0.2z&=&7.85\\
+0.1x+7y-0.3z&=&-19.3\\
+0.3x_1-0.2x_2+10x_3=71.4
+\end{eqnarray*}
+
+
+\item \begin{eqnarray*}
+17x_1-2x_2-3x_3=500\\
+-5x_1+21x_2-2x_3&=&200\\
+-5x_1-5x_2+22x_3&=&30
+\end{eqnarray*}
+
+\end{enumerate}
+\end{Ejer}
+
+
+
+\begin{Ejer}
+Aplicar el m\'etodo de Jacobi para resolver los siguientes sistemas de ecuaciones lineales
+
+\begin{enumerate}
+\item $A=\left(\begin{array}{cccc|c}\\
+10 & 2 &  -1 &  0 &  26\\
+1 & 20 & -2 & 3 & -15\\
+-2 & 1 & 30 & 0 & 53\\
+1 & 2 & 3 & 20 & 47
+\end{array}\right)$
+
+
+\item $A=\left(\begin{array}{ccc|c}\\
+-1 & 2 & 10 & 11\\ 
+11 & -1 & 2 & 12\\
+1 & 5 & 2 & 8
+\end{array}\right)$
+
+\item $A=\left(\begin{array}{ccc|c}\\
+8 & 2 & 3 & 51\\
+2 & 5 & 1 & 23\\
+-3 & 1 & 6 & 20
+\end{array}\right)$
+
+\item $A=\left(\begin{array}{cccc|c}\\
+2 & -1 & 1 & 3 & 10\\
+2 & 2 & 2 & 2 & 1\\
+-1 & -1 & 2 & 2 & -5\\
+3 & 1 & -1 & 4 & 6
+\end{array}\right)$
+
+\item $A=\left(\begin{array}{cccc|c}\\
+3 & 1 & 1 & -1 & 5\\
+0 & 2 & 1 & 4 & 0\\
+1 & 1 & -1 & 9 & 1\\
+2 & 4 & 6 & 3 & 0
+\end{array}\right)$
+
+\item $A=\left(\begin{array}{cccc|c}\\
+10 & -1 & 2 & 0 & 6\\
+-1 & 11 & -1 & 3 & 25\\
+2 & -1 & 10 & -1 & -11\\
+0 & 2 & -1 & 8 & 15
+\end{array}\right)$
+
+\item \begin{eqnarray*}
+x_1+2x_2-2x_3&=&7\\
+x_1+x_2+x_3&=&2\\
+2x_1+2x_2+x_3&=&5
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+-4x_1+14x_2=10\\
+-5x_1+13x_2&=8\\
+-x_1+2x_3&=&1
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+x+y+2z&=&1\\
+x+2y+z&=&1\\
+2x+y+z&=&1
+\end{eqnarray*}
+
+\item \begin{eqnarray*}
+6x_1-2x_2+2x_3+4x_4&=&10\\
+12x_1-8x_2+6x_3+10x_4&=&20\\
+3x_1-13x_2+9x_3+3x_4&=&2\\
+-6x_1+4x_2+x_3-18x_4&=&-19
+\end{eqnarray*}
+
+
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}
+
+\begin{enumerate}
+  \item Resuelva el sistema
+  \begin{eqnarray*}
+  \begin{cases}
+  2x+y-z=1,\\
+  -x+3y+2z=12,\\
+  x+2y+3z=7
+  \end{cases}
+  \end{eqnarray*}
+  mediante eliminaci\'on gaussiana simple (sin pivoteo).
+
+  \item Resuelva el mismo sistema anterior pero ahora aplicando eliminaci\'on gaussiana con pivoteo parcial. Compare los pasos con el ejercicio anterior.
+
+  \item Aplique eliminaci\'on gaussiana con pivoteo y escalamiento al sistema
+  \begin{eqnarray*}
+  \begin{cases}
+  10x+2y+z=7,\\
+  2x+20y+2z=9,\\
+  x+2y+30z=12
+  \end{cases}
+  \end{eqnarray*}
+  y analice la importancia del escalamiento.
+
+  \item Utilice el m\'etodo de Gauss--Jordan para calcular la inversa de
+  \begin{eqnarray*}
+  A=\begin{bmatrix}
+  1 & 2 & 1\\
+  0 & 1 & -1\\
+  2 & 3 & 4
+  \end{bmatrix}.
+  \end{eqnarray*}
+
+  \item Resuelva $Ax=b$ con $A$ y $b$ dados por
+  \begin{eqnarray*}
+  A=\begin{bmatrix}
+  4 & -2 & 1\\
+  -2 & 4 & -2\\
+  1 & -2 & 3
+  \end{bmatrix},\qquad
+  b=\begin{bmatrix}1\\4\\2\end{bmatrix},
+  \end{eqnarray*}
+  utilizando factorizaci\'on $LU$ y sustituci\'on hacia adelante y hacia atr\'as.
+
+  \item Calcule la factorizaci\'on de Cholesky de
+  \begin{eqnarray*}
+  A=\begin{bmatrix}
+  25 & 15 & -5\\
+  15 & 18 & 0\\
+  -5 & 0 & 11
+  \end{bmatrix}
+  \end{eqnarray*}
+  y resuelva $Ax=b$ con $b=(35,33,6)^\top$.
+\end{enumerate}
+
+
+\begin{enumerate}\setcounter{enumi}{6}
+  \item Resuelva mediante sustituci\'on hacia atr\'as el sistema triangular superior:
+  \begin{eqnarray*}
+  \begin{cases}
+  2x+3y-z=5,\\
+  -y+2z=4,\\
+  3z=6.
+  \end{cases}
+  \end{eqnarray*}
+
+  \item Resuelva mediante sustituci\'on hacia adelante el sistema triangular inferior:
+  \begin{eqnarray*}
+  \begin{cases}
+  x=3,\\
+  2y+x=5,\\
+  z-y+2x=10.
+  \end{cases}
+  \end{eqnarray*}
+
+\end{enumerate}
+
+
+\begin{enumerate}\setcounter{enumi}{9}
+  \item Aplique el m\'etodo de Jacobi para resolver
+  \begin{eqnarray*}
+  \begin{cases}
+  10x-y+2z=6,\\
+  -x+11y-z+3w=25,\\
+  2x-y+10z-w=-11,\\
+  3y-z+8w=15,
+  \end{cases}
+  \end{eqnarray*}
+  realizando 3 iteraciones con $x^{(0)}=\mathbf{0}$.
+
+  \item Repita el ejercicio anterior con el m\'etodo de Gauss--Seidel. Compare la velocidad de convergencia con Jacobi.
+
+  \item Aplique el m\'etodo SOR con $\omega=1.25$ al mismo sistema y compare las tres trayectorias de convergencia.
+
+  \item Escriba la matriz de iteraci\'on $T_J$ y el vector $c_J$ del m\'etodo de Jacobi para el sistema
+  \begin{eqnarray*}
+  \begin{cases}
+  4x+y=9,\\
+  x+3y=7.
+  \end{cases}
+  \end{eqnarray*}
+  Verifique si $\rho(T_J)<1$.
+
+  \item Investigue experimentalmente en R cu\'al es el valor \'optimo aproximado de $\omega$ para el m\'etodo SOR en el sistema $4\times 4$ del ejercicio 10.
+\end{enumerate}
+
+
+\begin{enumerate}\setcounter{enumi}{14}
+  \item Genere una matriz aleatoria sim\'etrica definida positiva $5\times 5$ en R y resuelva $Ax=b$:
+ \begin{itemize}
+    \item[(a)] Usando factorizaci\'on $LU$.  
+    \item[(b)] Usando factorizaci\'on de Cholesky.  
+    \item[(c)] Usando Gauss--Seidel con 20 iteraciones.  
+  \end{itemize}
+  Compare el tiempo de c\'omputo y la precisi\'on de cada m\'etodo.
+\end{enumerate}
+\end{Ejer}
+

@@ -1,0 +1,1931 @@
+
+%===========================================
+\chapter{Introducción al uso de R}
+%===========================================
+\textbf{Programas y rutinas en R}
+
+%-------------------------------------------
+\section{Sesiones en RStudio}
+%-------------------------------------------
+
+
+Al utilizar R, existen varios entornos que facilitan la gestión y ejecución de rutinas,  \textit{archivos con extensión .R}, el más popular es \textit{RStudio} o bien directamente desde la terminal o ejecutando simplemente \textit{R}, la ventaja de \textit{RStudio} es que permite que en una pantalla podamos visualizar: Consola (lugar donde se ejecutan los comandos directamente), History (el histórico de las variables y funciones definidas mismo que puede guardarse para ser invocado posteriormente), Plots (ventana en la que se muestran los gráficos generados), Help (la ayuda sobre comandos, funciones, sintaxis en R), Files (lugar donde se manejan los archivos, es decir leer, guardar, mover o renombrar archivos), y Packages (espacio para instalar o cargar paquetes de manera gráfica), todo esto para facilitar el manejo y ejecución de rutinas compatibles con R. Por otra parte \textbf{Workspace} es un entorno en el que se incluyen todos los objetos definidos,  al final de una sesión de R,  este entorno puede guardarse una imagen del mismo para ser cargada posteriormente. \bigskip
+
+
+Durante el uso de R en ocasiones se requiere limpiar la consola, para esto al presionar \textbf{Ctrl+L}.  
+
+
+%-------------------------------------------
+\section{Uso de R}
+%-------------------------------------------
+
+\begin{itemize}
+\item \textbf{Constantes}: $\pi$, $exp(1)$
+
+\item Las constantes pueden ser de tipo \textit{integer},  \textit{double} o \textit{complex}, el tipo de constante se puede consultar con la función \textbf{typeof()}
+
+\begin{verbatim}
+> typeof('mi constante')
+[1] "character"
+\end{verbatim}
+
+\item Operadores: $<,>,>=,>=,!=$ ,$\!$ (Not),  $\|$ (OR), $\&$ (And),  $==$ (comparar)
+
+\item Operadores aritméticos: $+$, $-$, $*$, \verb|^| potencia,  \verb|%%| resto de la división entera,  \verb|%/%| división entera.
+
+\item Logaritmos y exponenciales: \verb|log| logaritmo natural,  \verb|log(x,b)| ($log_{b}x$) y \verb|exp(x)| ($e^x$).
+
+\item Funciones trigonométricas\verb|cos(x)|,\verb|sin(x)|, \verb|tan(x)|, \verb|acos(x)|, \verb|asin(x)|, \verb|atan(x)|.
+
+\item Funciones misceláneas \verb|abs(x)|,  \verb|sqrt(x)|,  \verb|floor(x)|,  \verb|ceiling(x)|, \verb|max(x)|,  \verb|sign(x)|.
+
+\item Comando \verb|options(digits=k)|:
+
+\begin{verbatim}
+> 1/3.0
+[1] 0.3333333
+> options(digits=3)
+> 1/3
+[1] 0.333
+> 1/17.0
+[1] 0.0588
+> options(digits=3)
+> 1/17.0
+[1] 0.0588
+> options(digits=5)
+> 1/17.0
+[1] 0.058824
+> options(digits=9)
+> 1/17.0
+[1] 0.0588235294
+\end{verbatim}
+
+\item Comando \verb|round(x,n)| redondea $x$ a $n$ decimales, el valor por defecto es $n=6$.
+
+\item Comando \verb|cat('caracter1','caracter2')| concatena dos cadenas o valores y el resultado lo convierte a un objeto tipo \textit{string}.
+
+\end{itemize}
+
+%-------------------------------------------
+\section{Funciones}
+%-------------------------------------------
+
+\begin{verbatim}
+nombrefun = function(a1,a2,...,an) {
+# código ...
+instruccion-1
+instruccion-2
+# ...
+return( ... ) #valor que retorna (o también la última instrucción, si ésta retorna algo)
+}
+\end{verbatim}
+
+\section{Clase en Laboratorio de Cómputo}
+
+\begin{Ejer}
+\begin{enumerate}
+\item Generar un archivo tipo Rmd, personalizar de manera básica
+\item Realizar las siguientes operaciones
+
+\begin{verbatim}
+x = c(1.1, 1.2, 1.3, 1.4, 1.5)
+x = 1:5 
+x = seq(1,3, by =0.5) 
+x = seq(5,1, by =-1) 
+x = rep(1, times = 5) 
+length(x) 
+rep(x, 2) 
+set.seed(123) 
+x = sample(1:10, 5) 
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = 1:5 
+y = rep(0.5, times = length(x)) 
+x+y
+x*y
+x^y
+1/(1:5)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = 1:5
+2*x
+1/x^2
+x+3
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+A = matrix(rep(0,9), nrow = 3, ncol= 3); 
+B = matrix(c(1,2,3,5,6,7), nrow = 2, byrow=T); 
+x = 1:3; y = seq(1,2, by = 0.5); z = rep(8, 3) ; x; y; z
+C = matrix(c(x,y,z), nrow = length(x)); C # ncol no es necesario declararlo
+xi = seq(1,2, by 0.1); yi = seq(5,10, by = 0.5)
+rbind(xi,yi)
+cbind(xi,yi)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A = diag(c(3,1,3)); 
+diag(A)
+n = 3
+I = diag(1, n);
+D = diag(diag(A))
+J = diag(1, 3, 4);
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+B = matrix(c( 1, 1 ,8,
+              2, 0, 8,
+              3, 2, 8), nrow = 3, byrow=TRUE); B
+
+B[2, 3]
+B[3,]
+B[,2]
+B[1:2,c(2,3)]
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+A = matrix(c( 1, 1 ,8,
+              2, 0, 8,
+              3, 2, 8), nrow = 3, byrow=TRUE); A
+A[c(1,3), ] = A[c(3,1), ] 
+A[2, ] = A[2, ] - A[2,1]/A[1,1]*A[1, ]
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = c(2, -6, 7, 8, 0.1,-8.5, 3, -7, 3)
+which.max(x)
+which.max(abs(x)) 
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A = matrix(1:9, nrow=3); A # Por columnas
+B = matrix(rep(1,9), nrow=3); B
+
+A+B
+A*B
+A%*%B
+A^2
+A-2
+3*A
+t(A)
+det(A)
+C <- A-diag(1,3); det(C)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+
+notas = matrix(c(80, 40, 70, 30, 90, 67, 90,
+                 40, 40, 30, 90, 100, 67, 90,
+                 100,100,100, 100, 70, 76, 95), nrow=3, byrow=TRUE); notas
+# crear columa con la suma de los renglones
+#agregar la columna al final de la matriz
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+u=c(1,2)
+v=c(-2,3)
+w=c(3,-5)
+norma=function(u){sqrt(sum(u^2))}
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+t(u-2*v)%*%w
+norma(u+v+w)
+norma(u)+norma(v)+norma(w)
+t(u-v)%*%(v-w)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+u=c(8,3);a=c(4,-5)
+ProyOrto=function(u,a){(t(u)%*%a)*a/norma(a)}
+ProyOrto(u,a)
+ProyOrto(c(2,1,-4),c(-5,3,11))
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(1,0,0,1/3,4,0,1/2,3,2),ncol=3,byrow=TRUE)
+B=matrix(c(9,0,0,0,1,8,0,0,0,-2,7,0,0,0,-3,6),ncol=4)
+solve(A)  # Inversa de A
+det(A)
+solve(B);det(B)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(4,4.001,4.001,4.002),ncol=2)
+B=A;B[2,2]=4.002001
+solve(A)
+solve(B)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+X=matrix(runif(12),ncol=3)
+u=runif(4)
+A=t(X)%*%X
+B=u%*%t(u)
+DA=eigen(A)$values
+TA=eigen(A)$vectors
+t(TA)%*%TA
+prod(DA);det(A)
+qr(A)$rank  # Rango de una matriz
+sum(diag(DA)!=0)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+DB=eigen(B)$values
+TB=eigen(B)$vectors
+t(TB)%*%TB
+prod(DB);det(B)
+qr(B)$rank
+sum(diag(DB)!=0)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(3,2,0,2,3,0,0,0,3),ncol=3)
+eig_A=eigen(A)
+eig_A$values
+eigen(A%*%A)$values
+eigen(solve(A))$values
+eig_A$vectors%*%diag(eigen(A%*%A)$values)%*%t(eig_A$vectors);A%*%A
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(6,10,1,10,6,5),ncol=2)
+ginvMP=function(A){
+        res=svd(A)
+        res$v%*%diag(1/res$d)%*%t(res$u)}
+B=ginvMP(A)
+A%*%B%*%A
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+es.positiva=function(A){
+ if (ncol(A)!=nrow(A)) stop("Esto se hace para matrices cuadradas")
+ v=eigen(A)$values
+ tol=ncol(A)*max(abs(v))* .Machine$double.eps
+ if (sum(v>tol)==length(v)) return(TRUE) else return(FALSE)}
+ 
+A=matrix(c(2,-3/2,-3/2,3),ncol=2);es.positiva(A)
+A=matrix(c(1,0.8,0.5,0.8,0.6,0.4,0.5,0.4,0.25),ncol=3);es.positiva(A)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+matrixA=function(m){
+A=matrix(c(1,-2,-2,m),ncol=2)
+return(A)}
+
+dmatrixA=function(m){det(matrixA(m))}
+
+m=seq(-4,10,len=101)
+plot(m,mapply(dmatrixA,m=m),type="l") # Dibuja el determinante en funci?n de m
+abline(h=0)
+A=matrixA(-2)
+print(z<-eigen(A))
+
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=cbind(c(3,1,0),c(1,3,0),c(0,0,3))
+B=matrix(0,ncol=3,nrow=3);B[3,3]=2
+eigen(A)
+eigen(B)
+
+eigen(A+B) # Trampilla
+
+\end{verbatim}
+
+\end{enumerate}
+
+
+
+\end{Ejer}
+
+
+
+\paragraph{Sesión 1}
+
+
+\section{Operadores lógicos}
+
+\begin{verbatim}
+17<5
+17>5
+17<=5
+17>=5
+17!=5
+17==5
+\end{verbatim}
+
+\section{OPERADORES ARITMETICOS}
+
+\subsection{SUMA, RESTA, MULTIPLICACION, DIVISION, POTENCIA, MODULO, DIVISION ENTERA}
+\begin{verbatim}
+17+5
+17*5
+17*5
+17^5
+17%/%5
+17%%5
+\end{verbatim}
+
+\subsection{LOGARITMOS Y EXPONENCIALES}
+\begin{verbatim}
+log(1)
+log(12)
+log(12,2)
+exp(12)
+exp(1)
+\end{verbatim}
+\subsection{FUNCIONES TRIGONOMETRICAS}
+\begin{verbatim}
+sin(45)
+cos(45)
+tan(45)
+asin(0.96)
+acos(0.97)
+atan(0.45)
+\end{verbatim}
+\subsection{FUNCIONES VARIAS}
+\begin{verbatim}
+abs(-34)
+sqrt(8)
+floor(1.56)
+ceiling(1.56)
+max(4,7,2,12)
+min(4,7,2,12)
+sign(-45)
+\end{verbatim}
+\subsection{EJERCICIOS DE PRACTICA}
+\begin{verbatim}
+# calcular la expresion cos(pi/6+pi/2)+e^2
+# calcular la expresion cos(pi/6+pi/2)+e^2*log(5)+arc cos(1/raiz(2))
+# introducir las siguientes expresiones: 
+# a) 1/7
+# b) options(digits=3); 1/7
+# c) options(digits=6); 1/7
+# d) round(67.45)
+# e) round(75.324568,2)
+# f) options(digits=7);
+# g) signif(56.345458234234,2)
+# h) signif(56.345458234234)
+# i) exp(-30)
+# j) options(scipen= 999)
+# k) exp(-30)
+# l) options(scipen=0)
+\end{verbatim}
+
+\paragraph{Sesión 2}
+
+\section{EJERCICIOS DE PRACTICA}
+
+\subsection{DEFINICION DE CONSTANTES}
+\begin{verbatim}
+e = exp(1); 
+x = 0.0034
+e <- exp(1)
+x <- 0.034;
+x0 = e^(2*x)
+\end{verbatim}
+\subsection{CONCATENAR Y PEGAR EXPRESIONES}
+\begin{verbatim}
+txt = "El valor de x0 es _"
+cat(txt, x0)
+paste(txt,x0)
+paste0(txt,x0)
+\end{verbatim}
+\subsection{ASIGNACION E IMPRESION}
+\begin{verbatim}
+x0 <- 1
+x1 <- x0 - pi*x0 + 1 
+(x1 <- x0 - pi*x0 + 1 ) 
+print(x1)
+\end{verbatim}
+\subsection{LISTADO DE OBJETOS DEFINIDOS}
+\begin{verbatim}
+ls()
+# Eliminar todos los objetos
+rm(list= ls())
+ls()
+\end{verbatim}
+\subsection{IMPRIMIR PEGAR AVANZADO}
+\begin{verbatim}
+x0 <- 1
+x1 <- x0 - pi*x0 + 1
+cat("x0 =", x0, "\n","x1 =", x1) 
+\end{verbatim}
+\subsection{EJERCICIOS DE PRACTICA}
+
+
+
+\paragraph{Sesión 3}
+
+
+\subsection{DEFINICION DE FUNCIONES}
+\begin{verbatim}
+# nombre_funcion <- function(param1,param2,param3,...,paramn){
+# instruccion 1
+# instruccion 2
+# return(valor_de_retorno)
+#}
+\end{verbatim}
+
+\subsection{Ejemplo 1}
+\begin{verbatim}
+fun1 <- function(x,a,b,h,k){
+  res <- a+b*cos(hx+k)
+  return(res)
+}
+\end{verbatim}
+\subsection{Ejemplo 2}
+\begin{verbatim}
+Discriminante <- function(a,b,c){
+  res <- b^2-4*a*c
+  return(res)
+}
+\end{verbatim}
+\subsection{GRAFICAS}
+\begin{verbatim}
+fun2 <- function(x,h,k){
+  res <- 1/h*sin(k*x)
+  return(res)
+}
+
+f2 <- fun2(1:100,2,3)
+plot(f2,type="l", col= "red", lwd=2,
+     main= "Grafico de la funcion f2",
+     xlab= "x",
+     ylab="f(x)=1/h*sin(k*x)",
+     axes= TRUE)
+\end{verbatim}
+\subsection{EJEMPLOS DE PRACTICA}
+Graficar: rectas, parabolas, cubicas, polinomios, exponenciales, logaritmos
+
+
+\section{Introducción a Factorización LU}
+
+
+\subsection{Inversa de una matriz}
+\begin{verbatim}
+
+```{r}
+A=matrix(c(1,3,-2,1,1,4,-1,2,0,1,-1,4,2,6,1,2),nrow = 4,byrow = TRUE)
+(A)
+Aorig<- A
+```
+\end{verbatim}
+Paso 1)
+
+\begin{verbatim}
+
+```{r}
+I = diag(4);(I)
+```
+\end{verbatim}
+
+Paso 2)
+
+\begin{verbatim}
+
+```{r}
+AInv <- cbind(A,I); (AInv)
+A <- AInv
+```
+\end{verbatim}
+
+Paso 3)
+
+\begin{verbatim}
+```{r}
+l21 <- A[2,1]/A[1,1];(l21)
+l31 <- A[3,1]/A[1,1];(l31)
+l41 <- A[4,1]/A[1,1];(l41)
+```
+\end{verbatim}
+
+Paso 4)
+
+\begin{verbatim}
+```{r}
+A[2,] <- A[2,]-l21*A[1,]; 
+A[3,] <- A[3,]-l31*A[1,]; 
+A[4,] <- A[4,]-l41*A[1,]; 
+(A)
+```
+\end{verbatim}
+
+Paso 5)
+\begin{verbatim}
+```{r}
+Atmp <- A[2,]
+A[2,] <- A[3,]
+A[3,] <- Atmp
+(A)
+```
+\end{verbatim}
+
+Paso 6)
+
+\begin{verbatim}
+```{r}
+l32 <- A[3,2]/A[2,2];(l32)
+l42 <- A[4,2]/A[2,2];(l42)
+```
+
+\end{verbatim}
+
+Paso 7)
+
+\begin{verbatim}
+```{r}
+A[3,] <- A[3,]-l32*A[2,]; 
+A[4,] <- A[4,]-l42*A[2,]; 
+(A)
+```
+
+\end{verbatim}
+
+Paso 8)
+
+\begin{verbatim}
+```{r}
+esc <- 1/A[3,3]
+A[3,] <- esc*A[3,]
+(A)
+```
+
+\end{verbatim}
+
+Paso 9)
+
+\begin{verbatim}
+```{r}
+l43 <- A[4,3]/A[3,3];(l43)
+```
+
+\end{verbatim}
+
+Paso 10)
+
+\begin{verbatim}
+```{r}
+A[4,] <- A[4,]-l43*A[3,];
+(A)
+```
+
+\end{verbatim}
+
+Paso 11)
+
+\begin{verbatim}
+```{r}
+esc <- 1/A[4,4]
+A[4,] <- esc*A[4,]
+(A)
+```
+\end{verbatim}
+
+Paso 12)
+
+\begin{verbatim}
+```{r}
+l34 <- A[3,4]/A[4,4];(l34); A[3,] <- A[3,]-l34*A[4,]
+l24 <- A[2,4]/A[4,4];(l24); A[2,] <- A[2,]-l24*A[4,]
+l14 <- A[1,4]/A[4,4];(l14); A[1,] <- A[1,]-l14*A[4,]
+(A)
+```
+
+\end{verbatim}
+
+Paso 13)
+
+\begin{verbatim}
+```{r}
+l23 <- A[2,3]/A[3,3];(l23); A[2,] <- A[2,]-l23*A[3,]
+l13 <- A[1,3]/A[3,3];(l13); A[1,] <- A[1,]-l13*A[3,]
+(A)
+
+```
+
+\end{verbatim}
+
+Paso 14)
+
+\begin{verbatim}
+```{r}
+l12 <- A[1,2]/A[2,2];(l12); A[1,] <- A[1,]-l12*A[2,]
+(A)
+```
+
+\end{verbatim}
+
+Paso 15)
+\begin{verbatim}
+```{r}
+AInv <- A[,5:8]; (AInv)
+```
+
+\end{verbatim}
+
+Paso 16)
+\begin{verbatim}
+```{r}
+IdCalc <- Aorig%*%AInv; (IdCalc)
+```
+\end{verbatim}
+
+
+\subsection{Factorización LU}
+
+\begin{Ejem}
+
+\begin{verbatim}
+```{r}
+A=matrix(c(1,1,1,1,2,3,1,5,-1,1,-5,3,3,1,7,-2),byrow = TRUE,nrow = 4); (A)
+```
+
+```{r}
+b=matrix(c(10,31,-2,18),nrow = 4);(b)
+```
+
+```{r}
+Ab <- cbind(A,b); (Ab)
+```
+\end{verbatim}
+
+Los pivotes se definen como $a_{kk}^{(k)}$, luego construimos los multiplicadores: $l_{i,k}=a_{ik}^{(k)}/a_{kk}^{(k)}$, $l_{21}=a_{21}/a_{aa}$ y $l_{31}=a_{31}/a_{11}$ y $l_{41}=a_{41}/a_{11}$
+
+\begin{verbatim}
+```{r}
+A <- Ab;
+l21 <- A[2,1]/A[1,1];(l21)
+l31 <- A[3,1]/A[1,1];(l31)
+l41 <- A[4,1]/A[1,1];(l41)
+```
+\end{verbatim}
+
+Construimos la matriz $U$, donde las entradas $a_{ij}^{(k+1)}=a_{ik}^{(k)}-l_{ik}\times a_{kj}^{(k)}$
+
+\begin{verbatim}
+```{r}
+A[2,] <- A[2,]-l21*A[1,]; (A[2,])
+A[3,] <- A[3,]-l31*A[1,]; (A[3,])
+A[4,] <- A[4,]-l41*A[1,]; (A[4,])
+```
+\end{verbatim}
+
+Es decir la matriz resultante es:
+
+\begin{verbatim}
+```{r}
+(A)
+```
+\end{verbatim}
+
+entonces el pivote es $A_{22} = 1$, calculemos los $l_{32}$ y $l_{42}$
+
+\begin{verbatim}
+```{r}
+l32 <- A[3,2]/A[2,2];(l32)
+l42 <- A[4,2]/A[2,2];(l42)
+```
+\end{verbatim}
+
+Haciendo cero debajo del pivote
+
+\begin{verbatim}
+```{r}
+A[3,] <- A[3,]-l32*A[2,];(A[3,])
+A[4,] <- A[4,]-l42*A[2,];(A[4,])
+```
+\end{verbatim}
+
+La matriz $A$ queda de la forma:
+
+\begin{verbatim}
+```{r}
+(A)
+```
+\end{verbatim}
+
+por tanto el pivote es $A_{33}=-2$, y resta calcylar $l_{43}$
+
+\begin{verbatim}
+```{r}
+l43 <- A[4,3]/A[3,3];(l43)
+```
+\end{verbatim}
+
+haciendo cero debajo del pivote
+
+\begin{verbatim}
+```{r}
+A[4,] <- A[4,]-l43*A[3,];(A[4,])
+```
+\end{verbatim}
+
+Por lo tanto la matriz $A$ resultante es
+
+\begin{verbatim}
+```{r}
+(A)
+```
+\end{verbatim}
+
+entonces podemos construir la matriz $L$ con los valores $l_{ij}$ calculados en los pasos anteriores
+
+\begin{verbatim}
+```{r}
+L=diag(4);(L)
+```
+
+```{r}
+L[2,1] <- l21
+L[3,1] <- l31
+L[4,1] <- l41
+L[3,2] <- l32
+L[4,2] <- l42
+L[4,3] <- l43
+(L)
+```
+
+```{r}
+U <- A[,1:4];(U)
+```
+\end{verbatim}
+
+Verifiquemos que efectivamente $A=LU$
+\begin{verbatim}
+```{r}
+Acalculada <- L%*%U; (Acalculada)
+```
+\end{verbatim}
+\end{Ejem}
+
+
+\begin{Ejem}
+
+Apliquemos lo desarrollado para la siguiente matriz $A$
+\begin{verbatim}
+```{r}
+A=matrix(c(4,0,1,1,3,1,3,1,0,1,2,0,3,2,4,1),nrow = 4,byrow = TRUE); (A)
+```
+
+```{r}
+b=matrix(c(5,6,13,1),nrow = 4);(b)
+```
+\end{verbatim}
+
+Paso 1)
+
+\begin{verbatim}
+```{r}
+Ab <- cbind(A,b)
+A <- Ab;
+```
+
+\end{verbatim}
+
+Paso 2) 
+
+\begin{verbatim}
+```{r}
+l21 <- A[2,1]/A[1,1];(l21)
+l31 <- A[3,1]/A[1,1];(l31)
+l41 <- A[4,1]/A[1,1];(l41)
+```
+
+\end{verbatim}
+
+Paso 3)
+\begin{verbatim}
+```{r}
+A[2,] <- A[2,]-l21*A[1,]; (A[2,])
+A[3,] <- A[3,]-l31*A[1,]; (A[3,])
+A[4,] <- A[4,]-l41*A[1,]; (A[4,])
+```
+
+\end{verbatim}
+
+Paso 4)
+\begin{verbatim}
+```{r}
+l32 <- A[3,2]/A[2,2];(l32)
+l42 <- A[4,2]/A[2,2];(l42)
+```
+
+\end{verbatim}
+
+Paso 5)
+\begin{verbatim}
+```{r}
+A[3,] <- A[3,]-l32*A[2,];(A[3,])
+A[4,] <- A[4,]-l42*A[2,];(A[4,])
+```
+
+\end{verbatim}
+
+Paso 6)
+\begin{verbatim}
+```{r}
+l43 <- A[4,3]/A[3,3];(l43)
+```
+
+\end{verbatim}
+
+Paso 7)
+\begin{verbatim}
+```{r}
+A[4,] <- A[4,]-l43*A[3,];(A[4,])
+```
+
+\end{verbatim}
+
+Paso 8)
+\begin{verbatim}
+```{r}
+L=diag(4);(L)
+```
+
+\end{verbatim}
+
+Paso 9)
+\begin{verbatim}
+```{r}
+L[2,1] <- l21
+L[3,1] <- l31
+L[4,1] <- l41
+L[3,2] <- l32
+L[4,2] <- l42
+L[4,3] <- l43; 
+(L)
+```
+
+\end{verbatim}
+
+Paso 10)
+\begin{verbatim}
+```{r}
+U <- A[,1:4];(U)
+```
+
+\end{verbatim}
+
+Paso 11)
+\begin{verbatim}
+```{r}
+Acalculada <- L%*%U; (Acalculada)
+```
+\end{verbatim}
+
+\end{Ejem}
+
+\begin{Ejer}
+
+Aplicar la factorización $LU$ a la matriz A definida por
+\begin{verbatim}
+```{r}
+A=matrix(c(2,3,2,4,
+           4,10,-4,0,
+           -3,-2,-5,-2,
+           -2,4,4,-7),nrow = 4,byrow = TRUE)
+(A)
+```
+\end{verbatim}
+\end{Ejer}
+
+\subsection{Notas importantes}
+
+\begin{Note}
+Si se fija $l_{ii}=1$ se le denomina factorizacion \textit{Doolitle}.
+\end{Note}
+
+\begin{Note}
+**Nota 2** Una matriz $A$ tiene factorización de Doolitle si y sólo sí se le puede aplicar el metodo de eliminación de Gauss sin pivoteo.
+\end{Note}
+
+\begin{Note}
+Si $U=L^{T}$ entonces la factorización se le denomina \textit{factorización de Cholesky}.
+\end{Note}
+
+\begin{Note}
+Si la matriz es simétrica y definida positiva, entonces $A=LL^{T}$.
+\end{Note}
+
+\section{M\'etodos de Eliminaci\'on directa}
+
+\subsection{Gaussiana Simple}
+
+
+\begin{verbatim}
+
+```{r,echo=FALSE}
+gauss_simple <- function(A, b, tolerancia, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  if (!is.numeric(b)) stop("b debe ser numérico.")
+  n <- nrow(A)
+  if (ncol(A) != n) stop("A debe ser cuadrada.")
+  if (length(b) != n) stop("Longitud de b debe ser igual al número de filas de A.")
+  Ab <- cbind(A, b);  
+  numcols = ncol(Ab)
+  for (k in 1:(n - 1)) {
+    pivote <- Ab[k, k]
+    if (abs(pivote) < tolerancia) {
+      stop(sprintf("Pivote casi cero en fila %d (%.3e). 
+      El método sin pivoteo falla.", k, pivote))
+    }
+    if (k + 1 <= n) {
+      for (i in (k + 1):n) {
+        m <- Ab[i, k] / pivote;
+        Ab[i, k:numcols] <- Ab[i, k:numcols] - m * Ab[k, k:numcols]
+        if (abs(Ab[i, k]) < tolerancia) Ab[i, k] <- 0
+        if (verbose) {
+        cat(sprintf("k=%d, i=%d, m=%.6g\n", k, i, m));
+        print(Ab)}
+      }
+    }
+  }
+  x <- numeric(n)
+  for (i in n:1) {
+    if (i == n) {
+      suma <- 0
+    } else {suma <- sum(Ab[i, (i + 1):n] * x[(i + 1):n])}
+    x[i] <- (Ab[i, n + 1] - suma) / Ab[i, i]
+  }
+  list(x=x,U=Ab[, 1:n],Ab=Ab)
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+
+```{r,echo=FALSE}
+A <- matrix(c(
+  2,  1, -1,
+ -3, -1,  2,
+ -2,  1,  2
+), nrow = 3, byrow = TRUE)
+b <- c(8, -11, -3);
+tolerancia <- 1e-12;
+res <- gauss_simple(A, b,tolerancia);
+res <- gauss_simple(A, b,tolerancia, verbose = TRUE)
+res$x;res$U;res$Ab;A %*% res$x
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Gaussiana con pivoteo parcial}
+
+\begin{verbatim}
+
+```{r}
+gauss_piv_parcial <- function(A, b, tolerancia, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A); 
+  if (ncol(A) != n) stop("A debe ser cuadrada.")
+  if (length(b) != n) stop("Dimensiones de b incorrectas.")
+  Ab <- cbind(A, b)
+  for (k in 1:(n-1)) {
+    # Selección del pivote (máximo en valor absoluto en la 
+    #columna k desde la fila k)
+    max_row <- which.max(abs(Ab[k:n, k])) + (k - 1)
+    if (abs(Ab[max_row, k]) < tolerancia){
+    stop(sprintf("Pivote casi nulo en columna %d", k))}
+    # Intercambio de filas si es necesario
+    if (max_row != k) {
+      Ab[c(k, max_row), ] <- Ab[c(max_row, k), ]
+      if (verbose) {
+      cat(sprintf("Intercambio de fila %d con fila %d\n", k, max_row));
+      print(Ab)}
+    }
+    for (i in (k + 1):n) {
+      m <- Ab[i, k] / Ab[k, k];
+      Ab[i, k:ncol(Ab)] <- Ab[i, k:ncol(Ab)] - m * Ab[k, k:ncol(Ab)]
+      if (abs(Ab[i, k]) < tolerancia) Ab[i, k] <- 0
+      if (verbose) {
+      cat(sprintf("k=%d, i=%d, m=%.6g\n", k, i, m));print(Ab)}
+    }
+  }
+  x <- numeric(n)
+  for (i in n:1) {
+    if (i == n) {
+      suma <- 0
+    } else {
+    suma <- sum(Ab[i, (i + 1):n] * x[(i + 1):n])
+    }
+    x[i] <- (Ab[i, n + 1] - suma) / Ab[i, i]
+  }
+  list(x = x,U = Ab[, 1:n],Ab = Ab)
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+
+```{r,echo=FALSE}
+A <- matrix(c(
+  0, 2, 1,
+  1, -2, -3,
+  -1, 1, 2), nrow = 3, byrow = TRUE)
+b <- c(3, -3, -1);
+tolerancia <- 1e-12
+res <- gauss_piv_parcial(A, b, tolerancia, verbose = TRUE);
+res$x
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Gauss Jordan}
+
+\begin{verbatim}
+```{r}
+gauss_jordan <- function(A, b, tolerancia, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A); 
+  m <- ncol(A)
+  if (!is.null(b) && length(b) != n) 
+  stop("Dimensiones incompatibles entre A y b.")
+  Ab <- cbind(A, as.matrix(b)); 
+   ncols <- ncol(Ab); row <- 1
+  for (col in 1:m) {
+    if (row > n) break
+    pivot_row_rel <- which.max(abs(Ab[row:n, col]))
+    pivot_row <- row + pivot_row_rel - 1
+    if (abs(Ab[pivot_row, col]) < tolerancia) {
+      if (verbose) cat(sprintf("Sin pivote usable en col=%d (|piv <tol). Se omite columna.\n", col))
+      next
+    }
+    if (pivot_row != row) {
+      Ab[c(row, pivot_row), ] <- Ab[c(pivot_row, row), ]
+      if (verbose) {
+      cat(sprintf("Swap filas %d <-> %d (col=%d)\n", row,
+      pivot_row, col));
+      print(Ab)}
+    }
+    pivote <- Ab[row, col];    
+    Ab[row, ] <- Ab[row, ] / pivote
+    if (verbose) {
+    cat(sprintf("Normaliza fila %d por pivote %.6g (col=%d)\n", 
+    row, pivote, col));
+    print(Ab)}
+    for (r in 1:n) {
+      if (r == row) next
+      factor <- Ab[r, col]
+      if (abs(factor) > tolerancia) {
+        Ab[r, ] <- Ab[r, ] - factor * Ab[row, ]
+        if (verbose) {
+        cat(sprintf("R%d := R%d - (%.6g)*R%d (col=%d)\n", 
+        r, r, factor, row, col));print(Ab)}
+      }
+    }
+    row <- row + 1
+  }
+  Ab[abs(Ab) < tolerancia] <- 0;  
+  out <- list(RREF = Ab);  
+  X <- Ab[, (m + 1):ncols, drop = FALSE]
+  out$x <- if (ncol(X) == 1) as.vector(X) else X
+  return(out)
+}
+```
+\end{verbatim}
+
+\begin{Ejem} 
+\begin{verbatim}
+```{r,echo=FALSE}
+A <- matrix(c(
+  2,  1, -1,
+ -3, -1,  2,
+ -2,  1,  2), nrow = 3, byrow = TRUE)
+b <- c(8, -11, -3);
+tolerancia <- 1e-12;
+res <- gauss_jordan(A, b, tolerancia, verbose = TRUE);
+res$x
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Cálculo de Inversa}
+\begin{verbatim}
+```{r}
+gauss_jordan_inversa <- function(A,tolerancia, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A); m <- ncol(A)
+  if (n != m) stop("Para invertir, A debe ser cuadrada.")
+  Ab <- cbind(A, diag(n));
+  ncols <- ncol(Ab);
+  row <- 1
+  for (col in 1:m) {
+    if (row > n) break
+    pivot_row_rel <- which.max(abs(Ab[row:n, col]))
+    pivot_row <- row + pivot_row_rel - 1
+    if (abs(Ab[pivot_row, col]) < tolerancia) {
+      stop(sprintf("No hay pivote en la columna %d (|piv|<tol).", 
+      col))
+    }
+    if (pivot_row != row) {
+      Ab[c(row, pivot_row), ] <- Ab[c(pivot_row, row), ]
+      if (verbose) {
+      cat(sprintf("Intercambia filas %d <-> %d (col=%d)\n", 
+      row, pivot_row, col)); 
+      print(Ab)
+      }
+    }
+    pivote <- Ab[row, col];
+    Ab[row, ] <- Ab[row, ] / pivote
+    if (verbose) {
+    cat(sprintf("Normaliza fila %d por pivote %.6g (col=%d)\n",
+    row, pivote, col));
+    print(Ab)}
+    for (r in 1:n) {
+      if (r == row) next
+      factor <- Ab[r, col]
+      if (abs(factor) > tolerancia) {
+        Ab[r, ] <- Ab[r, ] - factor * Ab[row, ]
+        if (verbose){
+        cat(sprintf("R%d := R%d - (%.6g)*R%d (col=%d)\n", 
+        r, r, factor, row, col)); 
+        print(Ab)
+        }
+      }
+    }
+    row <- row + 1
+  }
+  Ab[abs(Ab) < tolerancia] <- 0;
+  LHS <- Ab[, 1:m, drop = FALSE]
+  if (!all(LHS == diag(n))) {
+  stop("La matriz es singular o la tolerancia es muy estricta.")
+  }
+  Ainv <- Ab[, (m + 1):ncols, drop = FALSE]
+  list(Ainv = Ainv, RREF = Ab)
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+```{r,echo=FALSE}
+tolerancia <- 1e-12
+A <- matrix(c(
+  1, 2, 3,
+  0, 1, 4,
+  5, 6, 0), nrow = 3, byrow = TRUE)
+res <- gauss_jordan_inversa(A, tolerancia,
+ verbose = TRUE);
+ res$Ainv;
+ round(A %*% res$Ainv, 6)
+```
+\end{verbatim}
+\end{Ejem}
+
+
+\subsection{Factorización LU}
+
+\subsubsection*{Sin Pivoteo}
+
+\begin{verbatim}
+```{r}
+lu_simple <- function(A, tol = 1e-12, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A); m <- ncol(A)
+  if (n != m) stop("A debe ser cuadrada.")
+  U <- A;  
+  L <- diag(n)
+  for (k in 1:(n - 1)) {
+    piv <- U[k, k]
+    if (abs(piv) < tol) {
+    stop(sprintf("Pivote casi cero en k=%d. No se puede continuar.",
+    k))
+    }
+    for (i in (k + 1):n) {
+      m <- U[i, k] / piv;
+      L[i, k] <- m;
+      U[i, k:n] <- U[i, k:n] - m * U[k, k:n]
+      if (verbose) {
+      cat(sprintf("k=%d, i=%d, m=%.6g\n", k, i, m));
+      print(U)
+      }
+    }
+  }
+  list(L = L, U = U)
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+```{r,echo=FALSE}
+A <- matrix(c(
+  2,  1, -1,
+ -3, -1,  2,
+ -2,  1,  2
+), 3, 3, byrow = TRUE)
+lu <- lu_simple(A);lu$L; lu$U
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsubsection*{Con Pivoteo}
+\begin{verbatim}
+
+```{r}
+lu_piv_parcial <- function(A, tol = 1e-12, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A); m <- ncol(A); 
+  if (n != m) stop("A debe ser cuadrada.")
+  U <- A;
+  L <- diag(n);
+  P <- diag(n)
+  for (k in 1:(n - 1)) {
+    max_row <- which.max(abs(U[k:n, k])) + (k - 1)
+    if (abs(U[max_row, k]) < tol) {
+    stop(sprintf("Matriz singular (pivote ~ 0).", k))
+    }
+    if (max_row != k) {
+      U[c(k, max_row), ] <- U[c(max_row, k), ];
+      P[c(k, max_row), ] <- P[c(max_row, k), ]
+      if (k > 1) {
+      L[c(k, max_row), 1:(k - 1)] <- L[c(max_row, k), 1:(k - 1)]
+      }
+      if (verbose) {
+      cat(sprintf("Intercambia filas %d <-> %d\n",
+      k, max_row)); 
+      print(U)
+      }
+    }
+    for (i in (k + 1):n) {
+      m <- U[i, k] / U[k, k];
+      L[i, k] <- m;
+      U[i, k:n] <- U[i, k:n] - m * U[k, k:n];
+      if (verbose) {
+      cat(sprintf("k=%d, i=%d, m=%.6g\n", k, i, m));
+      print(U)
+      }
+    }
+  }
+  list(P = P, L = L, U = U)
+}
+```
+\end{verbatim}
+
+
+\begin{Ejem}
+\begin{verbatim}
+```{r,echo=FALSE}
+A <- matrix(c(
+  0,  2,  1,
+  1, -2, -3,
+ -1,  1,  2), 3, 3, byrow = TRUE)
+lu <- lu_piv_parcial(A, verbose = FALSE);
+lu$P;
+lu$L; 
+lu$U
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsubsection*{Solucion vía LU}
+
+\begin{verbatim}
+```{r}
+forward_sub <- function(L, b) {
+  n <- nrow(L);  
+  y <- numeric(n)
+  for (i in 1:n) {
+  y[i] <- (b[i] - sum(L[i, 1:(i - 1)] * y[1:(i - 1)]))
+  }
+  y
+}
+```
+
+
+```{r}
+# x en Ux = y
+back_sub <- function(U, y, tol = 1e-12) {
+  n <- nrow(U);  
+  x <- numeric(n)
+  for (i in n:1) {
+    s <- if (i == n) 0 else sum(U[i, (i + 1):n] * x[(i + 1):n])
+    if (abs(U[i, i]) < tol) stop(sprintf("Pivote ~0 en U[%d,%d].", 
+    i, i))
+    x[i] <- (y - s) / U[i, i]
+  }
+  x
+}
+```
+\end{verbatim}
+
+
+\subsubsection*{Resolucion sin pivoteo}
+
+\begin{verbatim}
+```{r}
+solve_lu_simple <- function(A, b, tol = 1e-12) {
+  lu <- lu_simple(A, tol = tol);
+  y <- forward_sub(lu$L, b)
+  x <- back_sub(lu$U, y, tol = tol)
+  x
+}
+```
+\end{verbatim}
+
+\subsection{Resolucion con pivoteo}
+
+\begin{verbatim}
+```{r}
+solve_lu_piv_parcial <- function(A, b, tol = 1e-12) {
+  lu <- lu_piv_parcial(A, tol = tol);
+  Pb <- lu$P %*% b
+  y  <- forward_sub(lu$L, as.vector(Pb))
+  x  <- back_sub(lu$U, y, tol = tol)
+  x
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+```{r,echo=FALSE}
+A <- matrix(c(
+  0,  2,  1,
+  1, -2, -3,
+ -1,  1,  2), 3, 3, byrow = TRUE)
+b <- c(3, -3, -1); 
+x <- solve_lu_piv_parcial(A, b);
+x
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Factorización de Cholesky}
+
+\begin{verbatim}
+```{r}
+tolerancia <- 1e-12
+cholesky_fact <- function(A,tolerancia) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A)
+  if (ncol(A) != n) stop("A debe ser cuadrada.")
+  if (!all(abs(A - t(A)) < tolerancia)) stop("A debe ser simétrica.")
+  L <- matrix(0, n, n)
+  for (j in 1:n) {
+    suma <- sum(L[j, 1:(j-1)]^2)
+    val <- A[j, j] - suma
+    if (val <= 0) stop("A no es definida positiva (falló Cholesky).")
+    L[j, j] <- sqrt(val)
+    if (j < n) {
+      for (i in (j+1):n) {
+        suma <- sum(L[i, 1:(j-1)] * L[j, 1:(j-1)])
+        L[i, j] <- (A[i, j] - suma) / L[j, j]
+      }
+    }
+    cat(sprintf("Paso j=%d\n", j))
+    print(L)
+  }
+  return(L)
+}
+```
+\end{verbatim}
+
+
+\begin{Ejem}
+\begin{verbatim}
+```{r,echo=FALSE}
+# Matriz simétrica definida positiva
+A <- matrix(c(
+  4,  12, -16,
+ 12,  37, -43,
+-16, -43,  98), nrow = 3, byrow = TRUE)
+
+L <- cholesky_fact(A,tolerancia)
+L
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Solución vía Cholesky}
+
+\begin{verbatim}
+```{r}
+tolerancia <- 1e-12
+solve_cholesky <- function(A, b, tolerancia) {
+  L <- cholesky_fact(A, tolerancia)
+  y <- forward_sub(L, b)
+  x <- back_sub(t(L), y, tolerancia)
+  x
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+
+```{r,echo=FALSE}
+b <- c(1, 2, 3)
+x <- solve_cholesky(A, b,tolerancia)
+x
+A %*% x   
+```
+\end{verbatim}
+\end{Ejem}
+
+\section{Métodos Iterativos}
+
+\subsection{Gauss Jacobi}
+
+\begin{verbatim}
+```{r}
+jacobi <- function(A, b, x0 = NULL, tol = 1e-8, maxiter = 1000) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A)
+  if (ncol(A) != n) stop("A debe ser cuadrada.")
+  if (length(b) != n) stop("Dimensiones de b incompatibles.")
+  if (is.null(x0)) x0 <- rep(0, n)
+  x <- x0;  
+  D <- diag(diag(A));  
+  R <- A - D;
+  for (k in 1:maxiter) {
+    x_new <- (b - R %*% x) / diag(D)
+    cat(sprintf("Iter %d: %s\n", k, 
+    paste(round(x_new, 6), collapse = " ")))
+    if (sqrt(sum((x_new - x)^2)) < tol) {
+    return(list(x = as.vector(x_new), 
+    iter = k, convergencia = TRUE))}
+    x <- x_new
+  }
+  list(x = as.vector(x), 
+  iter = maxiter, 
+  convergencia = FALSE)
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+
+
+```{r,echo=FALSE}
+A <- matrix(c(
+  4, -1,  0,
+ -1,  4, -1,
+  0, -1,  3), 3, 3, byrow = TRUE)
+
+b <- c(15, 10, 10)
+res_jacobi <- jacobi(A, b, x0 = c(0, 0, 0), tol = 1e-8); 
+res_jacobi$x
+```
+\end{verbatim}
+\end{Ejem}
+
+\subsection{Gauss Seidel}
+
+\begin{verbatim}
+```{r}
+gauss_seidel <- function(A, b, x0 = NULL, 
+tol = 1e-8, maxiter = 1000, verbose = FALSE) {
+  if (!is.matrix(A)) stop("A debe ser una matriz.")
+  n <- nrow(A)
+  if (ncol(A) != n) stop("A debe ser cuadrada.")
+  if (length(b) != n) stop("Dimensiones de b incompatibles.")
+  x <- if (is.null(x0)) rep(0, n) else as.numeric(x0)
+  if (length(x) != n) stop("Dimensión de x0 incompatible con A.")
+  for (k in 1:maxiter) {
+    x_old <- x
+    for (i in 1:n) {
+      aii <- A[i, i]
+      if (abs(aii) < .Machine$double.eps) {
+      stop(sprintf("A[%d,%d] = 0: Gauss–Seidel No se puede aplicar",
+       i, i))}
+      s1 <- if (i > 1) sum(A[i, 1:(i - 1)] * x[1:(i - 1)]) else 0
+      s2 <- if (i < n) sum(A[i, (i + 1):n] * x_old[(i + 1):n]) else 0
+      x[i] <- (b[i] - s1 - s2) / aii
+    }
+    dx  <- sqrt(sum((x - x_old)^2));
+    res <- sqrt(sum((b - A %*% x)^2))
+    cat(sprintf("Iter %4d |dx|=%.3e  |res|=%.3e   x=%s\n",
+    k, dx, res, paste(round(x, 6), collapse=" ")))
+    if (dx < tol && res < tol) {
+      return(list(x = as.vector(x), iter = k,
+      convergencia = TRUE,delta = dx, residuo = res))
+    }
+  }
+  list(x = as.vector(x), iter = maxiter, convergencia = FALSE,
+       delta = sqrt(sum((x - x)^2)), 
+       residuo = sqrt(sum((b - A %*% x)^2)))
+}
+```
+\end{verbatim}
+
+\begin{Ejem}
+\begin{verbatim}
+
+```{r,echo=FALSE}
+A <- matrix(c(
+  4, -1,  0,
+ -1,  4, -1,
+  0, -1,  3
+), 3, 3, byrow = TRUE)
+b <- c(15, 10, 10)
+res_gs <- gauss_seidel(A, b, x0 = c(0,0,0), tol = 1e-8);
+res_gs$x
+```
+\end{verbatim}
+\end{Ejem}
+
+
+
+\section{Clases}
+
+\subsection{M\'etodos Iterativos}
+
+\subsection{Gauss-Jacobi}
+\begin{equation*}
+A =
+\begin{pmatrix}
+10 & -1 & 2 & 0\\
+-1 & 11 & -1 & 3\\
+2 & -1 & 10 & -1\\
+0 & 3 & -1 & 8
+\end{pmatrix}, \qquad
+\mathbf{b} =
+\begin{pmatrix}
+6\\ 25\\ -11\\ 15
+\end{pmatrix}, \qquad
+\mathbf{x}^{\*} = (1,2,-1,1)^{T}.
+\end{equation*}
+
+Iteraci\'on 
+\begin{eqnarray*}
+x_1^{(k+1)} &=& \frac{6 + x_2^{(k)} - 2x_3^{(k)}}{10},\\
+x_2^{(k+1)} &=& \frac{25 + x_1^{(k)} + x_3^{(k)} - 3x_4^{(k)}}{11},\\
+x_3^{(k+1)} &=& \frac{-11 - 2x_1^{(k)} + x_2^{(k)} + x_4^{(k)}}{10},\\
+x_4^{(k+1)} &=& \frac{15 - 3x_2^{(k)} + x_3^{(k)}}{8}.
+\end{eqnarray*}
+
+
+Tomamos $\mathbf{x}^{(0)}=(0,0,0,0)^\top$ y actualizamos cada $x_i^{(k+1)}$ usa sólo valores del paso $k$.
+
+\paragraph{Iteración 1:}
+\begin{eqnarray*}
+x_1^{(1)}&=&\frac{6 + 0 - 20}{10}=0.6, \\
+x_2^{(1)}&=&\frac{25 + 0+ 0 - 3\cdot0}{11}=\frac{25}{11}\approx 2.272727,\\
+x_3^{(1)}&=&\frac{-11 - 2\cdot0 + 0 + 0}{10}=-1.1, \\
+x_4^{(1)}&=&\frac{15 - 3\cdot0 + 0}{8}=\frac{15}{8}=1.875.
+\end{eqnarray*}
+
+\paragraph{Iteración 2} Con $\mathbf{x}^{(1)}=(0.6,\,2.272727,\,-1.1,\,1.875)$,
+\begin{eqnarray*}
+x_1^{(2)}&=&\frac{6 + 2.272727 - 2(-1.1)}{10}=\frac{10.472727}{10}=1.047273,\\
+x_2^{(2)}&=&\frac{25 + 0.6 + (-1.1) - 3(1.875)}{11}=\frac{18.875}{11}\approx 1.715909,\\
+x_3^{(2)}&=&\frac{-11 - 2(0.6) + 2.272727 + 1.875}{10}=\frac{-8.052273}{10}\approx -0.805227,\\
+x_4^{(2)}&=&\frac{15 - 3(2.272727) + (-1.1)}{8}=\frac{7.081819}{8}\approx 0.885227.
+\end{eqnarray*}
+
+\paragraph{Iteración 3} Con $\mathbf{x}^{(2)}=(1.047273,\,1.715909,\,-0.805227,\,0.885227)$,
+\begin{eqnarray*}
+x_1^{(3)}&=&\frac{6 + 1.715909 - 2(-0.805227)}{10}
+=\frac{9.326363}{10}=0.932636,\\
+x_2^{(3)}&=&\frac{25 + 1.047273 + (-0.805227) - 3(0.885227)}{11}
+=\frac{22.586365}{11}=2.053306,\\
+x_3^{(3)}&=&\frac{-11 - 2(1.047273) + 1.715909 + 0.885227}{10}
+=\frac{-10.493410}{10}=-1.049341,\\
+x_4^{(3)}&=&\frac{15 - 3(1.715909) + (-0.805227)}{8}
+=\frac{9.047046}{8}=1.130881.
+\end{eqnarray*}
+
+\paragraph{Iteración 4} Con $\mathbf{x}^{(3)}=(0.932636,\,2.053306,\,-1.049341,\,1.130881)$,
+\begin{eqnarray*}
+x_1^{(4)}&=&\frac{6 + 2.053306 - 2(-1.049341)}{10}
+=\frac{10.151988}{10}=1.015199,\\
+x_2^{(4)}&=&\frac{25 + 0.932636 + (-1.049341) - 3(1.130881)}{11}
+=\frac{21.490652}{11}=1.953696,\\
+x_3^{(4)}&=&\frac{-11 - 2(0.932636) + 2.053306 + 1.130881}{10}
+=\frac{-9.681085}{10}=-0.968109,\\
+x_4^{(4)}&=&\frac{15 - 3(2.053306) + (-1.049341)}{8}
+=\frac{7.790741}{8}=0.973843.
+\end{eqnarray*}
+
+\paragraph{Iteración 5} Con $\mathbf{x}^{(4)}=(1.015199,\,1.953696,\,-0.968109,\,0.973843)$,
+\begin{eqnarray*}
+x_1^{(5)}&=&\frac{6 + 1.953696 - 2(-0.968109)}{10}
+=\frac{9.889914}{10}=0.988991,\\
+x_2^{(5)}&=&\frac{25 + 1.015199 + (-0.968109) - 3(0.973843)}{11}
+=\frac{22.125561}{11}=2.011415,\\
+x_3^{(5)}&=&\frac{-11 - 2(1.015199) + 1.953696 + 0.973843}{10}
+=\frac{-10.102859}{10}=-1.010286,\\
+x_4^{(5)}&=&\frac{15 - 3(1.953696) + (-0.968109)}{8}
+=\frac{8.170803}{8}=1.021351.
+\end{eqnarray*}
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%%\midrule
+0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+1 & 0.6000 & 2.2727 & -1.1000 & 1.8750 \\
+2 & 1.0473 & 1.7159 & -0.8052 & 0.8852 \\
+3 & 0.9326 & 2.0533 & -1.0493 & 1.1309 \\
+4 & 1.0152 & 1.9537 & -0.9681 & 0.9738 \\
+5 & 0.9890 & 2.0114 & -1.0103 & 1.0214 \\
+%%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 2.0000 & -- \\
+1 & 0.8750 & 2.2727 \\
+2 & 0.2841 & 0.9898 \\
+3 & 0.1309 & 0.3374 \\
+4 & 0.0463 & 0.1570 \\
+5 & 0.0214 & 0.0577 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Ejercicios:instrucciones: usa $x^{(0)}=\mathbf{0}$ y detén cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. 
+Comprueba dominancia diagonal, escribe las fórmulas de Jacobi e itera con tabla.
+
+\begin{Ejer}
+\begin{equation*}
+\begin{pmatrix}
+5 & 1\\
+2 & 6
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\begin{pmatrix}3\\-10\end{pmatrix}.
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+9 & -1 & 0 & 0\\
+-1 & 12 & -2 & 1\\
+0 & -1 & 11 & -2\\
+0 & 2 & -1 & 10
+\end{pmatrix}}_{A_{4\times4}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}7\\26\\-15\\15\end{pmatrix}}_{b},
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+10 & -1 & 2 & 0 & 0\\
+-1 & 12 & -2 & 3 & 0\\
+2 & -1 & 11 & -2 & 1\\
+0 & 3 & -1 & 10 & -2\\
+0 & 0 & 2 & -1 & 9
+\end{pmatrix}}_{A_{5\times5}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}15\\-17\\26\\-7\\13\end{pmatrix}}_{b},
+\end{equation*}
+
+\end{Ejer}
+
+\subsection{Gauss-Seidel}
+
+Considerar
+
+\[
+A =
+\begin{pmatrix}
+9 & -1 & 0 & 2\\
+-1 & 10 & -2 & 1\\
+0 & -1 & 8 & -1\\
+2 & 1 & -1 & 11
+\end{pmatrix},\quad
+\mathbf{b} =
+\begin{pmatrix}
+10\\ 8\\ 6\\ 13
+\end{pmatrix},\quad
+\mathbf{x}^{*}=(1,1,1,1)^\top.
+\]
+$A$ es diagonalmente dominante por renglones, por lo que Gauss--Seidel converge.
+
+Iteraci\'on general
+Con ecuaciones por rengl\'on:
+\[
+\begin{aligned}
+9x_1 - x_2 + 2x_4 &= 10,&
+\Rightarrow\;& x_1 \;=\; \frac{10 + x_2 - 2x_4}{9},\\
+- x_1 + 10x_2 - 2x_3 + x_4 &= 8,&
+\Rightarrow\;& x_2 \;=\; \frac{8 + x_1 + 2x_3 - x_4}{10},\\
+- x_2 + 8x_3 - x_4 &= 6,&
+\Rightarrow\;& x_3 \;=\; \frac{6 + x_2 + x_4}{8},\\
+2x_1 + x_2 - x_3 + 11x_4 &= 13,&
+\Rightarrow\;& x_4 \;=\; \frac{13 - 2x_1 - x_2 + x_3}{11}.
+\end{aligned}
+\]
+\textbf{Regla de GS:} cada $x_i^{(k+1)}$ usa los \emph{valores m\'as recientes disponibles} dentro del mismo paso $k+1$.
+
+
+Partimos de $\mathbf{x}^{(0)}=(0,0,0,0)^\top$.
+
+\paragraph{Iteraci\'on 1}
+\[
+\begin{aligned}
+x_1^{(1)}&=\frac{10+0-20}{9}=1.111111,\\
+x_2^{(1)}&=\frac{8+\underline{x_1^{(1)}}+20-0}{10}
+=\frac{8+1.111111}{10}=0.911111,\\
+x_3^{(1)}&=\frac{6+\underline{x_2^{(1)}}+0}{8}
+=\frac{6+0.911111}{8}=0.863889,\\
+x_4^{(1)}&=\frac{13-2\underline{x_1^{(1)}}-\underline{x_2^{(1)}}+\underline{x_3^{(1)}}}{11}
+=\frac{13-2(1.111111)-0.911111+0.863889}{11}=0.975505.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 2}
+\[
+\begin{aligned}
+x_1^{(2)}&=\frac{10+x_2^{(1)}-2x_4^{(1)}}{9}
+=\frac{10+0.911111-2(0.975505)}{9}=0.995567,\\
+x_2^{(2)}&=\frac{8+\underline{x_1^{(2)}}+2x_3^{(1)}-x_4^{(1)}}{10}
+=\frac{8+0.995567+2(0.863889)-0.975505}{10}=0.974784,\\
+x_3^{(2)}&=\frac{6+\underline{x_2^{(2)}}+x_4^{(1)}}{8}
+=\frac{6+0.974784+0.975505}{8}=0.993786,\\
+x_4^{(2)}&=\frac{13-2\underline{x_1^{(2)}}-\underline{x_2^{(2)}}+\underline{x_3^{(2)}}}{11}
+=\frac{13-2(0.995567)-0.974784+0.993786}{11}=1.002534.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 3}
+\[
+\begin{aligned}
+x_1^{(3)}&=\frac{10+0.974784-2(1.002534)}{9}=0.996635,\\
+x_2^{(3)}&=\frac{8+\underline{0.996635}+2(0.993786)-1.002534}{10}=0.998167,\\
+x_3^{(3)}&=\frac{6+\underline{0.998167}+1.002534}{8}=1.000088,\\
+x_4^{(3)}&=\frac{13-2\underline{0.996635}-\underline{0.998167}+\underline{1.000088}}{11}=1.000786.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 4}
+\[
+\begin{aligned}
+x_1^{(4)}&=\frac{10+0.998167-2(1.000786)}{9}=0.999622,\\
+x_2^{(4)}&=\frac{8+\underline{0.999622}+2(1.000088)-1.000786}{10}=0.999901,\\
+x_3^{(4)}&=\frac{6+\underline{0.999901}+1.000786}{8}=1.000086,\\
+x_4^{(4)}&=\frac{13-2\underline{0.999622}-\underline{0.999901}+\underline{1.000086}}{11}=1.000086.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 5}
+\[
+\begin{aligned}
+x_1^{(5)}&=\frac{10+0.999901-2(1.000086)}{9}=0.999970,\\
+x_2^{(5)}&=\frac{8+\underline{0.999970}+2(1.000086)-1.000086}{10}=1.000006,\\
+x_3^{(5)}&=\frac{6+\underline{1.000006}+1.000086}{8}=1.000011,\\
+x_4^{(5)}&=\frac{13-2\underline{0.999970}-\underline{1.000006}+\underline{1.000011}}{11}=1.000006.
+\end{aligned}
+\]
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%\midrule
+0 & 0.000000 & 0.000000 & 0.000000 & 0.000000 \\
+1 & 1.111111 & 0.911111 & 0.863889 & 0.975505 \\
+2 & 0.995567 & 0.974784 & 0.993786 & 1.002534 \\
+3 & 0.996635 & 0.998167 & 1.000088 & 1.000786 \\
+4 & 0.999622 & 0.999901 & 1.000086 & 1.000086 \\
+5 & 0.999970 & 1.000006 & 1.000011 & 1.000006 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}\|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 1.000000 & -- \\
+1 & 0.136111 & 1.111111 \\
+2 & 0.025216 & 0.129897 \\
+3 & 0.003365 & 0.023383 \\
+4 & 0.000378 & 0.002986 \\
+5 & 0.000030 & 0.000348 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+
+Instrucciones: usa $x^{(0)}=\mathbf{0}$ y det\'en cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. Escribe las f\'ormulas de GS e itera con tabla.
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+6 & -1\\
+1 & 5
+\end{pmatrix}}_{A_{2\times2}}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}13\\-3\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}\[
+\underbrace{\begin{pmatrix}
+8 & 1 & -1 & 0\\
+2 & 10 & -2 & 1\\
+1 & -1 & 9 & -1\\
+0 & 2 & -1 & 7
+\end{pmatrix}}_{A_{4\times4}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}6\\-3\\20\\-9\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+10 & -1 & 0 & 0 & 2\\
+-1 & 11 & -1 & 0 & 0\\
+0 & -1 & 12 & -2 & 1\\
+0 & 0 & -2 & 9 & -1\\
+2 & 0 & 1 & -1 & 8
+\end{pmatrix}}_{A_{5\times5}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}10\\21\\1\\-10\\11\end{pmatrix}}_{b}.
+\]
+\end{Ejer}
+
+

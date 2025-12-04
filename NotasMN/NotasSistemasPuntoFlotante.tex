@@ -1,0 +1,338 @@
+\chapter{Sistemas de Punto Flotante}
+%===========================================
+\section{Operaciones de punto flotante}
+%===========================================
+
+%-------------------------------------------
+\subsection{Sistemas decimal y binario}
+%-------------------------------------------
+
+El sistema num\'erico que se utiliza frecuentemente es el sistema decimal, en la que la base de expresi\'on es el $10$. Sin embargo las computadoras utilizan el sistema binario, sistema de base 2, es decir solamente $\left\{0,1\right\}$.
+
+\begin{Prop}
+Para cualquier n\'umero natural $N$, existen $a_0,a_1,a_2,\ldots,a_K$, con $a_i\in \mathbb{R}$ tales que
+\begin{equation}\label{Ec.Expansion.Binaria}
+N=a_{K}\times2^{K}+a_{K-1}\times2^{K-1}+a_{K-2}\times2^{K-2}+\cdots+a_{1}\times2+a_{0}\times2^0
+\end{equation}
+
+Para ver lo anterior lo que tenemos que hacer es calcula $\frac{N}{2}$, es decir, $\frac{N}{2}=P_{0}+\frac{a_{0}}{2}$, donde $P_{0}=a_{K}\times2^{K-1}+a_{K-1}\times2^{K-2}+a_{K-2}\times2^{K-3}+\cdots+a_{1}\times2^{0}$, es decir $a_{0}$ es el resto de dividir $N$ entre $2$. Ahora hagamos lo mismo para $P_{0}$: $$\frac{P_{0}}{2}=a_{K}\times2^{K-2}+a_{K-1}\times2^{K-3}+a_{K-2}\times2^{K-4}+\cdots+a_{2}\times2^{0}+\frac{a_{1}}{2},$$ por lo tanto $$\frac{P_{0}}{2}=P_{1}+\frac{a_{1}}{2},$$ donde $$P_{1}=a_{K}\times2^{K-2}+a_{K-1}\times2^{K-3}+a_{K-2}\times2^{K-4}+\cdots+a_{2}\times2^{0},$$ es decir $P_1$ es el resto de dividir $P_0$ entre $2$. Siguiendo este procedimiento de manera an\'aloga hasta que encontremos un valor $K$ tal que $P_K=0$. Por lo tanto tenemos el siguiente algoritmo:
+\begin{Algthm}
+Para un valor $N$ natural, los t\'erminos $a_{k}$ en la ecuaci\'on \ref{Ec.Expansion.Binaria} se encuentran
+\begin{eqnarray}
+\begin{array}{l}
+N=2P_{0}+a_{0},\\
+P_{0}=2P_{1}+a_{1},\\
+\vdots\\
+P_{K-2}=2P_{K-1}+a_{K-1},\\
+P_{K-1}=2P_{K}+a_{K},\\
+P_{K}=0.
+\end{array}
+\end{eqnarray}
+\end{Algthm}
+\end{Prop}
+
+\begin{Ejem}
+Convertir $24563$ 
+\begin{eqnarray*}
+24563 &=& 12281 \times 2 + 1, \quad a_{0} = 1\\
+12281 &=& 6140 \times 2 + 1, \quad a_{1} = 1\\
+6140 &=& 3070 \times 2 + 0, \quad a_{2} = 0\\
+3070 &=& 1535 \times 2 + 0, \quad a_{3} = 0\\
+1535 &=& 767 \times 2 + 1, \quad a_{4} = 1\\
+767 &=& 383 \times 2 + 1, \quad a_{5} = 1\\
+383 &=& 191 \times 2 + 1, \quad a_{6} = 1\\
+191 &=& 95 \times 2 + 1, \quad a_{7} = 1\\
+95 &=& 47 \times 2 + 1, \quad a_{8} = 1\\
+47 &=& 23 \times 2 + 1, \quad a_{9} = 1\\
+23 &=& 11 \times 2 + 1, \quad a_{10} = 1\\
+11 &=& 5 \times 2 + 1, \quad a_{11} = 1\\
+5 &=& 2 \times 2 + 1, \quad a_{12} = 1\\
+2 &=& 1 \times 2 + 0, \quad a_{13} = 0\\
+1 &=& 0 \times 2 + 1, \quad a_{14} = 1
+\end{eqnarray*}
+Por lo tanto el n\'umero binario es: $(24563)_{10}=(101111111110011)_{2}$.
+
+\end{Ejem}
+
+
+\begin{Prop}
+Sea $Q\in\mathbb{R}$, tal que $0<Q<1$, entonces existen t\'erminos $b_{1},b_{2},\ldots,b_{k}$ tales que $Q=0.b_{1}b_{2}b_{3}\cdots b_{k}$, y por tanto
+
+\begin{eqnarray}
+Q=b_{1}\times2^{-1}+b_{2}\times2^{-2}+b_{3}\times2^{-3}+\cdots+b_{k}\times2^{-k}+\cdots
+\end{eqnarray}
+
+Si multiplicamos $Q$ por $2$, se tiene que
+$$2Q=b_{1}+b_{2}\times2^{-1}+b_{3}\times2^{-2}+b_{4}\times2^{-3}+\cdots+b_{k}\times2^{-k+1}+\cdots$$
+
+Si $F_{1}=frac(2Q)$, con $frac(x)$ la parte fraccionaria de $x$, y $b_{1}=[[2Q]]$, donde $[[x]]$ es la parte entera de $x$, entonces $$F_1=b_{2}\times2^{-1}+b_{3}\times2^{-2}+b_{4}\times2^{-3}+\cdots+b_{k}\times2^{-k+1}+\cdots,$$ de donde $$2F_1=b_{2}\times2^{0}+b_{3}\times2^{-1}+b_{4}\times2^{-2}+\cdots+b_{k}\times2^{-k+2}+\cdots=b_{2}+F_{2},$$ donde $F_{2}=frac(2F_{1})$, y $b_{2}=[[2F_1]]$. Procediendo de manera an\'aloga para el resto de los t\'erminos se tienen las suceciones $\left\{b_{k}\right\}$ y $\left\{F_{k}\right\}$, dadas por $b_{k}=[[2F_{k-1}]]$ y $F_{k}=frac(2F_{k-1})$, con $b_{1}=[[2Q]]$ y $F_{1}=frac(2Q)$. Por lo tanto se tiene la representaci\'on binaria de Q dada por
+
+\begin{equation}
+Q=\sum_{i=1}^{\infty}b_{i}2^{-i}
+\end{equation}
+\end{Prop}
+
+
+\begin{Ejem}
+Convertir el n\'umero $3.5786$. Sea $Q = 0.5786$, entonces
+\begin{eqnarray*}
+2Q &=& 1.1572, b_{1} = [[1.1572]]= 1, F_{1} = frac(1.1572) = 0.1572\\
+2F_{1}& =& 0.3144, b_{2} = [[0.3144 ]]= 0,F_{2} = frac(0.3144) = 0.3144\\
+2F_{2} &=& 0.6288, b_{3} = [[0.6288 ]]= 0, F_{3} = frac(0.6288) = 0.6288\\
+2F_{3} &=& 1.2576, b_{4} = [[1.2576 ]]= 1 F_{4} = frac(1.2576) = 0.2576\\
+2F_{4} &=& 0.5152, b_{5} = [[0.5152 ]]= 0, F_{5} = frac(0.5152) = 0.5152\\
+2F_{5} &=& 1.0304, b_{6} = [[1.0304 ]] = 1 F_{6} = frac(1.0304) = 0.0304\\
+2F_{6} &=& 0.0608, b_{7} = [[0.0608]]= 0, F_{7} = frac(0.0608) = 0.0608\\
+2F_{7} &=& 0.1216, b_{8} = [[0.1216]] = 0, F_{8} = frac(0.1216) = 0.1216
+\end{eqnarray*}
+
+De lo anterior se tiene que:
+$$0.5786 = (0.10010100\ldots)_2$$
+Por lo tanto:$$3.5786 = (11.10010100\ldots)_2.$$
+
+
+\end{Ejem}
+
+\begin{Ejer}
+Convertir los siguientes n\'umeros de base 10 a base 2.
+\begin{enumerate}
+\item $324$
+\item $27$
+\item $1423$
+\item $235.25$
+\item $41.596$
+\end{enumerate}
+\end{Ejer}
+
+%-------------------------------------------
+\subsection{N\'umeros en punto flotante}
+%-------------------------------------------
+
+\begin{Def}
+Los n\'umeros en punto flotante son n\'umero reales de la forma 
+\begin{equation}
+\pm\alpha \times \beta^{e},
+\end{equation}
+
+donde $\alpha$ tiene un n\'umero de d\'igitos limitados, $\beta$ es la base y $e$ es el exponente que modifica la posici\'on del punto decimal.
+\end{Def}
+
+\begin{Def}
+Un n\'umero real $x$ tiene una representaci\'on punto flotante normalizada si 
+\begin{equation}
+\pm\alpha \times \beta^{e},
+\end{equation}
+con $\frac{1}{\beta}<|\alpha|<1$
+\end{Def}
+
+\begin{Note}
+En este caso $x$ se puede escribir en la forma 
+\begin{equation}
+x=\pm0,d_{1}d_{2}\cdots d_{k}\times\beta^{e},
+\end{equation} 
+
+donde si $x\neq0$,$d_{1}\neq0$, y adem\'as $0\leq d_{i}<\beta$, para $i=1,2,3\dots,k$ y $L\leq e\leq U$.
+\end{Note}
+
+\begin{Def}
+El conjunto de los n\'umeros en punto flotante se le llama \textbf{conjunto de n\'umeros m\'aquina}.
+\end{Def}
+
+\begin{Note}
+El conjunto de n\'umeros m\'aquina es finito. Para ver esto consideremos que si $x$ es de la forma 
+\begin{equation}\label{Eq.Punto.Flotate}
+\pm0,d_{1}d_{2}\cdots d_{t}\times\beta^{e},
+\end{equation}
+dado que $d_{1}\neq0$ y $0\leq d_{i}<\beta$ entonces $d_1$ puede tomar $\beta-1$ valores distintos, mientras que para $d_{i}$ hay $\beta$ posibilidades. Por lo tanto se tienen $\left(\beta-1\right)\beta\beta\cdots\beta=\left(\beta-1\right)\beta^t$. El n\'umero de exponentes posibles son $U-L+1$, en total hay $\left(\beta-1\right)\beta^t\left(U-L+1\right)$ n\'umeros m\'aquina positivos, por lo tanto, considerando positivos y negativos hay $2\left(\beta-1\right)\beta^t\left(U-L+1\right)$  n\'umeros m\'aquina, considerando que el creo tambi\'es es un n\'umero de m\'aquina hay en realidad $2\left(\beta-1\right)\beta^t\left(U-L+1\right)+1$. Es decir, cualquier n\'umero real puede ser representado por uno de los $2\left(\beta-1\right)\beta^t\left(U-L+1\right)+1$ n\'umeros de m\'aquina.
+\end{Note}
+
+
+\begin{Ejem}
+Recordemos la expresi\'on (\ref{Eq.Punto.Flotate}), consideremos $\beta=2$, $t=3$, $L=-2$ y $U=2$. 
+Entonces $x=\pm d_{1}d_{2}d_{3}\times\left(2\right)^{e}$, con $-2\leq e\leq 2$ y $0\leq d_{1},d_{2}<2$. Por lo tanto se tiene que $d_{1},d_{2},d_{3}=1$; $e=\left\{-2,-1,0,1,2\right\}$.  Entonces $d_{1}d_{2}d_{3}=\left\{100,101,110,111\right\}=\left\{\frac{1}{2},\frac{5}{8},\frac{3}{4},\frac{7}{8}\right\}$
+\begin{eqnarray}
+\begin{array}{|c|c|c|c|c|}\hline
+-2&-1&0&1&2\\\hline
+0.111\times 2^{-2}&0.111\times 2^{-1}&0.111\times 2^{0}&0.111\times 2^{1}&0.111\times 2^{2}\\\hline
+0.110\times 2^{-2}&0.110\times 2^{-1}&0.110\times 2^{0}&0.110\times 2^{1}&0.110\times 2^{2}\\\hline
+0.101\times 2^{-2}&0.101\times 2^{-1}&0.101\times 2^{0}&0.101\times 2^{1}&0.101\times 2^{2}\\\hline
+0.100\times 2^{-2}&0.100\times 2^{-1}&0.100\times 2^{0}&0.100\times 2^{1}&0.100\times 2^{2}\\\hline
+\end{array}
+\end{eqnarray}
+sustituyendo y resolviendo las operaciones
+
+\begin{eqnarray}
+\begin{array}{|c|c|c|c|c|}\hline
+-2&-1&0&1&2\\\hline
+\frac{7}{8}\times 2^{-2}=\frac{7}{32}&\frac{7}{8}\times 2^{-1}=\frac{7}{16}&\frac{7}{8}\times 2^{0}=\frac{7}{8}&\frac{7}{8}\times 2^{1}=\frac{7}{4}&\frac{7}{8}\times 2^{2}=\frac{7}{2}\\\hline\hline
+\frac{3}{4}\times 2^{-2}=\frac{3}{16}&\frac{3}{4}\times 2^{-1}=\frac{3}{8}&\frac{3}{4}\times 2^{0}=\frac{3}{4}&\frac{3}{4}\times 2^{1}=\frac{3}{2}&\frac{3}{4}\times 2^{2}=3\\\hline\hline
+\frac{5}{8}\times 2^{-2}=\frac{5}{32}&\frac{5}{8}\times 2^{-1}=\frac{5}{16}&\frac{5}{8}\times 2^{0}=\frac{5}{8}&\frac{5}{8}\times 2^{1}=\frac{5}{4}&\frac{5}{8}\times 2^{2}=\frac{5}{2}\\\hline\hline
+\frac{1}{2}\times 2^{-2}=\frac{1}{8}&\frac{1}{2}\times 2^{-1}=\frac{1}{4}&\frac{1}{2}\times 2^{0}=\frac{1}{2}&\frac{1}{2}\times 2^{1}=1&\frac{1}{2}\times 2^{2}=2\\\hline\hline
+\end{array}
+\end{eqnarray}
+Por tanto el n\'umero total de n\'umeros m\'aquina son 41.
+\end{Ejem}
+
+\begin{Ejer}
+\begin{enumerate}
+\item Describir todos los n\'umeros m\'aquina para $\beta=2$, $t=4$, $L=-3$ y $U=3$. 
+\item Escribir el n\'umero $732.5051$ en notaci\'on de punto flotante. Respuesta $0.7325051\times10^{-3}$
+\item Escribir el n\'umero $0.006521$ en notaci\'on de punto flotante.  Respuesta $0.06521\times10^{-2}$
+\item $\left(101.01\right)_2$. Respuesta $0.10101\times2^{3}$
+\item $\left(0.00101111\right)_2$. Respuesta $0.101111\times2^{-2}$
+\end{enumerate}
+\end{Ejer}
+
+\begin{Note}
+$\left(0.1\right)_2=1\times2^{-1}=0.5$
+\end{Note}
+
+
+\subsection{Representaci\'on}
+
+En una computadora los n\'umeros se expresan como se ha descrito, pero con restricciones sobre $q$ y $m$ dadas por la longitud de la palabra. Supongamos que la longitud de la palabra es de $32$ bits, los cuales se distribuyen de la siguiente manera: los dos primeros se reservan para los signos: es $0$ si es positivo y $1$ si es negativo; los siguientes $7$ espacios para el exponente, y los restantes para la mantisa. Considerando que cualquier n\'umero puede normalizarse, recordar $x=\pm q\times 2^{m}$, con $\frac{1}{2}\leq q<1$, se puede asumir que el primer bit en $q$ es $1$ y por tanto no se requeire almacenar,.
+
+\begin{Ejem}
+Representar y almacenar en punto flotante normalizado  el n\'umero $-0.125$.  A saber $(-0.125)=(-0.001)_{2}=(-0.1)_2\times2^{-2}$,  adem\'as $2=(10)_{2}$; por lo tanto su representaci\'on es: $1,1|,$ $0,0,0,0,0,1,0|$ $0,0,0,0,0,0,0,\dots0$.
+\end{Ejem}
+
+\begin{Ejem}
+Represente y almacene el n\'umero $117.125$. Respuesta $117=(1110101)_2$ y $0.125=(0.001)_2$, por tanto $117.125=(1110101.001)_2=(0.1110101001)_2\times2^{7}$ y $y=(111)_{2}$, por tanto se almacena: $0,0||0000111||110101\dots0$
+\end{Ejem}
+
+
+\begin{Note}
+$|m|$ no requiere m\'as de $7$ bits, es decir $|m|\leq(1111111)_{2}=2^{7}-1=127$, por tanto el exponente de $7$ d\'igitos binarios proporciona un intervalo de $0$ a $127$, para n\'umeros peque\~ nos se toma el exponente en el intervalo $[-63,64]$. Adem\'as $q$ requiere de a lo m\'as 24 bits, por tanto la m\'aquina de $32$ bits tienen una precisi\'on limitada entre $7$ y $8$ d\'igitos decimales, ya que el bit menos significativo en la mantisa representa unidades del orden $2^{-24}\approx10^{-7}$. Esto quiere decir que n\'umeros expresados por m\'as de siete d\'igitos decimales ser\'an aproximados cuando se dan como datos de entrada o como resultados de operaciones.
+\end{Note}
+
+\subsection{Errores}
+
+A la hora de realizar un c\'alculo es importante asegurarse de que los n\'umeros que intervienen en el c\'alculo se pueden utilizar con confianza.   Para ello, se introduce el concepto de \textbf{cifras significativas}, que designa formalmente la notaci\'on de un valor num\'erico, y se usa en aquellos que gu\'ian visualmente la precisi\'on.\medskip
+
+Los \textbf{errores de truncamiento} se producen cuando utilizamos una aproximaci\'on en lugar de un procedimiento matem\'atico exacto. Para conocer las caracter\'isticas de estos errores se suelen considerar los polinomios de Taylor.   Cuando se aproxima un proceso continuo por uno discreto, para errores provocados por un tama\~no de paso finito $h$, resulta a menudo \'util describir la dependencia del error $e$ con $ h $ cuando $h$ tiende a cero.\medskip
+
+Decimos que una funci\'on $ f(h) $ es una $ \mathcal{O} $ grande de $ h^n $ si $ |f(h)| \leq c h^n $ para alguna constante $ c $, cuando $ h $ es cercano a cero; se escribe \begin{equation} f(h) = \mathcal{O}(h^n)\end{equation}.
+
+Si un m\'etodo tiene un t\'ermino de error que es $\mathcal{O}(h^n)$, se suele decir que es un \textbf{m\'etodo de orden $n$}.  Por ejemplo, si utilizamos un polinomio de Taylor para aproximar la funci\'on $ g $ en $ x = a + h $, tenemos:v$$g(x) = g(a + h) = g(a) + h g'(a) + \frac{h^2}{2!} g''(a) + \frac{h^3}{3!} g^{(3)}(\xi), \quad \text{para alg\'un } \xi \in [a, a+h].$$
+
+Suponiendo que $ g $ es suficientemente derivable, la aproximaci\'on anterior es $ \mathcal{O}(h^3) $, puesto que el error $$\frac{h^3}{3!} g^{(3)}(\xi), \quad \text{satisface} \quad \left| \frac{h^3}{3!} g^{(3)}(\xi) \right| \leq \frac{M}{3!} |h^3|,$$
+donde $ M $ es el m\'aximo de $ g^{(3)}(x) $ para $ x \in [a, a+h] $.
+
+Las diferencias (errores) son m\'ultiples y de diversa naturaleza, aunque pueden separarse en dos grupos gen\'ericos:
+
+\begin{itemize}
+    \item \textbf{Los errores que provienen del modelado te\'orico} (o abstracci\'on matem\'atica) del fen\'omeno real; estos errores se denominan \textit{Errores del modelo o inherentes}. Los errores inherentes son producto de factores intr\'insecos a la naturaleza, al ambiente y las personas mismas. Los errores inherentes son imposibles de remediar aunque pueden minimizarse; en consecuencia, no pueden cuantificarse.
+
+    \begin{quote}
+    Se distinguen dos tipos de errores inherentes: \textbf{Las incertidumbres} hacen referencia a las dimensiones f\'isicas que nunca podr\'an ser medidas en forma exacta debido a la naturaleza de la materia y a las imperfecciones de los instrumentos de medici\'on. \textbf{Las verdaderas equivocaciones} son las situaciones que se producen en la lectura de instrumentos de medici\'on o en el traslado de informaci\'on y que son inadvertidas a las personas; un claro ejemplo de estas situaciones es la denominada \textit{ceguera de taller}.
+    \end{quote}
+
+    \item \textbf{Los errores del m\'etodo} son producto de la limitante en la representaci\'on y manipulaci\'on de cantidades num\'ericas utilizadas en los c\'alculos necesarios en el desarrollo del modelo matem\'atico. Es de destacar que los dispositivos de c\'alculo (tales como calculadoras y computadoras) utilizan y manipulan cantidades en forma imprecisa.
+\end{itemize}
+    Existen dos grandes tipos de errores del m\'etodo: \textit{El truncamiento} se provoca ante la imposibilidad de manipular, por parte de un instrumento de c\'omputo, una cantidad infinita de t\'erminos o cifras. Los t\'erminos o cifras omitidas (que son infinitas en n\'umero) introducen un error en los resultados calculados. \textit{El redondeo} se produce por el mismo motivo que el truncamiento pero, a diferencia de \'este, las cifras omitidas s\'i son consideradas en la cifra resultante
+
+  
+En general, si se incrementa el n\'umero de cifras significativas en el ordenador, se minimizan los errores de redondeo, y los errores de truncamiento disminuyen a medida que los errores de redondeo se incrementan.  Por lo tanto, para disminuir uno de los dos sumandos del error total debemos incrementar el otro.  Como el error total no se puede calcular en la mayor\'ia de los casos, se suelen utilizar otras medidas para estimar la exactitud de un m\'etodo num\'erico, que suelen depender del m\'etodo espec\'ifico.  En algunos m\'etodos el error num\'erico se puede acotar, mientras que en otros se determina una estimaci\'on del \textit{orden de magnitud del error}. Cuando se buscanlas soluciones num\'ericas de un problema real los resultados que se obtienen por lo general no son exactos.  
+
+\subsection{Cuantificaci\'on de errores}
+
+Los errores se cuantifican de dos formas diferentes:
+
+\begin{enumerate}
+  \item \textbf{Error absoluto}. El error absoluto es la diferencia absoluta entre un valor real y un aproximado. Est\'a dado por la siguiente f\'ormula:
+
+  $$E = \left| V_{real} - V_{aprox} \right| $$
+
+  El error absoluto recibe este nombre ya que posee las mismas dimensiones que la variable bajo estudio.
+
+  \item \textbf{Error relativo}. Corresponde a la expresi\'on en porcentaje de un error absoluto; en consecuencia, este error es adimensional.
+
+  $$  e = \left| \frac{V_{real} - V_{aprox}}{V_{real}} \right| \cdot 100\%$$
+\end{enumerate}
+
+La diferencia entre la preferencia en el uso de los dos tipos de error consiste precisamente en la presencia de las dimensiones f\'isicas. Debido a las unidades de medici\'on utilizadas, el manejo y la percepci\'on del error absoluto suele ser enga\~noso o dif\'icil de comprender r\'apidamente. Sin embargo, el manejo de porcentajes (o valores relativos) resulta m\'as natural y sencillo de comprender. Sin embargo, el uso de estos dos tipos de errores est\'a sujeto siempre al objetivo de las actividades desarrolladas.
+
+Las expresiones que definen a los errores absoluto y relativo requieren del conocimiento de la variable $V_{real}$ que representa un valor ideal que no posee error alguno. Como podr\'a suponerse, en la realidad resulta imposible determinar este valor. Una pr\'actica com\'un en los an\'alisis elementales sobre errores es considerar como un valor real a los resultados arrojados por la medici\'on experimental de los fen\'omenos y a los valores aproximados como los proporcionados por los modelos matem\'aticos (o viceversa).  En realidad, ambos valores son valores aproximados.  Para lograr un resultado coherente, en la pr\'actica debe sustituirse al valor real por un valor que se considere posee un error menor. 
+
+En el caso del an\'alisis num\'erico, dado que los resultados se obtienen a partir de procesos iterativos que se mejoran los inicialmente obtenidos, debe partirse del supuesto que el \'ultimo valor obtenido posee un nivel menor de error que el valor previo. Dado lo anterior, los errores absoluto y relativo se calcular\'an de la siguiente forma:
+
+\textbf{Error absoluto:}
+$$E = \left| V_i - V_{i-1} \right|$$
+
+\textbf{Error relativo:}
+$$e = \left| \frac{V_i - V_{i-1}}{V_i} \right| \cdot 100\%$$
+
+En ambas ecuaciones, $V_i$ es el valor de la \'ultima iteraci\'on y $V_{i-1}$ es el valor de la iteraci\'on anterior $i-1$.
+
+\begin{itemize}
+    \item \textbf{Error absoluto:} Se define como la diferencia entre el valor real (experimental o exacto) y el valor aproximado (te\'orico o calculado):
+
+    $$
+    E_a = |x_{\text{real}} - x_{\text{aproximado}}|
+    $$
+
+    \item \textbf{Error relativo:} Es la relaci\'on entre el error absoluto y el valor real:
+
+    $$
+    E_r = \frac{E_a}{|x_{\text{real}}|}
+    $$
+
+    \item \textbf{Error porcentual:} Es el error relativo expresado en porcentaje:
+
+    $$
+    E_p = E_r \cdot 100 = \frac{E_a}{|x_{\text{real}}|} \cdot 100
+    $$
+\end{itemize}
+
+\subsection{Errores en punto flotante}
+
+Un n\'umero real $ x \in \mathbb{R} $, cuando no pertenece a $ F $, se representa mediante una aproximaci\'on flotante $ fl(x) \in F $, de modo que:
+
+$$x = fl(x)(1 + \varepsilon), \quad |\varepsilon| \leq \epsilon_{\text{mach}}.$$
+
+Este $ \varepsilon $ se llama \textbf{error relativo} y $ \epsilon_{\text{mach}} $ es la \textbf{precisi\'on de la m\'aquina}.  En general se tiene que:
+
+$$\epsilon_{\text{mach}} = \frac{1}{2} \beta^{1 - t}.$$
+
+\begin{Note}
+Los ordenadores almacenan los n\'umeros reales en forma binaria (base 2).   Cada d\'igito binario (0 \'o 1) se llama \textbf{bit} (por digital binary).   La memoria de los ordenadores est\'a organizada en \textbf{bytes}, siendo un byte = 8 bits.   En el est\'andar IEEE, los ordenadores representan n\'umeros reales en precisi\'on simple (32 bits) y en precisi\'on doble (64 bits).  Este est\'andar tambi\'en define los c\'odigos para representar valores especiales como NaN (Not a Number), infinitos, y ceros con signo. Para representar un n\'umero real, se utiliza la forma normalizada:
+$$x = (-1)^s \cdot (1 + f) \cdot 2^e,$$
+donde: $ s $: es el bit de signo (0 para positivo, 1 para negativo),  $ f $: es la fracci\'on,  $ e $: es el exponente con sesgo.\medskip
+
+Por ejemplo, el n\'umero 0.15625 en binario es 0.00101, que se escribe como $ 1.01 \cdot 2^{-3} $ y se almacena como: signo = 0, exponente = $124$ (con sesgo de $127$), y mantisa = $010000...$ En este formato, la precisi\'on depende de la cantidad de bits reservados a la fracci\'on $ f $.   En doble precisi\'on (64 bits), se reservan 52 bits para la fracci\'on, 11 para el exponente y 1 para el signo.
+\end{Note}
+
+
+\subsection{Aproximaci\'on num\'erica y errores}
+
+Una \textit{aproximaci\'on} es un valor cercano a uno considerado como real o verdadero. Esta cercan\'ia, o diferencia, se conoce como \textit{error}. Normalmente, la consideraci\'on de la validez de una aproximaci\'on depende de la cota de error que el experimentador considere pertinente en funci\'on del contexto del fen\'omeno bajo estudio. Esto implica que tambi\'en debe considerarse que una magnitud debe ser un valor real, que en el \'ambito de la Ingenier\'ia pocas veces se conoce, lo que obliga a adoptar convenciones. En Ingenier\'ia, se denomina \textit{exactitud} a la capacidad de un instrumento de medir un valor cercano al de la magnitud real. Exactitud implica precisi\'on, pero no al contrario. Exactitud y precisi\'on no son equivalentes. Exactitud es capacidad para acercarse a la magnitud real, y precisi\'on es la capacidad de generar resultados similares. La precisi\'on se logra cuando un instrumento para repetir mediciones exactas cuando \'estas se realizan consecutivamente. De acuerdo con la definici\'on de aproximaci\'on num\'erica, la exactitud se aplica en los m\'etodos num\'ericos en cuanto a la capacidad del m\'etodo de generar un resultado muy cercano al valor real; se percibe la cercan\'ia entre la exactitud y el concepto de error. Por otra parte, los m\'etodos num\'ericos a trav\'es de iteraciones generan valores aproximados cada vez m\'as exactos, es decir, estas iteraciones deber\'an ser precisas. Dado lo anterior, los m\'etodos num\'ericos deber\'an tener como cualidades la exactitud y la precisi\'on. Matem\'aticamente, la \textbf{convergencia} es la propiedad de algunas sucesiones y series de tender progresivamente a un l\'imite, de tal forma, si este l\'imite existe, se dice que la sucesi\'on o la serie \textit{converge}.  En forma an\'aloga, si un m\'etodo num\'erico en su funcionamiento iterativo nos proporciona aproximaciones cada vez m\'as cercanas al valor buscado, se dice que el m\'etodo converge. La convergencia se mide a trav\'es de los errores; si el error entre dos aproximaciones sucesivas se reduce, el m\'etodo converge; se debe cumplir que:
+
+$$|x_n - x_{n-1}| \leq |x_{n-1} - x_{n-2}|$$
+
+Es decir, la diferencia en\'esima $ (x_n - x_{n-1}) $ debe ser menor que la diferencia $ (n-1)$\'esima $ x_{n-1} - x_{n-2} $. Se dice que un sistema (o un proceso) es \textbf{estable} si a peque\~nas variaciones en la entrada o en la excitaci\'on corresponden peque\~nas variaciones en la salida o en la respuesta. La estabilidad de un m\'etodo num\'erico tiene que ver con la manera en que los errores num\'ericos se propagan a lo largo del algoritmo.  Cuando un m\'etodo converge, lo m\'as deseable es que en los resultados que se obtengan, los niveles de error se disminuyan en la forma m\'as r\'apida posible. Sin embargo, ocurre que durante la operaci\'on del algoritmo, ya sea por el manejo de los datos num\'ericos o bien por la naturaleza propia del modelo matem\'atico con el que se est\'e trabajando, los errores entre aproximaciones no disminuyan en forma progresiva, sino que incluso aumenten en alguna etapa del proceso para despu\'es reducirse mostrando un comportamiento aleatorio.
+
+La \textbf{robustez} de un m\'etodo num\'erico radica en su convergencia y su estabilidad. Pueden utilizarse m\'etodos cuya prueba de convergencia indique la pertinencia de su uso, pero que durante su aplicaci\'on se obtengan resultados inestables que repercutan en el n\'umero de iteraciones y en consecuencia en el tiempo invertido en la soluci\'on. El ideal lo constituyen m\'etodos que a la vez de ser convergentes resulten estables.
+
+\begin{Note}
+\textbf{Convergencia} de un m\'etodo se refiere a que sea posible la obtenci\'on del valor buscado cuando el n\'umero de pasos tiende a infinito.  T\'ipicamente, la convergencia se analiza en m\'etodos iterativos, es decir, aquellos en los que el resultado final se obtiene tras una repetici\'on de c\'alculos.  Cuando repetimos estas iteraciones, los datos iniciales producen valoraciones progresivas del resultado.
+\end{Note}
+
+
+
+
+%-------------------------------------------
+\subsection{Ejercicios}
+%-------------------------------------------
+\begin{enumerate}
+\item Realizar una revisi\'on de la historia de los m\'etodos num\'ericos, elaborar un documento de hasta dos cuartillas.
+\item Realiza las siguientes conversiones de base $10$ a base $2$:
+\begin{enumerate}
+\item 246
+\item 345.68
+\item 4586632.2846
+\item 984365.27463
+\item 79905523
+\end{enumerate}
+\item Elabora el c\'odigo en R para realizar la conversi\'on de base $10$ a base $2$.
+\end{enumerate}
+
