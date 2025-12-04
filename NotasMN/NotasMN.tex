@@ -58,6 +58,7 @@ Academia de Matemáticas \\
 \begin{document}
 \maketitle
 \tableofcontents
+\newpage
 
 %===========================================
 \section{Sobre el curso}
@@ -2775,7 +2776,6 @@ x+2y+z&=&1\\
 
 \newpage
 
-
 %===========================================
 \section{Raíces de Funciones}
 %===========================================
@@ -4112,7 +4112,7 @@ fijo(g, x0 = 0.5)
 \subsection{Ejercicios}
 %=========================================================
 
-\subsubsection{Método de Bisección}
+\subsubsection{Método de Bisección}\label{Secc_Biseccion}
 
 \textbf{Instrucciones:}
 \begin{enumerate}
@@ -4175,7 +4175,7 @@ $k$ & $a$ & $b$ & $c$ & $f(a)$ & $f(b)$ & $f(c)$ & $signo(f(a)*f(c))$ & $error$ 
 \bigskip
 
 %===================== SECANTE =====================
-\subsubsection{Método de la Secante}
+\subsubsection{Método de la Secante}\label{Secc_Secante}
 
 \textbf{Instrucciones:}
 \begin{enumerate}
@@ -4236,9 +4236,8 @@ $k$ & $x_{k-1}$ & $x_k$ & $f(x_k)$ & $x_{k+1}$ & $e_{k}=\|x_{k+1}-x_{k}\|$\\
 \caption{Iteraciones del método de la secante para $f(x)$.}
 \end{table}
 
-\subsubsection{Método de Newton}
-
-\begin{Ejer}
+\subsubsection{Método de Newton}\label{Secc_Newton}
+\textbf{Instrucciones:}
 Resuelve los siguientes ejercicios aplicando el \textbf{método de Newton}.
 Para cada función \( f(x) \):
 \begin{enumerate}
@@ -4248,6 +4247,8 @@ Para cada función \( f(x) \):
     \item Grafica la función y marca el punto donde converge la raíz.
 \end{enumerate}
 
+
+\begin{Ejer}
 \begin{multicols}{2}
 \begin{enumerate}
 \item $f(x)=x^3-7x+6$, \quad $[a,b]=[0,1]$
@@ -4293,12 +4294,10 @@ $k$ & $x_k$ & $f(x_k)$ & $f'(x_k)$ & $|x_{k+1}-x_k|$ \\
 \caption{Iteraciones del método de Newton para $f(x)$.}
 \end{table}
 
-\subsubsection{Método del Punto Fijo}
-
-\begin{Ejer}
-Resuelve los siguientes ejercicios aplicando el \textbf{método del punto fijo}.
+\subsubsection{Método del Punto Fijo}\label{Secc_PtoFijo}
 
 \textbf{Instrucciones:}
+Resuelve los siguientes ejercicios aplicando el \textbf{método del punto fijo}.
 \begin{enumerate}
     \item Reescriba la ecuación \(f(x)=0\) en forma \(x=g(x)\).
     \item Verifique que la función \(g(x)\) cumpla la condición de convergencia local \(|g'(x)| < 1\) en el intervalo considerado.
@@ -4307,25 +4306,25 @@ Resuelve los siguientes ejercicios aplicando el \textbf{método del punto fijo}.
     \item Grafique \(y=g(x)\) y \(y=x\) para visualizar el punto de intersección.
 \end{enumerate}
 
-\begin{multicols}{2}
+
+\begin{Ejer}
 \begin{enumerate}
-\item $f(x)=\cos(x)-x$ \hfill Sugerencia: $g(x)=\cos(x)$, \quad $x_0=0.5$
-\item $f(x)=x^3+x-1$ \hfill Sugerencia: $g(x)=1-x^3$, \quad $x_0=0.6$
-\item $f(x)=e^{-x}-x$ \hfill Sugerencia: $g(x)=e^{-x}$, \quad $x_0=0.7$
-\item $f(x)=x^2-4x+1$ \hfill Sugerencia: $g(x)=\dfrac{x^2+1}{4}$, \quad $x_0=1$
-\item $f(x)=x^3-2x-5$ \hfill Sugerencia: $g(x)=\sqrt[3]{2x+5}$, \quad $x_0=2$
-\item $f(x)=x^2-e^{x}+2$ \hfill Sugerencia: $g(x)=\sqrt{e^x-2}$, \quad $x_0=0.5$
-\item $f(x)=\ln(x+1)+x-2$ \hfill Sugerencia: $g(x)=2-\ln(x+1)$, \quad $x_0=0.5$
-\item $f(x)=x^3-3x+1$ \hfill Sugerencia: $g(x)=\sqrt[3]{3x-1}$, \quad $x_0=0.8$
-\item $f(x)=x-\sin(x)-1$ \hfill Sugerencia: $g(x)=\sin(x)+1$, \quad $x_0=1$
-\item $f(x)=x^2-3$ \hfill Sugerencia: $g(x)=\dfrac{3}{x}$, \quad $x_0=1.5$
-\item $f(x)=2x-e^{-x}$ \hfill Sugerencia: $g(x)=\dfrac{e^{-x}}{2}$, \quad $x_0=0$
-\item $f(x)=x^3+4x^2-10$ \hfill Sugerencia: $g(x)=\sqrt{\dfrac{10-x^3}{4}}$, \quad $x_0=1.5$
-\item $f(x)=x^2-\cos(x)$ \hfill Sugerencia: $g(x)=\sqrt{\cos(x)}$, \quad $x_0=0.5$
-\item $f(x)=x-e^{-x^2}$ \hfill Sugerencia: $g(x)=e^{-x^2}$, \quad $x_0=0.5$
-\item $f(x)=x^3-2$ \hfill Sugerencia: $g(x)=\sqrt[3]{2}$, \quad $x_0=1$
+\item $f(x)=\cos(x)-x$, Sugerencia: $g(x)=\cos(x)$, \quad $x_0=0.5$
+\item $f(x)=x^3+x-1$, Sugerencia: $g(x)=1-x^3$, \quad $x_0=0.6$
+\item $f(x)=e^{-x}-x$, Sugerencia: $g(x)=e^{-x}$, \quad $x_0=0.7$
+\item $f(x)=x^2-4x+1$, Sugerencia: $g(x)=\dfrac{x^2+1}{4}$, \quad $x_0=1$
+\item $f(x)=x^3-2x-5$ , Sugerencia: $g(x)=\sqrt[3]{2x+5}$, \quad $x_0=2$
+\item $f(x)=x^2-e^{x}+2$, Sugerencia: $g(x)=\sqrt{e^x-2}$, \quad $x_0=0.5$
+\item $f(x)=\ln(x+1)+x-2$, Sugerencia: $g(x)=2-\ln(x+1)$, \quad $x_0=0.5$
+\item $f(x)=x^3-3x+1$, Sugerencia: $g(x)=\sqrt[3]{3x-1}$, \quad $x_0=0.8$
+\item $f(x)=x-\sin(x)-1$, Sugerencia: $g(x)=\sin(x)+1$, \quad $x_0=1$
+\item $f(x)=x^2-3$, Sugerencia: $g(x)=\dfrac{3}{x}$, \quad $x_0=1.5$
+\item $f(x)=2x-e^{-x}$, Sugerencia: $g(x)=\dfrac{e^{-x}}{2}$, \quad $x_0=0$
+\item $f(x)=x^3+4x^2-10$, Sugerencia: $g(x)=\sqrt{\dfrac{10-x^3}{4}}$, \quad $x_0=1.5$
+\item $f(x)=x^2-\cos(x)$, Sugerencia: $g(x)=\sqrt{\cos(x)}$, \quad $x_0=0.5$
+\item $f(x)=x-e^{-x^2}$, Sugerencia: $g(x)=e^{-x^2}$, \quad $x_0=0.5$
+\item $f(x)=x^3-2$, Sugerencia: $g(x)=\sqrt[3]{2}$, \quad $x_0=1$
 \end{enumerate}
-\end{multicols}
 \end{Ejer}
 
 \noindent\textbf{Formato sugerido de tabla para el método del punto fijo:}
@@ -4631,8 +4630,27 @@ secante(f, x0 = 1, x1 = 2)
 \end{verbatim}
 
 \newpage
-
 %=========================================================
+\subsection{Tarea para el portafolio}
+%=========================================================
+\begin{centering} 
+\textbf{ A continuaci\'on se presentan las indicaciones sobre los ejercicios que se van a a incluir en el portafolio del curso de M\'etodos Num\'ericos}
+\end{centering}
+
+\begin{enumerate}
+\item Del m\'etodo de Bisecci\'on,  (subsección \ref{Secc_Biseccion}) del ejercicio 1, resolver de los numerales impares: 3 ejercicios \textit{a mano} y 5 ejercicios con el \textit{c\'odigo automatizado}.
+
+\item Del m\'etodo de la Secante (subsección \ref{Secc_Secante}), del ejercicio 2, resolver de los ejercicios impares 3: \textit{a mano} y de los ejercicios pares 5: con el \textit{c\'odigo automatizado}.
+
+
+\item De la subsección \ref{Secc_Newton}, Del m\'etodo de Newton (subsección \ref{Secc_Newton}), del ejercicio 3, resolver de los ejercicios pares: 3 \textit{a mano} y de los ejercicios impares 5: con el \textit{c\'odigo automatizado}.
+
+\item De la subsecci\'on \ref{Secc_PtoFijo}, Del m\'etodo del Punto Fijo (subsección \ref{Secc_PtoFijo}), del ejercicio 4, resolver de los:  3 \textit{a mano} y  5 con el \textit{c\'odigo automatizado}.
+
+
+
+
+\end{enumerate}
 
 
 %<<==>><<==>><<==>><<==>><<==>><<==>>
@@ -5087,6 +5105,529 @@ x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}]\\ \hline
 \end{eqnarray*}
 \end{Ejem}
 
+%-----------------------------------------------------------
+\subsection{Polinomio de Newton}
+%-----------------------------------------------------------
+
+Sea una funci\'on $f$ conocida en los puntos
+\begin{eqnarray*}
+(x_0,f_0), (x_1,f_1),\dots,(x_n,f_n),
+\qquad f_k = f(x_k).
+\end{eqnarray*}
+El polinomio interpolante de Newton en t\'erminos de diferencias divididas
+se escribe como
+\begin{equation}
+P_n(x) = f[x_0]
++ (x - x_0) f[x_0,x_1]
++ (x - x_0)(x - x_1) f[x_0,x_1,x_2]
++ \cdots
++ (x-x_0)\cdots(x-x_{n-1}) f[x_0,\dots,x_n].
+\label{eq:newton-general}
+\end{equation}
+
+Recordemos que las \emph{diferencias divididas} se definen recursivamente:
+\begin{eqnarray*}
+f[x_k] &=& f(x_k),\\
+f[x_k,x_{k+1}] &=& \frac{f(x_{k+1}) - f(x_k)}{x_{k+1}-x_k},\\
+f[x_k,x_{k+1},x_{k+2}] &=& \frac{f[x_{k+1},x_{k+2}] - f[x_k,x_{k+1}]}
+                               {x_{k+2}-x_k},\\
+&\ \ \vdots
+\end{eqnarray*}
+
+En esta secci\'on supondremos que los nodos est\'an \emph{equispaciados}, es
+decir:
+\begin{eqnarray*}
+x_k = x_0 + kh, \qquad k=0,1,\dots,n,
+\end{eqnarray*}
+para cierto paso $h>0$ constante. Definimos primero las \emph{diferencias progresivas} de $f$ en los nodos
+$x_k$:
+
+\begin{eqnarray*}
+\Delta f_k
+&=& f_{k+1} - f_k,\\
+\Delta^2 f_k
+&=& \Delta f_{k+1} - \Delta f_k,\\
+\Delta^3 f_k
+&=& \Delta^2 f_{k+1} - \Delta^2 f_k,\\
+&\ \ \vdots
+\end{eqnarray*}
+es decir: 
+\begin{eqnarray*}
+\Delta f_0 &=& f_1 - f_0,\\
+\Delta^2 f_0 &=& (f_2 - f_1) - (f_1 - f_0) = f_2 - 2f_1 + f_0,\\
+\Delta^3 f_0 &=& (f_3 - 2f_2 + f_1) - (f_2 - 2f_1 + f_0)\\
+&=& f_3 - 3f_2 + 3f_1 - f_0,\\
+&\ \ \vdots
+\end{eqnarray*}
+
+Para el primer orden tenemos:
+\begin{eqnarray*}
+f[x_0,x_1]
+= \frac{f_1 - f_0}{x_1 - x_0}.
+\end{eqnarray*}
+Como $x_1 - x_0 = h$ y $f_1 - f_0 = \Delta f_0$, se sigue que
+\begin{equation}
+f[x_0,x_1] = \frac{\Delta f_0}{h}.
+\label{eq:dividida1}
+\end{equation}
+
+Por definici\'on de diferencias divididas de segundo orden:
+\begin{eqnarray*}
+f[x_0,x_1,x_2]
+= \frac{f[x_1,x_2] - f[x_0,x_1]}{x_2 - x_0}.
+\end{eqnarray*}
+Usamos el caso de primer orden para $f[x_1,x_2]$ y $f[x_0,x_1]$:
+\begin{eqnarray*}
+f[x_1,x_2] = \frac{f_2 - f_1}{h}, \qquad
+f[x_0,x_1] = \frac{f_1 - f_0}{h}.
+\end{eqnarray*}
+Entonces:
+\begin{eqnarray*}
+f[x_0,x_1,x_2]
+&=& \frac{\frac{f_2 - f_1}{h} - \frac{f_1 - f_0}{h}}{x_2 - x_0}\\
+&=& \frac{\frac{f_2 - 2f_1 + f_0}{h}}{2h}
+= \frac{f_2 - 2f_1 + f_0}{2h^2}.
+\end{eqnarray*}
+Observamos que $f_2 - 2f_1 + f_0 = \Delta^2 f_0$, por lo que
+\begin{equation}
+f[x_0,x_1,x_2]
+= \frac{\Delta^2 f_0}{2!\,h^2}.
+\label{eq:dividida2}
+\end{equation}
+
+Procediendo de manera an\'aloga llegamos a la expresi\'on general:
+\begin{equation}
+f[x_0,x_1,\dots,x_k]
+= \frac{\Delta^k f_0}{k!\,h^k}, \qquad k=0,1,\dots,n.
+\label{eq:dividida-general-prog}
+\end{equation}
+
+Para $k=0$ se tiene $f[x_0] = f_0$, y como $\Delta^0 f_0 = f_0$,
+la igualdad se cumple.  Para $k=1$ y $k=2$ la f\'ormula se verific\'o expl\'icitamente en 
+\ref{eq:dividida1} y \ref{eq:dividida2}.
+
+Supongamos que
+\begin{eqnarray*}
+f[x_0,\dots,x_k] = \frac{\Delta^k f_0}{k!\,h^k},
+\qquad
+f[x_1,\dots,x_{k+1}] = \frac{\Delta^k f_1}{k!\,h^k}.
+\end{eqnarray*}
+
+entonces consideremos
+\begin{eqnarray*}
+f[x_0,x_1,\dots,x_{k+1}]
+= \frac{f[x_1,\dots,x_{k+1}] - f[x_0,\dots,x_k]}{x_{k+1} - x_0}.
+\end{eqnarray*}
+Como $x_{k+1} - x_0 = (k+1)h$, usando la hip\'otesis:
+\begin{eqnarray*}
+f[x_1,\dots,x_{k+1}] = \frac{\Delta^k f_1}{k!\,h^k},
+\qquad
+f[x_0,\dots,x_k]   = \frac{\Delta^k f_0}{k!\,h^k},
+\end{eqnarray*}
+por tanto se obtiene
+\begin{eqnarray*}
+f[x_0,\dots,x_{k+1}]
+&=& \frac{\frac{\Delta^k f_1}{k!\,h^k} - \frac{\Delta^k f_0}{k!\,h^k}}
+         {(k+1)h}=\frac{\Delta^k f_1 - \Delta^k f_0}{k!\,h^k\,(k+1)h}.
+\end{eqnarray*}
+Por definici\'on de diferencia progresiva de orden $k+1$:
+\begin{eqnarray*}
+\Delta^{k+1} f_0 = \Delta^k f_1 - \Delta^k f_0.
+\end{eqnarray*}
+es decir
+\begin{eqnarray*}
+f[x_0,\dots,x_{k+1}]
+= \frac{\Delta^{k+1} f_0}{(k+1)!\,h^{k+1}},
+\end{eqnarray*}
+que es precisamente la f\'ormula \eqref{eq:dividida-general-prog} para $k+1$, y por lo tanto queda demostrada la relaci\'on
+\begin{eqnarray*}
+f[x_0,\dots,x_k]
+= \frac{\Delta^k f_0}{k!\,h^k}, \quad k=0,1,\dots,n,
+\end{eqnarray*}
+cuando los nodos son equiespaciados. Ahora, a partir de la expresi\'on general \ref{eq:newton-general} y sustituimos
+las diferencias divididas usando \ref{eq:dividida-general-prog}:
+\begin{eqnarray*}
+P_n(x)
+&=& f_0
++ (x-x_0) \frac{\Delta f_0}{1!\,h}
++ (x-x_0)(x-x_1) \frac{\Delta^2 f_0}{2!\,h^2}
++ \cdots \\
+&+& (x-x_0)(x-x_1)\cdots(x-x_{n-1}) \frac{\Delta^n f_0}{n!\,h^n}.
+\end{eqnarray*}
+
+donde
+\begin{eqnarray*}
+x_k = x_0 + kh, \textrm{ por lo tanto }x - x_k = x - x_0 - kh.
+\end{eqnarray*}
+haciendo 
+\begin{eqnarray*}
+s = \frac{x - x_0}{h}\textrm{ se tiene que }x - x_0 = sh,
+\end{eqnarray*}
+y entonces
+\begin{eqnarray*}
+x - x_1 &=& x - (x_0 + h)   = (x - x_0) - h   = (s - 1) h,\\
+x - x_2 &=& x - (x_0 + 2h) = (x - x_0) - 2h  = (s - 2) h,\\
+&\vdots& \\
+x - x_{k-1} &=& (s - (k-1))h.
+\end{eqnarray*}
+Por lo tanto, el producto
+\begin{eqnarray*}
+(x-x_0)(x-x_1)\cdots(x-x_{k-1})
+= h^k\, s(s-1)\cdots(s-k+1).
+\end{eqnarray*}
+
+Sustituyendo en $P_n(x)$:
+\begin{eqnarray*}
+P_n(x)
+&=& f_0
++ \frac{h s}{h} \Delta f_0
++ \frac{h^2 s(s-1)}{2!\,h^2}\Delta^2 f_0
++ \cdots
++ \frac{h^n s(s-1)\cdots(s-n+1)}{n!\,h^n}\Delta^n f_0\\
+&=& f_0
++ s\Delta f_0
++ \frac{s(s-1)}{2!}\,\Delta^2 f_0
++ \cdots
++ \frac{s(s-1)\cdots(s-n+1)}{n!}\,\Delta^n f_0.
+\end{eqnarray*}
+
+Es decir, se tiene la f\'ormula de Newton con diferencias progresivas:
+
+\begin{equation}
+P_n(x) = f_0
++ s\,\Delta f_0
++ \frac{s(s-1)}{2!}\,\Delta^2 f_0
++ \frac{s(s-1)(s-2)}{3!}\,\Delta^3 f_0
++ \cdots
++ \frac{s(s-1)\cdots(s-n+1)}{n!}\,\Delta^n f_0,
+\label{eq:newton-progresivo}
+\end{equation}
+donde
+\begin{eqnarray*}
+s = \frac{x - x_0}{h}.
+\end{eqnarray*}
+
+De forma an\'aloga definimos las \emph{diferencias regresivas}:
+\begin{eqnarray*}
+\nabla f_k &=& f_k - f_{k-1},\\
+\nabla^2 f_k &=& \nabla f_k - \nabla f_{k-1},\\
+\nabla^3 f_k &=& \nabla^2 f_k - \nabla^2 f_{k-1},\\
+&\ \ \vdots
+\end{eqnarray*}
+
+En particular, las primeras diferencias regresivas en el nodo final $x_n$
+son:
+\begin{eqnarray*}
+\nabla f_n &=& f_n - f_{n-1},\textrm{ luego }\\
+\nabla^2 f_n &=& (f_n - f_{n-1}) - (f_{n-1} - f_{n-2})
+= f_n - 2f_{n-1} + f_{n-2},\\
+&\vdots&
+\end{eqnarray*}
+
+Ahora consideramos las diferencias divididas de atr\'as hacia adelante:
+\begin{eqnarray*}
+f[x_n],\ f[x_n,x_{n-1}],\ f[x_n,x_{n-1},x_{n-2}],\dots
+\end{eqnarray*}
+
+Se tiene que
+\begin{eqnarray*}
+f[x_n,x_{n-1}]
+= \frac{f_n - f_{n-1}}{x_n - x_{n-1}}
+= \frac{\nabla f_n}{h}.
+\end{eqnarray*}
+
+luego,
+\begin{eqnarray*}
+f[x_n,x_{n-1},x_{n-2}]
+= \frac{f[x_{n-1},x_{n-2}] - f[x_n,x_{n-1}]}{x_{n-2} - x_n}.
+\end{eqnarray*}
+donde
+\begin{eqnarray*}
+f[x_{n-1},x_{n-2}] = \frac{f_{n-1} - f_{n-2}}{h}, \textrm{ y }
+f[x_n,x_{n-1}]     = \frac{f_n     - f_{n-1}}{h},
+\end{eqnarray*}
+y $x_{n-2} - x_n = -2h$. Entonces:
+\begin{eqnarray*}
+f[x_n,x_{n-1},x_{n-2}]
+&=& \frac{\frac{f_{n-1} - f_{n-2}}{h} - \frac{f_n - f_{n-1}}{h}}{-2h}=\frac{(f_{n-1} - f_{n-2}) - (f_n - f_{n-1})}{-2h^2}\\
+&=& \frac{-f_n + 2f_{n-1} - f_{n-2}}{-2h^2}
+= \frac{f_n - 2f_{n-1} + f_{n-2}}{2h^2}=\frac{\nabla^2 f_n}{2!\,h^2}.
+\end{eqnarray*}
+
+De forma an\'aloga al caso progresivo, se puede probar por inducci\'on que:
+\begin{equation}
+f[x_n,x_{n-1},\dots,x_{n-k}]
+= \frac{\nabla^k f_n}{k!\,h^k},\qquad k=0,1,\dots,n.
+\label{eq:dividida-general-reg}
+\end{equation}
+
+Procediendo de manera an\'aloga escribimos ahora el polinomio de Newton de atr\'as hacia adelante:
+\begin{eqnarray*}
+P_n(x)
+&=& f[x_n]
++ (x - x_n) f[x_n,x_{n-1}]
++ (x - x_n)(x - x_{n-1}) f[x_n,x_{n-1},x_{n-2}]\\
+&+& \cdots
++ (x-x_n)(x-x_{n-1})\cdots(x-x_{n-k+1}) f[x_n,\dots,x_{n-k}]+\cdots.
+\end{eqnarray*}
+
+Sustituimos la ecuaci\'on \eqref{eq:dividida-general-reg}:
+\begin{eqnarray*}
+P_n(x)
+&=& f_n
++ (x - x_n)\frac{\nabla f_n}{1!\,h}
++ (x - x_n)(x - x_{n-1})\frac{\nabla^2 f_n}{2!\,h^2}
++ \cdots\\
+&+& (x-x_n)(x-x_{n-1})\cdots(x-x_{n-k+1}) \frac{\nabla^k f_n}{k!\,h^k}
++ \cdots.
+\end{eqnarray*}
+
+Definimos ahora
+\begin{eqnarray*}
+s = \frac{x - x_n}{h}\textrm{ entonces }x - x_n = sh.
+\end{eqnarray*}
+Adem\'as,
+\begin{eqnarray*}
+x - x_{n-1}
+&=& x - (x_n - h)
+ = (x - x_n) + h
+ = (s+1)h,\\
+x - x_{n-2}
+&=& x - (x_n - 2h)
+ = (x - x_n) + 2h
+ = (s+2)h,\\
+&\ \ \vdots\\
+x - x_{n-k+1}
+&=& (s + k - 1) h.
+\end{eqnarray*}
+Por lo tanto
+\begin{eqnarray*}
+(x-x_n)(x-x_{n-1})\cdots(x-x_{n-k+1})
+= h^k\, s(s+1)\cdots(s + k - 1).
+\end{eqnarray*}
+
+Sustituyendo en $P_n(x)$:
+\begin{eqnarray*}
+P_n(x)
+&=& f_n
++ \frac{h s}{h}\nabla f_n
++ \frac{h^2 s(s+1)}{2!\,h^2}\nabla^2 f_n
++ \cdots
++ \frac{h^k s(s+1)\cdots(s+k-1)}{k!\,h^k}\nabla^k f_n
++ \cdots\\
+&=& f_n
++ s\,\nabla f_n
++ \frac{s(s+1)}{2!}\,\nabla^2 f_n
++ \cdots
++ \frac{s(s+1)\cdots(s+k-1)}{k!}\,\nabla^k f_n
++ \cdots.
+\end{eqnarray*}
+
+con lo cual se obtiene la f\'ormula de Newton con diferencias regresivas:
+\begin{equation}
+P_n(x)
+= f_n
++ s\,\nabla f_n
++ \frac{s(s+1)}{2!}\,\nabla^2 f_n
++ \frac{s(s+1)(s+2)}{3!}\,\nabla^3 f_n
++ \cdots
++ \frac{s(s+1)\cdots(s+n-1)}{n!}\,\nabla^n f_n,
+\label{eq:newton-regresivo}
+\end{equation}
+donde
+\begin{eqnarray*}
+s = \frac{x - x_n}{h}.
+\end{eqnarray*}
+
+\subsubsection{Ejemplos del m\'etodo de Newton con diferencias finitas}
+
+\begin{Ejem} Se quiere  aproximar $f(x)=x^2$ en un punto cercano a $x_0=0$ usando diferencias progresivas de Newton.
+
+Consid\'erense los puntos equiespaciados (con $h=1$):
+\begin{eqnarray*}
+x_0=0,\quad x_1=1,x_2=2,
+\end{eqnarray*}
+y
+\begin{eqnarray*}
+f_0=f(0)=0, f_1=f(1)=1, f_2=f(2)=4.
+\end{eqnarray*}
+
+Entonces se tienen la siguiente tabla de diferencias divididas:
+
+\begin{eqnarray*}
+\begin{array}{c|c|c|c}
+k & x_k & f_k & \text{Diferencias} \\ \hline
+0 & 0 & 0 & \\
+1 & 1 & 1 & \Delta f_0 = f_1 - f_0 = 1 - 0 = 1 \\
+2 & 2 & 4 & \Delta f_1 = f_2 - f_1 = 4 - 1 = 3 \\
+\hline
+  &   &   & \Delta^2 f_0 = \Delta f_1 - \Delta f_0 = 3 - 1 = 2
+\end{array}
+\end{eqnarray*}
+
+entonces el Polinomio de Newton progresivo se calcula a partir de la f\'ormula de Newton progresiva:
+\begin{eqnarray*}
+P_2(x) &=& f_0 + s\,\Delta f_0 + \frac{s(s-1)}{2!}\,\Delta^2 f_0,\\
+&s& = \frac{x - x_0}{h}.
+\end{eqnarray*}
+Con $x_0=0$ y $h=1$, resulta $s=x$, sustituyendo:
+\begin{eqnarray*}
+P_2(x) 
+= 0 + s(1) + \frac{s(s-1)}{2}(2)
+= s + s(s-1)
+= s + s^2 - s
+= s^2.
+\end{eqnarray*}
+Como $s=x$, se tiene $P_2(x) = x^2$, es decir, recuperamos la funci\'on exacta (como era de esperar al interpolar un polinomio de grado 2 con tres puntos). Evaluando en $x=1.5$: $s = \frac{x-x_0}{h} = \frac{1.5-0}{1} = 1.5$, $P_2(1.5) = (1.5)^2 = 2.25$.  El valor exacto de $f(1.5)$ es tambi\'en $2.25$, de modo que no hay  error de interpolaci\'on en este caso.
+\end{Ejem}
+
+\begin{Ejem} Aproximar $f(x)=\ln(1+x)$ cerca de $x_0=0$ usando diferencias progresivas con $h=0.5$, y luego se evaluar\'a en $x=0.75$.
+
+Consid\'erense los puntos equiespaciados:
+\begin{eqnarray*}
+x_0 = 0,\quad x_1 = 0.5,\quad x_2 = 1.0,\qquad h=0.5.
+\end{eqnarray*}
+Evaluando la funci\'on:
+\begin{eqnarray*}
+f_0 &=& \ln(1+0) = 0,\\
+f_1 &=& \ln(1+0.5) = \ln(1.5) \approx 0.405465,\\
+f_2 &=& \ln(1+1.0) = \ln(2) \approx 0.693147.
+\end{eqnarray*}
+
+entonces la Tabla de diferencias progresivas quedar\'ia como:
+
+\begin{eqnarray*}
+\begin{array}{c|c|c|c}
+k & x_k & f_k & \text{Diferencias} \\ \hline
+0 & 0.0 & 0.000000 & \\
+1 & 0.5 & 0.405465 & \Delta f_0 = 0.405465 - 0.000000 = 0.405465 \\
+2 & 1.0 & 0.693147 & \Delta f_1 = 0.693147 - 0.405465 = 0.287682 \\
+\hline
+  &     &         & \Delta^2 f_0 = \Delta f_1 - \Delta f_0 = 0.287682 - 0.405465 = -0.117783
+\end{array}
+\end{eqnarray*}
+
+Entonces el polinomio de Newton progresivo se obtiene con la f\'ormula:
+\begin{eqnarray*}
+P_2(x) &=& f_0 + s\,\Delta f_0 + \frac{s(s-1)}{2!}\,\Delta^2 f_0,\\
+s &=& \frac{x-x_0}{h} = \frac{x}{0.5} = 2x.
+\end{eqnarray*}
+Sustituimos $f_0=0$, $\Delta f_0=0.405465$ y $\Delta^2 f_0=-0.117783$:
+\begin{eqnarray*}
+P_2(x)= 0 + s(0.405465) + \frac{s(s-1)}{2}(-0.117783).
+\end{eqnarray*}
+
+Evaluando  en $x=0.75$
+\begin{eqnarray*}
+s = \frac{0.75 - 0}{0.5} = 1.5.
+\end{eqnarray*}
+Entonces
+\begin{eqnarray*}
+P_2(0.75)= 1.5(0.405465) + \frac{1.5(1.5-1)}{2}(-0.117783),
+\end{eqnarray*}
+donde
+$1.5(0.405465) \approx 0.6081975$, $\frac{1.5(0.5)}{2} = \frac{0.75}{2} = 0.375$, y $0.375(-0.117783) \approx -0.044168$,
+por lo tanto, $P_2(0.75) \approx 0.6081975 - 0.044168 \approx 0.564029$, donde el valor real es $f(0.75) = \ln(1.75) \approx 0.559616$.  El error de interpolaci\'on es peque\~no: $\lvert f(0.75) - P_2(0.75) \rvert \approx 0.0044$.
+\end{Ejem}
+
+\begin{Ejem} Ahora usaremos la forma \emph{regresiva} para aproximar $f(x)=\sqrt{x}$ cerca del nodo final $x_n=3$, con $h=1$, y se estimar\'a $f(2.6)$. Consid\'erense los puntos $x_0=1,\quad x_1=2,\quad x_2=3,\qquad h=1$.
+
+Entonces
+\begin{eqnarray*}
+f_0 &=& \sqrt{1} = 1.000000,\\
+f_1 &=& \sqrt{2} \approx 1.414214,\\
+f_2 &=& \sqrt{3} \approx 1.732051.
+\end{eqnarray*}
+
+la correspondiente tabla de diferencias regresivas (centradas en $x_2$)
+
+\begin{eqnarray*}
+\begin{array}{c|c|c|c}
+k & x_k & f_k & \text{Diferencias} \\ \hline
+0 & 1 & 1.000000 & \\
+1 & 2 & 1.414214 & \nabla f_1 = f_1 - f_0 = 1.414214 - 1.000000 = 0.414214 \\
+2 & 3 & 1.732051 & \nabla f_2 = f_2 - f_1 = 1.732051 - 1.414214 = 0.317837 \\
+\hline
+  &   &         & \nabla^2 f_2 = \nabla f_2 - \nabla f_1 = 0.317837 - 0.414214 = -0.096376
+\end{array}
+\end{eqnarray*}
+
+Nos interesan especialmente $\nabla f_2$ y $\nabla^2 f_2$ para el polinomio
+regresivo. La f\'ormula de Newton regresivo de grado 2 es
+\begin{eqnarray*}
+P_2(x) = f_n + s\,\nabla f_n + \frac{s(s+1)}{2!}\,\nabla^2 f_n,
+\qquad
+s = \frac{x-x_n}{h}.
+\end{eqnarray*}
+donde $n=2$, $x_n=x_2=3$, $h=1$, por lo que $s = x-3$.  Sustituyendo se tiene
+\begin{eqnarray*}
+P_2(x) = f_2 + s\,\nabla f_2 + \frac{s(s+1)}{2}\,\nabla^2 f_2.
+\end{eqnarray*}
+
+Evaluando en $x=2.6$: $s = \frac{2.6-3}{1} = -0.4$. Entonces $P_2(2.6)= 1.732051 + (-0.4)(0.317837) 
++ \frac{(-0.4)(-0.4+1)}{2}(-0.096376)$.
+Calculamos cada t\'ermino:
+\begin{eqnarray*}
+(-0.4)(0.317837) \approx -0.127135,\\
+-0.4+1 = 0.6,\quad (-0.4)(0.6) = -0.24,\quad \frac{-0.24}{2} = -0.12,\\
+-0.12(-0.096376) \approx 0.011570.
+\end{eqnarray*}
+Por lo tanto $P_2(2.6)\approx 1.732051 - 0.127135 + 0.011570 \approx 1.616486$.
+
+El valor real es $f(2.6) = \sqrt{2.6} \approx 1.612452$. El error es $\lvert f(2.6) - P_2(2.6) \rvert \approx 0.0040$,
+lo cual muestra una buena aproximaci\'on usando la forma regresivacerca del extremo derecho.
+\end{Ejem}
+
+\begin{Ejem}
+Ahora ilustraremos un caso de grado 3 usando $f(x)=\sin(x)$ con paso
+$h=0.5$, cerca de $x_0=0$, y evaluaremos en $x=0.7$. Consid\'erese
+\begin{eqnarray*}
+x_0 = 0.0,\quad x_1=0.5,\quad x_2=1.0,\quad x_3=1.5,\qquad h=0.5.
+\end{eqnarray*}
+Evaluamos la funci\'on en los puntos dados
+\begin{eqnarray*}
+f_0 = \sin(0.0) = 0.000000,\\
+f_1 = \sin(0.5) \approx 0.479426,\\
+f_2 = \sin(1.0) \approx 0.841471,\\
+f_3 = \sin(1.5) \approx 0.997495
+\end{eqnarray*}
+
+con lo que la tabla de diferencias progresivas
+
+\begin{eqnarray*}
+\begin{array}{c|c|c|c}
+k & x_k & f_k & \text{Diferencias} \\ \hline
+0 & 0.0 & 0.000000 & \\
+1 & 0.5 & 0.479426 & \Delta f_0 = 0.479426 - 0.000000 = 0.479426 \\
+2 & 1.0 & 0.841471 & \Delta f_1 = 0.841471 - 0.479426 = 0.362045 \\
+3 & 1.5 & 0.997495 & \Delta f_2 = 0.997495 - 0.841471 = 0.156024 \\
+\hline
+  &     &         & \Delta^2 f_0 = \Delta f_1 - \Delta f_0 = 0.362045 - 0.479426 = -0.117380 \\
+  &     &         & \Delta^2 f_1 = \Delta f_2 - \Delta f_1 = 0.156024 - 0.362045 = -0.206021 \\
+\hline
+  &     &         & \Delta^3 f_0 = \Delta^2 f_1 - \Delta^2 f_0 = -0.206021 - (-0.117380) = -0.088641
+\end{array}
+\end{eqnarray*}
+
+y por tanto el polinomio de Newton progresivo de grado 3 tiene por ecuaci\'on
+\begin{eqnarray*}
+P_3(x) = f_0 + s\,\Delta f_0 + \frac{s(s-1)}{2!}\,\Delta^2 f_0 + \frac{s(s-1)(s-2)}{3!}\,\Delta^3 f_0,
+\qquad
+s = \frac{x-x_0}{h} = \frac{x}{0.5} = 2x.
+\end{eqnarray*}
+Sustituimos $f_0=0$, $\Delta f_0=0.479426$,  $\Delta^2 f_0=-0.117380$, $\Delta^3 f_0=-0.088641$:
+\begin{eqnarray*}
+P_3(x)= s(0.479426) + \frac{s(s-1)}{2}(-0.117380)+ \frac{s(s-1)(s-2)}{6}(-0.088641).
+\end{eqnarray*}
+
+Evaluando en $x=0.7$: $s = \frac{0.7-0}{0.5} = 1.4$, entonces.
+\begin{eqnarray*}
+P_3(0.7)= 1.4(0.479426)+ \frac{1.4(1.4-1)}{2}(-0.117380)+ \frac{1.4(1.4-1)(1.4-2)}{6}(-0.088641).
+\end{eqnarray*}
+
+Evaluamos cada t\'ermino: $1.4(0.479426) \approx 0.671196$, $1.4-1 = 0.4$, $\frac{1.4(0.4)}{2} = \frac{0.56}{2} = 0.28$,
+$0.28(-0.117380) \approx -0.032866$, luego $1.4-2 = -0.6$, $1.4(0.4)(-0.6) = 1.4\cdot 0.4\cdot (-0.6) = -0.336$,  $\frac{-0.336}{6} \approx -0.056$, $-0.056(-0.088641) \approx 0.004963$. Por tanto $P_3(0.7)\approx 0.671196 - 0.032866 + 0.004963\approx 0.643293$. Donde el valor real es $\sin(0.7) \approx 0.644218$. El error de interpolaci\'on es $\lvert \sin(0.7) - P_3(0.7) \rvert \approx 0.0009$, lo cual muestra que un polinomio de grado 3 con cuatro nodos cercanos puede aproximar muy bien a $\sin(x)$ en el intervalo considerado.
+\end{Ejem}
 
 \begin{Ejem}
 Dados los puntos
@@ -5095,12 +5636,10 @@ Dados los puntos
 \end{eqnarray*}
 construyamos la tabla y el polinomio $P_3(x)$.
 
-\paragraph{Paso 1: Primera columna.}
 \begin{eqnarray*}
 f[x_0]=1,\quad f[x_1]=0,\quad f[x_2]=-1,\quad f[x_3]=2.
 \end{eqnarray*}
 
-\paragraph{Paso 2: Primer orden.}
 \begin{eqnarray*}
 \begin{aligned}
 f[x_0,x_1] &= \frac{0-1}{1-0} = -1,\\
@@ -5109,7 +5648,6 @@ f[x_2,x_3] &= \frac{2-(-1)}{3-2} = 3.
 \end{aligned}
 \end{eqnarray*}
 
-\paragraph{Paso 3: Segundo orden.}
 \begin{eqnarray*}
 \begin{aligned}
 f[x_0,x_1,x_2] &= \frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0}
@@ -5119,21 +5657,20 @@ f[x_1,x_2,x_3] &= \frac{f[x_2,x_3]-f[x_1,x_2]}{x_3-x_1}
 \end{aligned}
 \end{eqnarray*}
 
-\paragraph{Paso 4: Tercer orden.}
 \begin{eqnarray*}
 f[x_0,x_1,x_2,x_3] =
 \frac{f[x_1,x_2,x_3]-f[x_0,x_1,x_2]}{x_3-x_0}
 = \frac{2-0}{3-0} = \frac{2}{3}.
 \end{eqnarray*}
 
-\paragraph{Paso 5: Polinomio de Newton.}
+Entonces el Polinomio de Newton.
 \begin{eqnarray*}
 P_3(x) &=& f[x_0]+ f[x_0,x_1](x-x_0)+ f[x_0,x_1,x_2](x-x_0)(x-x_1)\\
 & +& f[x_0,x_1,x_2,x_3](x-x_0)(x-x_1)(x-x_2)\\
 &=& 1 + (-1)(x-0) + 0\cdot(x)(x-1) + \frac{2}{3}(x)(x-1)(x-2).
 \end{eqnarray*}
 
-\paragraph{Paso 6: Verificacion en los nodos.}
+Verificando: 
 \begin{eqnarray*}
 \begin{aligned}
 P_3(0) &= 1 - 0 + 0 + 0 = 1,\\
@@ -5143,18 +5680,7 @@ P_3(3) &= 1 - 3 + 0 + \tfrac{2}{3}(3)(2)(1) = -2 + 4 = 2.
 \end{aligned}
 \end{eqnarray*}
 
-\paragraph{Paso 7: Forma expandida (opcional para comparacion).}
-\begin{eqnarray*}
-\begin{aligned}
-P_3(x)
-&= 1 - x + \frac{2}{3}\bigl(x^3 - 3x^2 + 2x\bigr)\\
-&= 1 - x + \frac{2}{3}x^3 - 2x^2 + \frac{4}{3}x\\
-&= 1 - 2x^2 + \frac{2}{3}x^3 + \frac{1}{3}x.
-\end{aligned}
-\end{eqnarray*}
-(La forma de Newton es preferible para evaluaci\'on incremental y estabilidad estructural.)
-
-\paragraph{Tabla triangular completa.}
+La tabla triangular completa quedar\'ia en la forma
 \begin{eqnarray*}
 \begin{array}{c|c|c|c|c}
 x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}] & f[x_i,x_{i+1},x_{i+2},x_{i+3}]\\ \hline
@@ -5165,7 +5691,7 @@ x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}] & f[x_i,x_{i+1},x_{i+2},x
 \end{array}
 \end{eqnarray*}
 
-\paragraph{Paso 8: Evaluacion en un punto interno (por ejemplo, $x=1.5$).}
+Evaluando en un punto interno (por ejemplo, $x=1.5$).
 \begin{eqnarray*}
 \begin{aligned}
 P_3(1.5) 
@@ -5307,51 +5833,7 @@ Exacto: $f(3.2)=(3.2)^3=32.768$.
 \end{itemize}
 \end{Note}
 
-
-\begin{Note}
-
-Cuando los nodos $x_i$ est\'an igualmente espaciados, es posible expresar el polinomio interpolante 
-usando \textbf{diferencias finitas}.  
-Estas f\'ormulas son variantes del m\'etodo de Newton y se dividen en dos casos:
-\begin{itemize}
-    \item \textbf{Newton hacia adelante}: se usa cuando el punto donde se desea interpolar est\'a cerca del primer nodo $x_0$.
-    \item \textbf{Newton hacia atr\'as}: se usa cuando el punto est\'a cerca del \'ultimo nodo $x_n$.
-\end{itemize}
-
-Sea el conjunto de nodos equiespaciados:
-\begin{eqnarray*}
-x_i = x_0 + i\,h, \qquad i = 0,1,\ldots,n, \quad h>0.
-\end{eqnarray*}
-Las diferencias finitas se definen como:
-\begin{eqnarray*}
-\begin{aligned}
-\Delta y_i &= y_{i+1} - y_i,\\
-\Delta^2 y_i &= \Delta(\Delta y_i) = \Delta y_{i+1} - \Delta y_i,\\
-\Delta^3 y_i &= \Delta(\Delta^2 y_i) = \Delta^2 y_{i+1} - \Delta^2 y_i, \quad \text{etc.}
-\end{aligned}
-\end{eqnarray*}
-Y de forma an\'aloga, las diferencias regresivas:
-\begin{eqnarray*}
-\begin{aligned}
-\nabla y_i &= y_i - y_{i-1},\\
-\nabla^2 y_i &= \nabla y_i - \nabla y_{i-1}, \quad \text{etc.}
-\end{aligned}
-\end{eqnarray*}
-
-\textbf{Newton hacia adelante:}
-\begin{eqnarray*}
-P(x) = y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 + \frac{p(p-1)(p-2)}{3!}\Delta^3 y_0 + \cdots,
-\end{eqnarray*}
-donde $p = \dfrac{x - x_0}{h}$.
-
-\textbf{Newton hacia atr\'as:}
-\begin{eqnarray*}
-P(x) = y_n + q\,\nabla y_n + \frac{q(q+1)}{2!}\nabla^2 y_n + \frac{q(q+1)(q+2)}{3!}\nabla^3 y_n + \cdots,
-\end{eqnarray*}
-donde $q = \dfrac{x - x_n}{h}$.
-\end{Note}
-
-\begin{Ejer}
+\begin{Ejem}
 
 \begin{eqnarray*}
 \begin{array}{c|cccc}
@@ -5359,7 +5841,7 @@ x & 0 & 1 & 2 & 3\\ \hline
 f(x) & 0 & 1 & 4 & 9
 \end{array}
 \end{eqnarray*}
-\textbf{C\'alculo de diferencias progresivas:}
+
 \begin{eqnarray*}
 \begin{array}{c|cccc}
 x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
@@ -5370,7 +5852,7 @@ x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
 \end{array}
 \end{eqnarray*}
 
-\textbf{Queremos estimar:} $f(0.5)$, con $x_0=0$, $h=1$ y $p=0.5$.
+Se quiere estimar:$f(0.5)$, con $x_0=0$, $h=1$ y $p=0.5$.
 
 \textbf{Sustituci\'on:}
 \begin{eqnarray*}
@@ -5380,10 +5862,11 @@ P(0.5) &= y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 \\
 &= 0.5 - 0.25 = 0.25.
 \end{aligned}
 \end{eqnarray*}
-\textbf{Verificaci\'on:} $f(0.5) = (0.5)^2 = 0.25.$ $\Rightarrow$ Coincide exactamente.
-\end{Ejer}
 
-\begin{Ejer}
+Verificando: $f(0.5) = (0.5)^2 = 0.25.$ $\Rightarrow$ Coincide exactamente.
+\end{Ejem}
+
+\begin{Ejem}
 
 \begin{eqnarray*}
 \begin{array}{c|cccc}
@@ -5392,7 +5875,7 @@ f(x) & 1 & 8 & 27 & 64
 \end{array}
 \end{eqnarray*}
 
-\textbf{Tabla de diferencias:}
+La tabla de diferencias queda:
 \begin{eqnarray*}
 \begin{array}{c|cccc}
 x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
@@ -5403,7 +5886,7 @@ x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
 \end{array}
 \end{eqnarray*}
 
-\textbf{Queremos estimar:} $f(1.5)$.  
+Estimemos $f(1.5)$.  
 $x_0=1,\; h=1,\; p=0.5.$
 
 \begin{eqnarray*}
@@ -5413,16 +5896,15 @@ P(1.5)
 + \frac{p(p-1)(p-2)}{3!}\Delta^3 y_0\\
 &= 1 + (0.5)(7) + \frac{(0.5)(-0.5)}{2}(12)
 + \frac{(0.5)(-0.5)(-1.5)}{6}(6)\\
-&= 1 + 3.5 - 1.5 + 0.375 = 3.375.
+&= 1 + 3.5 - 1.5 + 0.375 = 3.375
 \end{aligned}
 \end{eqnarray*}
-\textbf{Verificaci\'on:} $f(1.5) = (1.5)^3 = 3.375.$
 
-\textbf{Conclusi\'on:} el m\'etodo reproduce perfectamente el valor porque $f$ es un polinomio de grado 3 y se usaron 4 nodos.
-\end{Ejer}
+verificando $f(1.5) = (1.5)^3 = 3.375$, es decir el m\'etodo reproduce perfectamente el valor porque $f$ es un polinomio de grado 3 y se usaron 4 nodos.
+\end{Ejem}
 
 
-\begin{Ejer}
+\begin{Ejem}
 
 \begin{eqnarray*}
 \begin{array}{c|cccc}
@@ -5431,7 +5913,7 @@ f(x) & 0 & 1 & 4 & 9
 \end{array}
 \end{eqnarray*}
 
-\textbf{Diferencias regresivas (desde el final):}
+Las Diferencias regresivas (desde el final):
 \begin{eqnarray*}
 \begin{array}{c|cccc}
 x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
@@ -5442,8 +5924,7 @@ x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
 \end{array}
 \end{eqnarray*}
 
-\textbf{Queremos estimar:} $f(2.6)$.  
-$x_n=3,\; h=1,\; q = \dfrac{2.6 - 3}{1} = -0.4.$
+Estimando $f(2.6)$: $x_n=3,\; h=1,\; q = \dfrac{2.6 - 3}{1} = -0.4.$
 
 \begin{eqnarray*}
 \begin{aligned}
@@ -5453,11 +5934,12 @@ P(2.6)
 &= 9 - 2 - 0.24 = 6.76.
 \end{aligned}
 \end{eqnarray*}
-\textbf{Verificaci\'on:} $f(2.6) = (2.6)^2 = 6.76.$
 
-\end{Ejer}
+donde $f(2.6) = (2.6)^2 = 6.76.$
 
-\begin{Ejer}
+\end{Ejem}
+
+\begin{Ejem}
 \begin{eqnarray*}
 \begin{array}{c|cccc}
 x & 1 & 2 & 3 & 4\\ \hline
@@ -5465,7 +5947,7 @@ f(x) & 1 & 8 & 27 & 64
 \end{array}
 \end{eqnarray*}
 
-\textbf{Diferencias regresivas:}
+donde las Diferencias regresivas:
 \begin{eqnarray*}
 \begin{array}{c|cccc}
 x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
@@ -5476,8 +5958,7 @@ x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
 \end{array}
 \end{eqnarray*}
 
-\textbf{Queremos estimar:} $f(3.2)$.  
-$x_n=4,\; h=1,\; q = \dfrac{3.2 - 4}{1} = -0.8.$
+Estimando a $f(3.2)$:   $x_n=4,\; h=1,\; q = \dfrac{3.2 - 4}{1} = -0.8.$
 
 \begin{eqnarray*}
 \begin{aligned}
@@ -5489,26 +5970,8 @@ P(3.2)
 \end{aligned}
 \end{eqnarray*}
 
-\textbf{C\'alculo num\'erico:}
-\begin{eqnarray*}
-\begin{aligned}
-64 - 29.6 - 1.44 - 0.192 &= 32.768.
-\end{aligned}
-\end{eqnarray*}
-\textbf{Verificaci\'on:} $f(3.2) = (3.2)^3 = 32.768.$
-
-\textbf{Conclusi\'on:} el polinomio reproduce exactamente la funci\'on c\'ubica con 4 nodos.
-\end{Ejer}
-
-
-\begin{Note}
-\begin{itemize}
-    \item Las f\'ormulas hacia adelante y hacia atr\'as son exactas para funciones polin\'omicas de grado $\le n$ si se utilizan $n+1$ nodos.
-    \item Si $x$ est\'a cerca del inicio de la tabla, use Newton hacia adelante; si est\'a cerca del final, use Newton hacia atr\'as.
-    \item Las diferencias de orden superior tienden a cero si $f$ es suave; truncar la serie cuando $\Delta^k y_i$ o $\nabla^k y_i$ son peque\~nos mejora estabilidad.
-\end{itemize}
-\end{Note}
-
+donde $64 - 29.6 - 1.44 - 0.192 = 32.768$, vefrificando $f(3.2) = (3.2)^3 = 32.768.$
+\end{Ejem}
 
 
 \begin{Ejem}
@@ -5652,7 +6115,7 @@ newton_interp_equispaced <- function(x, y, xq, method = "auto", max_order = NULL
       errs[i] <- res$est_trunc_error
       par1[i] <- res$q
     }
-  }
+  }\newtheorem{Ses}{Sesi\'on}[section]
   data.frame(
     xq = xq,
     estimate = vals,
@@ -5872,7 +6335,7 @@ La curva obtenida describe de forma suave la variación de temperatura entre med
 \end{itemize}
 \end{Note}
 
-\newpage
+
 %<<==>><<==>><<==>><<==>><<==>><<==>>
 \subsection{Error de Interpolaci\'on}
 %<<==>><<==>><<==>><<==>><<==>><<==>>
@@ -5885,10 +6348,10 @@ Sin embargo, entre los nodos de interpolación puede existir una diferencia o \t
 Sea $f\in C^{(n+1)}[a,b]$ y $P_n(x)$ el polinomio interpolante de grado $n$ para los puntos $(x_0,y_0),\ldots,(x_n,y_n)$ con $y_i=f(x_i)$.  
 Entonces, para todo $x\in[a,b]$, existe un número $\xi\in(a,b)$ tal que:
 
-\[
+\begin{eqnarray*}
 R_n(x) = f(x) - P_n(x)
 = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i).
-\]
+\end{eqnarray*}
 
 \textbf{Interpretación:}  
 El error depende de dos factores:
@@ -5901,9 +6364,9 @@ El error depende de dos factores:
 
 Si se conoce una cota $|f^{(n+1)}(x)| \le M$ para $x \in [a,b]$, entonces:
 
-\[
+\begin{eqnarray*}
 |R_n(x)| \le \frac{M}{(n+1)!}\,\max_{x\in[a,b]}\left|\prod_{i=0}^{n}(x - x_i)\right|.
-\]
+\end{eqnarray*}
 
 Esta expresión indica que el error aumenta:
 \begin{itemize}
@@ -5914,9 +6377,9 @@ Esta expresión indica que el error aumenta:
 \subsubsection*{Comportamiento del error y efecto de Runge}
 
 Cuando los nodos son equiespaciados, el término
-\[
+\begin{eqnarray*}
 \prod_{i=0}^{n}(x - x_i)
-\]
+\end{eqnarray*}
 crece rápidamente en los extremos del intervalo, provocando oscilaciones en el polinomio interpolante — fenómeno conocido como \textbf{efecto de Runge}.  
 Este efecto se agrava con $n$ grande y funciones con alta curvatura, como $f(x) = \dfrac{1}{1+x^2}$.
 
@@ -5928,17 +6391,17 @@ Este efecto se agrava con $n$ grande y funciones con alta curvatura, como $f(x) 
 Para reducir las oscilaciones, se eligen nodos no equiespaciados, conocidos como \textbf{nodos de Chebyshev}.  
 En el intervalo $[-1,1]$ se definen como:
 
-\[
+\begin{eqnarray*}
 x_i = \cos\left(\frac{2i+1}{2(n+1)}\pi\right), \quad i=0,1,\ldots,n.
-\]
+\end{eqnarray*}
 
 Estos nodos distribuyen más puntos cerca de los extremos del intervalo, donde el error tiende a crecer más.
 
 \textbf{Propiedad fundamental:}
 Los nodos de Chebyshev minimizan la cantidad
-\[
+\begin{eqnarray*}
 \max_{x\in[-1,1]}\left|\prod_{i=0}^{n}(x - x_i)\right|,
-\]
+\end{eqnarray*}
 y, por tanto, minimizan el error máximo de interpolación en el sentido de la norma infinita.
 
 \begin{Ejem}: comparación cualitativa
@@ -5956,9 +6419,9 @@ Sea $f(x)=e^x$ en $[0,1]$, con nodos equiespaciados $x_0=0$, $x_1=0.5$, $x_2=1$.
 Entonces $f^{(3)}(x)=e^x \le e$.
 
 Usando la fórmula del error para $x=0.25$:
-\[
+\begin{eqnarray*}
 |R_2(0.25)| \le \frac{e}{3!}|(0.25-0)(0.25-0.5)(0.25-1)| = \frac{e}{6}(0.25\cdot 0.25\cdot 0.75) \approx 0.0085.
-\]
+\end{eqnarray*}
 La cota muestra que el error es pequeño, y decrece proporcionalmente a $h^{n+1}$.
 \end{Ejem}
 
@@ -5970,200 +6433,6 @@ La cota muestra que el error es pequeño, y decrece proporcionalmente a $h^{n+1}
 \end{itemize}
 \end{Note}
 
-
-%<<==>><<==>><<==>><<==>><<==>><<==>>
-\subsection{Resumen}
-%<<==>><<==>><<==>><<==>><<==>><<==>>
-
-
-La \textbf{interpolaci\'on} es una de las herramientas fundamentales del an\'alisis num\'erico.  
-Su objetivo es aproximar una funci\'on desconocida $f(x)$ a partir de un conjunto discreto de datos
-\[
-(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n),
-\]
-buscando una funci\'on (generalmente un polinomio) que pase exactamente por esos puntos.
-
-\bigskip
-\textbf{Existencia y unicidad.}  
-Para $n{+}1$ nodos distintos, existe un \textbf{único polinomio} $P_n(x)$ de grado menor o igual que $n$ tal que $P_n(x_i)=y_i$.  
-Su unicidad se demuestra mediante la no singularidad de la \emph{matriz de Vandermonde}, garantizando que el sistema lineal asociado tenga una única solución.
-
-\bigskip
-\textbf{Formas del polinomio interpolante.}  
-El mismo polinomio puede escribirse en distintas formas algebraicamente equivalentes:
-\begin{itemize}
-    \item \textbf{Forma de Lagrange:} usa funciones base $L_i(x)$ independientes, útiles para casos con pocos nodos.
-    \item \textbf{Forma de Newton:} emplea \emph{diferencias divididas} y permite actualizar el polinomio fácilmente al añadir nuevos datos.
-    \item \textbf{Formas de diferencias finitas:} (hacia adelante o hacia atrás) aplicables cuando los nodos son equiespaciados, optimizan la evaluación cerca de los extremos.
-    \item \textbf{Interpolación por tramos (splines):} utiliza polinomios de bajo grado en cada intervalo, garantizando continuidad y suavidad, y evitando las oscilaciones de alto grado.
-\end{itemize}
-
-\bigskip
-\textbf{Error de interpolaci\'on.}  
-La diferencia entre la funci\'on real y el polinomio interpolante está dada por:
-\[
-R_n(x) = f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
-\]
-para algún $\xi \in (a,b)$.  
-El error depende de la suavidad de $f(x)$ (a través de su derivada de orden $n+1$) y de la distribución de los nodos.  
-Cuando los nodos son equiespaciados y $n$ es grande, el polinomio puede oscilar fuertemente en los extremos, fenómeno conocido como \textbf{efecto de Runge}.  
-Este problema se reduce empleando \textbf{nodos de Chebyshev}, que minimizan el error máximo, o mediante el uso de \textbf{splines cúbicos}, que suavizan la interpolación.
-
-\bigskip
-\textbf{Recomendaciones prácticas.}
-\begin{itemize}
-    \item \textbf{Pocos nodos:} la forma de Lagrange es simple y directa.
-    \item \textbf{Muchos nodos o evaluaciones repetidas:} la forma de Newton es más eficiente.
-    \item \textbf{Datos con ruido o alta oscilación:} conviene reducir el grado del polinomio, usar nodos de Chebyshev o preferir splines.
-    \item \textbf{Tablas equiespaciadas:} las fórmulas de diferencias finitas permiten interpolar y derivar valores de manera rápida.
-\end{itemize}
-
-
-
-La interpolación no sólo permite reconstruir funciones a partir de datos discretos, sino que también constituye la base de numerosas aplicaciones en ingeniería, estadística, modelado y simulación numérica.  
-Los métodos de \textbf{Lagrange}, \textbf{Newton} y \textbf{splines} forman el núcleo de técnicas más avanzadas, como la aproximación por mínimos cuadrados, el ajuste de curvas suavizadas y las representaciones polinomiales adaptativas.
-
-
-En síntesis: la interpolación combina teoría algebraica, estabilidad numérica y diseño de nodos, buscando un equilibrio entre precisión, simplicidad y robustez computacional.
-
-%<<==>><<==>><<==>><<==>><<==>><<==>>
-\subsection{Ejemplos}
-%<<==>><<==>><<==>><<==>><<==>><<==>>
-
-\begin{Ejem}
-Datos:
-\begin{eqnarray*}
-(x_i,y_i)=(0,1),\ (1,2.2),\ (2,2.8),\ (3,3.6).
-\end{eqnarray*}
-Pendientes por tramo
-\begin{eqnarray*}
-b_0=\frac{2.2-1}{1-0}=1.2,\quad
-b_1=\frac{2.8-2.2}{2-1}=0.6,\quad
-b_2=\frac{3.6-2.8}{3-2}=0.8.
-\end{eqnarray*}
-Por tramos:
-\begin{eqnarray*}
-S(x)=
-\begin{cases}
-1+1.2(x-0), & 0\le x\le 1,\\
-2.2+0.6(x-1), & 1\le x\le 2,\\
-2.8+0.8(x-2), & 2\le x\le 3.
-\end{cases}
-\end{eqnarray*}
-Evaluaciones:
-\begin{eqnarray*}
-S(1.7)=2.2+0.6(0.7)=2.62,\qquad
-S(2.4)=2.8+0.8(0.4)=3.12.
-\end{eqnarray*}
-Verificaciones:
-\begin{eqnarray*}
-S(1^-)=2.2,\ S(1^+)=2.2;\quad
-S(2^-)=2.8,\ S(2^+)=2.8.
-\end{eqnarray*}
-(S\'olo continuidad de la funci\'on; derivadas cambian en los nudos.)
-\end{Ejem}
-
-
-\begin{Ejem}
-Datos:
-\begin{eqnarray*}
-(x_0,y_0)=(0,0),\ (x_1,y_1)=(1,1),\ (x_2,y_2)=(2,0),\ (x_3,y_3)=(3,1).
-\end{eqnarray*}
-Paso $h_i=1$. Pendientes locales:
-\begin{eqnarray*}
-m_0=\frac{1-0}{1}=1,\quad m_1=\frac{0-1}{1}=-1,\quad m_2=\frac{1-0}{1}=1.
-\end{eqnarray*}
-Spline \emph{natural}: $M_0=M_3=0$. Sistema para $M_1,M_2$ (tridiagonal cl\'asico):
-\begin{eqnarray*}
-\begin{cases}
-M_0+4M_1+M_2=6(m_1-m_0)=6(-1-1)=-12,\\
-M_1+4M_2+M_3=6(m_2-m_1)=6(1-(-1))=12.
-\end{cases}
-\end{eqnarray*}
-Con $M_0=M_3=0$:
-\begin{eqnarray*}
-4M_1+M_2=-12,\qquad M_1+4M_2=12.
-\end{eqnarray*}
-Resolviendo:
-\begin{eqnarray*}
-M_2=4,\quad M_1=-4,\quad (M_0=0,\ M_3=0).
-\end{eqnarray*}
-Coeficientes por tramo ($h_i=1$):
-\begin{eqnarray*}
-\begin{aligned}
-a_i&=y_i,\\
-b_i&=m_i-\frac{(2M_i+M_{i+1})h_i}{6},\\
-c_i&=\frac{M_i}{2},\\
-d_i&=\frac{M_{i+1}-M_i}{6h_i}.
-\end{aligned}
-\end{eqnarray*}
-Tramo $[0,1]$ ($i=0$): $m_0=1,\ M_0=0,\ M_1=-4$:
-\begin{eqnarray*}
-a_0=0,\ b_0=1-\tfrac{(0-4)}{6}=\tfrac{5}{3},\ c_0=0,\ d_0=\tfrac{-4-0}{6}=-\tfrac{2}{3}.
-\end{eqnarray*}
-\begin{eqnarray*}
-S_0(x)=\tfrac{5}{3}x-\tfrac{2}{3}x^3.
-\end{eqnarray*}
-Tramo $[1,2]$ ($i=1$): $m_1=-1,\ M_1=-4,\ M_2=4$:
-\begin{eqnarray*}
-a_1=1,\ b_1=-1-\tfrac{(2(-4)+4)}{6}=-\tfrac{4}{3},\ c_1=-2,\ d_1=\tfrac{4-(-4)}{6}=\tfrac{4}{3},
-\end{eqnarray*}
-\begin{eqnarray*}
-S_1(x)=1-\tfrac{4}{3}(x-1)-2(x-1)^2+\tfrac{4}{3}(x-1)^3.
-\end{eqnarray*}
-Tramo $[2,3]$ ($i=2$): $m_2=1,\ M_2=4,\ M_3=0$:
-\begin{eqnarray*}
-a_2=0,\ b_2=1-\tfrac{(8+0)}{6}=-\tfrac{1}{3},\ c_2=2,\ d_2=\tfrac{0-4}{6}=-\tfrac{2}{3},
-\end{eqnarray*}
-\begin{eqnarray*}
-S_2(x)=-\tfrac{1}{3}(x-2)+2(x-2)^2-\tfrac{2}{3}(x-2)^3+0\ (\text{y desplazar por }y_2=0).
-\end{eqnarray*}
-Evaluaciones:
-\begin{eqnarray*}
-S(0)=0,\ S(1)=1,\ S(2)=0,\ S(3)=1,\quad S'(0)=\tfrac{5}{3},\ S''(0)=0,\ S''(3)=0.
-\end{eqnarray*}
-(Estructura suave: continuidad de $S,S',S''$ en $x=1,2$.)
-\end{Ejem}
-
-
-
-\begin{Ejem}
-Datos:
-\begin{eqnarray*}
-(0,0),\ (1,2),\ (2,3),\qquad S'(0)=1,\ S'(2)=0.
-\end{eqnarray*}
-$h_0=h_1=1$, $m_0=2$, $m_1=1$.
-Frontera clamped y ecuaciones interiores:
-\begin{eqnarray*}
-\begin{cases}
-2h_0M_0+h_0M_1=6(m_0-S'(0))=6,\\
-h_0M_0+2(h_0+h_1)M_1+h_1M_2=6(m_1-m_0)=-6,\\
-h_1M_1+2h_1M_2=6(S'(2)-m_1)=-6.
-\end{cases}
-\end{eqnarray*}
-Resoluci\'on:
-\begin{eqnarray*}
-M_0=4,\quad M_1=-2,\quad M_2=-2.
-\end{eqnarray*}
-Coeficientes (con $h=1$):
-\begin{eqnarray*}
-\begin{aligned}
-a_0&=0,\quad b_0=m_0-\tfrac{2M_0+M_1}{6}=2-\tfrac{8-2}{6}=1,\\
-c_0&=\tfrac{M_0}{2}=2,\quad d_0=\tfrac{M_1-M_0}{6}=-1,\\begin{eqnarray*}4pt]
-a_1&=2,\quad b_1=m_1-\tfrac{2M_1+M_2}{6}=1-\tfrac{-4-2}{6}=2,\\
-c_1&=\tfrac{M_1}{2}=-1,\quad d_1=\tfrac{M_2-M_1}{6}=0.
-\end{aligned}
-\end{eqnarray*}
-Por tramos:
-\begin{eqnarray*}
-S(x)=
-\begin{cases}
-x+2x^2-x^3, & 0\le x\le 1,\\
-2+2(x-1)-(x-1)^2, & 1\le x\le 2.
-\end{cases}
-\end{eqnarray*}
-Verif.: $S(0)=0,\ S(1)=2,\ S(2)=3$; $S'(0)=1$ y $S'(2)=0$ (clamped cumplido).
-\end{Ejem}
 
 %<<==>><<==>><<==>><<==>><<==>><<==>>
 \subsection{Ejercicios }
@@ -6430,8 +6699,142 @@ Con $x=\{0,1,2,3,4\}$, $y=\{2.0,2.7,4.8,8.9,16.0\}$:
 \end{itemize}
 \end{Ejer}
 
+\begin{Ejem}
+Datos:
+\begin{eqnarray*}
+(x_i,y_i)=(0,1),\ (1,2.2),\ (2,2.8),\ (3,3.6).
+\end{eqnarray*}
+Pendientes por tramo
+\begin{eqnarray*}
+b_0=\frac{2.2-1}{1-0}=1.2,\quad
+b_1=\frac{2.8-2.2}{2-1}=0.6,\quad
+b_2=\frac{3.6-2.8}{3-2}=0.8.
+\end{eqnarray*}
+Por tramos:
+\begin{eqnarray*}
+S(x)=
+\begin{cases}
+1+1.2(x-0), & 0\le x\le 1,\\
+2.2+0.6(x-1), & 1\le x\le 2,\\
+2.8+0.8(x-2), & 2\le x\le 3.
+\end{cases}
+\end{eqnarray*}
+Evaluaciones:
+\begin{eqnarray*}
+S(1.7)=2.2+0.6(0.7)=2.62,\qquad
+S(2.4)=2.8+0.8(0.4)=3.12.
+\end{eqnarray*}
+Verificaciones:
+\begin{eqnarray*}
+S(1^-)=2.2,\ S(1^+)=2.2;\quad
+S(2^-)=2.8,\ S(2^+)=2.8.
+\end{eqnarray*}
+(S\'olo continuidad de la funci\'on; derivadas cambian en los nudos.)
+\end{Ejem}
 
-\begin{Ejer}
+
+\begin{Ejem}
+Datos:
+\begin{eqnarray*}
+(x_0,y_0)=(0,0),\ (x_1,y_1)=(1,1),\ (x_2,y_2)=(2,0),\ (x_3,y_3)=(3,1).
+\end{eqnarray*}
+Paso $h_i=1$. Pendientes locales:
+\begin{eqnarray*}
+m_0=\frac{1-0}{1}=1,\quad m_1=\frac{0-1}{1}=-1,\quad m_2=\frac{1-0}{1}=1.
+\end{eqnarray*}
+Spline \emph{natural}: $M_0=M_3=0$. Sistema para $M_1,M_2$ (tridiagonal cl\'asico):
+\begin{eqnarray*}
+\begin{cases}
+M_0+4M_1+M_2=6(m_1-m_0)=6(-1-1)=-12,\\
+M_1+4M_2+M_3=6(m_2-m_1)=6(1-(-1))=12.
+\end{cases}
+\end{eqnarray*}
+Con $M_0=M_3=0$:
+\begin{eqnarray*}
+4M_1+M_2=-12,\qquad M_1+4M_2=12.
+\end{eqnarray*}
+Resolviendo:
+\begin{eqnarray*}
+M_2=4,\quad M_1=-4,\quad (M_0=0,\ M_3=0).
+\end{eqnarray*}
+Coeficientes por tramo ($h_i=1$):
+\begin{eqnarray*}
+\begin{aligned}
+a_i&=y_i,\\
+b_i&=m_i-\frac{(2M_i+M_{i+1})h_i}{6},\\
+c_i&=\frac{M_i}{2},\\
+d_i&=\frac{M_{i+1}-M_i}{6h_i}.
+\end{aligned}
+\end{eqnarray*}
+Tramo $[0,1]$ ($i=0$): $m_0=1,\ M_0=0,\ M_1=-4$:
+\begin{eqnarray*}
+a_0=0,\ b_0=1-\tfrac{(0-4)}{6}=\tfrac{5}{3},\ c_0=0,\ d_0=\tfrac{-4-0}{6}=-\tfrac{2}{3}.
+\end{eqnarray*}
+\begin{eqnarray*}
+S_0(x)=\tfrac{5}{3}x-\tfrac{2}{3}x^3.
+\end{eqnarray*}
+Tramo $[1,2]$ ($i=1$): $m_1=-1,\ M_1=-4,\ M_2=4$:
+\begin{eqnarray*}
+a_1=1,\ b_1=-1-\tfrac{(2(-4)+4)}{6}=-\tfrac{4}{3},\ c_1=-2,\ d_1=\tfrac{4-(-4)}{6}=\tfrac{4}{3},
+\end{eqnarray*}
+\begin{eqnarray*}
+S_1(x)=1-\tfrac{4}{3}(x-1)-2(x-1)^2+\tfrac{4}{3}(x-1)^3.
+\end{eqnarray*}
+Tramo $[2,3]$ ($i=2$): $m_2=1,\ M_2=4,\ M_3=0$:
+\begin{eqnarray*}
+a_2=0,\ b_2=1-\tfrac{(8+0)}{6}=-\tfrac{1}{3},\ c_2=2,\ d_2=\tfrac{0-4}{6}=-\tfrac{2}{3},
+\end{eqnarray*}
+\begin{eqnarray*}
+S_2(x)=-\tfrac{1}{3}(x-2)+2(x-2)^2-\tfrac{2}{3}(x-2)^3+0\ (\text{y desplazar por }y_2=0).
+\end{eqnarray*}
+Evaluaciones:
+\begin{eqnarray*}
+S(0)=0,\ S(1)=1,\ S(2)=0,\ S(3)=1,\quad S'(0)=\tfrac{5}{3},\ S''(0)=0,\ S''(3)=0.
+\end{eqnarray*}
+(Estructura suave: continuidad de $S,S',S''$ en $x=1,2$.)
+\end{Ejem}
+
+
+
+\begin{Ejem}
+Datos:
+\begin{eqnarray*}
+(0,0),\ (1,2),\ (2,3),\qquad S'(0)=1,\ S'(2)=0.
+\end{eqnarray*}
+$h_0=h_1=1$, $m_0=2$, $m_1=1$.
+Frontera clamped y ecuaciones interiores:
+\begin{eqnarray*}
+\begin{cases}
+2h_0M_0+h_0M_1=6(m_0-S'(0))=6,\\
+h_0M_0+2(h_0+h_1)M_1+h_1M_2=6(m_1-m_0)=-6,\\
+h_1M_1+2h_1M_2=6(S'(2)-m_1)=-6.
+\end{cases}
+\end{eqnarray*}
+Resoluci\'on:
+\begin{eqnarray*}
+M_0=4,\quad M_1=-2,\quad M_2=-2.
+\end{eqnarray*}
+Coeficientes (con $h=1$):
+\begin{eqnarray*}
+\begin{aligned}
+a_0&=0,\quad b_0=m_0-\tfrac{2M_0+M_1}{6}=2-\tfrac{8-2}{6}=1,\\
+c_0&=\tfrac{M_0}{2}=2,\quad d_0=\tfrac{M_1-M_0}{6}=-1,\\begin{eqnarray*}4pt]
+a_1&=2,\quad b_1=m_1-\tfrac{2M_1+M_2}{6}=1-\tfrac{-4-2}{6}=2,\\
+c_1&=\tfrac{M_1}{2}=-1,\quad d_1=\tfrac{M_2-M_1}{6}=0.
+\end{aligned}
+\end{eqnarray*}
+Por tramos:
+\begin{eqnarray*}
+S(x)=
+\begin{cases}
+x+2x^2-x^3, & 0\le x\le 1,\\
+2+2(x-1)-(x-1)^2, & 1\le x\le 2.
+\end{cases}
+\end{eqnarray*}
+Verif.: $S(0)=0,\ S(1)=2,\ S(2)=3$; $S'(0)=1$ y $S'(2)=0$ (clamped cumplido).
+\end{Ejem}
+
+\begin{Ejem}
 \begin{enumerate}
 \item \textbf{Spline lineal:} Con $(0,1.2),(1,2.0),(3,3.1),(4,4.0)$:
 
@@ -6454,7 +6857,7 @@ Con $x=\{0,1,2,3,4\}$, $y=\{2.0,2.7,4.8,8.9,16.0\}$:
 \item Calcule $S(0.5)$ y $S(1.8)$.
 \end{enumerate}
 \end{enumerate}
-\end{Ejer}
+\end{Ejem}
 
 %<<==>><<==>><<==>><<==>><<==>><<==>>
 \subsection{Implementaciones Computacionales}
@@ -6846,357 +7249,656 @@ dfD <- format_diff_table(xD, TD, "backward")
 \end{verbatim}
 
 
-%===========================================
-\section{Introducción al uso de R}
-%===========================================
+\section{Soluci\'on num\'erica de Ecuaciones Diferenciales}
+
+Muchas ecuaciones diferenciales ordinarias (EDO) que aparecen en ingeniería, física, química, biología, economía y otras ciencias no tienen solución analítica cerrada. En tales casos recurrimos a \textbf{métodos numéricos} para aproximar la solución con una precisión controlada.
+
+Consideraremos problemas de valor inicial (PVI) de la forma
+\[
+y' = f(t,y), \qquad y(t_0) = y_0.
+\]
+
+La idea general es aproximar la solución $y(t)$ en un conjunto discreto de puntos
+\[
+t_n = t_0 + n h, \qquad n = 0, 1, 2, \dots, N,
+\]
+donde $h>0$ es el \textbf{tamaño de paso}, y construir una sucesión $\{y_n\}$ que aproxime
+\[
+y_n \approx y(t_n).
+\]
+
+Un $h$ más pequeño suele producir mayor precisión pero requiere más cómputo; un $h$ demasiado grande puede llevar a errores grandes o incluso inestabilidades numéricas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Método de Euler (explícito)}
 
 
-%-------------------------------------------
-\subsection{Sesiones en RStudio}
-%-------------------------------------------
 
+Partimos del PVI
+\[
+y' = f(t,y), \qquad y(t_0) = y_0.
+\]
 
-Al utilizar R, existen varios entornos que facilitan la gestión y ejecución de rutinas,  \textit{archivos con extensión .R}, el más popular es \textit{RStudio} o bien directamente desde la terminal o ejecutando simplemente \textit{R}, la ventaja de \textit{RStudio} es que permite que en una pantalla podamos visualizar: Consola (lugar donde se ejecutan los comandos directamente), History (el histórico de las variables y funciones definidas mismo que puede guardarse para ser invocado posteriormente), Plots (ventana en la que se muestran los gráficos generados), Help (la ayuda sobre comandos, funciones, sintaxis en R), Files (lugar donde se manejan los archivos, es decir leer, guardar, mover o renombrar archivos), y Packages (espacio para instalar o cargar paquetes de manera gráfica), todo esto para facilitar el manejo y ejecución de rutinas compatibles con R. Por otra parte \textbf{Workspace} es un entorno en el que se incluyen todos los objetos definidos,  al final de una sesión de R,  este entorno puede guardarse una imagen del mismo para ser cargada posteriormente. \bigskip
+La derivada se interpreta como razón de cambio:
+\[
+y'(t) \approx \frac{y(t+h)-y(t)}{h}.
+\]
 
-
-Durante el uso de R en ocasiones se requiere limpiar la consola, para esto al presionar \textbf{Ctrl+L}.  
-
-
-%-------------------------------------------
-\subsection{Uso de R}
-%-------------------------------------------
-
-\begin{itemize}
-\item \textbf{Constantes}: $\pi$, $exp(1)$
-
-\item Las constantes pueden ser de tipo \textit{integer},  \textit{double} o \textit{complex}, el tipo de constante se puede consultar con la función \textbf{typeof()}
-
-\begin{verbatim}
-> typeof('mi constante')
-[1] "character"
-\end{verbatim}
-
-\item Operadores: $<,>,>=,>=,!=$ ,$\!$ (Not),  $\|$ (OR), $\&$ (And),  $==$ (comparar)
-
-\item Operadores aritméticos: $+$, $-$, $*$, \verb|^| potencia,  \verb|%%| resto de la división entera,  \verb|%/%| división entera.
-
-\item Logaritmos y exponenciales: \verb|log| logaritmo natural,  \verb|log(x,b)| ($log_{b}x$) y \verb|exp(x)| ($e^x$).
-
-\item Funciones trigonométricas\verb|cos(x)|,\verb|sin(x)|, \verb|tan(x)|, \verb|acos(x)|, \verb|asin(x)|, \verb|atan(x)|.
-
-\item Funciones misceláneas \verb|abs(x)|,  \verb|sqrt(x)|,  \verb|floor(x)|,  \verb|ceiling(x)|, \verb|max(x)|,  \verb|sign(x)|.
-
-\item Comando \verb|options(digits=k)|:
-
-\begin{verbatim}
-> 1/3.0
-[1] 0.3333333
-> options(digits=3)
-> 1/3
-[1] 0.333
-> 1/17.0
-[1] 0.0588
-> options(digits=3)
-> 1/17.0
-[1] 0.0588
-> options(digits=5)
-> 1/17.0
-[1] 0.058824
-> options(digits=9)
-> 1/17.0
-[1] 0.0588235294
-\end{verbatim}
-
-\item Comando \verb|round(x,n)| redondea $x$ a $n$ decimales, el valor por defecto es $n=6$.
-
-\item Comando \verb|cat('caracter1','caracter2')| concatena dos cadenas o valores y el resultado lo convierte a un objeto tipo \textit{string}.
-
-\end{itemize}
-
-%-------------------------------------------
-\subsection{Funciones}
-%-------------------------------------------
-
-\begin{verbatim}
-nombrefun = function(a1,a2,...,an) {
-# código ...
-instruccion-1
-instruccion-2
-# ...
-return( ... ) #valor que retorna (o también la última instrucción, si ésta retorna algo)
+Aproximando $y'(t_n)$ por $f(t_n,y_n)$, se obtiene
+\[
+\frac{y_{n+1} - y_n}{h} \approx f(t_n,y_n),
+\]
+es decir,
+\[
+\boxed{
+y_{n+1} = y_n + h\,f(t_n,y_n)
 }
+\]
+
+Este es el \textbf{método de Euler explícito}.
+
+\textbf{Ejemplo 1 (Euler): cálculo a mano}
+
+Resolver numéricamente el PVI
+\[
+y' = y - t^2 + 1,\qquad y(0) = 0.5,
+\]
+en el intervalo $[0,1]$ con tamaño de paso $h = 0.2$.
+
+Definimos
+\[
+f(t,y) = y - t^2 + 1.
+\]
+
+Los puntos de malla son:
+\[
+t_0 = 0.0,\quad t_1 = 0.2,\quad t_2 = 0.4,\quad t_3 = 0.6,\quad t_4 = 0.8,\quad t_5 = 1.0.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+t_0 = 0,\qquad y_0 = 0.5.
+\]
+
+\paragraph{Paso 1: de $t_0=0$ a $t_1=0.2$.}
+\[
+f(t_0,y_0) = f(0,0.5) = 0.5 - 0^2 + 1 = 1.5.
+\]
+\[
+y_1 = y_0 + h f(t_0,y_0) = 0.5 + 0.2(1.5) = 0.5 + 0.3 = 0.8.
+\]
+
+\paragraph{Paso 2: de $t_1=0.2$ a $t_2=0.4$.}
+\[
+f(t_1,y_1) = f(0.2,0.8) = 0.8 - 0.2^2 + 1 = 0.8 - 0.04 + 1 = 1.76.
+\]
+\[
+y_2 = y_1 + 0.2 f(t_1,y_1) = 0.8 + 0.2(1.76) = 0.8 + 0.352 = 1.152.
+\]
+
+\paragraph{Paso 3: de $t_2=0.4$ a $t_3=0.6$.}
+\[
+f(t_2,y_2) = f(0.4,1.152) = 1.152 - 0.4^2 + 1 = 1.152 - 0.16 + 1 = 1.992.
+\]
+\[
+y_3 = 1.152 + 0.2(1.992) = 1.152 + 0.3984 = 1.5504.
+\]
+
+\paragraph{Paso 4: de $t_3=0.6$ a $t_4=0.8$.}
+\[
+f(t_3,y_3) = f(0.6,1.5504) = 1.5504 - 0.6^2 + 1 = 1.5504 - 0.36 + 1 = 2.1904.
+\]
+\[
+y_4 = 1.5504 + 0.2(2.1904) = 1.5504 + 0.43808 = 1.98848.
+\]
+
+\paragraph{Paso 5: de $t_4=0.8$ a $t_5=1.0$.}
+\[
+f(t_4,y_4) = f(0.8,1.98848) = 1.98848 - 0.8^2 + 1 = 1.98848 - 0.64 + 1 = 2.34848.
+\]
+\[
+y_5 = 1.98848 + 0.2(2.34848) = 1.98848 + 0.469696 = 2.458176.
+\]
+
+\paragraph{Tabla resumen (Euler).}
+\[
+\begin{array}{c|c|c|c}
+n & t_n & f(t_n,y_n) & y_n \\ \hline
+0 & 0.0 & 1.50000 & 0.50000 \\
+1 & 0.2 & 1.76000 & 0.80000 \\
+2 & 0.4 & 1.99200 & 1.15200 \\
+3 & 0.6 & 2.19040 & 1.55040 \\
+4 & 0.8 & 2.34848 & 1.98848 \\
+5 & 1.0 &   -     & 2.45818 \\
+\end{array}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler, versión manual)}
+
+\begin{verbatim}
+# Método de Euler para y' = y - t^2 + 1, y(0) = 0.5
+
+f <- function(t, y) {
+  y - t^2 + 1
+}
+
+t0 <- 0
+y0 <- 0.5
+T  <- 1
+h  <- 0.2
+
+t_vals <- seq(t0, T, by = h)
+N <- length(t_vals)
+
+y_vals <- numeric(N)
+y_vals[1] <- y0  # condición inicial
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  y_vals[n+1] <- y_n + h * f(t_n, y_n)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
 \end{verbatim}
 
-\subsection{Clase en Laboratorio de Cómputo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler, versión automatizada)}
 
-\begin{Ejer}
+\begin{verbatim}
+# Implementación genérica del método de Euler
+
+euler <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    y_vals[n+1] <- y_vals[n] + h * f(t_vals[n], y_vals[n])
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso:
+f <- function(t, y) y - t^2 + 1
+sol_euler <- euler(f = f, t0 = 0, y0 = 0.5, T = 1, h = 0.2)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Método de Euler Mejorado (Heun)}
+
+
+El método de Euler mejorado (Heun) utiliza dos evaluaciones de $f$ por paso.
+
+\[
+k_1 = f(t_n, y_n),
+\]
+\[
+\tilde{y}_{n+1} = y_n + h k_1,
+\]
+\[
+k_2 = f(t_n + h, \tilde{y}_{n+1}),
+\]
+\[
+\boxed{
+y_{n+1} = y_n + \frac{h}{2}(k_1 + k_2)
+}
+\]
+
+Este método es de orden 2 en el error global, por lo que proporciona mayor precisión que Euler con el mismo tamaño de paso.
+
+\textbf{Ejemplo 2 (Heun): cálculo a mano}
+
+Resolvámos el PVI
+\[
+y' = y + t, \qquad y(0) = 1,
+\]
+en el intervalo $[0,0.3]$ con $h=0.1$.
+
+Definimos
+\[
+f(t,y) = y + t.
+\]
+
+Los puntos de malla:
+\[
+t_0 = 0.0,\quad t_1 = 0.1,\quad t_2 = 0.2,\quad t_3 = 0.3.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+t_0 = 0,\qquad y_0 = 1.
+\]
+
+\paragraph{Paso 1: de $t_0=0$ a $t_1=0.1$.}
+\[
+k_1 = f(0, 1) = 1 + 0 = 1.
+\]
+\[
+\tilde{y}_1 = y_0 + h k_1 = 1 + 0.1(1) = 1.1.
+\]
+\[
+k_2 = f(0.1, 1.1) = 1.1 + 0.1 = 1.2.
+\]
+\[
+y_1 = y_0 + \frac{h}{2}(k_1 + k_2)
+    = 1 + 0.05(1 + 1.2)
+    = 1 + 0.05(2.2)
+    = 1.11.
+\]
+
+Los pasos siguientes se calculan de forma análoga.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Heun, versión manual)}
+
+\begin{verbatim}
+# Método de Heun para y' = y + t, y(0) = 1
+
+f <- function(t, y) {
+  y + t
+}
+
+t0 <- 0
+y0 <- 1
+T  <- 0.3
+h  <- 0.1
+
+t_vals <- seq(t0, T, by = h)
+N <- length(t_vals)
+y_vals <- numeric(N)
+y_vals[1] <- y0
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  
+  k1 <- f(t_n, y_n)
+  y_tilde <- y_n + h * k1
+  k2 <- f(t_n + h, y_tilde)
+  
+  y_vals[n+1] <- y_n + (h/2) * (k1 + k2)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (Heun)}
+
+\begin{verbatim}
+# Implementación genérica del método de Heun
+
+heun <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_n <- t_vals[n]
+    y_n <- y_vals[n]
+    
+    k1 <- f(t_n, y_n)
+    y_tilde <- y_n + h * k1
+    k2 <- f(t_n + h, y_tilde)
+    
+    y_vals[n+1] <- y_n + (h/2) * (k1 + k2)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso
+f <- function(t, y) y + t
+sol_heun <- heun(f = f, t0 = 0, y0 = 1, T = 0.3, h = 0.1)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Método de Runge--Kutta de cuarto orden (RK4)}
+
+
+El método de Runge--Kutta de cuarto orden (RK4) calcula cuatro pendientes:
+
+\[
+\begin{aligned}
+k_1 &= f(t_n, y_n),\\
+k_2 &= f\!\left(t_n+\frac{h}{2},\, y_n+\frac{h}{2}k_1\right),\\
+k_3 &= f\!\left(t_n+\frac{h}{2},\, y_n+\frac{h}{2}k_2\right),\\
+k_4 &= f\!\left(t_n+h,\, y_n+h k_3\right).
+\end{aligned}
+\]
+
+La actualización es
+\[
+\boxed{
+y_{n+1} = y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+}
+\]
+
+Este método es de orden 4, con error global $O(h^4)$.
+
+\textbf{Ejemplo 3 (RK4): cálculo a mano}
+
+Consideremos
+\[
+y' = -3y, \qquad y(0) = 5,
+\]
+con $h=0.2$. El primer paso (de $t_0=0$ a $t_1=0.2$) se calcula como:
+
+\[
+k_1 = f(0,5) = -3\cdot 5 = -15,
+\]
+\[
+k_2 = f\left(0.1, 5 + \frac{0.2}{2}(-15)\right)
+    = f(0.1, 3.5) = -3\cdot 3.5 = -10.5,
+\]
+\[
+k_3 = f\left(0.1, 5 + \frac{0.2}{2}(-10.5)\right)
+    = f(0.1,3.95) = -3\cdot 3.95 = -11.85,
+\]
+\[
+k_4 = f\left(0.2, 5 + 0.2(-11.85)\right)
+    = f(0.2,2.63) = -3\cdot 2.63 = -7.89.
+\]
+
+\[
+y_1 = 5 + \frac{0.2}{6}\bigl(k_1 + 2k_2 + 2k_3 + k_4\bigr).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (RK4 manual)}
+
+\begin{verbatim}
+# Método RK4 para y' = -3y, y(0) = 5
+
+f <- function(t,y) {
+  -3*y
+}
+
+t0 <- 0
+y0 <- 5
+T  <- 0.6
+h  <- 0.2
+
+t_vals <- seq(t0, T, by=h)
+N <- length(t_vals)
+y_vals <- numeric(N)
+y_vals[1] <- y0
+
+for (n in 1:(N-1)) {
+  t_n <- t_vals[n]
+  y_n <- y_vals[n]
+  
+  k1 <- f(t_n, y_n)
+  k2 <- f(t_n + h/2, y_n + h*k1/2)
+  k3 <- f(t_n + h/2, y_n + h*k2/2)
+  k4 <- f(t_n + h,   y_n + h*k3)
+  
+  y_vals[n+1] <- y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (RK4)}
+
+\begin{verbatim}
+# Implementación genérica del método RK4
+
+rk4 <- function(f, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by=h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_n <- t_vals[n]
+    y_n <- y_vals[n]
+    
+    k1 <- f(t_n, y_n)
+    k2 <- f(t_n + h/2, y_n + h*k1/2)
+    k3 <- f(t_n + h/2, y_n + h*k2/2)
+    k4 <- f(t_n + h,   y_n + h*k3)
+    
+    y_vals[n+1] <- y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo de uso
+f <- function(t, y) -3*y
+sol_rk4 <- rk4(f = f, t0 = 0, y0 = 5, T = 0.6, h = 0.2)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Método de Euler implícito}
+
+
+Para el PVI
+\[
+y' = f(t,y), \qquad y(t_0) = y_0,
+\]
+el método de Euler implícito define
+\[
+\boxed{
+y_{n+1} = y_n + h\,f(t_{n+1}, y_{n+1}).
+}
+\]
+
+Aquí $y_{n+1}$ aparece en ambos lados. En general, para $f$ no lineal en $y$, se debe resolver en cada paso la ecuación
+\[
+G(y_{n+1}) := y_{n+1} - h\,f(t_{n+1}, y_{n+1}) - y_n = 0
+\]
+mediante un método numérico (por ejemplo, Newton).
+
+\textbf{Caso lineal: $f(t,y) = a(t)y + b(t)$}
+
+Si
+\[
+f(t,y) = a(t)y + b(t),
+\]
+entonces
+\[
+y_{n+1} = y_n + h\,[a(t_{n+1}) y_{n+1} + b(t_{n+1})].
+\]
+Reordenando:
+\[
+y_{n+1}\bigl(1 - h a(t_{n+1})\bigr) = y_n + h b(t_{n+1}),
+\]
+\[
+\boxed{
+y_{n+1} = \frac{y_n + h b(t_{n+1})}{1 - h a(t_{n+1})}.
+}
+\]
+
+\textbf{Ejemplo 4 (Euler implícito): cálculo a mano}
+
+Consideremos la ecuación rígida
+\[
+y' = -50y + 10,\qquad y(0)=0,
+\]
+en el intervalo $[0,0.2]$ con $h=0.05$.
+
+Aquí
+\[
+a(t) = -50,\qquad b(t) = 10.
+\]
+
+Entonces
+\[
+y_{n+1} = \frac{y_n + h\cdot 10}{1 - h(-50)}
+= \frac{y_n + 0.5}{1 + 2.5}
+= \frac{y_n + 0.5}{3.5}.
+\]
+
+Puntos de malla:
+\[
+t_0 = 0.00,\quad t_1 = 0.05,\quad t_2 = 0.10,\quad t_3 = 0.15,\quad t_4 = 0.20.
+\]
+
+\paragraph{Paso 0. Condición inicial.}
+\[
+y_0 = 0.
+\]
+
+\paragraph{Paso 1.}
+\[
+y_1 = \frac{0 + 0.5}{3.5} \approx 0.142857.
+\]
+
+\paragraph{Paso 2.}
+\[
+y_2 = \frac{y_1 + 0.5}{3.5}
+    = \frac{0.142857 + 0.5}{3.5}
+    \approx 0.183673.
+\]
+
+\paragraph{Paso 3.}
+\[
+y_3 = \frac{0.183673 + 0.5}{3.5}
+    \approx 0.195335.
+\]
+
+\paragraph{Paso 4.}
+\[
+y_4 = \frac{0.195335 + 0.5}{3.5}
+    \approx 0.198667.
+\]
+
+\paragraph{Tabla resumen (Euler implícito).}
+\[
+\begin{array}{c|c|c}
+n & t_n & y_n \\ \hline
+0 & 0.00 & 0.000000 \\
+1 & 0.05 & 0.142857 \\
+2 & 0.10 & 0.183673 \\
+3 & 0.15 & 0.195335 \\
+4 & 0.20 & 0.198667 \\
+\end{array}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación en R (Euler implícito, versión manual)}
+
+\begin{verbatim}
+# Euler implícito para y' = -50y + 10, y(0) = 0, h = 0.05
+
+h <- 0.05
+t_vals <- seq(0, 0.2, by = h)
+N <- length(t_vals)
+
+y_vals <- numeric(N)
+y_vals[1] <- 0  # y0
+
+for (n in 1:(N-1)) {
+  y_vals[n+1] <- (y_vals[n] + 0.5) / 3.5
+}
+
+data.frame(n = 0:(N-1),
+           t = t_vals,
+           y_aprox = y_vals)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Implementación automatizada en R (Euler implícito lineal)}
+
+\begin{verbatim}
+# Euler implícito para y' = a(t)*y + b(t)
+
+euler_imp_lineal <- function(a_fun, b_fun, t0, y0, T, h) {
+  t_vals <- seq(t0, T, by = h)
+  N <- length(t_vals)
+  y_vals <- numeric(N)
+  y_vals[1] <- y0
+  
+  for (n in 1:(N-1)) {
+    t_next <- t_vals[n+1]
+    a_next <- a_fun(t_next)
+    b_next <- b_fun(t_next)
+    
+    # y_{n+1} = (y_n + h*b_next) / (1 - h*a_next)
+    y_vals[n+1] <- (y_vals[n] + h * b_next) / (1 - h * a_next)
+  }
+  
+  data.frame(t = t_vals, y = y_vals)
+}
+
+# Ejemplo: y' = -50y + 10
+a_fun <- function(t) -50
+b_fun <- function(t) 10
+
+sol_imp <- euler_imp_lineal(a_fun = a_fun,
+                            b_fun = b_fun,
+                            t0 = 0, y0 = 0,
+                            T = 0.2, h = 0.05)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ejercicios propuestos}
+
+
+Resuelva numéricamente con Euler, construyendo la tabla de iteraciones y, si es posible, comparando con la solución exacta.
+
 \begin{enumerate}
-\item Generar un archivo tipo Rmd, personalizar de manera básica
-\item Realizar las siguientes operaciones
-
-\begin{verbatim}
-x = c(1.1, 1.2, 1.3, 1.4, 1.5)
-x = 1:5 
-x = seq(1,3, by =0.5) 
-x = seq(5,1, by =-1) 
-x = rep(1, times = 5) 
-length(x) 
-rep(x, 2) 
-set.seed(123) 
-x = sample(1:10, 5) 
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-x = 1:5 
-y = rep(0.5, times = length(x)) 
-x+y
-x*y
-x^y
-1/(1:5)
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-x = 1:5
-2*x
-1/x^2
-x+3
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-A = matrix(rep(0,9), nrow = 3, ncol= 3); 
-B = matrix(c(1,2,3,5,6,7), nrow = 2, byrow=T); 
-x = 1:3; y = seq(1,2, by = 0.5); z = rep(8, 3) ; x; y; z
-C = matrix(c(x,y,z), nrow = length(x)); C # ncol no es necesario declararlo
-xi = seq(1,2, by 0.1); yi = seq(5,10, by = 0.5)
-rbind(xi,yi)
-cbind(xi,yi)
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A = diag(c(3,1,3)); 
-diag(A)
-n = 3
-I = diag(1, n);
-D = diag(diag(A))
-J = diag(1, 3, 4);
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-B = matrix(c( 1, 1 ,8,
-              2, 0, 8,
-              3, 2, 8), nrow = 3, byrow=TRUE); B
-
-B[2, 3]
-B[3,]
-B[,2]
-B[1:2,c(2,3)]
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-A = matrix(c( 1, 1 ,8,
-              2, 0, 8,
-              3, 2, 8), nrow = 3, byrow=TRUE); A
-A[c(1,3), ] = A[c(3,1), ] 
-A[2, ] = A[2, ] - A[2,1]/A[1,1]*A[1, ]
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-x = c(2, -6, 7, 8, 0.1,-8.5, 3, -7, 3)
-which.max(x)
-which.max(abs(x)) 
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A = matrix(1:9, nrow=3); A # Por columnas
-B = matrix(rep(1,9), nrow=3); B
-
-A+B
-A*B
-A%*%B
-A^2
-A-2
-3*A
-t(A)
-det(A)
-C <- A-diag(1,3); det(C)
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-
-notas = matrix(c(80, 40, 70, 30, 90, 67, 90,
-                 40, 40, 30, 90, 100, 67, 90,
-                 100,100,100, 100, 70, 76, 95), nrow=3, byrow=TRUE); notas
-# crear columa con la suma de los renglones
-#agregar la columna al final de la matriz
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-u=c(1,2)
-v=c(-2,3)
-w=c(3,-5)
-norma=function(u){sqrt(sum(u^2))}
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-t(u-2*v)%*%w
-norma(u+v+w)
-norma(u)+norma(v)+norma(w)
-t(u-v)%*%(v-w)
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-u=c(8,3);a=c(4,-5)
-ProyOrto=function(u,a){(t(u)%*%a)*a/norma(a)}
-ProyOrto(u,a)
-ProyOrto(c(2,1,-4),c(-5,3,11))
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A=matrix(c(1,0,0,1/3,4,0,1/2,3,2),ncol=3,byrow=TRUE)
-B=matrix(c(9,0,0,0,1,8,0,0,0,-2,7,0,0,0,-3,6),ncol=4)
-solve(A)  # Inversa de A
-det(A)
-solve(B);det(B)
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A=matrix(c(4,4.001,4.001,4.002),ncol=2)
-B=A;B[2,2]=4.002001
-solve(A)
-solve(B)
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-X=matrix(runif(12),ncol=3)
-u=runif(4)
-A=t(X)%*%X
-B=u%*%t(u)
-DA=eigen(A)$values
-TA=eigen(A)$vectors
-t(TA)%*%TA
-prod(DA);det(A)
-qr(A)$rank  # Rango de una matriz
-sum(diag(DA)!=0)
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-DB=eigen(B)$values
-TB=eigen(B)$vectors
-t(TB)%*%TB
-prod(DB);det(B)
-qr(B)$rank
-sum(diag(DB)!=0)
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A=matrix(c(3,2,0,2,3,0,0,0,3),ncol=3)
-eig_A=eigen(A)
-eig_A$values
-eigen(A%*%A)$values
-eigen(solve(A))$values
-eig_A$vectors%*%diag(eigen(A%*%A)$values)%*%t(eig_A$vectors);A%*%A
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A=matrix(c(6,10,1,10,6,5),ncol=2)
-ginvMP=function(A){
-        res=svd(A)
-        res$v%*%diag(1/res$d)%*%t(res$u)}
-B=ginvMP(A)
-A%*%B%*%A
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-es.positiva=function(A){
- if (ncol(A)!=nrow(A)) stop("Esto se hace para matrices cuadradas")
- v=eigen(A)$values
- tol=ncol(A)*max(abs(v))* .Machine$double.eps
- if (sum(v>tol)==length(v)) return(TRUE) else return(FALSE)}
- 
-A=matrix(c(2,-3/2,-3/2,3),ncol=2);es.positiva(A)
-A=matrix(c(1,0.8,0.5,0.8,0.6,0.4,0.5,0.4,0.25),ncol=3);es.positiva(A)
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-matrixA=function(m){
-A=matrix(c(1,-2,-2,m),ncol=2)
-return(A)}
-
-dmatrixA=function(m){det(matrixA(m))}
-
-m=seq(-4,10,len=101)
-plot(m,mapply(dmatrixA,m=m),type="l") # Dibuja el determinante en funci?n de m
-abline(h=0)
-A=matrixA(-2)
-print(z<-eigen(A))
-
-
-\end{verbatim}
-
-\item 
-\begin{verbatim}
-
-A=cbind(c(3,1,0),c(1,3,0),c(0,0,3))
-B=matrix(0,ncol=3,nrow=3);B[3,3]=2
-eigen(A)
-eigen(B)
-
-eigen(A+B) # Trampilla
-
-\end{verbatim}
-
+  \item $y' = y - t$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 3t^2 - y$, \quad $y(0) = 2$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = \sin(t) - y^2$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t y$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = e^{-t} - y$, \quad $y(0) = 3$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y(1-y)$ (modelo logístico), \quad $y(0) = 0.2$, \quad $h = 0.1$, \quad intervalo $[0,2]$.
+  \item $y' = 4y + t$, \quad $y(0) = 1$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = \cos(t) + y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = -5y$, \quad $y(0) = 2$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = t^3 - y^2$, \quad $y(0) = 1$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
 \end{enumerate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\end{Ejer}
+Aplique el método de Euler mejorado (Heun), mostrando los valores de $k_1$ y $k_2$ en cada paso.
+
+\begin{enumerate}
+  \item $y' = y + t^2$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = \cos(t) - y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t - y^2$, \quad $y(0) = 0.5$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = 2y + e^t$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y(1+t)$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = -3y + t$, \quad $y(0) = 2$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = t^2\sqrt{y}$ (suponer $y\ge 0$), \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y^2 - y$, \quad $y(0) = 0.1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 1 - t y$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 5 - 4y$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Use el método de Runge--Kutta de cuarto orden, calculando explícitamente $k_1, k_2, k_3, k_4$.
+
+\begin{enumerate}
+  \item $y' = y - t^2 + 1$, \quad $y(0) = 0.5$, \quad $h = 0.2$, \quad intervalo $[0,1]$.
+  \item $y' = -2y + \sin(t)$, \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y^2 + t$, \quad $y(0) = 0$, \quad $h = 0.05$, \quad intervalo $[0,0.5]$.
+  \item $y' = e^{-t} - y$, \quad $y(0) = 2$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = 3y(1-y)$ (modelo logístico), \quad $y(0) = 0.1$, \quad $h = 0.1$, \quad intervalo $[0,2]$.
+  \item $y' = t\cos(y)$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = -5y + 5$, \quad $y(0) = 0$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = \sqrt{t + y}$ (suponer $t+y \ge 0$), \quad $y(0) = 1$, \quad $h = 0.1$, \quad intervalo $[0,1]$.
+  \item $y' = y\ln(t+1)$, \quad $y(0) = 1$, \quad $h = 0.2$, \quad intervalo $[0,2]$.
+  \item $y' = -50y + \cos(t)$, \quad $y(0) = 0$, \quad $h = 0.02$, \quad intervalo $[0,0.4]$.
+\end{enumerate}
 
 
 \section{Tareas del curso}
@@ -7776,524 +8478,10 @@ Genera un archivo tipo Rmd con las prácticas realizadas en el laboratorio, en l
 \begin{Ejer}
 
 Revisa en R los códigos para resolver sistemas de ecuaciones lineales, esto en un archivo tipo Rmd, mismo que deberás de entregar.
-\end{Ejer}
 
 
-\textbf{Instrucciones:}
-\begin{enumerate}
-    \item Para cada función \(f(x)\), encuentre un intervalo \([a,b]\) tal que \(f(a)\cdot f(b) < 0\).
-    \item Realice al menos 8 iteraciones del método de bisección.
-    \item Registre los valores \(a_k, b_k, c_k, f(a_k), f(b_k), f(c_k), \text{signo}(f(a_k)f(c_k))\) y el error \(|b_k-a_k|\).
-    \item Grafique la función y los intervalos de reducción en cada paso.
-\end{enumerate}
-
-
-\begin{Ejer} Resuelve los siguientes ejercicioes aplicando el m\'etodo de la bisecci\'on
-\begin{enumerate}
-\begin{multicols}{2}
-\item $f(x) = x^2 - 5$ en $[2,3]$
-\item $f(x) = x^3 - 4x + 1$ en $[0,1]$
-\item $f(x) = x^4 - 8x + 2$ en $[0,3]$
-\item $f(x) = e^{-x} - \frac{x}{2}$ en $[0,2]$
-\item $f(x) = \cos(x) - x^2$ en $[0,1]$
-\item $f(x)=3x^{2}-7x-2$. $[a,b]=[-1,\,0]$.
-\item $f(x)=-4x^{2}+5x+6$.$[a,b]=[-1,\,0]$.
-\item $f(x)=2x^{2}+3x-5$. $[a,b]=[0,\,2]$.
-\item $f(x)=x^{3}-5x+1$. $[a,b]=[0,\,1]$.
-\item $f(x)=x^{4}-6x^{3}+5x^{2}+8x-4$.  $[a,b]=[0,\,1]$.
-\item $f(x)=-2x^{4}+4x^{3}+6x^{2}-3x+2$. $[a,b]=[-2,\,-1]$.
-\item $f(x)=2x^{4}-x^{3}-7x^{2}+4x+3$.  $[a,b]=[-1,\,0]$.
-\item $f(x)=x^{4}+2x^{3}-10x^{2}-x+5$.  $[a,b]=[0,\,1]$.
-\item $f(x)=5\,e^{0.6x-1}-3$.  $[a,b]=[0,\,2]$.
-\item $f(x)=7-4\,e^{-0.9x+0.2}$.  $[a,b]=[-2,\,0]$.
-\item $f(x)=\sin(2x)-\dfrac{x}{2}$. $[a,b]=[1,\,2]$.
-\item $f(x)=(2x+1.4)\,\cos\!\bigl(3x+\tfrac{\pi}{4}\bigr)$. $[a,b]=[0.1,\,0.6]$.
-\item $f(x)=(-1.5x+0.9)\,\sin\!\bigl(4x-\tfrac{\pi}{6}\bigr)$. $[a,b]=[0.2,\,0.9]$.
-\end{multicols}
-\end{enumerate}
-\end{Ejer}
-\noindent\textbf{Formato sugerido de tabla:}
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{c|c|c|c|c|c|c|c|c|}
-\hline
-$k$ & $a$ & $b$ & $c$ & $f(a)$ & $f(b)$ & $f(c)$ & $signo(f(a)*f(c))$ & $error$ \\
-\hline
-1 &     &     &     &     &     &     &     \\
-2 &     &     &     &     &     &     &     \\
-3 &     &     &     &     &     &     &     \\
-4 &     &     &     &     &     &     &     \\
-5 &     &     &     &     &     &     &     \\
-6 &     &     &     &     &     &     &     \\
-7 &     &     &     &     &     &     &     \\
-8 &     &     &     &     &     &     &     \\
-9 &     &     &     &     &     &     &     \\
-10 &     &     &     &     &     &     &     \\
-... &  &  &  &  &  &  &  \\
-\hline
-\end{tabular}
-\caption{Iteraciones del método de bisección para $f(x)$.}
-\end{table}
-
-
-\textbf{Instrucciones:}
-\begin{enumerate}
-    \item Para cada función \(f(x)\), elija dos puntos iniciales \(x_0, x_1\) cercanos a la raíz.
-    \item Aplique iterativamente:
-    \[
-    x_{k+1} = x_k - f(x_k)\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}
-    \]
-    \item Realice al menos 6 iteraciones o hasta alcanzar una tolerancia de \(10^{-5}\).
-    \item Compare el número de iteraciones con el método de bisección.
-    \item Grafique las secantes de cada iteración y el punto de intersección con el eje \(x\).
-\end{enumerate}
-
-\begin{Ejer}
-Resuelva los siguientes ejercicios aplicando el m\'etodo de la secante:
-
-\begin{enumerate}
-\begin{multicols}{2}
-\item \(f(x) = x^2 - 2x - 3\), con \(x_0=0\), $x_1=3$
-\item $f(x)=x^{4}-10x^{2}+9$, $x_0=0$, $x_1=2$
-\item $f(x)=2x^2 - 5*x + 3$, $x_0=-1$, $x_1=2$
-\item $f(x)=-3x^2+4*x + 2$, $x_0=-1$, $x_1=3$
-\item $f(x) = x^3 +4x^2 - x - 1$, con $x_0=-3$, $x_1=1.5$
-\item $f(x) = x^4-5x^3 +6x^2 +4x - 8$, con $x_0=0$, $x_1=3$
-\item $f(x) = x^4 - 5$, con $x_0=1$, $x_1=2$
-\item $f(x) = -2x^4+3x^3+7x^2-5x+1$, con $x_0=2$, $x_1=4$
-\item $f(x) = 4e^{-0.8x-0.5} - 7$, con $x_0=0$, $x_1=1.5$
-\item $f(x) = -3e^{-1.2x+0.4} +2$, con $x_0=0$, $x_1=1.1$
-\item $f(x) = \sin(x) - \frac{x}{3}$, con $x_0=0$, $x_1=1$
-\item $f(x) = (3x+3.1)\cos(2x+\pi/6)$, con $x_0=0.3$, $x_1=0.8$
-\item $f(x) = (-2x+1.1)\sin(5x-\pi/3)$, con $x_0=0.05$, $x_1=0.35$
-\end{multicols}
-\end{enumerate}
 
 \end{Ejer}
-
-\noindent\textbf{Formato sugerido de tabla:}
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{c|c|c|c|c|c|}
-\hline
-$k$ & $x_{k-1}$ & $x_k$ & $f(x_k)$ & $x_{k+1}$ & $e_{k}=\|x_{k+1}-x_{k}\|$\\
-\hline
-1 &     &     &     &     \\
-2 &     &     &     &     \\
-3 &     &     &     &     \\
-4 &     &     &     &     \\
-5 &     &     &     &     \\
-6 &     &     &     &     \\
-7 &     &     &     &     \\
-8 &     &     &     &     \\
-9 &     &     &     &     \\
-10 &     &     &     &     \\
-... &  &  &  &  \\
-\hline
-\end{tabular}
-\caption{Iteraciones del método de la secante para $f(x)$.}
-\end{table}
-
-
-\begin{Ejer}
-Resuelve los siguientes ejercicios aplicando el \textbf{método de Newton}.
-Para cada función \( f(x) \):
-\begin{enumerate}
-    \item Verifica que exista un intervalo \([a,b]\) donde \(f(a)\cdot f(b) < 0\).
-    \item Realiza al menos 8 iteraciones del método.
-    \item Registra los valores \(x_k, f(x_k), f'(x_k)\) y el error \(|x_{k+1}-x_k|\).
-    \item Grafica la función y marca el punto donde converge la raíz.
-\end{enumerate}
-
-\begin{multicols}{2}
-\begin{enumerate}
-\item $f(x)=x^3-7x+6$, \quad $[a,b]=[0,1]$
-\item $f(x)=x^3+2x^2-5$, \quad $[a,b]=[1,2]$
-\item $f(x)=x^4-3x^3+2$, \quad $[a,b]=[0,1]$
-\item $f(x)=\sin(x)-\dfrac{x}{3}$, \quad $[a,b]=[0,2]$
-\item $f(x)=e^{-x}-x$, \quad $[a,b]=[0,1]$
-\item $f(x)=x^3-2x-5$, \quad $[a,b]=[2,3]$
-\item $f(x)=x^5-3x+1$, \quad $[a,b]=[0,1]$
-\item $f(x)=\cos(x)-2x$, \quad $[a,b]=[0,1]$
-\item $f(x)=\ln(x+2)+x-1$, \quad $[a,b]=[-1,0]$
-\item $f(x)=x\,e^{-x}-0.1$, \quad $[a,b]=[0,1]$
-\item $f(x)=x^3-4\sin(x)$, \quad $[a,b]=[1,2]$
-\item $f(x)=e^x-3x^2$, \quad $[a,b]=[0,1]$
-\item $f(x)=x^2-\cos(x)$, \quad $[a,b]=[0,1]$
-\item $f(x)=x^3+4x^2-10$, \quad $[a,b]=[1,2]$
-\item $f(x)=2x\,\sin(x)-1$, \quad $[a,b]=[0,1]$
-\end{enumerate}
-\end{multicols}
-\end{Ejer}
-
-\noindent\textbf{Formato sugerido de tabla para Newton:}
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{c|c|c|c|c|}
-\hline
-$k$ & $x_k$ & $f(x_k)$ & $f'(x_k)$ & $|x_{k+1}-x_k|$ \\
-\hline
-1 &     &     &     &     \\
-2 &     &     &     &     \\
-3 &     &     &     &     \\
-4 &     &     &     &     \\
-5 &     &     &     &     \\
-6 &     &     &     &     \\
-7 &     &     &     &     \\
-8 &     &     &     &     \\
-9 &     &     &     &     \\
-10 &    &     &     &     \\
-\hline
-\end{tabular}
-\caption{Iteraciones del método de Newton para $f(x)$.}
-\end{table}
-
-
-\begin{Ejer}
-Resuelve los siguientes ejercicios aplicando el \textbf{método del punto fijo}.
-
-\textbf{Instrucciones:}
-\begin{enumerate}
-    \item Reescriba la ecuación \(f(x)=0\) en forma \(x=g(x)\).
-    \item Verifique que la función \(g(x)\) cumpla la condición de convergencia local \(|g'(x)| < 1\) en el intervalo considerado.
-    \item Realice al menos 8 iteraciones partiendo de un valor inicial \(x_0\).
-    \item Registre los valores \(x_k, g(x_k), |x_{k+1}-x_k|\).
-    \item Grafique \(y=g(x)\) y \(y=x\) para visualizar el punto de intersección.
-\end{enumerate}
-
-\begin{multicols}{2}
-\begin{enumerate}
-\item $f(x)=\cos(x)-x$ \hfill Sugerencia: $g(x)=\cos(x)$, \quad $x_0=0.5$
-\item $f(x)=x^3+x-1$ \hfill Sugerencia: $g(x)=1-x^3$, \quad $x_0=0.6$
-\item $f(x)=e^{-x}-x$ \hfill Sugerencia: $g(x)=e^{-x}$, \quad $x_0=0.7$
-\item $f(x)=x^2-4x+1$ \hfill Sugerencia: $g(x)=\dfrac{x^2+1}{4}$, \quad $x_0=1$
-\item $f(x)=x^3-2x-5$ \hfill Sugerencia: $g(x)=\sqrt[3]{2x+5}$, \quad $x_0=2$
-\item $f(x)=x^2-e^{x}+2$ \hfill Sugerencia: $g(x)=\sqrt{e^x-2}$, \quad $x_0=0.5$
-\item $f(x)=\ln(x+1)+x-2$ \hfill Sugerencia: $g(x)=2-\ln(x+1)$, \quad $x_0=0.5$
-\item $f(x)=x^3-3x+1$ \hfill Sugerencia: $g(x)=\sqrt[3]{3x-1}$, \quad $x_0=0.8$
-\item $f(x)=x-\sin(x)-1$ \hfill Sugerencia: $g(x)=\sin(x)+1$, \quad $x_0=1$
-\item $f(x)=x^2-3$ \hfill Sugerencia: $g(x)=\dfrac{3}{x}$, \quad $x_0=1.5$
-\item $f(x)=2x-e^{-x}$ \hfill Sugerencia: $g(x)=\dfrac{e^{-x}}{2}$, \quad $x_0=0$
-\item $f(x)=x^3+4x^2-10$ \hfill Sugerencia: $g(x)=\sqrt{\dfrac{10-x^3}{4}}$, \quad $x_0=1.5$
-\item $f(x)=x^2-\cos(x)$ \hfill Sugerencia: $g(x)=\sqrt{\cos(x)}$, \quad $x_0=0.5$
-\item $f(x)=x-e^{-x^2}$ \hfill Sugerencia: $g(x)=e^{-x^2}$, \quad $x_0=0.5$
-\item $f(x)=x^3-2$ \hfill Sugerencia: $g(x)=\sqrt[3]{2}$, \quad $x_0=1$
-\end{enumerate}
-\end{multicols}
-\end{Ejer}
-
-\noindent\textbf{Formato sugerido de tabla para el método del punto fijo:}
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{c|c|c|c|}
-\hline
-$k$ & $x_k$ & $g(x_k)$ & $|x_{k+1}-x_k|$ \\
-\hline
-1 &     &     &     \\
-2 &     &     &     \\
-3 &     &     &     \\
-4 &     &     &     \\
-5 &     &     &     \\
-6 &     &     &     \\
-7 &     &     &     \\
-8 &     &     &     \\
-9 &     &     &     \\
-10 &    &     &     \\
-\hline
-\end{tabular}
-\caption{Iteraciones del método del punto fijo para $f(x)=0$.}
-\end{table}
-
-
-
-\begin{Ejer}
-\begin{enumerate}
-    \item Dado el conjunto de puntos
-    \begin{eqnarray*}
-    (0,1),\ (1,3),\ (2,11),
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Determine el polinomio interpolante mediante el \textbf{m\'etodo de Lagrange}.  
-        \item Verifique el resultado construyendo la \textbf{tabla de diferencias divididas} 
-              y aplicando el \textbf{m\'etodo de Newton}.  
-        \item Eval\'ue el polinomio en $x=1.5$ y compare con la funci\'on cuadr\'atica
-              ajustada visualmente a los puntos.
-    \end{enumerate}
-    \vspace{1em}
-
-    \item Con los puntos
-    \begin{eqnarray*}
-    (1,2),\ (2,5),\ (3,10),\ (4,17),
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Obtenga el polinomio interpolante de grado 3 usando el \textbf{m\'etodo de Newton}.  
-        \item Muestre la tabla completa de diferencias divididas.  
-        \item Eval\'ue el polinomio en $x=2.5$.  
-        \item Verifique el resultado calculando directamente $f(x)=x^2+1$ y compare.
-    \end{enumerate}
-    \vspace{1em}
-
-    \item Dados los puntos
-    \begin{eqnarray*}
-    (-1,4),\ (0,1),\ (2,3),
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Construya el polinomio de Lagrange.  
-        \item Expanda y simplifique el resultado hasta la forma general $P_2(x)=a_0+a_1x+a_2x^2.$
-        \item Verifique los valores de $P_2(-1)$, $P_2(0)$ y $P_2(2)$.
-    \end{enumerate}
-\end{enumerate}
-\end{Ejer}
-
-
-\begin{Ejer}
-
-\begin{enumerate}
-    \item Para la funci\'on tabulada
-    \begin{eqnarray*}
-    \begin{array}{c|ccccc}
-    x & 0 & 1 & 2 & 3 & 4\\ \hline
-    f(x) & 1 & 2 & 4 & 8 & 16
-    \end{array}
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Construya la \textbf{tabla de diferencias progresivas} $\Delta y_i$.  
-        \item Determine el polinomio interpolante con Newton hacia adelante.  
-        \item Calcule $f(2.5)$ y comp\'arelo con $2^{2.5}$.
-    \end{enumerate}
-    \vspace{1em}
-
-    \item Para los valores:
-    \begin{eqnarray*}
-    \begin{array}{c|cccc}
-    x & 1 & 2 & 3 & 4\\ \hline
-    f(x) & 1 & 8 & 27 & 64
-    \end{array}
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Construya la tabla de \textbf{diferencias regresivas} $\nabla y_i$.  
-        \item Aplique la f\'ormula de Newton hacia atr\'as para estimar $f(3.4)$.  
-        \item Compare con el valor exacto de $f(x)=x^3$.
-    \end{enumerate}
-    \vspace{1em}
-
-    \item Para los datos experimentales:
-    \begin{eqnarray*}
-    \begin{array}{c|ccccc}
-    x & 10 & 20 & 30 & 40 & 50\\ \hline
-    y & 20.5 & 24.0 & 32.0 & 42.5 & 51.0
-    \end{array}
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Verifique que los nodos sean equiespaciados.  
-        \item Calcule las diferencias progresivas hasta el tercer orden.  
-        \item Estime $y(25)$ usando Newton hacia adelante.  
-        \item Comente si el uso de un polinomio de orden m\'as alto podr\'ia 
-              mejorar o empeorar la estabilidad num\'erica.
-    \end{enumerate}
-\end{enumerate}
-
-\end{Ejer}
-
-
-
-\begin{Ejer}
-Implemente los siguientes ejercicios utilizando las funciones 
-\texttt{newton\_interp\_equispaced()}, \texttt{forward\_diff\_table()} 
-y \texttt{backward\_diff\_table()}.
-
-\begin{enumerate}
-    \item Replique los ejemplos manuales anteriores en R y 
-          compare los resultados obtenidos manualmente con los valores calculados por el script.
-          Incluya en su reporte:
-          \begin{itemize}
-              \item La tabla de diferencias generada.  
-              \item El valor estimado y el error de truncamiento.  
-              \item Una gr\'afica de los puntos originales y el polinomio interpolante.
-          \end{itemize}
-    \vspace{1em}
-
-    \item Genere aleatoriamente 5 puntos de una funci\'on cuadr\'atica y aplique:
-          \begin{itemize}
-              \item Interpolaci\'on de Lagrange (con la f\'ormula cl\'asica).  
-              \item Interpolaci\'on de Newton (diferencias divididas).  
-              \item Interpolaci\'on hacia adelante (diferencias finitas).  
-          \end{itemize}
-          Compare los tres resultados gr\'aficamente y analice diferencias num\'ericas.
-
-    \vspace{1em}
-
-    \item Usando los datos:
-    \begin{eqnarray*}
-    x = [0,1,2,3,4], \quad
-    y = [2.0, 2.7, 4.8, 8.9, 16.0],
-    \end{eqnarray*}
-    \begin{enumerate}[a)]
-        \item Aplique el m\'etodo autom\'atico \texttt{newton\_interp\_equispaced()} 
-              para evaluar la funci\'on en $x = 1.5, 2.5, 3.5$.  
-        \item Reporte el m\'etodo seleccionado (adelante o atr\'as) y el error estimado.  
-        \item Compare con una funci\'on de referencia $f(x) = 2^{x}$.
-    \end{enumerate}
-\end{enumerate}
-\end{Ejer}
-
-
-\begin{Ejer}
-Puntos: $(0,1),(1,3),(2,11)$.
-\begin{itemize}
-\item Lagrange / Forma general: Sea $P_2(x)=a_0+a_1x+a_2x^2$. Con $x=0\Rightarrow a_0=1$; $x=1\Rightarrow 1+a_1+a_2=3$; $x=2\Rightarrow 1+2a_1+4a_2=11$. De $a_1+a_2=2$ y $a_1+2a_2=5\Rightarrow a_2=3,\ a_1=-1$.\begin{eqnarray*}
-P_2(x)=1 - x + 3x^2.
-\end{eqnarray*}
-\item Evaluación: $P_2(1.5)=1-1.5+3(2.25)=6.25$.
-\item Newton: tabla de diferencias divididas produce los mismos coeficientes.
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Puntos: $(1,2),(2,5),(3,10),(4,17)$.
-\begin{itemize}
-\item Observa que $y=x^2+1$ calza exactamente con los datos.
-\item \textbf{Newton}: diferencias
-\begin{eqnarray*}
-\Delta y=\{3,5,7\},\quad \Delta^2 y=\{2,2\},\quad \Delta^3 y=\{0\}.
-\end{eqnarray*}
-\item \textbf{Polinomio}: de grado $2$ (término cúbico nulo), equivale a $P(x)=x^2+1$.
-
-\item \textbf{Evaluación}: $P(2.5)=2.5^2+1=7.25$.
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Puntos: $(-1,4),(0,1),(2,3)$.
-\begin{itemize}
-\item Forma general $P_2(x)=a_0+a_1x+a_2x^2$. De $x=0\Rightarrow a_0=1$.
-
-\item Sistema: $-a_1+a_2=3$ y $a_1+2a_2=1$. Solución: $a_2=\tfrac{4}{3}$, $a_1=-\tfrac{5}{3}$.
-
-\begin{eqnarray*}
-P_2(x)=1 - \frac{5}{3}x + \frac{4}{3}x^2.
-\end{eqnarray*}
-
-\item Verifica: $P_2(-1)=4,\ P_2(0)=1,\ P_2(2)=3$.
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Tabla $2^x$ en $x=0,1,2,3,4$: $y=\{1,2,4,8,16\}$.
-\begin{itemize}
-\item Diferencias progresivas:$\Delta y_0=1,\ \Delta^2 y_0=1,\ \Delta^3 y_0=1,\ \Delta^4 y_0=1$.
-\item Newton adelante (grado $4$), $x_0=0,h=1$, $p=2.5$:
-\begin{eqnarray*}
-P(2.5) &=& y_0 + p\Delta y_0 + \frac{p(p-1)}{2}\Delta^2 y_0+ \frac{p(p-1)(p-2)}{6}\Delta^3 y_0+ \frac{p(p-1)(p-2)(p-3)}{24}\Delta^4 y_0\\
-&=& 1 + 2.5 + 1.875 + 0.3125 - 0.0390625\\
-&= &5.6484375.
-\end{eqnarray*}
-
-\item Comparación: $2^{2.5}=\sqrt{32}\approx 5.65685425$. Error $\approx -8.4168\times 10^{-3}$ (el grado $4$ no puede reproducir una función exponencial).
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-$x=1,2,3,4$ con $f(x)=x^3=\{1,8,27,64\}$; estimar $f(3.4)$ por \textbf{atrás}.
-\begin{itemize}
-\item \textbf{Regresivas en $x_4=4$:} $\nabla y_4=37,\ \nabla^2 y_4=18,\ \nabla^3 y_4=6$.
-\item $h=1,\ q=(3.4-4)=-0.6$.
-\begin{eqnarray*}
-P(3.4) &=& y_4 + q\nabla y_4 + \frac{q(q+1)}{2}\nabla^2 y_4+ \frac{q(q+1)(q+2)}{6}\nabla^3 y_4\\
-&=& 64 - 22.2 - 2.16 - 0.336\\
-&= &39.304. 
-\end{eqnarray*}
-
-\item \textbf{Exacto}: $3.4^3=39.304$. (Para polinomio cúbico con $4$ nodos, el método reproduce exactamente.)
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Datos experimentales equiespaciados ($h=10$):
-\begin{eqnarray*}
-\begin{array}{c|ccccc}
-x & 10 & 20 & 30 & 40 & 50\\ \hline
-y & 20.5 & 24.0 & 32.0 & 42.5 & 51.0
-\end{array}
-\end{eqnarray*}
-\begin{itemize}
-\item \textbf{Progresivas en $x_0=10$:} 
-\begin{eqnarray*}
-    \Delta y_0=3.5,\quad \Delta^2 y_0=4.5,\quad \Delta^3 y_0=-2.0,\quad \Delta^4 y_0=-2.5.
-\end{eqnarray*}
-
-\item \textbf{Estimar $y(25)$} (adelante, hasta orden $3$): $p=\tfrac{25-10}{10}=1.5$.
-
-\begin{eqnarray*}
-\begin{aligned}
-P(25) &= y_0 + p\Delta y_0 + \frac{p(p-1)}{2}\Delta^2 y_0+ \frac{p(p-1)(p-2)}{6}\Delta^3 y_0\\
-&= 20.5 + (1.5)(3.5) + \frac{1.5\cdot 0.5}{2}(4.5)+ \frac{1.5\cdot 0.5\cdot (-0.5)}{6}(-2.0)\\
-&= 27.5625.
-\end{aligned}
-\end{eqnarray*}
-
-\item \textbf{Término siguiente (cota pragmática)}:
-
-\begin{eqnarray*}
-\frac{p(p-1)(p-2)(p-3)}{24}\,\Delta^4 y_0
-= \frac{1.5\cdot 0.5\cdot (-0.5)\cdot (-1.5)}{24}(-2.5)
-\approx \boxed{-0.0586}.
-\end{eqnarray*}
-(Magnitud $\approx 5.86\times 10^{-2}$: sugiere el orden del error de truncamiento.)
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Para $5$ puntos de una cuadrática simulada $y=ax^2+bx+c$ con ruido $N(0,\sigma)$:
-\begin{itemize}
-\item Lagrange (clásico) y Newton (divididas) deben coincidir en precisión con datos sin ruido.
-\item Con ruido, truncar el orden (p.ej. usar $3$--$4$ nodos o limitar \texttt{max\_order})  reduce oscilaciones y mejora estabilidad.
-\end{itemize}
-\end{Ejer}
-
-\begin{Ejer}
-Con $x=\{0,1,2,3,4\}$, $y=\{2.0,2.7,4.8,8.9,16.0\}$:
-\begin{itemize}
-\item \texttt{newton\_interp\_equispaced} seleccionará \emph{adelante} cerca de $x_0$  y \emph{atrás} cerca de $x_4$ (o el que quede más cercano).
-
-\item La columna \texttt{est\_trunc\_error} reportará el tamaño del término siguiente (guía de error).
-\item Al comparar con $2^x$, se observarán discrepancias crecientes fuera del rango central (interpolación no reproduce exponenciales con grado bajo de forma exacta).
-\end{itemize}
-\end{Ejer}
-
-
-\begin{Ejer}
-\begin{enumerate}
-\item \textbf{Spline lineal:} Con $(0,1.2),(1,2.0),(3,3.1),(4,4.0)$:
-
-\begin{enumerate}[a)]
-\item Escriba $S_i(x)$ por tramos y eval\'ue $S(2.5)$.
-\item Grafique a mano los segmentos y comente la falta de suavidad en los nudos.
-\end{enumerate}
-
-\item \textbf{Spline c\'ubico natural:} Con $(0,0),(1,1),(2,0),(3,1)$:
-
-\begin{enumerate}[a)]
-\item Arme el sistema tridiagonal para $M_1,M_2$ y resu\'elvalo.
-\item Obtenga los coeficientes $(a_i,b_i,c_i,d_i)$ y eval\'ue $S(1.5)$ y $S(2.3)$.
-\end{enumerate}
-
-
-\item \textbf{Spline c\'ubico completo:} Con $(0,0),(1,2),(2,3)$ y $S'(0)=1,\ S'(2)=0$:
-\begin{enumerate}[a)]
-\item Arme el sistema para $M_0,M_1,M_2$. 
-\item Calcule $S(0.5)$ y $S(1.8)$.
-\end{enumerate}
-\end{enumerate}
-\end{Ejer}
-
 
 \newpage
 
@@ -8351,351 +8539,359 @@ La historia de los m\'etodos num\'ericos es la colecci\'on de acontecimientos ma
 \end{itemize}
 
 
-\section{Clases}
 
-\subsection{M\'etodos Iterativos}
+%===========================================
+\section{Introducción al uso de R}
+%===========================================
+\textbf{Programas y rutinas en R}
 
-\subsubsection{Gauss-Jacobi}
-\begin{equation*}
-A =
-\begin{pmatrix}
-10 & -1 & 2 & 0\\
--1 & 11 & -1 & 3\\
-2 & -1 & 10 & -1\\
-0 & 3 & -1 & 8
-\end{pmatrix}, \qquad
-\mathbf{b} =
-\begin{pmatrix}
-6\\ 25\\ -11\\ 15
-\end{pmatrix}, \qquad
-\mathbf{x}^{\*} = (1,2,-1,1)^{T}.
-\end{equation*}
-
-Iteraci\'on 
-\begin{eqnarray*}
-x_1^{(k+1)} &=& \frac{6 + x_2^{(k)} - 2x_3^{(k)}}{10},\\
-x_2^{(k+1)} &=& \frac{25 + x_1^{(k)} + x_3^{(k)} - 3x_4^{(k)}}{11},\\
-x_3^{(k+1)} &=& \frac{-11 - 2x_1^{(k)} + x_2^{(k)} + x_4^{(k)}}{10},\\
-x_4^{(k+1)} &=& \frac{15 - 3x_2^{(k)} + x_3^{(k)}}{8}.
-\end{eqnarray*}
+%-------------------------------------------
+\subsection{Sesiones en RStudio}
+%-------------------------------------------
 
 
-Tomamos $\mathbf{x}^{(0)}=(0,0,0,0)^\top$ y actualizamos cada $x_i^{(k+1)}$ usa sólo valores del paso $k$.
+Al utilizar R, existen varios entornos que facilitan la gestión y ejecución de rutinas,  \textit{archivos con extensión .R}, el más popular es \textit{RStudio} o bien directamente desde la terminal o ejecutando simplemente \textit{R}, la ventaja de \textit{RStudio} es que permite que en una pantalla podamos visualizar: Consola (lugar donde se ejecutan los comandos directamente), History (el histórico de las variables y funciones definidas mismo que puede guardarse para ser invocado posteriormente), Plots (ventana en la que se muestran los gráficos generados), Help (la ayuda sobre comandos, funciones, sintaxis en R), Files (lugar donde se manejan los archivos, es decir leer, guardar, mover o renombrar archivos), y Packages (espacio para instalar o cargar paquetes de manera gráfica), todo esto para facilitar el manejo y ejecución de rutinas compatibles con R. Por otra parte \textbf{Workspace} es un entorno en el que se incluyen todos los objetos definidos,  al final de una sesión de R,  este entorno puede guardarse una imagen del mismo para ser cargada posteriormente. \bigskip
 
-\paragraph{Iteración 1:}
-\begin{eqnarray*}
-x_1^{(1)}&=&\frac{6 + 0 - 20}{10}=0.6, \\
-x_2^{(1)}&=&\frac{25 + 0+ 0 - 3\cdot0}{11}=\frac{25}{11}\approx 2.272727,\\
-x_3^{(1)}&=&\frac{-11 - 2\cdot0 + 0 + 0}{10}=-1.1, \\
-x_4^{(1)}&=&\frac{15 - 3\cdot0 + 0}{8}=\frac{15}{8}=1.875.
-\end{eqnarray*}
 
-\paragraph{Iteración 2} Con $\mathbf{x}^{(1)}=(0.6,\,2.272727,\,-1.1,\,1.875)$,
-\begin{eqnarray*}
-x_1^{(2)}&=&\frac{6 + 2.272727 - 2(-1.1)}{10}=\frac{10.472727}{10}=1.047273,\\
-x_2^{(2)}&=&\frac{25 + 0.6 + (-1.1) - 3(1.875)}{11}=\frac{18.875}{11}\approx 1.715909,\\
-x_3^{(2)}&=&\frac{-11 - 2(0.6) + 2.272727 + 1.875}{10}=\frac{-8.052273}{10}\approx -0.805227,\\
-x_4^{(2)}&=&\frac{15 - 3(2.272727) + (-1.1)}{8}=\frac{7.081819}{8}\approx 0.885227.
-\end{eqnarray*}
+Durante el uso de R en ocasiones se requiere limpiar la consola, para esto al presionar \textbf{Ctrl+L}.  
 
-\paragraph{Iteración 3} Con $\mathbf{x}^{(2)}=(1.047273,\,1.715909,\,-0.805227,\,0.885227)$,
-\begin{eqnarray*}
-x_1^{(3)}&=&\frac{6 + 1.715909 - 2(-0.805227)}{10}
-=\frac{9.326363}{10}=0.932636,\\
-x_2^{(3)}&=&\frac{25 + 1.047273 + (-0.805227) - 3(0.885227)}{11}
-=\frac{22.586365}{11}=2.053306,\\
-x_3^{(3)}&=&\frac{-11 - 2(1.047273) + 1.715909 + 0.885227}{10}
-=\frac{-10.493410}{10}=-1.049341,\\
-x_4^{(3)}&=&\frac{15 - 3(1.715909) + (-0.805227)}{8}
-=\frac{9.047046}{8}=1.130881.
-\end{eqnarray*}
 
-\paragraph{Iteración 4} Con $\mathbf{x}^{(3)}=(0.932636,\,2.053306,\,-1.049341,\,1.130881)$,
-\begin{eqnarray*}
-x_1^{(4)}&=&\frac{6 + 2.053306 - 2(-1.049341)}{10}
-=\frac{10.151988}{10}=1.015199,\\
-x_2^{(4)}&=&\frac{25 + 0.932636 + (-1.049341) - 3(1.130881)}{11}
-=\frac{21.490652}{11}=1.953696,\\
-x_3^{(4)}&=&\frac{-11 - 2(0.932636) + 2.053306 + 1.130881}{10}
-=\frac{-9.681085}{10}=-0.968109,\\
-x_4^{(4)}&=&\frac{15 - 3(2.053306) + (-1.049341)}{8}
-=\frac{7.790741}{8}=0.973843.
-\end{eqnarray*}
+%-------------------------------------------
+\subsection{Uso de R}
+%-------------------------------------------
 
-\paragraph{Iteración 5} Con $\mathbf{x}^{(4)}=(1.015199,\,1.953696,\,-0.968109,\,0.973843)$,
-\begin{eqnarray*}
-x_1^{(5)}&=&\frac{6 + 1.953696 - 2(-0.968109)}{10}
-=\frac{9.889914}{10}=0.988991,\\
-x_2^{(5)}&=&\frac{25 + 1.015199 + (-0.968109) - 3(0.973843)}{11}
-=\frac{22.125561}{11}=2.011415,\\
-x_3^{(5)}&=&\frac{-11 - 2(1.015199) + 1.953696 + 0.973843}{10}
-=\frac{-10.102859}{10}=-1.010286,\\
-x_4^{(5)}&=&\frac{15 - 3(1.953696) + (-0.968109)}{8}
-=\frac{8.170803}{8}=1.021351.
-\end{eqnarray*}
+\begin{itemize}
+\item \textbf{Constantes}: $\pi$, $exp(1)$
 
-Tabla de resultados
+\item Las constantes pueden ser de tipo \textit{integer},  \textit{double} o \textit{complex}, el tipo de constante se puede consultar con la función \textbf{typeof()}
 
-\begin{center}
-\begin{tabular}{c|rrrr}
-%%\toprule
-k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
-%%\midrule
-0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-1 & 0.6000 & 2.2727 & -1.1000 & 1.8750 \\
-2 & 1.0473 & 1.7159 & -0.8052 & 0.8852 \\
-3 & 0.9326 & 2.0533 & -1.0493 & 1.1309 \\
-4 & 1.0152 & 1.9537 & -0.9681 & 0.9738 \\
-5 & 0.9890 & 2.0114 & -1.0103 & 1.0214 \\
-%%\bottomrule
-\end{tabular}
-\end{center}
+\begin{verbatim}
+> typeof('mi constante')
+[1] "character"
+\end{verbatim}
 
-Tabla de errores
+\item Operadores: $<,>,>=,>=,!=$ ,$\!$ (Not),  $\|$ (OR), $\&$ (And),  $==$ (comparar)
 
-\begin{center}
-\begin{tabular}{c|cc}
-%\toprule
-k & $\|x^{(k)}-x^{*}|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
-%\midrule
-0 & 2.0000 & -- \\
-1 & 0.8750 & 2.2727 \\
-2 & 0.2841 & 0.9898 \\
-3 & 0.1309 & 0.3374 \\
-4 & 0.0463 & 0.1570 \\
-5 & 0.0214 & 0.0577 \\
-%\bottomrule
-\end{tabular}
-\end{center}
+\item Operadores aritméticos: $+$, $-$, $*$, \verb|^| potencia,  \verb|%%| resto de la división entera,  \verb|%/%| división entera.
 
-Ejercicios:instrucciones: usa $x^{(0)}=\mathbf{0}$ y detén cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. 
-Comprueba dominancia diagonal, escribe las fórmulas de Jacobi e itera con tabla.
+\item Logaritmos y exponenciales: \verb|log| logaritmo natural,  \verb|log(x,b)| ($log_{b}x$) y \verb|exp(x)| ($e^x$).
+
+\item Funciones trigonométricas\verb|cos(x)|,\verb|sin(x)|, \verb|tan(x)|, \verb|acos(x)|, \verb|asin(x)|, \verb|atan(x)|.
+
+\item Funciones misceláneas \verb|abs(x)|,  \verb|sqrt(x)|,  \verb|floor(x)|,  \verb|ceiling(x)|, \verb|max(x)|,  \verb|sign(x)|.
+
+\item Comando \verb|options(digits=k)|:
+
+\begin{verbatim}
+> 1/3.0
+[1] 0.3333333
+> options(digits=3)
+> 1/3
+[1] 0.333
+> 1/17.0
+[1] 0.0588
+> options(digits=3)
+> 1/17.0
+[1] 0.0588
+> options(digits=5)
+> 1/17.0
+[1] 0.058824
+> options(digits=9)
+> 1/17.0
+[1] 0.0588235294
+\end{verbatim}
+
+\item Comando \verb|round(x,n)| redondea $x$ a $n$ decimales, el valor por defecto es $n=6$.
+
+\item Comando \verb|cat('caracter1','caracter2')| concatena dos cadenas o valores y el resultado lo convierte a un objeto tipo \textit{string}.
+
+\end{itemize}
+
+%-------------------------------------------
+\subsection{Funciones}
+%-------------------------------------------
+
+\begin{verbatim}
+nombrefun = function(a1,a2,...,an) {
+# código ...
+instruccion-1
+instruccion-2
+# ...
+return( ... ) #valor que retorna (o también la última instrucción, si ésta retorna algo)
+}
+\end{verbatim}
+
+\subsection{Clase en Laboratorio de Cómputo}
 
 \begin{Ejer}
-\begin{equation*}
-\begin{pmatrix}
-5 & 1\\
-2 & 6
-\end{pmatrix}
-\begin{pmatrix}x_1\\x_2\end{pmatrix}
-=
-\begin{pmatrix}3\\-10\end{pmatrix}.
-\end{equation*}
+\begin{enumerate}
+\item Generar un archivo tipo Rmd, personalizar de manera básica
+\item Realizar las siguientes operaciones
+
+\begin{verbatim}
+x = c(1.1, 1.2, 1.3, 1.4, 1.5)
+x = 1:5 
+x = seq(1,3, by =0.5) 
+x = seq(5,1, by =-1) 
+x = rep(1, times = 5) 
+length(x) 
+rep(x, 2) 
+set.seed(123) 
+x = sample(1:10, 5) 
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = 1:5 
+y = rep(0.5, times = length(x)) 
+x+y
+x*y
+x^y
+1/(1:5)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = 1:5
+2*x
+1/x^2
+x+3
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+A = matrix(rep(0,9), nrow = 3, ncol= 3); 
+B = matrix(c(1,2,3,5,6,7), nrow = 2, byrow=T); 
+x = 1:3; y = seq(1,2, by = 0.5); z = rep(8, 3) ; x; y; z
+C = matrix(c(x,y,z), nrow = length(x)); C # ncol no es necesario declararlo
+xi = seq(1,2, by 0.1); yi = seq(5,10, by = 0.5)
+rbind(xi,yi)
+cbind(xi,yi)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A = diag(c(3,1,3)); 
+diag(A)
+n = 3
+I = diag(1, n);
+D = diag(diag(A))
+J = diag(1, 3, 4);
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+B = matrix(c( 1, 1 ,8,
+              2, 0, 8,
+              3, 2, 8), nrow = 3, byrow=TRUE); B
+
+B[2, 3]
+B[3,]
+B[,2]
+B[1:2,c(2,3)]
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+A = matrix(c( 1, 1 ,8,
+              2, 0, 8,
+              3, 2, 8), nrow = 3, byrow=TRUE); A
+A[c(1,3), ] = A[c(3,1), ] 
+A[2, ] = A[2, ] - A[2,1]/A[1,1]*A[1, ]
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+x = c(2, -6, 7, 8, 0.1,-8.5, 3, -7, 3)
+which.max(x)
+which.max(abs(x)) 
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A = matrix(1:9, nrow=3); A # Por columnas
+B = matrix(rep(1,9), nrow=3); B
+
+A+B
+A*B
+A%*%B
+A^2
+A-2
+3*A
+t(A)
+det(A)
+C <- A-diag(1,3); det(C)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+
+notas = matrix(c(80, 40, 70, 30, 90, 67, 90,
+                 40, 40, 30, 90, 100, 67, 90,
+                 100,100,100, 100, 70, 76, 95), nrow=3, byrow=TRUE); notas
+# crear columa con la suma de los renglones
+#agregar la columna al final de la matriz
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+u=c(1,2)
+v=c(-2,3)
+w=c(3,-5)
+norma=function(u){sqrt(sum(u^2))}
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+t(u-2*v)%*%w
+norma(u+v+w)
+norma(u)+norma(v)+norma(w)
+t(u-v)%*%(v-w)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+u=c(8,3);a=c(4,-5)
+ProyOrto=function(u,a){(t(u)%*%a)*a/norma(a)}
+ProyOrto(u,a)
+ProyOrto(c(2,1,-4),c(-5,3,11))
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(1,0,0,1/3,4,0,1/2,3,2),ncol=3,byrow=TRUE)
+B=matrix(c(9,0,0,0,1,8,0,0,0,-2,7,0,0,0,-3,6),ncol=4)
+solve(A)  # Inversa de A
+det(A)
+solve(B);det(B)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(4,4.001,4.001,4.002),ncol=2)
+B=A;B[2,2]=4.002001
+solve(A)
+solve(B)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+X=matrix(runif(12),ncol=3)
+u=runif(4)
+A=t(X)%*%X
+B=u%*%t(u)
+DA=eigen(A)$values
+TA=eigen(A)$vectors
+t(TA)%*%TA
+prod(DA);det(A)
+qr(A)$rank  # Rango de una matriz
+sum(diag(DA)!=0)
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+DB=eigen(B)$values
+TB=eigen(B)$vectors
+t(TB)%*%TB
+prod(DB);det(B)
+qr(B)$rank
+sum(diag(DB)!=0)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(3,2,0,2,3,0,0,0,3),ncol=3)
+eig_A=eigen(A)
+eig_A$values
+eigen(A%*%A)$values
+eigen(solve(A))$values
+eig_A$vectors%*%diag(eigen(A%*%A)$values)%*%t(eig_A$vectors);A%*%A
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=matrix(c(6,10,1,10,6,5),ncol=2)
+ginvMP=function(A){
+        res=svd(A)
+        res$v%*%diag(1/res$d)%*%t(res$u)}
+B=ginvMP(A)
+A%*%B%*%A
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+es.positiva=function(A){
+ if (ncol(A)!=nrow(A)) stop("Esto se hace para matrices cuadradas")
+ v=eigen(A)$values
+ tol=ncol(A)*max(abs(v))* .Machine$double.eps
+ if (sum(v>tol)==length(v)) return(TRUE) else return(FALSE)}
+ 
+A=matrix(c(2,-3/2,-3/2,3),ncol=2);es.positiva(A)
+A=matrix(c(1,0.8,0.5,0.8,0.6,0.4,0.5,0.4,0.25),ncol=3);es.positiva(A)
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+matrixA=function(m){
+A=matrix(c(1,-2,-2,m),ncol=2)
+return(A)}
+
+dmatrixA=function(m){det(matrixA(m))}
+
+m=seq(-4,10,len=101)
+plot(m,mapply(dmatrixA,m=m),type="l") # Dibuja el determinante en funci?n de m
+abline(h=0)
+A=matrixA(-2)
+print(z<-eigen(A))
+
+
+\end{verbatim}
+
+\item 
+\begin{verbatim}
+
+A=cbind(c(3,1,0),c(1,3,0),c(0,0,3))
+B=matrix(0,ncol=3,nrow=3);B[3,3]=2
+eigen(A)
+eigen(B)
+
+eigen(A+B) # Trampilla
+
+\end{verbatim}
+
+\end{enumerate}
+
+
+
 \end{Ejer}
 
-
-\begin{Ejer}
-\begin{equation*}
-\underbrace{\begin{pmatrix}
-9 & -1 & 0 & 0\\
--1 & 12 & -2 & 1\\
-0 & -1 & 11 & -2\\
-0 & 2 & -1 & 10
-\end{pmatrix}}_{A_{4\times4}}\,
-\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}}_{x}
-=
-\underbrace{\begin{pmatrix}7\\26\\-15\\15\end{pmatrix}}_{b},
-\end{equation*}
-\end{Ejer}
-
-
-\begin{Ejer}
-
-\begin{equation*}
-\underbrace{\begin{pmatrix}
-10 & -1 & 2 & 0 & 0\\
--1 & 12 & -2 & 3 & 0\\
-2 & -1 & 11 & -2 & 1\\
-0 & 3 & -1 & 10 & -2\\
-0 & 0 & 2 & -1 & 9
-\end{pmatrix}}_{A_{5\times5}}\,
-\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}}_{x}
-=
-\underbrace{\begin{pmatrix}15\\-17\\26\\-7\\13\end{pmatrix}}_{b},
-\end{equation*}
-
-\end{Ejer}
-
-\subsubsection{Gauss-Seidel}
-
-Considerar
-
-\[
-A =
-\begin{pmatrix}
-9 & -1 & 0 & 2\\
--1 & 10 & -2 & 1\\
-0 & -1 & 8 & -1\\
-2 & 1 & -1 & 11
-\end{pmatrix},\quad
-\mathbf{b} =
-\begin{pmatrix}
-10\\ 8\\ 6\\ 13
-\end{pmatrix},\quad
-\mathbf{x}^{*}=(1,1,1,1)^\top.
-\]
-$A$ es diagonalmente dominante por renglones, por lo que Gauss--Seidel converge.
-
-Iteraci\'on general
-Con ecuaciones por rengl\'on:
-\[
-\begin{aligned}
-9x_1 - x_2 + 2x_4 &= 10,&
-\Rightarrow\;& x_1 \;=\; \frac{10 + x_2 - 2x_4}{9},\\
-- x_1 + 10x_2 - 2x_3 + x_4 &= 8,&
-\Rightarrow\;& x_2 \;=\; \frac{8 + x_1 + 2x_3 - x_4}{10},\\
-- x_2 + 8x_3 - x_4 &= 6,&
-\Rightarrow\;& x_3 \;=\; \frac{6 + x_2 + x_4}{8},\\
-2x_1 + x_2 - x_3 + 11x_4 &= 13,&
-\Rightarrow\;& x_4 \;=\; \frac{13 - 2x_1 - x_2 + x_3}{11}.
-\end{aligned}
-\]
-\textbf{Regla de GS:} cada $x_i^{(k+1)}$ usa los \emph{valores m\'as recientes disponibles} dentro del mismo paso $k+1$.
-
-
-Partimos de $\mathbf{x}^{(0)}=(0,0,0,0)^\top$.
-
-\paragraph{Iteraci\'on 1}
-\[
-\begin{aligned}
-x_1^{(1)}&=\frac{10+0-20}{9}=1.111111,\\
-x_2^{(1)}&=\frac{8+\underline{x_1^{(1)}}+20-0}{10}
-=\frac{8+1.111111}{10}=0.911111,\\
-x_3^{(1)}&=\frac{6+\underline{x_2^{(1)}}+0}{8}
-=\frac{6+0.911111}{8}=0.863889,\\
-x_4^{(1)}&=\frac{13-2\underline{x_1^{(1)}}-\underline{x_2^{(1)}}+\underline{x_3^{(1)}}}{11}
-=\frac{13-2(1.111111)-0.911111+0.863889}{11}=0.975505.
-\end{aligned}
-\]
-
-\paragraph{Iteraci\'on 2}
-\[
-\begin{aligned}
-x_1^{(2)}&=\frac{10+x_2^{(1)}-2x_4^{(1)}}{9}
-=\frac{10+0.911111-2(0.975505)}{9}=0.995567,\\
-x_2^{(2)}&=\frac{8+\underline{x_1^{(2)}}+2x_3^{(1)}-x_4^{(1)}}{10}
-=\frac{8+0.995567+2(0.863889)-0.975505}{10}=0.974784,\\
-x_3^{(2)}&=\frac{6+\underline{x_2^{(2)}}+x_4^{(1)}}{8}
-=\frac{6+0.974784+0.975505}{8}=0.993786,\\
-x_4^{(2)}&=\frac{13-2\underline{x_1^{(2)}}-\underline{x_2^{(2)}}+\underline{x_3^{(2)}}}{11}
-=\frac{13-2(0.995567)-0.974784+0.993786}{11}=1.002534.
-\end{aligned}
-\]
-
-\paragraph{Iteraci\'on 3}
-\[
-\begin{aligned}
-x_1^{(3)}&=\frac{10+0.974784-2(1.002534)}{9}=0.996635,\\
-x_2^{(3)}&=\frac{8+\underline{0.996635}+2(0.993786)-1.002534}{10}=0.998167,\\
-x_3^{(3)}&=\frac{6+\underline{0.998167}+1.002534}{8}=1.000088,\\
-x_4^{(3)}&=\frac{13-2\underline{0.996635}-\underline{0.998167}+\underline{1.000088}}{11}=1.000786.
-\end{aligned}
-\]
-
-\paragraph{Iteraci\'on 4}
-\[
-\begin{aligned}
-x_1^{(4)}&=\frac{10+0.998167-2(1.000786)}{9}=0.999622,\\
-x_2^{(4)}&=\frac{8+\underline{0.999622}+2(1.000088)-1.000786}{10}=0.999901,\\
-x_3^{(4)}&=\frac{6+\underline{0.999901}+1.000786}{8}=1.000086,\\
-x_4^{(4)}&=\frac{13-2\underline{0.999622}-\underline{0.999901}+\underline{1.000086}}{11}=1.000086.
-\end{aligned}
-\]
-
-\paragraph{Iteraci\'on 5}
-\[
-\begin{aligned}
-x_1^{(5)}&=\frac{10+0.999901-2(1.000086)}{9}=0.999970,\\
-x_2^{(5)}&=\frac{8+\underline{0.999970}+2(1.000086)-1.000086}{10}=1.000006,\\
-x_3^{(5)}&=\frac{6+\underline{1.000006}+1.000086}{8}=1.000011,\\
-x_4^{(5)}&=\frac{13-2\underline{0.999970}-\underline{1.000006}+\underline{1.000011}}{11}=1.000006.
-\end{aligned}
-\]
-
-Tabla de resultados
-
-\begin{center}
-\begin{tabular}{c|rrrr}
-%\toprule
-k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
-%\midrule
-0 & 0.000000 & 0.000000 & 0.000000 & 0.000000 \\
-1 & 1.111111 & 0.911111 & 0.863889 & 0.975505 \\
-2 & 0.995567 & 0.974784 & 0.993786 & 1.002534 \\
-3 & 0.996635 & 0.998167 & 1.000088 & 1.000786 \\
-4 & 0.999622 & 0.999901 & 1.000086 & 1.000086 \\
-5 & 0.999970 & 1.000006 & 1.000011 & 1.000006 \\
-%\bottomrule
-\end{tabular}
-\end{center}
-
-Tabla de errores
-
-\begin{center}
-\begin{tabular}{c|cc}
-%\toprule
-k & $\|x^{(k)}-x^{*}\|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
-%\midrule
-0 & 1.000000 & -- \\
-1 & 0.136111 & 1.111111 \\
-2 & 0.025216 & 0.129897 \\
-3 & 0.003365 & 0.023383 \\
-4 & 0.000378 & 0.002986 \\
-5 & 0.000030 & 0.000348 \\
-%\bottomrule
-\end{tabular}
-\end{center}
-
-
-Instrucciones: usa $x^{(0)}=\mathbf{0}$ y det\'en cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. Escribe las f\'ormulas de GS e itera con tabla.
-
-
-\begin{Ejer}
-\[
-\underbrace{\begin{pmatrix}
-6 & -1\\
-1 & 5
-\end{pmatrix}}_{A_{2\times2}}
-\begin{pmatrix}x_1\\x_2\end{pmatrix}
-=
-\underbrace{\begin{pmatrix}13\\-3\end{pmatrix}}_{b}.
-\]
-
-\end{Ejer}
-
-
-\begin{Ejer}\[
-\underbrace{\begin{pmatrix}
-8 & 1 & -1 & 0\\
-2 & 10 & -2 & 1\\
-1 & -1 & 9 & -1\\
-0 & 2 & -1 & 7
-\end{pmatrix}}_{A_{4\times4}}
-\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}
-=
-\underbrace{\begin{pmatrix}6\\-3\\20\\-9\end{pmatrix}}_{b}.
-\]
-
-\end{Ejer}
-
-
-\begin{Ejer}
-\[
-\underbrace{\begin{pmatrix}
-10 & -1 & 0 & 0 & 2\\
--1 & 11 & -1 & 0 & 0\\
-0 & -1 & 12 & -2 & 1\\
-0 & 0 & -2 & 9 & -1\\
-2 & 0 & 1 & -1 & 8
-\end{pmatrix}}_{A_{5\times5}}
-\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}
-=
-\underbrace{\begin{pmatrix}10\\21\\1\\-10\\11\end{pmatrix}}_{b}.
-\]
-\end{Ejer}
-
-
-\section{Programas y rutinas en R}
 
 
 \paragraph{Sesión 1}
@@ -9927,6 +10123,351 @@ res_gs$x
 ```
 \end{verbatim}
 \end{Ejem}
+
+
+
+\subsection{Clases}
+
+\subsubsection{M\'etodos Iterativos}
+
+\subsubsection{Gauss-Jacobi}
+\begin{equation*}
+A =
+\begin{pmatrix}
+10 & -1 & 2 & 0\\
+-1 & 11 & -1 & 3\\
+2 & -1 & 10 & -1\\
+0 & 3 & -1 & 8
+\end{pmatrix}, \qquad
+\mathbf{b} =
+\begin{pmatrix}
+6\\ 25\\ -11\\ 15
+\end{pmatrix}, \qquad
+\mathbf{x}^{\*} = (1,2,-1,1)^{T}.
+\end{equation*}
+
+Iteraci\'on 
+\begin{eqnarray*}
+x_1^{(k+1)} &=& \frac{6 + x_2^{(k)} - 2x_3^{(k)}}{10},\\
+x_2^{(k+1)} &=& \frac{25 + x_1^{(k)} + x_3^{(k)} - 3x_4^{(k)}}{11},\\
+x_3^{(k+1)} &=& \frac{-11 - 2x_1^{(k)} + x_2^{(k)} + x_4^{(k)}}{10},\\
+x_4^{(k+1)} &=& \frac{15 - 3x_2^{(k)} + x_3^{(k)}}{8}.
+\end{eqnarray*}
+
+
+Tomamos $\mathbf{x}^{(0)}=(0,0,0,0)^\top$ y actualizamos cada $x_i^{(k+1)}$ usa sólo valores del paso $k$.
+
+\paragraph{Iteración 1:}
+\begin{eqnarray*}
+x_1^{(1)}&=&\frac{6 + 0 - 20}{10}=0.6, \\
+x_2^{(1)}&=&\frac{25 + 0+ 0 - 3\cdot0}{11}=\frac{25}{11}\approx 2.272727,\\
+x_3^{(1)}&=&\frac{-11 - 2\cdot0 + 0 + 0}{10}=-1.1, \\
+x_4^{(1)}&=&\frac{15 - 3\cdot0 + 0}{8}=\frac{15}{8}=1.875.
+\end{eqnarray*}
+
+\paragraph{Iteración 2} Con $\mathbf{x}^{(1)}=(0.6,\,2.272727,\,-1.1,\,1.875)$,
+\begin{eqnarray*}
+x_1^{(2)}&=&\frac{6 + 2.272727 - 2(-1.1)}{10}=\frac{10.472727}{10}=1.047273,\\
+x_2^{(2)}&=&\frac{25 + 0.6 + (-1.1) - 3(1.875)}{11}=\frac{18.875}{11}\approx 1.715909,\\
+x_3^{(2)}&=&\frac{-11 - 2(0.6) + 2.272727 + 1.875}{10}=\frac{-8.052273}{10}\approx -0.805227,\\
+x_4^{(2)}&=&\frac{15 - 3(2.272727) + (-1.1)}{8}=\frac{7.081819}{8}\approx 0.885227.
+\end{eqnarray*}
+
+\paragraph{Iteración 3} Con $\mathbf{x}^{(2)}=(1.047273,\,1.715909,\,-0.805227,\,0.885227)$,
+\begin{eqnarray*}
+x_1^{(3)}&=&\frac{6 + 1.715909 - 2(-0.805227)}{10}
+=\frac{9.326363}{10}=0.932636,\\
+x_2^{(3)}&=&\frac{25 + 1.047273 + (-0.805227) - 3(0.885227)}{11}
+=\frac{22.586365}{11}=2.053306,\\
+x_3^{(3)}&=&\frac{-11 - 2(1.047273) + 1.715909 + 0.885227}{10}
+=\frac{-10.493410}{10}=-1.049341,\\
+x_4^{(3)}&=&\frac{15 - 3(1.715909) + (-0.805227)}{8}
+=\frac{9.047046}{8}=1.130881.
+\end{eqnarray*}
+
+\paragraph{Iteración 4} Con $\mathbf{x}^{(3)}=(0.932636,\,2.053306,\,-1.049341,\,1.130881)$,
+\begin{eqnarray*}
+x_1^{(4)}&=&\frac{6 + 2.053306 - 2(-1.049341)}{10}
+=\frac{10.151988}{10}=1.015199,\\
+x_2^{(4)}&=&\frac{25 + 0.932636 + (-1.049341) - 3(1.130881)}{11}
+=\frac{21.490652}{11}=1.953696,\\
+x_3^{(4)}&=&\frac{-11 - 2(0.932636) + 2.053306 + 1.130881}{10}
+=\frac{-9.681085}{10}=-0.968109,\\
+x_4^{(4)}&=&\frac{15 - 3(2.053306) + (-1.049341)}{8}
+=\frac{7.790741}{8}=0.973843.
+\end{eqnarray*}
+
+\paragraph{Iteración 5} Con $\mathbf{x}^{(4)}=(1.015199,\,1.953696,\,-0.968109,\,0.973843)$,
+\begin{eqnarray*}
+x_1^{(5)}&=&\frac{6 + 1.953696 - 2(-0.968109)}{10}
+=\frac{9.889914}{10}=0.988991,\\
+x_2^{(5)}&=&\frac{25 + 1.015199 + (-0.968109) - 3(0.973843)}{11}
+=\frac{22.125561}{11}=2.011415,\\
+x_3^{(5)}&=&\frac{-11 - 2(1.015199) + 1.953696 + 0.973843}{10}
+=\frac{-10.102859}{10}=-1.010286,\\
+x_4^{(5)}&=&\frac{15 - 3(1.953696) + (-0.968109)}{8}
+=\frac{8.170803}{8}=1.021351.
+\end{eqnarray*}
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%%\midrule
+0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+1 & 0.6000 & 2.2727 & -1.1000 & 1.8750 \\
+2 & 1.0473 & 1.7159 & -0.8052 & 0.8852 \\
+3 & 0.9326 & 2.0533 & -1.0493 & 1.1309 \\
+4 & 1.0152 & 1.9537 & -0.9681 & 0.9738 \\
+5 & 0.9890 & 2.0114 & -1.0103 & 1.0214 \\
+%%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 2.0000 & -- \\
+1 & 0.8750 & 2.2727 \\
+2 & 0.2841 & 0.9898 \\
+3 & 0.1309 & 0.3374 \\
+4 & 0.0463 & 0.1570 \\
+5 & 0.0214 & 0.0577 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Ejercicios:instrucciones: usa $x^{(0)}=\mathbf{0}$ y detén cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. 
+Comprueba dominancia diagonal, escribe las fórmulas de Jacobi e itera con tabla.
+
+\begin{Ejer}
+\begin{equation*}
+\begin{pmatrix}
+5 & 1\\
+2 & 6
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\begin{pmatrix}3\\-10\end{pmatrix}.
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+9 & -1 & 0 & 0\\
+-1 & 12 & -2 & 1\\
+0 & -1 & 11 & -2\\
+0 & 2 & -1 & 10
+\end{pmatrix}}_{A_{4\times4}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}7\\26\\-15\\15\end{pmatrix}}_{b},
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+10 & -1 & 2 & 0 & 0\\
+-1 & 12 & -2 & 3 & 0\\
+2 & -1 & 11 & -2 & 1\\
+0 & 3 & -1 & 10 & -2\\
+0 & 0 & 2 & -1 & 9
+\end{pmatrix}}_{A_{5\times5}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}15\\-17\\26\\-7\\13\end{pmatrix}}_{b},
+\end{equation*}
+
+\end{Ejer}
+
+\subsubsection{Gauss-Seidel}
+
+Considerar
+
+\[
+A =
+\begin{pmatrix}
+9 & -1 & 0 & 2\\
+-1 & 10 & -2 & 1\\
+0 & -1 & 8 & -1\\
+2 & 1 & -1 & 11
+\end{pmatrix},\quad
+\mathbf{b} =
+\begin{pmatrix}
+10\\ 8\\ 6\\ 13
+\end{pmatrix},\quad
+\mathbf{x}^{*}=(1,1,1,1)^\top.
+\]
+$A$ es diagonalmente dominante por renglones, por lo que Gauss--Seidel converge.
+
+Iteraci\'on general
+Con ecuaciones por rengl\'on:
+\[
+\begin{aligned}
+9x_1 - x_2 + 2x_4 &= 10,&
+\Rightarrow\;& x_1 \;=\; \frac{10 + x_2 - 2x_4}{9},\\
+- x_1 + 10x_2 - 2x_3 + x_4 &= 8,&
+\Rightarrow\;& x_2 \;=\; \frac{8 + x_1 + 2x_3 - x_4}{10},\\
+- x_2 + 8x_3 - x_4 &= 6,&
+\Rightarrow\;& x_3 \;=\; \frac{6 + x_2 + x_4}{8},\\
+2x_1 + x_2 - x_3 + 11x_4 &= 13,&
+\Rightarrow\;& x_4 \;=\; \frac{13 - 2x_1 - x_2 + x_3}{11}.
+\end{aligned}
+\]
+\textbf{Regla de GS:} cada $x_i^{(k+1)}$ usa los \emph{valores m\'as recientes disponibles} dentro del mismo paso $k+1$.
+
+
+Partimos de $\mathbf{x}^{(0)}=(0,0,0,0)^\top$.
+
+\paragraph{Iteraci\'on 1}
+\[
+\begin{aligned}
+x_1^{(1)}&=\frac{10+0-20}{9}=1.111111,\\
+x_2^{(1)}&=\frac{8+\underline{x_1^{(1)}}+20-0}{10}
+=\frac{8+1.111111}{10}=0.911111,\\
+x_3^{(1)}&=\frac{6+\underline{x_2^{(1)}}+0}{8}
+=\frac{6+0.911111}{8}=0.863889,\\
+x_4^{(1)}&=\frac{13-2\underline{x_1^{(1)}}-\underline{x_2^{(1)}}+\underline{x_3^{(1)}}}{11}
+=\frac{13-2(1.111111)-0.911111+0.863889}{11}=0.975505.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 2}
+\[
+\begin{aligned}
+x_1^{(2)}&=\frac{10+x_2^{(1)}-2x_4^{(1)}}{9}
+=\frac{10+0.911111-2(0.975505)}{9}=0.995567,\\
+x_2^{(2)}&=\frac{8+\underline{x_1^{(2)}}+2x_3^{(1)}-x_4^{(1)}}{10}
+=\frac{8+0.995567+2(0.863889)-0.975505}{10}=0.974784,\\
+x_3^{(2)}&=\frac{6+\underline{x_2^{(2)}}+x_4^{(1)}}{8}
+=\frac{6+0.974784+0.975505}{8}=0.993786,\\
+x_4^{(2)}&=\frac{13-2\underline{x_1^{(2)}}-\underline{x_2^{(2)}}+\underline{x_3^{(2)}}}{11}
+=\frac{13-2(0.995567)-0.974784+0.993786}{11}=1.002534.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 3}
+\[
+\begin{aligned}
+x_1^{(3)}&=\frac{10+0.974784-2(1.002534)}{9}=0.996635,\\
+x_2^{(3)}&=\frac{8+\underline{0.996635}+2(0.993786)-1.002534}{10}=0.998167,\\
+x_3^{(3)}&=\frac{6+\underline{0.998167}+1.002534}{8}=1.000088,\\
+x_4^{(3)}&=\frac{13-2\underline{0.996635}-\underline{0.998167}+\underline{1.000088}}{11}=1.000786.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 4}
+\[
+\begin{aligned}
+x_1^{(4)}&=\frac{10+0.998167-2(1.000786)}{9}=0.999622,\\
+x_2^{(4)}&=\frac{8+\underline{0.999622}+2(1.000088)-1.000786}{10}=0.999901,\\
+x_3^{(4)}&=\frac{6+\underline{0.999901}+1.000786}{8}=1.000086,\\
+x_4^{(4)}&=\frac{13-2\underline{0.999622}-\underline{0.999901}+\underline{1.000086}}{11}=1.000086.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 5}
+\[
+\begin{aligned}
+x_1^{(5)}&=\frac{10+0.999901-2(1.000086)}{9}=0.999970,\\
+x_2^{(5)}&=\frac{8+\underline{0.999970}+2(1.000086)-1.000086}{10}=1.000006,\\
+x_3^{(5)}&=\frac{6+\underline{1.000006}+1.000086}{8}=1.000011,\\
+x_4^{(5)}&=\frac{13-2\underline{0.999970}-\underline{1.000006}+\underline{1.000011}}{11}=1.000006.
+\end{aligned}
+\]
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%\midrule
+0 & 0.000000 & 0.000000 & 0.000000 & 0.000000 \\
+1 & 1.111111 & 0.911111 & 0.863889 & 0.975505 \\
+2 & 0.995567 & 0.974784 & 0.993786 & 1.002534 \\
+3 & 0.996635 & 0.998167 & 1.000088 & 1.000786 \\
+4 & 0.999622 & 0.999901 & 1.000086 & 1.000086 \\
+5 & 0.999970 & 1.000006 & 1.000011 & 1.000006 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}\|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 1.000000 & -- \\
+1 & 0.136111 & 1.111111 \\
+2 & 0.025216 & 0.129897 \\
+3 & 0.003365 & 0.023383 \\
+4 & 0.000378 & 0.002986 \\
+5 & 0.000030 & 0.000348 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+
+Instrucciones: usa $x^{(0)}=\mathbf{0}$ y det\'en cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. Escribe las f\'ormulas de GS e itera con tabla.
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+6 & -1\\
+1 & 5
+\end{pmatrix}}_{A_{2\times2}}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}13\\-3\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}\[
+\underbrace{\begin{pmatrix}
+8 & 1 & -1 & 0\\
+2 & 10 & -2 & 1\\
+1 & -1 & 9 & -1\\
+0 & 2 & -1 & 7
+\end{pmatrix}}_{A_{4\times4}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}6\\-3\\20\\-9\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+10 & -1 & 0 & 0 & 2\\
+-1 & 11 & -1 & 0 & 0\\
+0 & -1 & 12 & -2 & 1\\
+0 & 0 & -2 & 9 & -1\\
+2 & 0 & 1 & -1 & 8
+\end{pmatrix}}_{A_{5\times5}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}10\\21\\1\\-10\\11\end{pmatrix}}_{b}.
+\]
+\end{Ejer}
 
 
 
