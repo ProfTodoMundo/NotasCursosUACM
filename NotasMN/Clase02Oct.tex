@@ -1,0 +1,402 @@
+%===========================================
+\documentclass[12pt]{article}
+%===========================================
+\usepackage[utf8]{inputenc}
+%\usepackage[margin=2.5in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\decimalpoint
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{graphicx,graphics}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{float} 
+\usepackage{subfig}
+\usepackage[figuresright]{rotating}
+\usepackage{enumerate}
+\usepackage{anysize} 
+\usepackage{url}
+\usepackage{imakeidx}
+\usepackage[left=0.5in, right=0.5in, top=1in, bottom=1in]{geometry}
+% Opcional: para incluir gráficos con control de tamaño
+\usepackage{float}
+
+\hyphenation{mo-de-ra-da-men-te}
+\addto\captionsspanish{\renewcommand{\figurename}{Figura}}
+
+%===========================================
+% Ajustes de Sweave
+%\usepackage{Sweave}
+%===========================================
+\title{Notas sobre Métodos Numéricos con R}
+\author{
+Carlos E. Martínez-Rodríguez \\
+Universidad Autónoma de la Ciudad de México \\
+Academia de Matemáticas \\
+\texttt{carlos.martinez@uacm.edu.mx}
+}
+\date{Agosto 2025}
+\date{}
+%===========================================
+\newtheorem{Criterio}{Criterio}%[section]
+\newtheorem{Sup}{Supuesto}[section]
+\newtheorem{Note}{Nota}[section]
+\newtheorem{Ejem}{Ejemplo}[section]
+\newtheorem{Ejer}{Ejercicio}[section]
+\newtheorem{Prop}{Proposici\'on}[section]
+\newtheorem{Def}{Definici\'on}[section]
+\newtheorem{Teo}{Teorema}[section]
+\newtheorem{Algthm}{Algoritmo}[section]
+\newtheorem{Sol}{Soluci\'on}[section]
+\newtheorem{Ses}{Sesi\'on}[section]
+%===========================================
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Gauss-Jacobi}
+\begin{equation*}
+A =
+\begin{pmatrix}
+10 & -1 & 2 & 0\\
+-1 & 11 & -1 & 3\\
+2 & -1 & 10 & -1\\
+0 & 3 & -1 & 8
+\end{pmatrix}, \qquad
+\mathbf{b} =
+\begin{pmatrix}
+6\\ 25\\ -11\\ 15
+\end{pmatrix}, \qquad
+\mathbf{x}^{\*} = (1,2,-1,1)^{T}.
+\end{equation*}
+
+Iteraci\'on 
+\begin{eqnarray*}
+x_1^{(k+1)} &=& \frac{6 + x_2^{(k)} - 2x_3^{(k)}}{10},\\
+x_2^{(k+1)} &=& \frac{25 + x_1^{(k)} + x_3^{(k)} - 3x_4^{(k)}}{11},\\
+x_3^{(k+1)} &=& \frac{-11 - 2x_1^{(k)} + x_2^{(k)} + x_4^{(k)}}{10},\\
+x_4^{(k+1)} &=& \frac{15 - 3x_2^{(k)} + x_3^{(k)}}{8}.
+\end{eqnarray*}
+
+
+Tomamos $\mathbf{x}^{(0)}=(0,0,0,0)^\top$ y actualizamos cada $x_i^{(k+1)}$ usa sólo valores del paso $k$.
+
+\paragraph{Iteración 1:}
+\begin{eqnarray*}
+x_1^{(1)}&=&\frac{6 + 0 - 20}{10}=0.6, \\
+x_2^{(1)}&=&\frac{25 + 0+ 0 - 3\cdot0}{11}=\frac{25}{11}\approx 2.272727,\\
+x_3^{(1)}&=&\frac{-11 - 2\cdot0 + 0 + 0}{10}=-1.1, \\
+x_4^{(1)}&=&\frac{15 - 3\cdot0 + 0}{8}=\frac{15}{8}=1.875.
+\end{eqnarray*}
+
+\paragraph{Iteración 2} Con $\mathbf{x}^{(1)}=(0.6,\,2.272727,\,-1.1,\,1.875)$,
+\begin{eqnarray*}
+x_1^{(2)}&=&\frac{6 + 2.272727 - 2(-1.1)}{10}=\frac{10.472727}{10}=1.047273,\\
+x_2^{(2)}&=&\frac{25 + 0.6 + (-1.1) - 3(1.875)}{11}=\frac{18.875}{11}\approx 1.715909,\\
+x_3^{(2)}&=&\frac{-11 - 2(0.6) + 2.272727 + 1.875}{10}=\frac{-8.052273}{10}\approx -0.805227,\\
+x_4^{(2)}&=&\frac{15 - 3(2.272727) + (-1.1)}{8}=\frac{7.081819}{8}\approx 0.885227.
+\end{eqnarray*}
+
+\paragraph{Iteración 3} Con $\mathbf{x}^{(2)}=(1.047273,\,1.715909,\,-0.805227,\,0.885227)$,
+\begin{eqnarray*}
+x_1^{(3)}&=&\frac{6 + 1.715909 - 2(-0.805227)}{10}
+=\frac{9.326363}{10}=0.932636,\\
+x_2^{(3)}&=&\frac{25 + 1.047273 + (-0.805227) - 3(0.885227)}{11}
+=\frac{22.586365}{11}=2.053306,\\
+x_3^{(3)}&=&\frac{-11 - 2(1.047273) + 1.715909 + 0.885227}{10}
+=\frac{-10.493410}{10}=-1.049341,\\
+x_4^{(3)}&=&\frac{15 - 3(1.715909) + (-0.805227)}{8}
+=\frac{9.047046}{8}=1.130881.
+\end{eqnarray*}
+
+\paragraph{Iteración 4} Con $\mathbf{x}^{(3)}=(0.932636,\,2.053306,\,-1.049341,\,1.130881)$,
+\begin{eqnarray*}
+x_1^{(4)}&=&\frac{6 + 2.053306 - 2(-1.049341)}{10}
+=\frac{10.151988}{10}=1.015199,\\
+x_2^{(4)}&=&\frac{25 + 0.932636 + (-1.049341) - 3(1.130881)}{11}
+=\frac{21.490652}{11}=1.953696,\\
+x_3^{(4)}&=&\frac{-11 - 2(0.932636) + 2.053306 + 1.130881}{10}
+=\frac{-9.681085}{10}=-0.968109,\\
+x_4^{(4)}&=&\frac{15 - 3(2.053306) + (-1.049341)}{8}
+=\frac{7.790741}{8}=0.973843.
+\end{eqnarray*}
+
+\paragraph{Iteración 5} Con $\mathbf{x}^{(4)}=(1.015199,\,1.953696,\,-0.968109,\,0.973843)$,
+\begin{eqnarray*}
+x_1^{(5)}&=&\frac{6 + 1.953696 - 2(-0.968109)}{10}
+=\frac{9.889914}{10}=0.988991,\\
+x_2^{(5)}&=&\frac{25 + 1.015199 + (-0.968109) - 3(0.973843)}{11}
+=\frac{22.125561}{11}=2.011415,\\
+x_3^{(5)}&=&\frac{-11 - 2(1.015199) + 1.953696 + 0.973843}{10}
+=\frac{-10.102859}{10}=-1.010286,\\
+x_4^{(5)}&=&\frac{15 - 3(1.953696) + (-0.968109)}{8}
+=\frac{8.170803}{8}=1.021351.
+\end{eqnarray*}
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%%\midrule
+0 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+1 & 0.6000 & 2.2727 & -1.1000 & 1.8750 \\
+2 & 1.0473 & 1.7159 & -0.8052 & 0.8852 \\
+3 & 0.9326 & 2.0533 & -1.0493 & 1.1309 \\
+4 & 1.0152 & 1.9537 & -0.9681 & 0.9738 \\
+5 & 0.9890 & 2.0114 & -1.0103 & 1.0214 \\
+%%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 2.0000 & -- \\
+1 & 0.8750 & 2.2727 \\
+2 & 0.2841 & 0.9898 \\
+3 & 0.1309 & 0.3374 \\
+4 & 0.0463 & 0.1570 \\
+5 & 0.0214 & 0.0577 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Ejercicios:instrucciones: usa $x^{(0)}=\mathbf{0}$ y detén cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. 
+Comprueba dominancia diagonal, escribe las fórmulas de Jacobi e itera con tabla.
+
+\begin{Ejer}
+\begin{equation*}
+\begin{pmatrix}
+5 & 1\\
+2 & 6
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\begin{pmatrix}3\\-10\end{pmatrix}.
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+9 & -1 & 0 & 0\\
+-1 & 12 & -2 & 1\\
+0 & -1 & 11 & -2\\
+0 & 2 & -1 & 10
+\end{pmatrix}}_{A_{4\times4}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}7\\26\\-15\\15\end{pmatrix}}_{b},
+\end{equation*}
+\end{Ejer}
+
+
+\begin{Ejer}
+
+\begin{equation*}
+\underbrace{\begin{pmatrix}
+10 & -1 & 2 & 0 & 0\\
+-1 & 12 & -2 & 3 & 0\\
+2 & -1 & 11 & -2 & 1\\
+0 & 3 & -1 & 10 & -2\\
+0 & 0 & 2 & -1 & 9
+\end{pmatrix}}_{A_{5\times5}}\,
+\underbrace{\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}}_{x}
+=
+\underbrace{\begin{pmatrix}15\\-17\\26\\-7\\13\end{pmatrix}}_{b},
+\end{equation*}
+
+\end{Ejer}
+
+\section{Gauss-Seidel}
+
+Considerar
+
+\[
+A =
+\begin{pmatrix}
+9 & -1 & 0 & 2\\
+-1 & 10 & -2 & 1\\
+0 & -1 & 8 & -1\\
+2 & 1 & -1 & 11
+\end{pmatrix},\quad
+\mathbf{b} =
+\begin{pmatrix}
+10\\ 8\\ 6\\ 13
+\end{pmatrix},\quad
+\mathbf{x}^{*}=(1,1,1,1)^\top.
+\]
+$A$ es diagonalmente dominante por renglones, por lo que Gauss--Seidel converge.
+
+Iteraci\'on general
+Con ecuaciones por rengl\'on:
+\[
+\begin{aligned}
+9x_1 - x_2 + 2x_4 &= 10,&
+\Rightarrow\;& x_1 \;=\; \frac{10 + x_2 - 2x_4}{9},\\
+- x_1 + 10x_2 - 2x_3 + x_4 &= 8,&
+\Rightarrow\;& x_2 \;=\; \frac{8 + x_1 + 2x_3 - x_4}{10},\\
+- x_2 + 8x_3 - x_4 &= 6,&
+\Rightarrow\;& x_3 \;=\; \frac{6 + x_2 + x_4}{8},\\
+2x_1 + x_2 - x_3 + 11x_4 &= 13,&
+\Rightarrow\;& x_4 \;=\; \frac{13 - 2x_1 - x_2 + x_3}{11}.
+\end{aligned}
+\]
+\textbf{Regla de GS:} cada $x_i^{(k+1)}$ usa los \emph{valores m\'as recientes disponibles} dentro del mismo paso $k+1$.
+
+
+Partimos de $\mathbf{x}^{(0)}=(0,0,0,0)^\top$.
+
+\paragraph{Iteraci\'on 1}
+\[
+\begin{aligned}
+x_1^{(1)}&=\frac{10+0-20}{9}=1.111111,\\
+x_2^{(1)}&=\frac{8+\underline{x_1^{(1)}}+20-0}{10}
+=\frac{8+1.111111}{10}=0.911111,\\
+x_3^{(1)}&=\frac{6+\underline{x_2^{(1)}}+0}{8}
+=\frac{6+0.911111}{8}=0.863889,\\
+x_4^{(1)}&=\frac{13-2\underline{x_1^{(1)}}-\underline{x_2^{(1)}}+\underline{x_3^{(1)}}}{11}
+=\frac{13-2(1.111111)-0.911111+0.863889}{11}=0.975505.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 2}
+\[
+\begin{aligned}
+x_1^{(2)}&=\frac{10+x_2^{(1)}-2x_4^{(1)}}{9}
+=\frac{10+0.911111-2(0.975505)}{9}=0.995567,\\
+x_2^{(2)}&=\frac{8+\underline{x_1^{(2)}}+2x_3^{(1)}-x_4^{(1)}}{10}
+=\frac{8+0.995567+2(0.863889)-0.975505}{10}=0.974784,\\
+x_3^{(2)}&=\frac{6+\underline{x_2^{(2)}}+x_4^{(1)}}{8}
+=\frac{6+0.974784+0.975505}{8}=0.993786,\\
+x_4^{(2)}&=\frac{13-2\underline{x_1^{(2)}}-\underline{x_2^{(2)}}+\underline{x_3^{(2)}}}{11}
+=\frac{13-2(0.995567)-0.974784+0.993786}{11}=1.002534.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 3}
+\[
+\begin{aligned}
+x_1^{(3)}&=\frac{10+0.974784-2(1.002534)}{9}=0.996635,\\
+x_2^{(3)}&=\frac{8+\underline{0.996635}+2(0.993786)-1.002534}{10}=0.998167,\\
+x_3^{(3)}&=\frac{6+\underline{0.998167}+1.002534}{8}=1.000088,\\
+x_4^{(3)}&=\frac{13-2\underline{0.996635}-\underline{0.998167}+\underline{1.000088}}{11}=1.000786.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 4}
+\[
+\begin{aligned}
+x_1^{(4)}&=\frac{10+0.998167-2(1.000786)}{9}=0.999622,\\
+x_2^{(4)}&=\frac{8+\underline{0.999622}+2(1.000088)-1.000786}{10}=0.999901,\\
+x_3^{(4)}&=\frac{6+\underline{0.999901}+1.000786}{8}=1.000086,\\
+x_4^{(4)}&=\frac{13-2\underline{0.999622}-\underline{0.999901}+\underline{1.000086}}{11}=1.000086.
+\end{aligned}
+\]
+
+\paragraph{Iteraci\'on 5}
+\[
+\begin{aligned}
+x_1^{(5)}&=\frac{10+0.999901-2(1.000086)}{9}=0.999970,\\
+x_2^{(5)}&=\frac{8+\underline{0.999970}+2(1.000086)-1.000086}{10}=1.000006,\\
+x_3^{(5)}&=\frac{6+\underline{1.000006}+1.000086}{8}=1.000011,\\
+x_4^{(5)}&=\frac{13-2\underline{0.999970}-\underline{1.000006}+\underline{1.000011}}{11}=1.000006.
+\end{aligned}
+\]
+
+Tabla de resultados
+
+\begin{center}
+\begin{tabular}{c|rrrr}
+%\toprule
+k & $x_1^{(k)}$ & $x_2^{(k)}$ & $x_3^{(k)}$ & $x_4^{(k)}$\\
+%\midrule
+0 & 0.000000 & 0.000000 & 0.000000 & 0.000000 \\
+1 & 1.111111 & 0.911111 & 0.863889 & 0.975505 \\
+2 & 0.995567 & 0.974784 & 0.993786 & 1.002534 \\
+3 & 0.996635 & 0.998167 & 1.000088 & 1.000786 \\
+4 & 0.999622 & 0.999901 & 1.000086 & 1.000086 \\
+5 & 0.999970 & 1.000006 & 1.000011 & 1.000006 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+Tabla de errores
+
+\begin{center}
+\begin{tabular}{c|cc}
+%\toprule
+k & $\|x^{(k)}-x^{*}\|_\infty$ & $\|x^{(k)}-x^{(k-1)}\|_\infty$\\
+%\midrule
+0 & 1.000000 & -- \\
+1 & 0.136111 & 1.111111 \\
+2 & 0.025216 & 0.129897 \\
+3 & 0.003365 & 0.023383 \\
+4 & 0.000378 & 0.002986 \\
+5 & 0.000030 & 0.000348 \\
+%\bottomrule
+\end{tabular}
+\end{center}
+
+
+Instrucciones: usa $x^{(0)}=\mathbf{0}$ y det\'en cuando $\|x^{(k+1)}-x^{(k)}\|_\infty<10^{-3}$. Escribe las f\'ormulas de GS e itera con tabla.
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+6 & -1\\
+1 & 5
+\end{pmatrix}}_{A_{2\times2}}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}13\\-3\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}\[
+\underbrace{\begin{pmatrix}
+8 & 1 & -1 & 0\\
+2 & 10 & -2 & 1\\
+1 & -1 & 9 & -1\\
+0 & 2 & -1 & 7
+\end{pmatrix}}_{A_{4\times4}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}6\\-3\\20\\-9\end{pmatrix}}_{b}.
+\]
+
+\end{Ejer}
+
+
+\begin{Ejer}
+\[
+\underbrace{\begin{pmatrix}
+10 & -1 & 0 & 0 & 2\\
+-1 & 11 & -1 & 0 & 0\\
+0 & -1 & 12 & -2 & 1\\
+0 & 0 & -2 & 9 & -1\\
+2 & 0 & 1 & -1 & 8
+\end{pmatrix}}_{A_{5\times5}}
+\begin{pmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}10\\21\\1\\-10\\11\end{pmatrix}}_{b}.
+\]
+\end{Ejer}
+
+
+
+\end{document}

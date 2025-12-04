@@ -1,0 +1,1152 @@
+%___________________________________________________________________________________________
+\section{Inferencia Estad\'istica}
+%___________________________________________________________________________________________
+
+%___________________________________________________________________________________________
+\subsection{Intervalos de confianza}
+%___________________________________________________________________________________________
+\vspace{0.5cm}
+\subsubsection{Varianza conocida.}
+\vspace{0.5cm}
+%___________________________________________________________________________________________
+%
+
+
+Asumiendo que la muestra se selecciona de una poblaci\'on normal o en su defecto que el tama\~no, $n$, es suficientemente grande, se puede construir un intervalo de confianza para $\mu$ considerando la distribuci\'on muestral de $\overline{X}$.
+
+
+Si $\overline{x}$ es la media de una muestra aleatoria de tama\~no $n$ de una poblaci\'on con varianza conocida $\sigma^{2}$, el intervalo de confianza de $\left(1-\alpha\right)100\%$ para $\mu$ es,
+
+\begin{equation}
+\overline{x}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}<\mu<\overline{x}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}=1-\alpha
+\end{equation}
+
+donde $z_{\alpha/2}$ es el valor de $z$ a la derecha del cual se tiene un \'area de $\alpha/2$
+
+\begin{Note}
+Para muestras peque\~nas que se seleccionan de poblaciones que no son normales, no se puede esperar un grado de confianza preciso. Sin embargo para muestras de tama\~n $n\geq30$, sin importar la mayor\'ia de las poblaciones, la teor\'ia muestral garantiza buenos resultados.
+\end{Note}
+
+\begin{Note}
+Si se utiliza $\overline{x}$ como una estimaci\'on de $\mu$, se puede tener una confianza del $\left(1-\alpha\right)100\%$ de que el error no exceder\'a una cantidad espec\'ifica $e$ cuando el tama\~no de muestra es
+
+
+\begin{equation}
+n=\left(\frac{z_{\alpha/2}\sigma}{e}\right)^{2}
+\end{equation}
+
+\end{Note}
+
+%___________________________________________________________________________________________
+\subsubsection{Varianza desconocida.}
+%___________________________________________________________________________________________
+%
+
+Ahora abordaremos el problema de intentar estimar la media de la poblaci\'on cuando se desconoce la varianza poblacional. Lo anterior se hace utilizando una distribuci\'on $t$ de Student con $n-1$ grados de libertad.
+
+Si $\overline{x}$ es la media de una muestra aleatoria de tama\~no $n$ con varianza $s_{X}^{2}$, de una poblaci\'on con varianza desconocida $\sigma^{2}$, el intervalo de confianza de $\left(1-\alpha\right)100\%$ para $\mu$ es,
+
+\begin{equation}
+\overline{x}-t_{\alpha/2}\frac{s_{X}}{\sqrt{n}}<\mu<\overline{x}+t_{\alpha/2}\frac{s_{X}}{\sqrt{n}}
+\end{equation}
+
+donde $t_{\alpha/2}$ es el valor de $z$ a la derecha del cual se tiene un \'area de $\alpha/2$
+
+
+Es necesario que ocurran cuales quiera de los dos casos siguientes:
+
+
+\begin{enumerate}
+\item $\sigma$ desconocida y poblaci\'on distribuida normalmente.
+\item $\sigma$ desconocida y $n>30$.
+\end{enumerate}
+
+
+%_____________________________________________________________________________________________________________________________________________________
+\subsection{Estimaci\'on de intervalos de confianza para la diferencia de dos medias.}
+%_____________________________________________________________________________________________________________________________________________________
+%
+
+%_____________________________________________________________________________________________________________________________________________________
+\subsubsection{Varianzas conocidas.}
+%_____________________________________________________________________________________________________________________________________________________
+%
+
+Supongamos que el muestreo se realiza a partir de una distribuci\'on normal, adem\'as de que ambas poblaciones tienen varianza conocida. Entonces el intervalo de confianza del $\left(1-\alpha\right)100\%$ para $\mu_{1}-\mu_{2}$ est\'a dado por
+
+\begin{equation}
+\left(\overline{x}_{1}-\overline{x}_{2}\right)-z_{\alpha/2}\sqrt{\frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}}<\mu_{1}-\mu_{2}<\left(\overline{x}_{1}-\overline{x}_{2}\right)+z_{\alpha/2}\sqrt{\frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}}
+\end{equation}
+
+
+
+Adem\'as, si el muestreo se realiza de poblaciones no normales, la construcci\'on de los intervalos de confianza se realiza utilizando la ecuaci\'on anterior si el tama\~no de las muestras $n_{1}$ y $n_{2}$ son suficientemente grandes.
+
+
+%_____________________________________________________________________________________________________________________________________________________
+\subsubsection{Varianzas desconocidas.}
+%_____________________________________________________________________________________________________________________________________________________
+%
+
+
+Cuando no se conocen las varianzas, es posible estimar la diferencia entre las medias de dos poblaciones con un intervalo de confianza, es posible utilizar la distribuci\'on $t$ de Student para suministrar un factor de confiabilidad asumiendo:
+
+
+\begin{enumerate}
+\item las dos poblaciones muestradas siguen una distribuci\'on normal
+
+\item respecto a las varianzas:
+
+\begin{enumerate}
+\item ambas son iguales: En este caso se propone establecer una estimaci\'on conjunta para la varianza com\'un, esto se hace mediante un c\'alculo promedio ponderado de las dos varianzas de las muestras, 
+
+\begin{equation}
+s_{p}^{2}=\frac{\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}}{n_{1}+n_{2}-2}
+\end{equation}
+
+y por tanto, el error est\'andar est\'a dado por
+
+\begin{equation}
+s_{\overline{x}_{1}-\overline{x}_{2}}=\sqrt{\frac{s_{p}^{2}}{n_{1}}+\frac{s_{p}^{2}}{n_{2}}}
+\end{equation}
+
+Por tanto,  el intervalo de confianza al $\left(1-\alpha\right)100\%$ para $\mu_{1}-\mu_{2}$ est\'a dado por
+
+\begin{equation}
+\left(\overline{x}_{1}-\overline{x}_{2}\right)-t_{\alpha/2}\sqrt{\frac{s_{p}^{2}}{n_{1}}+\frac{s_{p}^{2}}{n_{2}}}<\mu_{1}-\mu_{2}<\left(\overline{x}_{1}-\overline{x}_{2}\right)+t_{\alpha/2}\sqrt{\frac{s_{p}^{2}}{n_{1}}+\frac{s_{p}^{2}}{n_{2}}}
+\end{equation}
+
+\item son varianzas distintas: Cuando no se puede concluir que las varianzas de dos poblaciones son iguales, a\'un y cuando  se pueda suponer que provienen de una distribuci\'on normal, no es adecuado utilizar la distribuci\'on $t$ para construir intevalos de confianza. La soluci\'on es utilizar el factor de confiabilidad que se da en la siguiente expresi\'on:
+
+\begin{equation}
+t_{1-\alpha/2}^{'}=\frac{w_{1}t_{1}+w_{2}t_{2}}{w_{1}+w_{2}}
+\end{equation}
+
+donde $w_{1}=s_{1}^{2}/n_{1}$, $w_{2}=s_{2}^{2}/n_{2}$, $t_{1}=t_{1-\alpha/2}$, para $n_{1}-1$ grados de libertad y $t_{2}=t_{1-\alpha/2}$, para $n_{2}-1$ grados de libertad. Un intervalo de confianza del $\left(1-\alpha\right)100\%$ para $\mu_{1}-\mu_{2}$ est\'a dado por
+
+\begin{equation}
+\left(\overline{x}_{1}-\overline{x}_{2}\right)-t_{1-\alpha/2}^{'}\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}<\mu_{1}-\mu_{2}<\left(\overline{x}_{1}-\overline{x}_{2}\right)+t_{1-\alpha/2}^{'}\sqrt{\frac{s_{p}^{2}}{n_{1}}+\frac{s_{p}^{2}}{n_{2}}}
+\end{equation}
+\end{enumerate}
+\end{enumerate}
+
+%___________________________________________________________________________________________
+\subsection{Pruebas de Hipotesis}
+%___________________________________________________________________________________________
+%
+
+
+B\'asicamente lo que se necesita para realizar una prueba de hip\'otesis es:
+
+
+\begin{enumerate}
+\item Definir la hip\'otesis nula, $H_{0}$;
+\item Determinar la hip\'otesis alternativa, $H_{1}$;
+\item Reconocer el estad\'istico de prueba, as\'i como el valor del nivel de confianza, $z_{\alpha/2}$ \'o $t_{\alpha/2}$;
+\item Definir la regi\'on de rechazo,
+\item Elaborar, con base en todo lo anterior, la conclusi\'on.
+\end{enumerate}
+
+Una vez realizada la prueba de hip\'otesis, pueden ocurrir b\'asicamente 4 casos:
+
+
+\begin{enumerate}
+\item Aceptar $H_{0}$, siendo que efectivamente esta es verdadera;
+\item Rechaza $H_{0}$, cuando esta es verdadera;
+\item Aceptar $H_{0}$, siendo que esta es falsa;
+\item Rechazar $H_{0}$, siendo que es falsa;
+\end{enumerate}
+
+
+Es decir,
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+& \multicolumn{2}{c}{Hip\'otesis Nula}\vline \\\hline
+Decisi\'on & Verdadera & Falsa\\\hline
+Rechazar $H_{0}$ & $\alpha=$Error Tipo I & Decisi\'on Correcta\\
+Aceptar $H_{0}$ & Decisi\'on Correcta & $\beta=$Error Tipo II\\\hline\end{tabular}
+\end{center}
+\end{table}	
+
+
+%___________________________________________________________________________________________
+\subsubsection{Pruebas de hipotesis: varianza conocida}
+%___________________________________________________________________________________________
+%
+%
+
+Asumamos las siguientes consideraciones:
+
+Se tiene una muestra $X_{1},X_{2},\ldots,X_{n}$ parte de una poblaci\'on con media $\mu$ y varianza $\sigma^{2}$, adem\'as de que se tiene la hip\'otesis:
+
+\begin{eqnarray*}
+H_{0}:\mu=\mu_{0}\\
+H_{1}:\mu\neq\mu_{0}
+\end{eqnarray*}
+
+El estad\'istico de prueba deber\'a de basarse en la distribucion de la variable aleatoria $\overline{X}$, el teorema del limite central establece que independientemente de la distribuci\'on de la variable aleatoria $X$, $\overline{X}$ tiene una distribuci\'on aproximadamente normal con media  $\mu$ y varianza $\sigma^{2}$, de tal forma que  $\mu_{\overline{X}}=\mu$ y $\sigma^{2}_{\overline{X}}=\frac{\sigma^{2}}{n}$. La regi\'on cr\'itica se crea para controlar $\alpha$, la probabilidad de cometer el error tipo I. En consecuencia, dado el valor calculado $x_{\overline{X}}$, proveniente de la muestra, la prueba formal implica rechazar $H_{0}$, si el estad\'istico de prueba calculado, dada la muestra,
+
+\begin{equation}
+z=\frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}
+\end{equation}
+
+satisface $z>z_{\alpha/2}$ o $z<z_{\alpha/2}$, si $-z_{\alpha/2}<z<z_{\alpha/2}$ no se rechaza $H_{0}$. El rechazo de $H_{0}$ implica necesariamente la aceptaci\'on de $H_{1}$, por ende existe la probabilidad $\alpha$ de rechazar $H_{0}$ cuando en realidad se cumple que $\mu=\mu_{0}$.
+
+La otra perspectiva es realizar las pruebas de hip\'otesis por medio de intervalos de confianza, en este caso nuevamente se hace uso de la variable aleatoria \[Z=\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\]
+
+Resulta entonces que {\em realizar la prueba de hip\'otesis para $H_{0}$ es equivalente a calcular un intervalo de confianza del $\left(1-\alpha\right)100\%$ para $\mu$ y rechazar $H_{0}$ si $\mu_{0}$ no est\'a dentro del intervalo de confianza}. Si $\mu_{0}$ est\'a dentro del intervalo de confianza, entonces aceptamos $H_{0}$, esto es, hay que verifica que efectivamente:
+
+
+\begin{eqnarray*}
+-z_{\alpha/2}<\frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}<z_{\alpha/2}\Leftrightarrow \mu_{0}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}<\overline{x}<\mu_{0}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}
+\end{eqnarray*}
+
+\begin{Def}
+El valor $p$ o nivel de significaci\'on observado de una prueba estad\'istica es el valor m\'as peque\~no de $\alpha$ con el cual puede rechazarse $H_{0}$. Es el riesgo real de cometer un error tipo $I$, si se rechaza $H_{0}$ con base en el valor observado del estad\'istico de prueba. El valor $p$ mide la fuerza de la evidencia contra $H_{0}$.
+\end{Def}
+
+Por ejemplo, si en una prueba de una cola derecha, el estad\'istico de prueba es $z=2.03$, se puede rechazar $H_{0}$ en el nivel de significaci\'on de $5\%$ porque el estad\'istico de prueba excede $z=1.645$. Sin embargo, no se puede rechazar $H_{0}$ en el nivel de significaci\'on de $1\%$ porque el estad\'istico de prueba es menor que $z=2.33$.
+
+\begin{Def}
+La potencia de la prueba dada como \[1-\beta=\Prob\left[\textrm{Rechazar $H_{0}$, dado que $H_{0}$ es verdadera}\right]\] mide la aptitud de la prueba para comportarse como se requiere.
+\end{Def}
+
+
+%___________________________________________________________________________________________
+\subsubsection{Prueba de hiptesis: Muestras Grandes.}
+%___________________________________________________________________________________________
+%
+
+
+Supongase que se tienen dos poblaciones con media $\mu_{1}$ y $\mu_{2}$ y varianza $\sigma_{1}$ y $\sigma_{2}$ respectivamente, con tama\~nos de poblaci\'on mayores o iguales que 30, es decir, $n_{1}\geq30$ y $n_{2}\geq30$. El procedimiento de la prueba es el siguiente:
+
+\begin{enumerate}
+
+\item La hip\'otesis nula $H_{0}:\left(\mu_{1}-\mu_{2}\right)=D_{0}$ donde $D_{0}$ es alguna diferencia especificada que se desea probar. En la mayor\'ia de las veces se desea probar que no hay diferencia alguna, es decir, $D_{0}=0$.
+
+\item Definici\'on de $H_{1}$ la hip\'otesis alternativa.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{ccc}
+
+Prueba de una cola & &Prueba de dos colas\\
+$H_{1}: \left(\mu_{1}-\mu_{2}\right)>D_{0}$ & &$H_{1}: \left(\mu_{1}-\mu_{2}\right)\neq D_{0}$\\
+\end{tabular}
+\end{center}
+\end{table}	
+
+\item Se calcula el estad\'istico de prueba:
+
+\begin{equation}
+z=\frac{\left(\overline{x}_{1}-\overline{x}_{2}\right)-D_{0}}{\sqrt{\frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}}}
+\end{equation}
+
+Si $\sigma_{1}$ y $\sigma_{2}$ son desconocidos, se sustituyen estos valores por los valores obtenidos de la muestra.
+
+\item Determinaci\'on de la regi\'on de rechazo para $H_{0}$
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{ccc}
+
+Prueba de una cola & &Prueba de dos colas\\
+$z>z_{\alpha}$ & & $z>z_{\alpha/2}$ \'o $z<-z_{\alpha/2}$\\
+\end{tabular}
+\end{center}
+\end{table}	
+\end{enumerate}
+
+%___________________________________________________________________________________________
+\subsubsection{Prueba de hiptesis: Muestras Peque\~nas.}
+%___________________________________________________________________________________________
+%
+
+
+Ahora supongamos que los tama\~nos de muestra son peque\~nos, es decir, $n_{1}<30$ y $n_{2}<30$. Adem\'as es necesario saber que las poblaciones de las que provienen las muestras que se toman son normales. Otro supuesto importante es que los valores de las varianzas poblacionales son iguales, es decir, $\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$.
+
+Bajo estos supuesto se tiene lo siguiente:
+
+\begin{enumerate}
+
+\item La hip\'otesis nula $H_{0}:\left(\mu_{1}-\mu_{2}\right)=D_{0}$ donde $D_{0}$ es alguna diferencia especificada que se desea probar. En la mayor\'ia de las veces se desea probar que no hay diferencia alguna, es decir, $D_{0}=0$.
+
+\item Definici\'on de $H_{1}$ la hip\'otesis alternativa.
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{ccc}
+
+Prueba de una cola & &Prueba de dos colas\\
+$H_{1}: \left(\mu_{1}-\mu_{2}\right)>D_{0}$ & &$H_{1}: \left(\mu_{1}-\mu_{2}\right)\neq D_{0}$\\
+\end{tabular}
+\end{center}
+\end{table}	
+
+\item Se calcula el estad\'istico de prueba:
+
+\begin{equation}
+t=\frac{\left(\overline{x}_{1}-\overline{x}_{2}\right)-D_{0}}{\sqrt{s^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}}
+\end{equation}
+
+donde
+
+\begin{equation}
+s^{2}=\frac{\left(n_{1}-1\right)s_{1}^{2}+\left(n_{2}-1\right)s_{2}^{2}}{n_{1}+n_{2}-2}
+\end{equation}
+
+\item Determinaci\'on de la regi\'on de rechazo para $H_{0}$
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{ccc}
+Prueba de una cola & &Prueba de dos colas\\
+$t>t_{\alpha}$ & & $t>t_{\alpha/2}$ \'o $t<-t_{\alpha/2}$\\
+\end{tabular}
+\end{center}
+\end{table}	
+
+Los valores cr\'iticos de $t$, $t_{\alpha}$ y $t_{\alpha/2}$ se basan en $\left(n_{1}+n_{2}-2\right)$ grados de libertad.
+\end{enumerate}
+%___________________________________________________________________________________________
+\subsection{Resumen}
+%___________________________________________________________________________________________
+B\'asicamente todos los posibles casos se resumen en la siguiente tabla:
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$H_{0}$ & Estad\'istico de Prueba & $H_{1}$ & Regi\'on Cr\'itica\\\hline
+& $z=\frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}$  & $\mu<\mu_{0}$ & $z<-z_{\alpha}$\\
+$\mu=\mu_{0}$ & & $\mu>\mu_{0}$ & $z>z_{\alpha}$\\
+& $\sigma$ conocida & $\mu\neq\mu_{0}$ & $z<-z_{\alpha/2}$ y $z>z_{\alpha/2}$ \\\hline
+& $t=\frac{\overline{x}-\mu_{0}}{s/\sqrt{n}}$; & $\mu<\mu_{0}$ & $t<-t_{\alpha}$\\
+$\mu=\mu_{0}$ & $\nu=n-1$ & $\mu>\mu_{0}$ & $t>t_{\alpha}$\\
+& $\sigma$ desconocida & $\mu\neq\mu_{0}$ & $t<-t_{\alpha/2}$ y $t>t_{\alpha/2}$ \\\hline
+& $z=\frac{(\overline{x}_{1}-\overline{x}_{2})-d_{0}}{\sqrt{(\sigma_{1}^{2}/n_{1})+(\sigma_{2}^{2}/n_{2})}}$; & $\mu_{1}-\mu_{2}<d_{0}$ & $z<-z_{\alpha}$\\
+$\mu_{1}-\mu_{2}=d_{0}$ &  & $\mu_{1}-\mu_{2}>d_{0}$ & $z>z_{\alpha}$\\
+& $\sigma_{1}$ y $\sigma_{2}$ desconocidas & $\mu_{1}-\mu_{2}\neq d_{0}$ & $z<-z_{\alpha/2}$ y $z>z_{\alpha/2}$ \\\hline
+& $t=\frac{(\overline{x}_{1}-\overline{x}_{2})-d_{0}}{s_{p}\sqrt{(1/n_{1})+(1/n_{2})}}$;  & $\mu_{1}-\mu_{2}<d_{0}$ & $t<-t_{\alpha}$\\
+$\mu_{1}-\mu_{2}=d_{0}$ & $\nu=n_{1}+n_{2}-2$& $\mu_{1}-\mu_{2}>d_{0}$ & $t>t_{\alpha}$\\
+& $\sigma_{1}=\sigma_{2}$ pero desconocidas & $\mu_{1}-\mu_{2}\neq d_{0}$ & $t<-t_{\alpha/2}$ y $t>t_{\alpha/2}$ \\
+& $s^{2}_{p}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}$ & & \\\hline
+& $t^{'}=\frac{(\overline{x}_{1}-\overline{x}_{2})-d_{0}}{\sqrt{(s_{1}^{2}/n_{1})+(s_{2}^{2}/n_{2})}}$;  & $\mu_{1}-\mu_{2}<d_{0}$ & $t^{'}<-t_{\alpha}$\\
+$\mu_{1}-\mu_{2}=d_{0}$ & $\nu=\frac{(s_{1}^{2}/n_{1}+s_{2}^{2}/n_{2})^{2}}{\frac{(s_{1}^{2}/n_{1})^{2}}{n_{1}-1}+\frac{(s_{2}^{2}/n_{2})^{2}}{n_{2}-1}}$  & $\mu_{1}-\mu_{2}>d_{0}$ & $t^{'}>t_{\alpha}$\\
+& $\sigma_{1}\neq\sigma_{2}$ pero desconocidas & $\mu_{1}-\mu_{2}\neq d_{0}$ & $t^{'}<-t_{\alpha/2}$ y $t^{'}>t_{\alpha/2}$ \\\hline
+\end{tabular}
+\end{center}
+\end{table}
+\newpage
+
+
+%___________________________________________________________________________________________
+\subsection{Ejercicios}
+%___________________________________________________________________________________________
+
+\begin{enumerate}
+\item Un dise\~nador industrial quiere determinar la cantidad promedio de tiempo que tarda un adulto en ensamblar un jueguete. Use los datos siguientes (en minutos), una muestra aleatoria, para construir un intervalo de confianza del $95\%$ para la media de la poblaci\'on muestreada
+
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{cccccccccccc}
+\hline
+ 17 & 13 & 18 & 19 & 17 & 21 & 29 & 22 & 16 & 28 & 21 & 15 \\
+ 26 & 23 & 24 & 20 & 8 & 17 & 17 & 21 & 32 & 18 & 25 & 22 \\
+ 16 & 10 & 20 & 22 & 19 & 14 & 30 & 22 & 12 & 24 & 28 & 11\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\item Se calcula que la media de los promedios de los puntos de calidad de una muestra aleatoria de 36 alumnos universitarios de \'ultimo a\~no es 2.6. encuentre los intervalos de confianza del $95\%$ y del $99\%$ para la media del total de alumnos del \'ultimo a\~no. Asuma que la desviaci\'on est\'andar de la poblaci\'on es de 0.3.
+
+
+\item Que tan grande se requiere que sea la muestra del ejemplo (2) si se desea una confianza del $95\%$ de que la estimaci\'on de $\mu$ difiera de est\'a por menos de 0.05?
+
+\item Suponga que queremos estimar la media de la puntuiaci\'on de CI para la poblaci\'on de profesores de estad\'istica. ¿Cu\'antos profesores de estad\'istica deben de seleccionarse al azar para efectuar pruebas de CI, si queremos tener una confianza del $95\%$ de que la media muestral estar\'a dentro de 2 puntos de CI de la media poblacional?
+
+\item La salud de la poblaci\'on de osos en cierto parque  es controla por mediciones peri\'odicas que se toman de osos anestesiados. Una muestra de 54 osos tiene un peso medio de 182.9
+
+\item Un fabricante produce focos que tienen un promedio de vida con distribuci\'on aproximadamente normal y una desviaci\'on est\'andar de 40 horas. Si una muestra de 30 focos tiene una vida promedio de 780 horas, encuentre un intervalo de confianza del 96$\%$ para la media poblacional de todos los focos que produce esta empresa.
+
+\item Las alturas de una muesrta aleatoria de 50 estudiantes mostraron una media de 174.5 cent\'imetros y una desviaci\'on est\'andar de 6.9 cent\'imetros.
+\begin{enumerate}
+\item Determine un intervalo de confianza del 98$\%$ para la altura promedio de todos los estudiantes.
+\item ¿Qu\'e se puede afirmar con un 989$\%$ de confianza acercad el posible tama\~no del error si se estima que las alturas promedio de todos los estudiantes es de 174.5 cent\'imetros?
+\end{enumerate}
+
+
+\item Un experto en eficiencia desea determinar el tiempo que toma hacer tres perforaciones en cierta pieza met\'alica. ¿Qu\'e tan grande se requiere que sea la muestra si se necesita una confianza del 95$\%$ de que su media muestral estar\'a dentro de 15 segundos del tiempo real? Asuma que, por estudios previos se sabe que $\sigma=40$ segundos.
+
+\item Una muestra aleatoria de 8 cigarros de una marca determinada tiene un contenido promedio de nicotina de 2.6 miligramos y una desviaci\'on est\'andar de 0.9 miligramos. Determine un intervalo del 99$\%$ de confianza para el contenido promedio real de nicotina de esta marca de cigarros en particular, asumiendo que la distribuci\'on de los contenidos de nicotina son aproximadamente normales.
+
+\item Se registraron las siguientes mediciones del tiempo de secado, en horas de una marca de pintura l\'atex: 3.4, 2.5, 4.8, 2.9, 3.6, 2.8, 3.3, 5.6, 3.7, 2.8, 4.4, 4.0, 5.2, 3.0 y 4.8. suponiendo que las mediciones representan una muestra aleatoria de una poblaci\'on normal, encuentre los l\'imites de tolerancia del 99$\%$ que contendr\'an el 95$\%$ de los tiempos de secado.
+
+\item Se aplica una prueba estandarizada de qu\'imica a 50 ni\~nas y 75 ni\~nos. Las ni\~nas obtienen una calificaci\'on promedio de 76, y los ni\~nos de82. Encuentre un intervalo de confianza del 96$\%$ para la diferencia $\mu_{1}-\mu_{2}$, donde $\mu_{1}$ es la calificaci\'on promedio de todos los ni\~nos y $\mu_{2}$ es la calificaci\'on promedio de todos los ni\~nas que pudieron realizar este examen. Suponga que las desviaciones est\'andar de las poblaciones para las ni\~nas y los ni\~nos son 6 y 8, respectivamente.
+
+
+\item Una muestra aleatoria de tama\~no $n_{1}=25$ que se toma de una poblaci\'on normal con desviaci\'on est\'andar $\sigma_{1}=5$ tienen una media de $\overline{x}_{1}=80$. Una segunda muestra aleatoria de tama\~no $n_{2}=36$, tomada de una poblaci\'on normal diferente con una desviaci\'on est\'andar $\sigma_{2}=3$ tienen una media de $\overline{x}_{2}=75$. Encuentre un intervalo de confianza del $94\%$ para $\mu_{1}-\mu_{2}$.
+
+
+\item Se registraron los siguentes datos en d\'ias, que representan los tiempos de recuperaci\'on de pacientes tratados aleatoriamente con uno de dos medicamentos para aliviarlos de graves infecciones en la ves\'icula:
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Medicamento 1 & Medicamento 2\\\hline
+ $n_{1}=14$ & $n_{2}=116$ \\
+ $\overline{x}_{1}=14$ & $\overline{x}_{2}=19$ \\
+ $s_{1}^{2}=1.5$ & $s_{2}^{2}=1.8$ \\\hline 
+\end{tabular}
+\end{center}
+\end{table}	
+
+Encuentre un intervalo de confianza del 99$\%$ para la diferencia $\mu_{1}-\mu_{2}$ en el tiempo promedio de recuperaci\'on para los dos medicamentos, suponiendo poblaciones normales con varianzas iguales.
+
+
+\item Una compa\~n\'ia de taxis est\'a tratando de decidir si compra la marca $A$ o la marca $B$ de nuem\'aticos para su flotilla de autom\'oviles. Para estimar la diferencia entre dos marcas, se lleva a cabo un experimento con 12 neum\'aticos de cada marca. Los neum\'aticos se utilizan hasta que se gastan. Los resultados son 
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Marca A & Marca B\\\hline
+ $\overline{x}_{1}=36300$ kil\'ometros & $\overline{x}_{2}=38100$ kil\'ometros\\
+ $s_{1}=5000$ & $s_{2}^{2}=6100$ \\\hline 
+\end{tabular}
+\end{center}
+\end{table}	
+Calcule un intervalo de confianza para $\mu_{1}-\mu_{2}$ suponiendo que las poblaciones tienen distribuci\'on normal.
+
+\item La durabilidad de dos tipos de neum\'aticos para autom\'oviles se compar\'o mediante muestras de pruebas en carretera de $n_1=n_2=100$ neum\'aticos de cada tipo. El n\'umero de millas hasta el desgaste final se defini\'o ocmo una cantidad espec\'ifica de uso del neum\'atico. Los resultados de la prueba son:
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Marca A & Marca B\\\hline
+ $\overline{x}_{1}=26400$ kil\'ometros & $\overline{x}_{2}=25100$ kil\'ometros\\
+ $s_{1}^{2}=1440000$ & $s_{2}^{2}=1960000$ \\\hline 
+\end{tabular}
+\end{center}
+\end{table}	
+
+Estime $\mu_{1}-\mu_{2}$ la diferencia promedio hasta el desgaste final, usando un intervalo de confianza de $99\%$. ¿Hay una diferencia en la durabilidad promedio para los dos tipos de neum\'aticos?
+
+
+\item Un m\'etodo para resolver la escasez de energ\'ia el\'ectrica implica construir plantas nucleares flotantes a pocas millas de la costa. Como existe preocupaci\'on acerca de la posibilidad de que los barcos choquen con una planta flotante, se necesita estimar la densidad de tr\'ansito de embarcaciones en el \'area. El n\'umero de barcos que pasan por d\'ia dentro de una distancia de 10 millas del lugar que se propone ubicar la planta de energ\'ia, anotado durante $n=60$ d\'ias en julio y agosto, tiene una media muestral y una varianza igual a $\overline{x}=7.2$ y $s^{2}=8.8$, respectivamente:
+
+\begin{enumerate}
+\item Encuentre el intervalo de confianza de $95\%$  para el n\'umero medio de barcos que pasan en un radio de 10 millas de la ubicaci\'on propuesta de la planta de energ\'ia durante un d\'ia.
+
+\item Se espera que la densidad de tr\'ansito de naves disminuya durante los meses invernales. Una muestra de $n=90$ registros diarios de avistamientos de naves durante diciembre, enero y febrero dieron una media y una varianza de $\overline{x}=4.7$ y $s^{2}=4.9$. Encuentre el intervalo de confianza de $90\%$ para la diferencia en la densidad media de tr\'afico de naves entre los meses de verano e invierno
+\end{enumerate}
+
+\item Un investigador m\'edico pretende usar la media de una muestra aleatoria de tama\~no $n=120$ para estimar la media de la presi\'on arterial de mujeres de cincuenta a\~nos. si, con base en su experiencia, sabe que $\sigma=10.5$ mm de mercurtio, ¿qu\'e puede afirmar con probabilidad de 0.99 acerca de la presi\'on arterial de mujeres de 50 a\~nos?
+
+
+\item Un estudio de dos clases de equipo de fotocopiado muestra que 61 aver\'ias del equipo de primera clase se llevaron en promedio 80.7 minutos en ser reparadas con una desviaci\'on est\'andar de 19.4 minutos, mientras que 61 aver\'ias del equipo de segunda clase se llevaron en promedio 88.1 minutos en ser reparadas con una desviaci\'on est\'andar de 18.8 minutos. Encuentre un intervalo de confianza del 99$\%$ para la diferencia entre los verdaderos promedios del tiempo que toma reparar las aver\'ias de las dos clases de equipo de fotocopiado.
+
+\item Para estudiar el efecto de las aleaciones sobre las resistencias de los alambres el\'ectricos, una ingeniera planea medir kla resistencia de $n_1=35$ alambres est\'andar y $n_2=45$ alambres aleados. Si se puede suponer que $\sigma_1=0.004$ ohms y $\sigma_2=0.005$ ohms para dichos datos, ¿qu\'e se puede afirmar con un $98\%$ de confianza acerca de la diferencia de resisencias promedio?
+
+\item Una muestra aleatoria de tama\~no $N_{1}=25$, tomada de una poblaci\'on normal con una desviaci\'on est\'andar de $\sigma_{1}=5.2$, tiene una media de $\overline{x}_{1}=81$. Una segunda muestra aleatoria de tama\~no $n_{2}=36$, tomada de una diferente poblaci\'on normal con una desviaci\'on est\'andar de $\sigma_{2}=3.4$, tiene una media $\overline{x}_{2}=76$. Pruebe la hip\'otesis de que $\mu_{1}=\mu_{2}$ en contraposici\'on a la alternativa $\mu_{1}\neq\mu_{2}$.
+
+\item Para determninar si un nuevo suero detiene la leucemia, se seleccionan 9 ratones, los cuales ya la han contra\'ido y est\'an en una etapa avanzada de la enfermedad. Cinco reciben el tratamiento y 4 no. Los tiempos de supervivencia, en a\~nos, desde el momento en que comenzo el experimento son los siguientes
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{c|ccccc}
+Con tratamiento & 2.1 & 5.3 & 1.4 & 4.6 & 0.9 \\\hline
+Sin tratamiento & 1.9 & 0.5 & 2.8 & 3.1 & \\
+\end{tabular}
+\end{center}
+\end{table}	
+\end{enumerate}
+
+En el nivel de significancia de $0.05$, puede afirmarse que el suero es eficaz? asuma que las dos dostribuciones son normales con varianzas iguales.
+
+%---------------------------------------------------------------------------
+\subsubsection{Intervalos de Confianza para una Media}
+%---------------------------------------------------------------------------
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza para la media poblacional:
+
+\begin{enumerate}
+    \item Intervalo de confianza del $95\%$ para la altura media poblacional de los estudiantes de una universidad con una muestra de $100$ estudiantes:
+    \begin{itemize}
+        \item Tama\~no de la muestra ($n$): $100$
+        \item Media muestral ($\overline{x}$): $170$ cm
+        \item Desviaci\'on est\'andar poblacional ($\sigma$): $8$ cm
+        \item Nivel de confianza: $95\%$
+        \item Valor cr\'itico $z$: $1.96$
+        \item Error est\'andar: $E = \frac{8}{\sqrt{100}} = 0.8$ cm
+        \item Intervalo de confianza: $\overline{x} \pm zE = 170 \pm 1.96(0.8) = (168.4, 171.6)$ cm
+    \end{itemize}
+    Por lo tanto, podemos afirmar con un nivel de confianza del $95\%$ que la altura media poblacional de los estudiantes se encuentra dentro del intervalo $(168.4, 171.6)$ cm.
+
+    \item Intervalo de confianza del $90\%$ para la temperatura media poblacional de un horno con una muestra de $50$ mediciones:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $400\,^{\circ}C$
+        \item Desviaci\'on est\'andar muestral ($s$): $10\,^{\circ}C$
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las alturas de una poblaci\'on de $2000$ estudiantes universitarios:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $170$ cm
+        \item Desviaci\'on est\'andar muestral ($s$): $10$ cm
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media del di\'ametro de un conjunto de $50$ tornillos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $3.5$ mm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.2$ mm
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media del peso de una poblaci\'on de $50000$ manzanas:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $150$ g
+        \item Desviaci\'on est\'andar muestral ($s$): $20$ g
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media del tiempo de reacci\'on de un grupo de $100$ conductores:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $0.5$ s
+        \item Desviaci\'on est\'andar muestral ($s$): $0.1$ s
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media de las concentraciones de cloro en una muestra de agua:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $2.0$ ppm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.3$ ppm
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media de las velocidades de una muestra de $50$ coches en una autopista:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $120$ km/h
+        \item Desviaci\'on est\'andar muestral ($s$): $5$ km/h
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media del di\'ametro de una muestra de $15$ pernos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $5.5$ mm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.3$ mm
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las concentraciones de \'acido sulf\'urico en una muestra de $25$ soluciones:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $3.2$ M
+        \item Desviaci\'on est\'andar muestral ($s$): $0.4$ M
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media de las resistencias el\'ectricas en una muestra de $20$ circuitos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $150$ $\Omega$
+        \item Desviaci\'on est\'andar muestral ($s$): $20$ $\Omega$
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las alturas de una muestra de $30$ estudiantes de una universidad:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $170$ cm
+        \item Desviaci\'on est\'andar muestral ($s$): $6$ cm
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las alturas de una poblaci\'on de $2000$ estudiantes universitarios:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $170$ cm
+        \item Desviaci\'on est\'andar muestral ($s$): $10$ cm
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media del di\'ametro de un conjunto de $50$ tornillos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $3.5$ mm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.2$ mm
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media del peso de una poblaci\'on de $50000$ manzanas:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $150$ g
+        \item Desviaci\'on est\'andar muestral ($s$): $20$ g
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media del tiempo de reacci\'on de un grupo de $100$ conductores:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $0.5$ s
+        \item Desviaci\'on est\'andar muestral ($s$): $0.1$ s
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media de las concentraciones de cloro en una muestra de agua:
+    \begin{itemize}
+        \item Tama\~no de la muestra ($n$): $75$
+        \item Media muestral ($\overline{x}$): $2.0$ ppm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.3$ ppm
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media de las velocidades de una muestra de $50$ coches en una autopista:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $120$ km/h
+        \item Desviaci\'on est\'andar muestral ($s$): $5$ km/h
+    \end{itemize}
+
+    \item Intervalo de confianza del $99\%$ para la media del di\'ametro de una muestra de $15$ pernos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $5.5$ mm
+        \item Desviaci\'on est\'andar muestral ($s$): $0.3$ mm
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las concentraciones de \'acido sulf\'urico en una muestra de $25$ soluciones:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $3.2$ M
+        \item Desviaci\'on est\'andar muestral ($s$): $0.4$ M
+    \end{itemize}
+
+    \item Intervalo de confianza del $90\%$ para la media de las resistencias el\'ectricas en una muestra de $20$ circuitos:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $150$ $\Omega$
+        \item Desviaci\'on est\'andar muestral ($s$): $20$ $\Omega$
+    \end{itemize}
+
+    \item Intervalo de confianza del $95\%$ para la media de las alturas de una muestra de $30$ estudiantes de una universidad:
+    \begin{itemize}
+        \item Media muestral ($\overline{x}$): $170$ cm
+        \item Desviaci\'on est\'andar muestral ($s$): $6$ cm
+    \end{itemize}
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer}
+Resuelve los siguientes ejercicios aplicando la f\'ormula de intervalo de confianza para la media:
+
+\begin{enumerate}
+
+\item Un fabricante de resistencias electr\'onicas toma una muestra aleatoria de $100$ resistencias de su l\'inea de producci\'on y encuentra que la media muestral de resistencia es de $500$ $\Omega$, con una desviaci\'on est\'andar muestral de $10$ $\Omega$. 
+Calcular el intervalo de confianza del $95\%$ para la resistencia media poblacional.
+
+\begin{itemize}
+    \item Tama\~no de la muestra ($n$): $100$
+    \item Media muestral ($\overline{x}$): $500$ $\Omega$
+    \item Desviaci\'on est\'andar muestral ($s$): $10$ $\Omega$
+    \item Nivel de confianza: $95\%$
+    \item Valor cr\'itico $z$: $1.96$
+    \item Error est\'andar ($E$): $\frac{10}{\sqrt{100}} = 1$ $\Omega$
+    \item Intervalo de confianza: $\overline{x} \pm zE = 500 \pm 1.96(1) = (498.04, 501.96)$ $\Omega$
+\end{itemize}
+
+\item Un equipo de investigaci\'on quiere estimar la cantidad media de memoria RAM en las computadoras port\'atiles producidas por una empresa. 
+Toman una muestra aleatoria de $200$ computadoras y encuentran que la media muestral de RAM es de $8$ GB, con una desviaci\'on est\'andar muestral de $1$ GB. 
+Construir un intervalo de confianza del $99\%$ para la cantidad media de RAM.
+
+\item En un estudio de calidad de se\~nal en sistemas de comunicaciones, se mide la relaci\'on se\~nal-ruido en $50$ muestras de un dispositivo. 
+Se obtiene una media muestral de $25$ dB y una desviaci\'on est\'andar muestral de $2$ dB. 
+Construir un intervalo de confianza del $95\%$ para la verdadera relaci\'on se\~nal-ruido media.
+
+\item Se desea evaluar el rendimiento de un nuevo algoritmo de compresi\'on de datos en tiempo real. 
+Se toman $100$ mediciones del rendimiento y se obtiene una media muestral de $300$ Mbps y una desviaci\'on est\'andar muestral de $20$ Mbps. 
+Construir un intervalo de confianza del $99\%$ para la verdadera tasa de compresi\'on media.
+
+\item En un estudio de fiabilidad de componentes electr\'onicos, se mide el tiempo de vida de $80$ muestras de un dispositivo. 
+Se obtiene una media muestral de $5000$ horas y una desviaci\'on est\'andar muestral de $800$ horas. 
+Construir un intervalo de confianza del $90\%$ para la verdadera vida media del dispositivo.
+
+\item Se desea evaluar el rendimiento de un sistema de detecci\'on de fallos en un sistema de control. 
+Se toman $200$ mediciones de tiempos de respuesta y se obtiene una media muestral de $10$ ms y una desviaci\'on est\'andar muestral de $1.5$ ms. 
+Construir un intervalo de confianza del $95\%$ para la verdadera velocidad de respuesta media del sistema.
+
+\item En un estudio de calidad de se\~nal en sistemas de radar, se mide la relaci\'on se\~nal-ruido en $150$ muestras de un dispositivo. 
+Se obtiene una media muestral de $30$ dB y una desviaci\'on est\'andar muestral de $3$ dB. 
+Construir un intervalo de confianza del $98\%$ para la verdadera relaci\'on se\~nal-ruido media del dispositivo.
+
+\item Se desea evaluar el rendimiento de un algoritmo de b\'usqueda en una base de datos. 
+Se toman $500$ mediciones del tiempo de b\'usqueda y se obtiene una media muestral de $3.5$ s y una desviaci\'on est\'andar muestral de $0.5$ s. 
+Construir un intervalo de confianza del $95\%$ para la verdadera velocidad de b\'usqueda media.
+
+\item En un estudio de usabilidad de una aplicaci\'on m\'ovil, se mide el tiempo que tardan los usuarios en realizar una tarea espec\'ifica. 
+Se toman $200$ mediciones y se obtiene una media muestral de $45$ s y una desviaci\'on est\'andar muestral de $10$ s. 
+Construir un intervalo de confianza del $99\%$ para la verdadera duraci\'on media de la tarea.
+
+\item Se desea evaluar la eficacia de un nuevo algoritmo de clasificaci\'on de datos. 
+Se toman $1000$ mediciones de la precisi\'on de clasificaci\'on y se obtiene una media muestral del $85\%$ y una desviaci\'on est\'andar muestral del $5\%$. 
+Construir un intervalo de confianza del $90\%$ para la verdadera precisi\'on media de clasificaci\'on.
+
+\item En un estudio de rendimiento de un sistema de procesamiento de im\'agenes, se mide la velocidad de procesamiento en milisegundos. 
+Se toman $300$ mediciones y se obtiene una media muestral de $25$ ms y una desviaci\'on est\'andar muestral de $3$ ms. 
+Construir un intervalo de confianza del $99\%$ para la verdadera velocidad media de procesamiento.
+
+\item Se desea evaluar la eficacia de un sistema de recomendaci\'on de productos en l\'inea. 
+Se toman $500$ mediciones de la satisfacci\'on de los usuarios y se obtiene una media muestral de $4.2$ estrellas y una desviaci\'on est\'andar muestral de $0.5$ estrellas. 
+Construir un intervalo de confianza del $95\%$ para la verdadera satisfacci\'on media de los usuarios.
+
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer}
+Resuelve los siguientes ejercicios aplicando el c\'alculo del intervalo de confianza seg\'un el nivel de confianza y los datos muestrales proporcionados.
+
+\begin{enumerate}
+\item Se desea evaluar la eficacia de un sistema de energ\'ia solar para generar electricidad en una regi\'on espec\'ifica. 
+Se toman $1000$ mediciones de la producci\'on de energ\'ia diaria y se obtiene una media muestral de $10$ kWh y una desviaci\'on est\'andar muestral de $2$ kWh. 
+Construir un intervalo de confianza del $95\%$ para la verdadera producci\'on media de energ\'ia diaria.
+
+\item En un estudio de la eficacia de un nuevo sistema de enfriamiento para una central el\'ectrica, se mide la temperatura de salida del aire. 
+Se toman $500$ mediciones y se obtiene una media muestral de $20^{\circ}$C y una desviaci\'on est\'andar muestral de $3^{\circ}$C. 
+Construir un intervalo de confianza del $99\%$ para la verdadera temperatura media de salida del aire.
+
+\item Se desea evaluar la eficacia de un nuevo sistema de control de temperatura en una planta de producci\'on de energ\'ia. 
+Se toman $300$ mediciones de la temperatura y se obtiene una media muestral de $50^{\circ}$C y una desviaci\'on est\'andar muestral de $5^{\circ}$C. 
+Construir un intervalo de confianza del $90\%$ para la verdadera temperatura media.
+
+\item En un estudio de la eficacia de un nuevo sistema de almacenamiento de energ\'ia, se mide la cantidad de energ\'ia almacenada en kWh. 
+Se toman $200$ mediciones y se obtiene una media muestral de $100$ kWh y una desviaci\'on est\'andar muestral de $10$ kWh. 
+Construir un intervalo de confianza del $99\%$ para la verdadera cantidad media de energ\'ia almacenada.
+
+\item Se desea evaluar la eficacia de un nuevo sistema de generaci\'on de energ\'ia hidroel\'ectrica en una represa. 
+Se toman $400$ mediciones de la producci\'on de energ\'ia y se obtiene una media muestral de $50$ MW y una desviaci\'on est\'andar muestral de $6$ MW. 
+Construir un intervalo de confianza del $95\%$ para la verdadera producci\'on media de energ\'ia.
+
+% --- PROTECCIÓN CIVIL ---
+\item Se desea estimar el tiempo medio que tarda una brigada de Protecci\'on Civil en llegar al lugar de una emergencia. 
+Se selecciona una muestra aleatoria de $100$ emergencias y se obtiene un tiempo medio de $15$ minutos con una desviaci\'on est\'andar de $3$ minutos. 
+Construir un intervalo de confianza del $95\%$ para la media del tiempo de llegada de las brigadas.
+
+\item Se quiere determinar la concentraci\'on media de un contaminante en el aire en una zona de Protecci\'on Civil. 
+Se toma una muestra aleatoria de $50$ mediciones y se obtiene una concentraci\'on media de $0.5$ ppm con una desviaci\'on est\'andar de $0.1$ ppm. 
+Construir un intervalo de confianza del $90\%$ para la media de la concentraci\'on de contaminante en el aire.
+
+\item Se desea determinar la media de la cantidad de material de rescate utilizado en las operaciones de Protecci\'on Civil. 
+Se toma una muestra aleatoria de $200$ operaciones y se obtiene una media de $500$ kg con una desviaci\'on est\'andar de $50$ kg. 
+Construir un intervalo de confianza del $99\%$ para la media de la cantidad de material de rescate utilizado en las operaciones.
+
+\item Se desea estimar la media del tiempo que tarda en ser restablecido el servicio el\'ectrico en una zona afectada por un desastre natural. 
+Se selecciona una muestra aleatoria de $150$ casos y se obtiene un tiempo medio de restablecimiento de $6$ horas con una desviaci\'on est\'andar de $1.5$ horas. 
+Construir un intervalo de confianza del $95\%$ para la media del tiempo de restablecimiento del servicio el\'ectrico.
+
+\item Se quiere estimar la media del n\'umero de llamadas de emergencia recibidas en un centro de atenci\'on de Protecci\'on Civil durante los fines de semana. 
+Se toma una muestra aleatoria de $300$ fines de semana y se obtiene un n\'umero medio de llamadas de $200$ con una desviaci\'on est\'andar de $30$. 
+Construir un intervalo de confianza del $98\%$ para la media del n\'umero de llamadas de emergencia recibidas durante los fines de semana.
+
+\item Un fabricante de circuitos electr\'onicos afirma que la vida \'util media de una bater\'ia de su producci\'on es de al menos $500$ horas. 
+Si se toma una muestra aleatoria de $100$ bater\'ias y se encuentra una vida \'util media de $510$ horas con una desviaci\'on est\'andar de $20$ horas, 
+¿qu\'e se puede concluir con un nivel de confianza del $95\%$?
+
+\item Un ingeniero quiere estimar la resistencia promedio de una muestra de $60$ vigas de acero. 
+Los datos indican una media de $20.5$ kN/m$^2$ y una desviaci\'on est\'andar de $1.8$ kN/m$^2$. 
+Si se desea tener un nivel de confianza del $99\%$, ¿cu\'al es el intervalo de confianza para la resistencia media de las vigas?
+
+\item Se est\'a llevando a cabo una investigaci\'on sobre la cantidad de agua que un motor de combusti\'on interna puede absorber antes de que falle. 
+Se toma una muestra de $80$ motores y se encuentra una media de absorci\'on de $80$ mL con una desviaci\'on est\'andar de $10$ mL. 
+Si se desea estimar la cantidad media de absorci\'on con un nivel de confianza del $90\%$, ¿cu\'al es el intervalo de confianza?
+
+\item Un fabricante de turbinas de viento desea probar su nueva turbina en condiciones extremas de viento. 
+Para ello, se mide la potencia generada por la turbina en una muestra de $50$ pruebas. 
+La media de la potencia generada es de $1200$ kW con una desviaci\'on est\'andar de $100$ kW. 
+Construir un intervalo de confianza del $95\%$ para la potencia media de la turbina.
+
+\item Se est\'a llevando a cabo una investigaci\'on para determinar la vida \'util media de un nuevo material utilizado en la construcci\'on de edificios. 
+Se toma una muestra de $200$ piezas del material y se encuentra que la vida \'util media es de $20$ a\~nos con una desviaci\'on est\'andar de $2$ a\~os. 
+Si se desea tener un nivel de confianza del $99\%$, ¿cu\'al es el intervalo de confianza para la vida \'util media del material?
+
+\end{enumerate}
+\end{Ejer}
+
+%---------------------------------------------------------------------------
+\subsubsection{Intervalos de Confianza para una Media: muestras peque\~nas}
+%---------------------------------------------------------------------------
+Cuando el tama\~no de la muestra es peque\~no ($n < 30$) y la desviaci\'on est\'andar poblacional es desconocida, se utiliza la distribuci\'on $t$ de Student para calcular el intervalo de confianza de la media poblacional.
+
+La f\'ormula general para calcular el intervalo de confianza de una media, cuando la muestra es peque\~na, es:
+
+$$\overline{x} \pm t \left(\frac{s}{\sqrt{n}}\right)
+$$
+
+Donde: $\overline{x}$ es la media muestral, $s$ es la desviaci\'on est\'andar muestral, $n$ es el tama\~no de la muestra, y $t$ es el valor cr\'itico de la distribuci\'on $t$ de Student para el nivel de confianza deseado y $n-1$ grados de libertad.
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza utilizando la distribuci\'on $t$ de Student:
+
+\begin{enumerate}
+
+\item Intervalo de confianza del $95\%$ para la altura media poblacional de los estudiantes de una universidad con una muestra de $10$ estudiantes.  
+Tama\~no de la muestra $n = 10$, media muestral $\overline{x} = 170$ cm, desviaci\'on est\'andar muestral $s = 8$ cm.
+
+\item Intervalo de confianza del $90\%$ para el peso medio poblacional de los reci\'en nacidos con una muestra de $15$ beb\'es.  
+Tama\~no de la muestra $n = 15$, media muestral $\overline{x} = 3.5$ kg, desviaci\'on est\'andar muestral $s = 0.5$ kg.
+
+\item Intervalo de confianza del $99\%$ para la duraci\'on media de las bater\'ias de un dispositivo electr\'onico con una muestra de $8$ dispositivos.  
+Tama\~no de la muestra $n = 8$, media muestral $\overline{x} = 30$ h, desviaci\'on est\'andar muestral $s = 5$ h.
+
+\item Intervalo de confianza del $95\%$ para el n\'umero medio de d\'ias de hospitalizaci\'on de pacientes con una muestra de $12$ pacientes.  
+Tama\~no de la muestra $n = 12$, media muestral $\overline{x} = 5$ d\'ias, desviaci\'on est\'andar muestral $s = 2$ d\'ias.
+
+\item Intervalo de confianza del $99\%$ para la media poblacional de la concentraci\'on de un compuesto en una muestra de agua con una muestra de $7$ mediciones.  
+Tama\~no de la muestra $n = 7$, media muestral $\overline{x} = 4$ mg/L, desviaci\'on est\'ndar muestral $s = 1$ mg/L.
+
+\item Intervalo de confianza del $95\%$ para la altura media de una muestra de $8$ plantas.  
+Tama\~no de la muestra $n = 8$, media muestral $\overline{x} = 12$ cm, desviaci\'on est\'ndar muestral $s = 2$ cm, nivel de confianza $95\%$.
+
+\item Intervalo de confianza del $90\%$ para el tiempo medio de reacci\'on de un grupo de $6$ sujetos.  
+Tama\~no de la muestra $n = 6$, media muestral $\overline{x} = 0.3$ s, desviaci\'on est\'ndar muestral $s = 0.05$ s.
+
+\item Intervalo de confianza del $99\%$ para la resistencia media de un lote de $10$ piezas de acero.  
+Tama\~no de la muestra $n = 10$, media muestral $\overline{x} = 750$ MPa, desviaci\'on est\'ndar muestral $s = 25$ MPa.
+
+\item Intervalo de confianza del $95\%$ para la concentraci\'on media de un compuesto en una muestra de $12$ aguas subterr\'aneas.  
+Tama\~no de la muestra $n = 12$, media muestral $\overline{x} = 5$ mg/L, desviaci\'on est\'ndar muestral $s = 1.5$ mg/L.
+
+\item Intervalo de confianza del $95\%$ para la eficiencia media de una muestra de $20$ paneles solares.  
+Tama\~no de la muestra $n = 20$, media muestral $\overline{x} = 80\%$, desviaci\'on est\'ndar muestral $s = 4\%$.
+
+\item Intervalo de confianza del $90\%$ para la concentraci\'on media de un compuesto en una muestra de $15$ suelos.  
+Tama\~no de la muestra $n = 15$, media muestral $\overline{x} = 0.3$ mg/g, desviaci\'on est\'ndar muestral $s = 0.05$ mg/g, nivel de confianza $90\%$.
+
+\item Concentraci\'on media de un producto qu\'imico en una muestra de $25$ aguas subterr\'aneas.  
+Tama\~no de la muestra $n = 25$, media muestral $\overline{x} = 10.2$ mg/L, desviaci\'on est\'ndar muestral $s = 2.3$ mg/L.
+
+\item Intervalo de confianza del $99\%$ para la tasa de error media de un sistema de comunicaciones que transmite $5000$ mensajes.  
+Tama\~no de la muestra $n = 5000$, n\'umero de mensajes err\'oneos $x = 25$, proporci\'on muestral $\hat{p} = \frac{25}{5000} = 0.005$.
+
+\end{enumerate}
+\end{Ejer}
+
+%---------------------------------------------------------------------------
+\subsubsection{Diferencia de dos medias: Varianzas conocidas y distintas}
+%---------------------------------------------------------------------------
+
+En este caso, se puede utilizar el estad\'istico $z$ con distribuci\'on normal est\'andar. El intervalo de confianza se construye como:
+
+\begin{eqnarray*}
+(\overline{d}_1 - \overline{d}_2) \pm z_{\alpha/2} 
+\left( \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right)
+\end{eqnarray*}
+
+donde $\sigma_d$ es la desviaci\'on est\'andar de la diferencia de las medias poblacionales y $z_{\alpha/2}$ es el valor cr\'itico correspondiente al nivel de confianza deseado.
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza para la diferencia de medias poblacionales:
+
+\begin{enumerate}
+
+\item Se desea conocer si el tiempo promedio de atenci\'on en dos cajeros autom\'aticos diferentes es significativamente diferente. Se toman muestras aleatorias de $50$ transacciones en cada cajero, se obtienen medias muestrales de $3.5$ y $4.2$ minutos respectivamente, la desviaci\'on est\'andar poblacional es conocida y es de $0.8$ minutos, se construye un intervalo de confianza del $95\%$ para la diferencia de las medias poblacionales.
+
+\item Se quiere determinar si hay una diferencia significativa en la altura promedio de dos poblaciones de estudiantes universitarios. Se toman muestras aleatorias de $100$ estudiantes de cada poblaci\'on, se obtienen medias muestrales de $1.72$ y $1.68$ metros respectivamente, la desviaci\'on est\'andar poblacional es conocida y es de $0.07$ metros, se construye un intervalo de confianza del $99\%$ para la diferencia de las medias poblacionales.
+
+\item Se quiere comparar la productividad de dos plantas de producci\'on de una empresa. Se toman muestras aleatorias de $200$ trabajadores de cada planta, se obtienen medias muestrales de $150$ y $140$ unidades producidas por hora respectivamente, la desviaci\'on est\'andar poblacional es conocida y es de $12$ unidades por hora, se construye un intervalo de confianza del $90\%$ para la diferencia de las medias poblacionales.
+
+\item Un fabricante de focos quiere comparar dos marcas diferentes en t\'erminos de vida \'util. Se toma una muestra de $100$ focos de la marca A con una vida media de $1200$ horas y desviaci\'on est\'andar de $200$ horas, y una muestra de $120$ focos de la marca B con una vida media de $1350$ horas y desviaci\'on est\'ndar de $180$ horas, se construye un intervalo de confianza del $95\%$ para la diferencia media de vida \'util entre las dos marcas.
+
+\item Un estudio quiere comparar la efectividad de dos tipos de medicamentos en el tratamiento de la hipertensi\'on. Se toma una muestra de $80$ pacientes tratados con el medicamento A con presi\'on arterial media de $130$ mmHg y desviaci\'on est\'ndar de $10$ mmHg, y una muestra de $90$ pacientes tratados con el medicamento B con presi\'on arterial media de $125$ mmHg y desviaci\'on est\'ndar de $12$ mmHg, se construye un intervalo de confianza del $99\%$ para la diferencia media en la presi\'on arterial entre los dos medicamentos.
+
+\item Se quiere comparar dos programas de entrenamiento en t\'erminos de su efectividad en el aumento de la fuerza muscular. Se toma una muestra de $60$ atletas del programa A con fuerza media de $150$ kg y desviaci\'on est\'ndar de $20$ kg, y una muestra de $70$ atletas del programa B con fuerza media de $155$ kg y desviaci\'on est\'ndar de $18$ kg, se construye un intervalo de confianza del $90\%$ para la diferencia media en la fuerza muscular entre los dos programas.
+
+\item Un estudio quiere comparar dos tipos de fertilizantes en t\'erminos de su efectividad en el crecimiento de plantas de ma\'iz. Se toma una muestra de $200$ plantas tratadas con el fertilizante A con altura media de $1.8$ metros y desviaci\'on est\'ndar de $0.2$ metros, y una muestra de $220$ plantas tratadas con el fertilizante B con altura media de $2.0$ metros y desviaci\'on est\'ndar de $0.18$ metros, se construye un intervalo de confianza del $95\%$ para la diferencia media en la altura de las plantas entre los dos fertilizantes.
+
+\item Se quiere comparar el rendimiento de dos tipos de discos duros en t\'erminos de su velocidad de lectura y escritura. Se toma una muestra de $150$ discos del tipo A con velocidad media de $100$ MB/s y desviaci\'on est\'ndar de $10$ MB/s, y una muestra de $180$ discos del tipo B con velocidad media de $120$ MB/s y desviaci\'on est\'ndar de $12$ MB/s, se construye un intervalo de confianza del $99\%$ para la diferencia media en la velocidad de lectura/escritura entre los dos tipos de discos.
+
+\item Un investigador desea comparar la efectividad de dos m\'etodos de ense\~nanza de matem\'aticas en una muestra de $60$ estudiantes. El primer grupo de $30$ estudiantes recibi\'o el m\'etodo A y el segundo grupo de $30$ estudiantes recibi\'o el m\'etodo B. La media y desviaci\'n est\'ndar de las calificaciones en el grupo A fueron $75$ y $8$, respectivamente, mientras que en el grupo B fueron $80$ y $10$, respectivamente, se construye un intervalo de confianza del $95\%$ para la diferencia media entre las calificaciones de los dos grupos.
+
+\item Se desea comparar la efectividad de dos medicamentos para reducir la presi\'on arterial en pacientes con hipertensi\'on. Un grupo de $25$ pacientes tom\'o el medicamento A y otro grupo de $30$ pacientes tom\'o el medicamento B. La media y desviaci\'n est\'ndar de la presi\'on arterial en el grupo A fueron $140$ y $10$, respectivamente, mientras que en el grupo B fueron $135$ y $12$, respectivamente, se construye un intervalo de confianza del $90\%$ para la diferencia media entre las presiones arteriales de los dos grupos.
+
+\item Se desea comparar la duraci\'on de dos tipos de bater\'ias para un tel\'efono m\'ovil. Se selecciona una muestra aleatoria de $50$ bater\'ias de cada tipo. La media y desviaci\'n est\'ndar de la duraci\'n de las bater\'ias del tipo A fueron $20$ horas y $3$ horas, respectivamente, mientras que las del tipo B fueron $22$ horas y $4$ horas, respectivamente, se construye un intervalo de confianza del $99\%$ para la diferencia media entre las duraciones de las bater\'ias de los dos tipos.
+
+\item Se desea comparar el tiempo que tardan dos marcas de coches en recorrer $100$ km. Se selecciona una muestra aleatoria de $20$ coches de cada marca. La media y desviaci\'n est\'ndar del tiempo para los coches de la marca A fueron $1.5$ horas y $0.2$ horas, respectivamente, mientras que los de la marca B tardaron $1.3$ horas y $0.3$ horas, respectivamente, se construye un intervalo de confianza del $95\%$ para la diferencia media entre los tiempos que tardan los coches de las dos marcas.
+
+\item Se desea comparar el rendimiento de dos tipos de fertilizantes en el crecimiento de las plantas de ma\'iz. Se selecciona una muestra aleatoria de $40$ plantas de cada tipo de fertilizante. La media y desviaci\'n est\'ndar del crecimiento de las plantas con el fertilizante A fueron $150$ cm y $20$ cm, respectivamente, mientras que las del fertilizante B fueron $160$ cm y $18$ cm, respectivamente, se construye un intervalo de confianza del $99\%$ para la diferencia media entre los crecimientos de las plantas con ambos fertilizantes.
+
+\item Se quiere comparar el tiempo promedio de entrega de dos proveedores de paquetes. Se toma una muestra de $25$ paquetes del primer proveedor con tiempo promedio de entrega de $3.5$ d\'ias y desviaci\'n est\'ndar muestral de $1.2$ d\'ias, y una muestra de $30$ paquetes del segundo proveedor con tiempo promedio de entrega de $4.2$ d\'ias y desviaci\'n est\'ndar de $1.5$ d\'ias, se construye un intervalo de confianza del $95\%$ para la diferencia de los tiempos promedio de entrega.
+
+\item Se quiere comparar el rendimiento promedio de dos grupos de estudiantes en un examen de matem\'aticas. Se toma una muestra de $10$ estudiantes del primer grupo con rendimiento promedio de $75$ puntos y desviaci\'n est\'ndar muestral de $8$ puntos, y una muestra de $12$ estudiantes del segundo grupo con rendimiento promedio de $68$ puntos y desviaci\'n est\'ndar de $10$ puntos. Se asume que las varianzas de ambos grupos son iguales, se construye un intervalo de confianza del $90\%$ para la diferencia de los rendimientos promedio.
+\end{enumerate}
+\end{Ejer}
+
+%---------------------------------------------------------------------------
+\subsubsection{Diferencia de dos medias: Varianzas conocidas e iguales}
+%---------------------------------------------------------------------------
+
+En este caso, se utiliza el estad\'istico $t$ de Student con distribuci\'on $t$ de Student con $n_1 + n_2 - 2$ grados de libertad, donde $n_1$ y $n_2$ son los tama\~nos de las muestras. El intervalo de confianza se construye como:
+
+\begin{eqnarray*}
+(\overline{d}_1 - \overline{d}_2) \pm t_{\alpha/2} 
+\left( s_p \cdot \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} \right)
+\end{eqnarray*}
+
+donde $\overline{d}_1$ y $\overline{d}_2$ son las medias muestrales, $s_p$ es la desviaci\'on est\'andar combinada de las muestras y $t_{\alpha/2}$ es el valor cr\'itico correspondiente al nivel de confianza deseado.
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza para la diferencia de medias entre dos poblaciones asumiendo varianzas iguales:
+
+\begin{enumerate}
+
+\item Un estudio compara los niveles de estr\'es entre trabajadores de dos empresas diferentes. Se toman muestras de $50$ trabajadores de cada empresa, la media de estr\'es en la empresa 1 es de $6.2$ con una desviaci\'on est\'andar de $1.1$, mientras que la media de estr\'es en la empresa 2 es de $5.8$ con una desviaci\'on est\'andar de $1.3$, construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambas empresas.
+
+\item Se quiere comparar la eficacia de dos medicamentos para tratar la hipertensi\'on arterial. Se toma una muestra de $100$ pacientes para cada medicamento, la media de presi\'on arterial en el grupo que recibe el medicamento 1 es de $145$ mmHg con una desviaci\'on est\'andar de $5$ mmHg, mientras que la media de presi\'on arterial en el grupo que recibe el medicamento 2 es de $140$ mmHg con una desviaci\'on est\'andar de $6$ mmHg, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambos medicamentos.
+
+\item Se desea comparar el tiempo de respuesta de dos proveedores de internet. Se toman muestras de $30$ usuarios para cada proveedor, la media de tiempo de respuesta del proveedor 1 es de $20$ ms con una desviaci\'on est\'ndar de $3$ ms, mientras que la media del proveedor 2 es de $25$ ms con una desviaci\'on est\'ndar de $4$ ms, construir un intervalo de confianza al $90\%$ para la diferencia de medias entre ambos proveedores.
+
+\item Un estudio compara los precios de productos en dos supermercados diferentes. Se toman muestras de $50$ productos de cada supermercado, la media de precio en el supermercado 1 es de \$5.2 con una desviaci\'on est\'ndar de \$1.1, mientras que la media en el supermercado 2 es de \$4.8 con una desviaci\'on est\'ndar de \$1.3, construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambos supermercados.
+
+\item Se quiere comparar la efectividad de dos programas de entrenamiento para mejorar la flexibilidad. Se toman muestras de $40$ participantes para cada programa, la media de mejora en la flexibilidad en el programa 1 es de $15$ grados con una desviaci\'on est\'ndar de $2$ grados, mientras que la media en el programa 2 es de $18$ grados con una desviaci\'on est\'ndar de $3$ grados, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambos programas.
+
+\item Se quiere comparar el tiempo de reacci\'on de dos grupos de conductores en una situaci\'on de emergencia. Se toman muestras de $25$ conductores de cada grupo, la media de tiempo de reacci\'on del grupo 1 es de $0.8$ s con una desviaci\'on est\'ndar de $0.1$ s, mientras que la media del grupo 2 es de $0.9$ s con una desviaci\'on est\'ndar de $0.2$ s, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambos grupos.
+
+\item Se desea comparar la eficacia de dos m\'etodos de ense\~nanza de matem\'aticas en alumnos de tercer grado de primaria. Se toma una muestra de $50$ alumnos para cada m\'etodo, la media del puntaje en el examen del m\'etodo 1 es de $70$ puntos con una desviaci\'on est\'ndar de $5$ puntos, mientras que la media en el m\'etodo 2 es de $75$ puntos con una desviaci\'on est\'ndar de $6$ puntos, construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambos m\'etodos.
+
+\item Un estudio compara la tasa de mortalidad en dos hospitales. Se toman muestras de $100$ pacientes de cada hospital, la tasa de mortalidad en el hospital 1 es del $5\%$ con una desviaci\'on est\'ndar del $1\%$, mientras que la del hospital 2 es del $8\%$ con una desviaci\'on est\'ndar del $2\%$, construir un intervalo de confianza al $90\%$ para la diferencia de proporciones entre ambos hospitales.
+
+\item Se quiere comparar el rendimiento acad\'emico entre estudiantes de dos escuelas diferentes. Se toman muestras de $30$ estudiantes de cada escuela, la media de calificaciones en la escuela 1 es de $8.5$ con una desviaci\'on est\'ndar de $1.2$, mientras que la media en la escuela 2 es de $7.8$ con una desviaci\'on est\'ndar de $1.5$, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambas escuelas.
+
+\item Se toman dos muestras de tama\~no $100$ cada una. La primera muestra tiene una media de $25$ y una desviaci\'on est\'ndar de $5$, mientras que la segunda muestra tiene una media de $30$ y una desviaci\'on est\'ndar de $6$, construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambas poblaciones.
+
+\item Se quiere comparar la eficacia de dos tratamientos para reducir el dolor de cabeza. Se toma una muestra de $150$ pacientes para cada tratamiento, la media del grupo 1 es de $6.5$ y la del grupo 2 es de $5.8$, con desviaci\'on est\'ndar de $1.2$ en ambos casos, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambos tratamientos.
+
+\item Se desea comparar la velocidad de procesamiento de dos computadoras diferentes. Se toman muestras de $50$ usuarios para cada computadora, la media de velocidad de la computadora 1 es de $4.2$ GHz con una desviaci\'on est\'ndar de $0.5$ GHz, mientras que la de la computadora 2 es de $4.5$ GHz con una desviaci\'on est\'ndar de $0.6$ GHz, construir un intervalo de confianza al $90\%$ para la diferencia de medias entre ambas computadoras.
+
+\item Se quiere comparar el rendimiento acad\'emico de estudiantes de dos escuelas diferentes. Se toman muestras de $80$ estudiantes para cada escuela, la media de calificaciones en la escuela 1 es de $7.8$ con una desviaci\'on est\'ndar de $1.2$, mientras que la media en la escuela 2 es de $8.2$ con una desviaci\'on est\'ndar de $1.3$, construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambas escuelas.
+
+\item Se desea comparar la eficacia de dos programas de entrenamiento para corredores. Se toman muestras de $200$ corredores para cada programa, la media de tiempo de carrera del programa 1 es de $30$ minutos con una desviaci\'on est\'ndar de $2.5$ minutos, mientras que la media del programa 2 es de $28$ minutos con una desviaci\'on est\'ndar de $2.7$ minutos, construir un intervalo de confianza al $99\%$ para la diferencia de medias entre ambos programas.
+
+\end{enumerate}
+\end{Ejer}
+
+
+%---------------------------------------------------------------------------
+\subsubsection{Diferencia de dos medias: Varianzas desconocidas e iguales}
+%---------------------------------------------------------------------------
+
+En este caso, se puede utilizar el estad\'istico t de Student con distribuci\'on t de Student con $n_1+n_2-2$ grados de libertad, pero se debe utilizar la desviaci\'on est\'andar de la diferencia de las medias muestrales, que se puede estimar como:
+
+\begin{eqnarray*}
+s_d = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}
+\end{eqnarray*}
+
+El intervalo de confianza se puede construir como:
+
+\begin{eqnarray*}
+(\bar{d}_1 - \bar{d}2) \pm t_{\alpha/2} (s_d \cdot \sqrt{\frac{1}{n_1} + \frac{1}{n_2}})
+\end{eqnarray*}
+
+donde $s_1$ y $s_2$ son las desviaciones est\'andar muestrales, $\bar{d}_1$ y $\bar{d}2$ son las medias muestrales, y $t{\alpha/2}$ es el valor cr\'itico correspondiente al nivel de confianza deseado, y los grados de libertad $\nu = n_1 + n_2 -2$
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza para la diferencia de medias asumiendo varianzas iguales:
+
+\begin{enumerate}
+\item Se quiere comparar la duraci\'on de dos tipos de bater\'ias en un mismo dispositivo electr\'onico; se toman muestras de $10$ bater\'ias de cada tipo, la duraci\'on media del tipo A es $25$ h con desviaci\'on est\'andar $3$ h y la del tipo B es $30$ h con desviaci\'on est\'andar $4$ h; construir un intervalo de confianza al $95\%$ para la diferencia de medias entre ambas bater\'ias.
+
+\item Un estudio compara el efecto de dos tratamientos para reducir el dolor en pacientes con artritis; se toman $15$ pacientes por tratamiento, la media de reducci\'on del dolor en el tratamiento $1$ es $2.5$ con desviaci\'on est\'andar $0.8$ y en el tratamiento $2$ es $3.0$ con desviaci\'on est\'andar $0.9$; construir un intervalo de confianza al $99\%$ para la diferencia de medias.
+
+\item Se compara la calidad de dos marcas de caf\'e; se toman $8$ tazas por marca, la media de puntaje de sabor de la marca A es $8.0$ con desviaci\'on est\'andar $1.2$ y la de la marca B es $7.0$ con desviaci\'on est\'andar $1.1$; construir un intervalo de confianza al $90\%$ para la diferencia de medias.
+
+\item Un estudio compara el efecto de dos programas de entrenamiento en fuerza muscular; se toman $12$ atletas por programa, la ganancia media en el programa $1$ es $10$ kg con desviaci\'on est\'andar $2$ kg y en el programa $2$ es $12$ kg con desviaci\'on est\'andar $3$ kg; construir un intervalo de confianza al $95\%$ para la diferencia de medias.
+
+\item Se comparan dos m\'etodos de ense\~nanza de idiomas en secundaria; se toman $5$ estudiantes por m\'etodo, la media del examen del m\'etodo $1$ es $85$ puntos con desviaci\'on est\'andar $6$ y la del m\'etodo $2$ es $80$ puntos con desviaci\'on est\'andar $7$; construir un intervalo de confianza al $99\%$ para la diferencia de medias.
+
+\item Se comparan dos medicamentos para reducir la presi\'on arterial; se toman $6$ pacientes por medicamento, la media con el medicamento $1$ es $140$ mmHg con desviaci\'on est\'andar $5$ mmHg y con el medicamento $2$ es $135$ mmHg con desviaci\'on est\'andar $4$ mmHg; construir un intervalo de confianza al $95\%$ para la diferencia de medias.
+
+\item Se compara el rendimiento de dos marcas de neum\'aticos en lluvia; se toman $10$ neum\'aticos por marca, la distancia de frenado media de la marca A es $25$ m con desviaci\'on est\'andar $2$ m y la de la marca B es $22$ m con desviaci\'on est\'andar $3$ m; construir un intervalo de confianza al $90\%$ para la diferencia de medias.
+
+\item Se compara la calidad de dos tipos de lentes de contacto; se toman $8$ lentes por tipo, la duraci\'on media del tipo $1$ es $14$ h con desviaci\'on est\'andar $1.2$ h y la del tipo $2$ es $15$ h con desviaci\'on est\'andar $1.4$ h; construir un intervalo de confianza al $95\%$ para la diferencia de medias.
+
+\item Se compara el desempe\~n o de dos tipos de l\'apices en papel rugoso; se toman $12$ l\'apices por tipo, la media de la m\'etrica de escritura para el tipo A es $5.5$ con desviaci\'on est\'andar $0.8$ y para el tipo B es $6.0$ con desviaci\'on est\'andar $1.1$; construir un intervalo de confianza al $99\%$ para la diferencia de medias.
+
+\item Se comparan dos fertilizantes en el crecimiento de plantas; se toman $15$ plantas por fertilizante, la altura media con el fertilizante $1$ es $25$ cm con desviaci\'on est\'andar $3$ cm y con el fertilizante $2$ es $28$ cm con desviaci\'on est\'andar $4$ cm; construir un intervalo de confianza al $90\%$ para la diferencia de medias.
+
+\item Se comparan dos programas de entrenamiento en fuerza para atletas con datos brutos; se toman $8$ atletas por programa, programa A: $(44, 37, 50, 41, 48, 36, 45, 38)$, programa B: $(42, 39, 44, 40, 37, 47, 45, 41)$; construir un intervalo de confianza al $95\%$ para la diferencia de medias del aumento de peso levantado.
+
+\item Se comparan dos tipos de entrenamiento cardiovascular en calor\'ias quemadas con datos brutos; se toman $10$ personas por tipo, tipo A: $(124, 134, 137, 120, 129, 132, 136, 131, 130, 128)$, tipo B: $(136, 125, 128, 122, 130, 132, 138, 129, 131, 133)$; construir un intervalo de confianza al $90\%$ para la diferencia de medias.
+
+\item Se compara el tiempo promedio de entrega de dos compa\~n\'ias de paqueter\'ia con datos brutos; se toman $12$ entregas por compa\~n\'ia, compa\~n\'ia A: $(4,5,6,3,4,5,6,3,4,5,6,3)$, compa\~n\'ia B: $(5,6,4,5,6,3,4,6,5,4,6,5)$; construir un intervalo de confianza al $99\%$ para la diferencia de medias.
+
+\item Se comparan dos tratamientos para reducir colesterol con datos brutos; se toman $15$ pacientes por tratamiento, tratamiento A: $(182, 172, 193, 198, 168, 178, 186, 192, 182, 175, 168, 177, 183, 188, 178)$, tratamiento B: $(188, 198, 183, 192, 202, 194, 187, 182, 189, 193, 196, 185, 182, 197, 190)$; construir un intervalo de confianza al $95\%$ para la diferencia de medias.
+
+\item Se compara la productividad por hora en dos turnos de trabajo con datos brutos; se toman $7$ horas por turno, turno A: $(57, 60, 59, 62, 58, 56, 61)$, turno B: $(63, 61, 64, 60, 62, 61, 63)$; construir un intervalo de confianza al $95\%$ para la diferencia de medias de productividad.
+\end{enumerate}
+\end{Ejer}
+
+%---------------------------------------------------------------------------
+\subsubsection{Diferencia de dos medias: Varianzas desconocidas y distintas}
+%---------------------------------------------------------------------------
+
+En este caso, se puede utilizar el estad\'istico t de Student con distribuci\'on t de Student con grados de libertad ajustados seg\'un la f\'ormula de Satterthwaite. La desviaci\'on est\'andar de la diferencia de las medias muestrales se puede estimar como:
+
+\begin{eqnarray*}
+s_d = \sqrt{\frac{s_{1}^2}{n_1} + \frac{s_{2}^2}{n_2}}
+\end{eqnarray*}
+
+El intervalo de confianza se puede construir como:
+
+\begin{eqnarray*}
+(\bar{d}_1 - \bar{d}2) \pm t_{\alpha/2}\times s_d
+\end{eqnarray*}
+
+y los grados de libertad se calculan
+\begin{eqnarray*}
+\nu = \frac{(\frac{s_{1}^2}{n_{1}}+\frac{s_{2}^2}{n_{2}})^2}{\frac{(\frac{s_{1}^2}{n_{1}})^2}{n_{1}-1}+\frac{(\frac{s_{2}^2}{n_{2}})^2}{n_{2}-1}}
+\end{eqnarray*}
+
+\begin{Ejer}
+Calcula los siguientes intervalos de confianza para $\mu_1-\mu_2$ asumiendo varianzas iguales:
+
+\begin{enumerate}
+\item Efectividad de dos medicamentos para dolor de cabeza: $n_1=10$, $\overline{x}_1=6.5$, $s_1=0.7$; $n_2=12$, $\overline{x}_2=5.8$, $s_2=0.9$; construir IC del $95\%$ para la diferencia de medias.
+
+\item Salarios promedio en dos departamentos: $n_1=8$, $\overline{x}_1=\$25{,}000$, $s_1=\$1{,}500$; $n_2=12$, $\overline{x}_2=\$28{,}000$, $s_2=\$2{,}000$; construir IC del $90\%$ para la diferencia de salarios promedio.
+
+\item Alturas con dos fertilizantes: $n_1=15$, $\overline{x}_1=16$ cm, $s_1=2$ cm; $n_2=15$, $\overline{x}_2=18$ cm, $s_2=3$ cm; construir IC del $99\%$ para la diferencia de medias.
+
+\item Duraci\'on media de dos tipos de bater\'ias: $n_1=10$, $\overline{x}_1=15$ h, $s_1=1.2$ h; $n_2=12$, $\overline{x}_2=13$ h, $s_2=1.5$ h; construir IC del $95\%$ para la diferencia de medias.
+
+\item Producci\'on con dos tipos de semillas de tomate: $n_1=20$, $\overline{x}_1=30$ kg, $s_1=4$ kg; $n_2=20$, $\overline{x}_2=35$ kg, $s_2=6$ kg; construir IC del $99\%$ para la diferencia de medias.
+
+\item Dos m\'etodos de ense\~nanza de matem\'aticas: $n_1=20$, $\overline{x}_1=70$, $s_1=8$; $n_2=25$, $\overline{x}_2=74$, $s_2=10$; construir IC del $95\%$ para la diferencia de medias poblacionales.
+
+\item Tiempos de reacci\'on en lluvia: $n_1=15$, $\overline{x}_1=2.5$ s, $s_1=0.6$ s; $n_2=20$, $\overline{x}_2=2.1$ s, $s_2=0.5$ s; construir IC del $99\%$ para la diferencia de medias.
+
+\item Productividad de dos grupos de trabajadores: $n_1=18$, $\overline{x}_1=120$, $s_1=6$; $n_2=25$, $\overline{x}_2=125$, $s_2=8.5$; construir IC del $90\%$ para la diferencia de medias.
+
+\item Tratamientos para reducir colesterol: $n_1=12$, $\overline{x}_1=15$, $s_1=3.5$; $n_2=15$, $\overline{x}_2=12$, $s_2=4$; construir IC del $95\%$ para la diferencia de medias.
+
+\item Precisi\'on de dos marcas de b\'asculas: $n_1=10$, $\overline{x}_1=50$, $s_1=1.5$; $n_2=15$, $\overline{x}_2=51$, $s_2=2$; construir IC del $99\%$ para la diferencia de medias.
+
+\item Producci\'on de ma\'iz con dos fertilizantes: $n_1=20$, $\overline{x}_1=150$, $s_1=12$; $n_2=25$, $\overline{x}_2=145$, $s_2=10$; construir IC del $95\%$ para la diferencia de medias.
+
+\item Horas de sue\~no: grupo con bebidas energ\'eticas $n_1=10$, $\overline{x}_1=6.2$ h, $s_1=1.2$ h; grupo sin energ\'eticas $n_2=10$, $\overline{x}_2=7.5$ h, $s_2=1.8$ h; a nivel $95\%$, construir IC para la diferencia de medias y concluir si hay diferencia significativa.
+
+\item Tiempos de reacci\'on con y sin sistema de alerta: $n_1=15$, $\overline{x}_1=0.8$ s, $s_1=0.2$ s; $n_2=15$, $\overline{x}_2=0.9$ s, $s_2=0.3$ s; a nivel $99\%$, construir IC para la diferencia de medias y comentar significancia.
+
+\item Dos m\'etodos de ense\~nanza: $n_1=12$, $\overline{x}_1=75$, $s_1=10$; $n_2=15$, $\overline{x}_2=80$, $s_2=12$; construir IC del $95\%$ para la diferencia de medias poblacionales.
+
+\item Autoestima con y sin ansiedad: $n_1=10$, $\overline{x}_1=25$, $s_1=3$; $n_2=8$, $\overline{x}_2=30$, $s_2=4$; construir IC del $99\%$ para la diferencia de medias poblacionales.
+\end{enumerate}
+\end{Ejer}
+
+%---------------------------------------------------------------------------
+\subsubsection{Miscel\'anea de ejercicios}
+%---------------------------------------------------------------------------
+
+\begin{Ejer}
+\begin{enumerate}
+\item Un estudio compara la cantidad de energ\'ia consumida por dos diferentes tipos de bombillas LED. Se toma una muestra de 50 bombillas de cada tipo y se obtiene que la media y la desviaci\'on est\'andar de la muestra 1 son 4.5 W y 0.8 W, respectivamente, y que la media y la desviaci\'on est\'andar de la muestra 2 son 5.2 W y 0.7 W, respectivamente. Construir un intervalo de confianza del 95\% para la diferencia media de consumo de energ\'ia entre las dos bombillas.
+
+\item Un estudio compara la efectividad de dos diferentes tratamientos m\'edicos para reducir la presi\'on arterial. Se toma una muestra de 100 pacientes para cada tratamiento y se encuentra que la media y la desviaci\'on est\'andar de la muestra 1 son 128 mmHg y 12 mmHg, respectivamente, y que la media y la desviaci\'on est\'andar de la muestra 2 son 120 mmHg y 10 mmHg, respectivamente. Construir un intervalo de confianza del 99\% para la diferencia media de la presi\'on arterial entre los dos tratamientos.
+
+\item Un estudio compara la resistencia a la tracci\'on de dos diferentes tipos de materiales. Se toma una muestra de 200 piezas de cada material y se encuentra que la media y la desviaci\'on est\'andar de la muestra 1 son 120 MPa y 10 MPa, respectivamente, y que la media y la desviaci\'on est\'andar de la muestra 2 son 140 MPa y 12 MPa, respectivamente. Construir un intervalo de confianza del 90\% para la diferencia media de resistencia a la tracci\'on entre los dos materiales.
+
+\item Se quiere comparar el tiempo medio que tardan dos algoritmos diferentes en realizar una tarea. Se toma una muestra aleatoria de tama\~no 100 de cada algoritmo. El tiempo medio de la muestra del primer algoritmo es de 10 segundos con una desviaci\'on est\'andar de 2 segundos, mientras que el tiempo medio de la muestra del segundo algoritmo es de 9 segundos con una desviaci\'on est\'andar de 3 segundos. Calcular un intervalo de confianza al 95\% para la diferencia de medias.
+
+\item Se quiere comparar la resistencia media de dos tipos de materiales. Se toman muestras aleatorias de tama\~no 150 de cada material. La resistencia media de la muestra del primer material es de 1000 N con una desviaci\'on est\'andar de 50 N, mientras que la resistencia media de la muestra del segundo material es de 1020 N con una desviaci\'on est\'andar de 60 N. Calcular un intervalo de confianza al 99\% para la diferencia de medias.
+
+\item Se quiere comparar la concentraci\'on media de dos sustancias en el agua. Se toman muestras aleatorias de tama\~no 200 de cada sustancia. La concentraci\'on media de la muestra de la primera sustancia es de 2 mg/L con una desviaci\'on est\'andar de 0.5 mg/L, mientras que la concentraci\'on media de la muestra de la segunda sustancia es de 3 mg/L con una desviaci\'on est\'andar de 0.7 mg/L. Calcular un intervalo de confianza al 90\% para la diferencia de medias.
+
+\item Se quiere comparar la eficacia media de dos medicamentos para controlar la presi\'on arterial. Se toman muestras aleatorias de tama\~no 120 de cada medicamento. La eficacia media de la muestra del primer medicamento es de 80\% con una desviaci\'on est\'andar de 5\%, mientras que la eficacia media de la muestra del segundo medicamento es de 85\% con una desviaci\'on est\'andar de 6\%. Calcular un intervalo de confianza al 98\% para la diferencia de medias.
+
+\item Se quiere comparar el rendimiento medio de dos modelos de computadoras port\'atiles. Se toman muestras aleatorias de tama\~no 80 de cada modelo. El rendimiento medio de la muestra del primer modelo es de 100 puntos con una desviaci\'on est\'andar de 10 puntos, mientras que el rendimiento medio de la muestra del segundo modelo es de 105 puntos con una desviaci\'on est\'andar de 12 puntos. Calcular un intervalo de confianza al 95\% para la diferencia de medias.
+
+\item Se quiere comparar el consumo medio de dos tipos de motores. Se toman muestras aleatorias de tama\~no 50 de cada motor. El consumo medio de la muestra del primer motor es de 8 litros/100 km con una desviaci\'on est\'andar de 1 litro/100 km, mientras que el consumo medio de la muestra del segundo motor es de 7 litros/100 km con una desviaci\'on est\'andar de 1.2 litros/100 km. Calcular un intervalo de confianza al 99 para la diferencia de medias.
+
+\item Se desea comparar el rendimiento de dos grupos de estudiantes en una prueba de matem\'aticas. Se toma una muestra de 20 estudiantes de cada grupo. La media del primer grupo es 80 y la del segundo grupo es 75, con una desviaci\'on est\'andar de 5 en ambos casos. Se desea construir un intervalo de confianza del 95\% para la diferencia de medias.\\
+Respuesta: El intervalo de confianza es (0.498, 9.502).
+
+\item Se desea comparar el tiempo promedio de ejecuci\'on de dos algoritmos para resolver un problema de programaci\'on. Se toma una muestra de 30 ejecuciones para cada algoritmo. La media del primer algoritmo es 5 segundos y la del segundo algoritmo es 6 segundos, con una desviaci\'on est\'andar de 0.5 segundos en ambos casos. Se desea construir un intervalo de confianza del 99\% para la diferencia de medias.\\
+Respuesta: El intervalo de confianza es (-1.473, -0.527).
+
+\item Se desea comparar el di\'ametro de dos grupos de c\'elulas obtenidos de dos muestras diferentes. Se toma una muestra de 25 c\'elulas de cada grupo. La media del di\'ametro del primer grupo es 10 $\mu$m y la del segundo grupo es 11 $\mu$m, con una desviaci\'on est\'andar de 1 $\mu$m en ambos casos. Se desea construir un intervalo de confianza del 90\% para la diferencia de medias.\\
+Respuesta: El intervalo de confianza es (-2.455, -0.545).
+
+\item Un investigador quiere comparar el rendimiento en matem\'aticas de dos grupos de estudiantes, uno que ha recibido una nueva ense\~nanza y otro que ha recibido la ense\~nanza tradicional. El investigador selecciona una muestra aleatoria de 100 estudiantes que han recibido la nueva ense\~nanza y otra muestra aleatoria de 100 estudiantes que han recibido la ense\~nanza tradicional. La media del grupo de la nueva ense\~nanza es de 80 y la desviaci\'on est\'andar es de 10, mientras que la media del grupo de la ense\~nanza tradicional es de 75 y la desviaci\'on est\'andar es de 12. Calcular un intervalo de confianza del 95\% para la diferencia de medias.
+
+\item Un investigador quiere comparar el tiempo que tardan dos m\'etodos diferentes para resolver un problema de programaci\'on. Para ello, selecciona dos muestras aleatorias, una de 50 programadores que utilizan el m\'etodo A y otra de 50 programadores que utilizan el m\'etodo B. La media del tiempo que tardan los programadores en el m\'etodo A es de 120 minutos con una desviaci\'on est\'andar de 10 minutos, mientras que la media del tiempo que tardan los programadores en el m\'etodo B es de 100 minutos con una desviaci\'on est\'andar de 8 minutos. Calcule un intervalo de confianza del 90\% para la diferencia de medias.
+
+\item Un fabricante de discos duros quiere comparar dos l\'ineas de producci\'on de discos duros en t\'erminos de la cantidad de discos duros defectuosos que producen. Para ello, selecciona dos muestras aleatorias, una de 200 discos duros producidos por la l\'inea de producci\'on A y otra de 200 discos duros producidos por la l\'inea de producci\'on B. La media del n\'umero de discos duros defectuosos producidos por la l\'inea A es de 1.5 con una desviaci\'on est\'andar de 0.3, mientras que la media del n\'umero de discos duros defectuosos producidos por la l\'inea B es de 1.2 con una desviaci\'on est\'andar de 0.2. Calcule un intervalo de confianza del 99\% para la diferencia de medias.
+
+\item Un investigador quiere comparar el rendimiento de dos algoritmos diferentes para resolver un problema de clasificaci\'on de im\'agenes. Para ello, selecciona dos muestras aleatorias, una de 100 im\'agenes clasificadas con el algoritmo A y otra de 100 im\'agenes clasificadas con el algoritmo B. La media de la precisi\'on del algoritmo A es del 95\% con una desviaci\'on est\'andar del 1\%, mientras que la media de la precisi\'on del algoritmo B es del 92\% con una desviaci\'on est\'andar del 2\%. Calcule un intervalo de confianza del 95\% para la diferencia de medias.
+
+\item En una prueba de rendimiento para dos tipos de software de edici\'on de video, se seleccionaron al azar dos muestras de usuarios, una de cada software, con 50 personas en cada muestra. La media de tiempo en minutos que tardaron los usuarios del software A en realizar una tarea fue de 120 minutos con una desviaci\'on est\'andar de 25 minutos, mientras que los usuarios del software B tardaron en promedio 110 minutos con una desviaci\'on est\'andar de 20 minutos. Encuentre un intervalo de confianza del 95\% para la diferencia de tiempo promedio entre los dos softwares.
+
+\item En un estudio de efectividad de dos tipos de fertilizantes en el crecimiento de plantas, se seleccionaron al azar dos muestras de plantas, una tratada con el fertilizante A y otra con el fertilizante B. Cada muestra ten\'ia 30 plantas. La altura promedio de las plantas tratadas con el fertilizante A fue de 25 cm con una desviaci\'on est\'andar de 3 cm, mientras que la altura promedio de las plantas tratadas con el fertilizante B fue de 28 cm con una desviaci\'on est\'andar de 4 cm. Calcule un intervalo de confianza del 99\% para la diferencia de altura promedio entre las dos muestras.
+
+\item En un estudio para comparar dos m\'etodos de ense\~nanza en matem\'aticas, se seleccionaron al azar dos muestras de estudiantes, una de cada m\'etodo, con 100 estudiantes en cada muestra. La puntuaci\'on promedio de los estudiantes en el m\'etodo A fue de 80 con una desviaci\'on est\'andar de 10, mientras que la puntuaci\'on promedio de los estudiantes en el m\'etodo B fue de 85 con una desviaci\'on est\'andar de 8. Encuentre un intervalo de confianza del 90\% para la diferencia en las puntuaciones promedio de los dos m\'etodos.
+
+\item En un estudio para comparar la eficacia de dos tratamientos para la migra\~na, se seleccionaron al azar dos muestras de pacientes, una de cada tratamiento, con 40 pacientes en cada muestra. La cantidad promedio de d\'ias de dolor de cabeza al mes en el tratamiento A fue de 5 con una desviaci\'on est\'andar de 2 d\'ias, mientras que la cantidad promedio de d\'ias de dolor de cabeza al mes en el tratamiento B fue de 4 con una desviaci\'on est\'andar de 1 d\'ia. Calcule un intervalo de confianza del 99\% para la diferencia en la cantidad promedio de d\'ias de dolor de cabeza al mes entre los dos tratamientos.
+
+\item En una prueba de resistencia de dos tipos de materiales para la construcci\'on, se seleccionaron al azar dos muestras de cada material, cada una de 25 piezas. La resistencia promedio de las piezas del material A fue de 2000 N con una desviaci\'on est\'andar de 100 N, mientras que la resistencia promedio de las piezas del material B fue de 2200 N con una desviaci\'on est\'andar de 150 N. Encuentre un intervalo de confianza del 95\% para la diferencia en la resistencia promedio de los dos materiales.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}
+\begin{enumerate}
+\item Una empresa quiere comparar la eficacia de dos programas de entrenamiento en ventas. Se toma una muestra aleatoria de 50 empleados para el primer programa y otra muestra aleatoria de 60 empleados para el segundo programa. Se obtienen medias muestrales de 12 y 15, respectivamente, y una desviaci\'on est\'andar combinada de 2.5. Construye un intervalo de confianza al 95\% para la diferencia entre las medias poblacionales.
+
+\item Se desea comparar la duraci\'on de dos tipos de bater\'ias para laptops. Se toman dos muestras aleatorias de 30 bater\'ias cada una. Se obtienen medias muestrales de 4.5 y 5 horas, respectivamente, y una desviaci\'on est\'andar combinada de 1.2 horas. Construye un intervalo de confianza al 99\% para la diferencia entre las medias poblacionales.
+
+\textbf{Ejercicios para muestras peque\~nas con varianzas desconocidas e iguales:}
+
+\item Un equipo de baloncesto quiere comparar el porcentaje de tiros libres entre dos jugadores. Se toman dos muestras aleatorias de 10 tiros libres cada una. Se obtienen medias muestrales de 80\% y 85\%, respectivamente, y una desviaci\'on est\'andar de la diferencia de 4.2\%. Construye un intervalo de confianza al 90\% para la diferencia entre las medias poblacionales.
+
+\item Se desea comparar el rendimiento de dos tipos de fertilizantes en el crecimiento de plantas. Se toman dos muestras aleatorias de 15 plantas cada una. Se obtienen medias muestrales de 10 cm y 12 cm, respectivamente, y una desviaci\'on est\'andar de la diferencia de 1.5 cm. Construye un intervalo de confianza al 95\% para la diferencia entre las medias poblacionales.
+
+\item Un fabricante de televisores quiere comparar la duraci\'on promedio de dos marcas de televisores. Se toman dos muestras aleatorias de 100 televisores cada una. La marca A tiene una duraci\'on promedio de 7 a\~nos con una desviaci\'on est\'andar de 1.2 a\~os, y la marca B tiene una duraci\'on promedio de 6 a\~os con una desviaci\'on est\'andar de 1.5 a\~os. Construye un intervalo de confianza al 99\% para la diferencia entre las medias poblacionales.
+
+\item Se quiere comparar la cantidad promedio de tiempo que los estudiantes universitarios dedican a estudiar para dos tipos de ex\'amenes. Se toman dos muestras aleatorias de 200 estudiantes cada una. La cantidad promedio de tiempo para el examen A es de 10 horas con una desviaci\'on est\'andar de 2 horas, y la cantidad promedio de tiempo para el examen B es de 8 horas con una desviaci\'on est\'andar de 1.5 horas. Construye un intervalo de confianza al 95\% para la diferencia entre las medias poblacionales.
+
+\textbf{Ejercicios para muestras peque\~nas con varianzas desconocidas y distintas:}
+
+\item Una compa\~n\'ia de seguros quiere comparar las tasas de siniestralidad de dos zonas de la ciudad. Se toma una muestra de 50 siniestros en la zona A, donde la tasa de siniestralidad es del 12\%, y otra muestra de 60 siniestros en la zona B, donde la tasa de siniestralidad es del 8\%. Construir un intervalo de confianza del 95\% para la diferencia en las tasas de siniestralidad.
+
+\item Se quiere comparar la efectividad de dos tipos de f\'armacos para bajar la presi\'on arterial. Se administra el f\'armaco A a una muestra de 20 pacientes y el f\'armaco B a otra muestra de 15 pacientes. Se obtiene una media de 140 mmHg y una desviaci\'on est\'andar de 15 mmHg para la muestra del f\'armaco A, y una media de 132 mmHg y una desviaci\'on est\'andar de 12 mmHg para la muestra del f\'armaco B. Construir un intervalo de confianza del 99\% para la diferencia en las medias poblacionales.
+
+\item Se desea comparar la efectividad de dos tipos de fertilizantes en el crecimiento de plantas de ma\'iz. Se toma una muestra de 15 plantas tratadas con el fertilizante A, con una altura media de 120 cm y una desviaci\'on est\'andar de 10 cm, y otra muestra de 20 plantas tratadas con el fertilizante B, con una altura media de 125 cm y una desviaci\'on est\'andar de 12 cm. Construir un intervalo de confianza del 90\% para la diferencia en las alturas medias poblacionales.
+
+\item Se quiere comparar la calidad de dos marcas de caf\'e. Se toma una muestra de 30 tazas de caf\'e de la marca A, con una media de 7.8 puntos y una desviaci\'on est\'andar de 0.6 puntos, y otra muestra de 25 tazas de caf\'e de la marca B, con una media de 7.5 puntos y una desviaci\'on est\'andar de 0.8 puntos. Construir un intervalo de confianza del 95\% para la diferencia en las medias poblacionales.
+
+\item Se desea comparar el rendimiento de dos variedades de trigo. Se toma una muestra de 10 parcelas de tierra sembradas con la variedad A, con un rendimiento medio de 40 quintales por hect\'area y una desviaci\'on est\'andar de 3 quintales por hect\'area, y otra muestra de 12 parcelas de tierra sembradas con la variedad B, con un rendimiento medio de 35 quintales por hect\'area y una desviaci\'on est\'andar de 2 quintales por hect\'area. Construir un intervalo de confianza del 99\% para la diferencia en los rendimientos medios poblacionales.
+
+\item Una empresa que fabrica bater\'ias ha desarrollado dos nuevos tipos de bater\'ias y quiere determinar si la duraci\'on promedio de las bater\'ias de tipo 1 es mayor que la duraci\'on promedio de las bater\'ias de tipo 2. Se seleccionan dos muestras aleatorias de bater\'ias de tipo 1 y tipo 2, respectivamente. Los resultados de la duraci\'on en horas se muestran a continuaci\'on. Utilice un nivel de confianza del 95\% para determinar si hay una diferencia significativa entre las duraciones medias.\\
+Muestra 1: $n_1=30$, $\bar{d}_1=15.2$, $s_1=2.4$\\
+Muestra 2: $n_2=25$, $\bar{d}_2=14.7$, $s_2=2.2$
+
+\item Un estudio m\'edico compar\'o la efectividad de dos medicamentos para reducir la presi\'on arterial. Se seleccionaron aleatoriamente dos muestras grandes de pacientes. El medicamento A se administr\'o a la primera muestra y el medicamento B a la segunda muestra. Las reducciones en la presi\'on arterial (en mmHg) se midieron despu\'es de un mes de tratamiento y se muestran a continuaci\'on. Utilice un nivel de confianza del 99\% para determinar si hay una diferencia significativa entre las reducciones medias.\\
+Muestra 1: $n_1=100$, $\bar{d}_1=9.5$, $s_1=3.8$\\
+Muestra 2: $n_2=120$, $\bar{d}_2=10.2$, $s_2=4.1$
+
+\textbf{Muestras peque\~nas con varianzas desconocidas y distintas:}
+
+\item Un estudio compar\'o la efectividad de dos programas de p\'erdida de peso en mujeres con obesidad. Se seleccionaron aleatoriamente dos muestras peque\~nas de mujeres y se midieron las p\'erdidas de peso (en kg) despu\'es de 6 meses de seguimiento. Utilice un nivel de confianza del 90\% para determinar si hay una diferencia significativa entre las p\'erdidas de peso medias.\\
+Muestra 1: $n_1=15$, $\bar{d}_1=4.7$, $s_1=1.2$\\
+Muestra 2: $n_2=10$, $\bar{d}_2=3.5$, $s_2=0.8$
+
+\item Se quiere determinar si hay una diferencia significativa en el rendimiento promedio en matem\'aticas entre dos grupos de estudiantes, uno que recibe tutor\'ias y otro que no las recibe. Se seleccionaron dos muestras peque\~nas de estudiantes y se midieron sus calificaciones en un examen de matem\'aticas. Utilice un nivel de confianza del 95\% para determinar si hay una diferencia significativa entre las calificaciones medias.\\
+Muestra 1: $n_1=12$, $\bar{d}_1=85.6$, $s_1=4.3$\\
+Muestra 2: $n_2=8$, $\bar{d}_2=82.3$, $s_2=3.9$
+
+\textbf{Muestras grandes con varianzas conocidas:}
+
+\item Un investigador quiere comparar el tiempo promedio de respuesta a un est\'imulo visual entre dos grupos de participantes. En un grupo de 50 personas se obtiene una media de 2.5 segundos con una desviaci\'on est\'andar de 0.8 segundos, mientras que en otro grupo de 60 personas se obtiene una media de 2.2 segundos con una desviaci\'on est\'andar de 0.6 segundos. Calcule un intervalo de confianza del 95\% para la diferencia en el tiempo de respuesta entre los dos grupos.
+
+\item Se quiere comparar la efectividad de dos m\'etodos de ense\~nanza en la preparaci\'on para un examen de matem\'aticas. Se elige una muestra aleatoria de 100 estudiantes para cada m\'etodo. Se obtiene una media de 75 con una desviaci\'on est\'andar de 8 para el m\'etodo 1 y una media de 80 con una desviaci\'on est\'andar de 10 para el m\'etodo 2. Calcule un intervalo de confianza del 99\% para la diferencia en las medias de los puntajes de los dos m\'etodos.
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer}
+\begin{enumerate}
+\item Se desea comparar la efectividad de dos medicamentos para el tratamiento de la hipertensi\'on. Se elige una muestra aleatoria de 10 pacientes para cada medicamento. Se obtiene una media de presi\'on arterial de 135 mmHg con una desviaci\'on est\'andar de 5 mmHg para el medicamento 1 y una media de presi\'on arterial de 130 mmHg con una desviaci\'on est\'andar de 6 mmHg para el medicamento 2. Calcule un intervalo de confianza del 90\% para la diferencia en las medias de presi\'on arterial entre los dos medicamentos.
+
+\item Se quiere evaluar la efectividad de dos tipos de terapia para el tratamiento del dolor de espalda. Se elige una muestra aleatoria de 15 pacientes para cada tipo de terapia. Se obtiene una media de intensidad de dolor de 7 con una desviaci\'on est\'andar de 2 para el tipo de terapia 1 y una media de intensidad de dolor de 5 con una desviaci\'on est\'andar de 1 para el tipo de terapia 2. Calcule un intervalo de confianza del 95\% para la diferencia en las medias de intensidad de dolor entre los dos tipos de terapia.
+
+\item Se quiere comparar la calidad del aire en dos ciudades. Se toma una muestra aleatoria de 100 d\'ias de la ciudad A y se obtiene una media de 20 ppm de contaminaci\'on con una desviaci\'on est\'andar de 3 ppm. Se toma otra muestra aleatoria de 120 d\'ias de la ciudad B y se obtiene una media de 18 ppm de contaminaci\'on con una desviaci\'on est\'andar de 4 ppm. Si se sabe que la desviaci\'on est\'andar de la contaminaci\'on en ambas ciudades es la misma, calcule un intervalo de confianza del 98\% para la diferencia en las medias de contaminaci\'on entre las dos ciudades.
+
+\item Se quiere comparar la altura media de dos tipos de \'arboles. Se toman muestras aleatorias de 25 \'arboles de cada tipo y se obtiene que la media de altura de los primeros es de 12 metros con una desviaci\'on est\'andar de 2 metros, mientras que la media de altura de los segundos es de 11.5 metros con una desviaci\'on est\'andar de 3 metros. \textquestiondown Existen pruebas suficientes para afirmar que los \'arboles del primer tipo son m\'as altos que los del segundo tipo al nivel de significaci\'on del 5\%?
+
+\item Un fabricante de neum\'aticos quiere determinar si el promedio de la vida \'util de los neum\'aticos de dos marcas distintas es el mismo. Se seleccionan al azar 35 neum\'aticos de cada marca y se mide su duraci\'on en miles de kil\'ometros, obteni\'endose las siguientes estad\'isticas: para la marca A, la media es de 50, con una desviaci\'on est\'andar de 5; para la marca B, la media es de 47, con una desviaci\'on est\'andar de 4. \textquestiondown Se puede concluir que las marcas de neum\'aticos tienen una vida \'util promedio diferente al nivel de significaci\'on del 1\%?
+
+\item Una empresa desea comparar la eficacia de dos procedimientos diferentes para la producci\'on de cierto producto qu\'imico. Se toman muestras aleatorias de 20 observaciones de cada proceso. La media y la desviaci\'on est\'andar de la muestra del primer procedimiento son de 75 y 10, respectivamente, mientras que la media y la desviaci\'on est\'andar de la muestra del segundo procedimiento son de 72 y 12, respectivamente. \textquestiondown Hay suficiente evidencia para afirmar que hay una diferencia en las medias de los dos procedimientos al nivel de significaci\'on del 5\%?
+
+\item Se desea comparar la eficacia de dos m\'etodos diferentes para ense\~nar a leer a los ni\~nos. Se elige aleatoriamente un grupo de 25 ni\~nos y se les ense\~a utilizando el primer m\'etodo, mientras que otro grupo de 30 ni\~nos se ense\~a utilizando el segundo m\'etodo. Despu\'es de un per\'iodo de tiempo, se administra una prueba de lectura a cada ni\~no. Los puntajes promedio de la prueba son de 75 y 70 para el primer y segundo m\'etodo, respectivamente, con desviaciones est\'andar de 8 y 10. \textquestiondown Podemos concluir que el primer m\'etodo es m\'as efectivo que el segundo al nivel de significaci\'on del 10\%?
+
+\item Un investigador desea comparar dos m\'etodos diferentes para reducir el colesterol. Se toman muestras aleatorias de 30 personas para cada m\'etodo y se miden los niveles de colesterol antes y despu\'es del tratamiento. Para el primer m\'etodo, la media y la desviaci\'on est\'andar de la diferencia en los niveles de colesterol son de 30 y 8, respectivamente, mientras que para el segundo m\'etodo, la media y la desviaci\'on est\'andar de la diferencia son de 25 y 10, respectivamente. \textquestiondown Hay suficiente evidencia para afirmar que hay una diferencia en la efectividad de los dos m\'etodos al nivel de significaci\'on del 5\%?
+\end{enumerate}
+\end{Ejer}
+

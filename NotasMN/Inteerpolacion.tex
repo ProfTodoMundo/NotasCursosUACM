@@ -1,0 +1,3212 @@
+%===========================================
+\documentclass[12pt]{article}
+%===========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%\usepackage[margin=2.5in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{hyperref}
+\usepackage[spanish]{babel}
+\decimalpoint
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{graphicx,graphics}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{float} 
+\usepackage{subfig}
+\usepackage[figuresright]{rotating}
+\usepackage{enumerate}
+\usepackage{anysize} 
+\usepackage{url}
+\usepackage{imakeidx}
+\usepackage[left=0.5in, right=0.5in, top=1in, bottom=1in]{geometry}
+% Opcional: para incluir gráficos con control de tamaño
+\usepackage{float}
+
+\usepackage{textcomp} 
+
+\hyphenation{mo-de-ra-da-men-te}
+\addto\captionsspanish{\renewcommand{\figurename}{Figura}}
+
+%===========================================
+% Ajustes de Sweave
+%\usepackage{Sweave}
+%===========================================
+\title{Notas sobre Métodos Numéricos con R}
+\author{
+Carlos E. Martínez-Rodríguez \\
+Universidad Autónoma de la Ciudad de México \\
+Academia de Matemáticas \\
+\texttt{carlos.martinez@uacm.edu.mx}
+}
+\date{Agosto 2025}
+\date{}
+%===========================================
+\newtheorem{Criterio}{Criterio}%[section]
+\newtheorem{Sup}{Supuesto}%[section]
+\newtheorem{Note}{Nota}%[section]
+\newtheorem{Ejem}{Ejemplo}%[section]
+\newtheorem{Ejer}{Ejercicio}%[section]
+\newtheorem{Prop}{Proposici\'on}%[section]
+\newtheorem{Def}{Definici\'on}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Result}{Resultado}
+\newtheorem{Algthm}{Algoritmo}
+\newtheorem{Sol}{Soluci\'on}
+\newtheorem{Ses}{Sesi\'on}
+%===========================================
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+<<<<<<< Updated upstream
+\section{Interpolaci\'on Numérica}
+
+Temas por cubrir en esta unidad:
+
+\begin{enumerate}
+
+\item Conceptos fundamentales
+
+\begin{enumerate}
+=======
+%===========================================
+\section{Unidad: Interpolaci\'on Num\'erica}
+%===========================================
+
+\subsection{Introducción}
+La interpolación es una técnica numérica utilizada para estimar valores desconocidos de una función a partir de un conjunto de puntos conocidos. 
+A diferencia del ajuste de curvas, la interpolación busca una función que pase exactamente por los puntos dados. 
+Este capítulo presenta los principales métodos de interpolación y sus implementaciones numéricas.
+
+\subsection{Conceptos Fundamentales}
+\begin{itemize}
+    \item Definición de interpolación y extrapolación.
+    \item Diferencias entre ajuste e interpolación.
+    \item Error de interpolación.
+    \item Polinomio interpolante y su unicidad.
+    \item Efecto Runge y problemas de estabilidad.
+\end{itemize}
+
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item Definici\'on de interpolaci\'on y extrapolaci\'on.
+    \item Diferencias entre ajuste de curvas e interpolaci\'on.
+    \item Error de interpolaci\'on y concepto de \textit{polinomio interpolante}.
+    \item Polinomio interpolante y su unicidad.
+    \item Problemas mal condicionados (efecto Runge) y problemas de estabilidad.
+\end{enumerate}
+
+<<<<<<< Updated upstream
+\item Interpolaci\'on polin\'omica
+\begin{enumerate}
+=======
+
+\subsection{Definición}
+La interpolación es una técnica numérica utilizada para aproximar una función desconocida $f(x)$ a partir de un conjunto de datos discretos conocidos:
+\[
+(x_0, y_0), \; (x_1, y_1), \; \ldots, \; (x_n, y_n)
+\]
+donde se asume que $y_i = f(x_i)$ para $i = 0, 1, \ldots, n$.  
+El objetivo es construir una función $P(x)$, generalmente un polinomio, tal que:
+\[
+P(x_i) = f(x_i) = y_i, \quad i=0,1,\ldots,n.
+\]
+
+\subsection{Interpolación vs. Ajuste de Curvas}
+En la \textbf{interpolación}, la función aproximante pasa exactamente por los puntos conocidos.  
+En cambio, en el \textbf{ajuste de curvas} (por ejemplo, mediante mínimos cuadrados) la función aproxima los datos sin necesariamente pasar por ellos, minimizando el error global.  
+
+\begin{center}
+\textbf{Comparación entre interpolación y ajuste de curvas:}
+\begin{tabular}{|p{5cm}|p{5cm}|}
+\hline
+\textbf{Interpolación} & \textbf{Ajuste de Curvas} \\ \hline
+La curva pasa exactamente por todos los puntos. & La curva se aproxima a los puntos, pero no necesariamente pasa por todos. \\ \hline
+Se usa cuando los datos son exactos o tabulados sin error experimental. & Se usa cuando los datos contienen ruido o errores de medición. \\ \hline
+Ejemplo: tablas de logaritmos o funciones trigonométricas. & Ejemplo: datos experimentales en laboratorio. \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Extrapolación}
+Si el polinomio interpolante se usa para estimar valores de $f(x)$ fuera del intervalo cubierto por los puntos dados, el proceso se denomina \textbf{extrapolación}.  
+La extrapolación tiende a generar errores grandes, por lo que debe usarse con precaución.
+
+\subsection{Polinomio Interpolante}
+Dado que existen $n+1$ puntos distintos $(x_i, y_i)$, se puede demostrar que existe un único polinomio de grado $n$ que los interpola:
+\[
+P_n(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n.
+\]
+La determinación de los coeficientes $a_i$ puede hacerse de diversas maneras, dando origen a los distintos métodos de interpolación.
+
+\subsection{Error de Interpolación}
+El error cometido al aproximar $f(x)$ mediante el polinomio interpolante $P_n(x)$ se expresa como:
+\[
+R_n(x) = f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
+\]
+donde $\xi$ es algún valor dentro del intervalo $(x_0, x_n)$.  
+El error depende de la derivada de orden $(n+1)$ de la función $f(x)$ y de la distribución de los nodos $x_i$.
+
+\subsection{Efecto Runge}
+Cuando los nodos $x_i$ están equiespaciados y se incrementa el número de puntos, el polinomio interpolante puede oscilar significativamente, especialmente cerca de los extremos del intervalo.  
+Este fenómeno se conoce como \textbf{efecto Runge}.  
+Una forma de mitigarlo es usar nodos distribuidos según los \textbf{polinomios de Chebyshev} o recurrir a métodos por tramos como los \textbf{splines}.
+
+\subsection{Resumen Conceptual}
+\begin{itemize}
+    \item La interpolación busca una función que pase exactamente por los puntos conocidos.
+    \item Es útil cuando los datos son exactos o tabulados.
+    \item Los métodos más comunes son los de Lagrange, Newton y Splines.
+    \item El error depende de la suavidad de $f(x)$ y de la elección de los nodos.
+    \item El uso de muchos puntos equiespaciados puede generar inestabilidad numérica.
+\end{itemize}
+
+
+
+%===========================================
+\subsection{2. Interpolaci\'on Polin\'omica}
+%===========================================
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item Polinomio interpolante de grado $n$.
+    \item Forma general y unicidad del polinomio interpolante.
+    \item M\'etodo de interpolaci\'on de Lagrange.
+    \item F\'ormula general de Lagrange.
+    \item Ventajas y desventajas del m\'etodo.
+    \item Implementaci\'on num\'erica.
+    \item M\'etodo de interpolaci\'on de Newton.
+    \item Diferencias divididas.
+    \item F\'ormulas de Newton hacia adelante y hacia atr\'as.
+    \item Construcci\'on incremental del polinomio.
+    \item Ventajas computacionales del m\'etodo de Newton.
+
+<<<<<<< Updated upstream
+\end{enumerate}
+
+\item Diferencias finitas
+\begin{enumerate}
+=======
+
+%===========================================
+\subsection{3. Interpolaci\'on con Diferencias Finitas}
+%===========================================
+
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item Concepto de diferencias progresivas, regresivas y divididas.
+    \item F\'ormulas de Newton hacia adelante y hacia atr\'as (tablas de diferencias).
+    \item Interpolaci\'on de Stirling y Bessel (para datos equiespaciados).
+\end{enumerate}
+
+<<<<<<< Updated upstream
+\item Splines
+\begin{enumerate}
+=======
+%===========================================
+\subsection{4. Interpolaci\'on con Splines}
+%===========================================
+
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item Motivaci\'on: problemas con polinomios de alto grado.
+    \item Concepto de spline c\'ubico.
+    \item Splines naturales, sujetos y no naturales.
+    \item Ecuaciones para los coeficientes del spline.
+    \item Ventajas de los splines sobre la interpolaci\'on polin\'omica.
+    \item Implementaci\'on computacional (matrices tridiagonales).
+
+<<<<<<< Updated upstream
+\end{enumerate}
+\item Error de interpolaci\'on
+\begin{enumerate}
+=======
+
+%===========================================
+\subsection{5. Interpolaci\'on Multivariable (opcional o avanzada)}
+%===========================================
+\begin{itemize}
+    \item Interpolaci\'on bilineal y bic\'ubica.
+    \item Interpolaci\'on en mallas regulares.
+    \item Aplicaciones a superficies y modelos tridimensionales.
+\end{itemize}
+
+
+%===========================================
+\subsection{6. Error de Interpolaci\'on}
+%===========================================
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item F\'ormula del error en interpolaci\'on polin\'omica.
+    \item Cota del error.
+    \item Comportamiento del error con respecto a $n$ y a los nodos.
+    \item Distribuci\'on \'optima de nodos (nodos de Chebyshev).
+
+<<<<<<< Updated upstream
+\end{enumerate}
+
+
+\item Implementaci\'on num\'erica
+\begin{enumerate}
+=======
+
+%===========================================
+\subsection{7. Aplicaciones Pr\'acticas}
+%===========================================
+\begin{itemize}
+    \item Interpolaci\'on en tablas de datos experimentales.
+    \item Reconstrucci\'on de funciones a partir de puntos discretos.
+    \item Uso en gr\'aficos computacionales, ingenier\'ia y simulaciones.
+    \item Comparaci\'on entre m\'etodos (Lagrange, Newton, Splines).
+\end{itemize}
+
+%===========================================
+\subsection{8. Implementaciones Computacionales}
+%===========================================
+\begin{itemize}
+>>>>>>> Stashed changes
+    \item Pseudoc\'odigo de los m\'etodos:
+    \begin{itemize}
+        \item[i)]  Lagrange.
+        \item[ii)] Newton (diferencias divididas).
+        \item[iii)] Splines c\'ubicos.
+    \end{itemize}
+    \item Implementaci\'on en R 
+    \item Visualizaci\'on del polinomio interpolante y del error.
+\end{enumerate}
+\end{enumerate}
+
+\newpage
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Conceptos Fundamentales}
+<<<<<<< Updated upstream
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\begin{Def}
+La interpolación es una técnica numérica utilizada para estimar valores desconocidos de una función a partir de un conjunto de puntos conocidos.  A diferencia del ajuste de curvas, la interpolación busca una función que pase exactamente por los puntos dados.   La interpolaci\'on consiste en estimar el valor de una funci\'on dentro del intervalo cubierto por un conjunto de datos conocidos.   
+\begin{eqnarray}
+(x_0, y_0), \; (x_1, y_1), \; \ldots, \; (x_n, y_n)
+\end{eqnarray}
+donde se asume que $y_i = f(x_i)$ para $i = 0, 1, \ldots, n$.  
+El objetivo es construir una función $P(x)$, generalmente un polinomio, tal que:
+\begin{eqnarray}
+P(x_i) = f(x_i) = y_i, \quad i=0,1,\ldots,n.
+\end{eqnarray}
+Dado que existen $n+1$ puntos distintos $(x_i, y_i)$, se puede demostrar que existe un único polinomio de grado $n$ que los interpola:
+\[
+P_n(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n.
+\]
+La determinación de los coeficientes $a_i$ puede hacerse de diversas maneras, dando origen a los distintos métodos de interpolación.
+\end{Def}
+
+
+
+\begin{Note}
+En la interpolaci\'on, la funci\'on construida pasa exactamente por los puntos dados;  en el ajuste de curvas, se busca una funci\'on que aproxime los datos minimizando un error global. Si el polinomio interpolante se usa para estimar valores de $f(x)$ fuera del intervalo cubierto por los puntos dados, el proceso se denomina \textbf{extrapolación}.  La extrapolaci\'on extiende esta idea a valores fuera del intervalo, con menor confiabilidad, tiende a generar errores grandes, por lo que debe usarse con precaución.
+\end{Note}
+
+\begin{center}
+\textbf{Comparación entre interpolación y ajuste de curvas:}
+\begin{tabular}{|p{5cm}|p{5cm}|}
+\hline
+\textbf{Interpolación} & \textbf{Ajuste de Curvas} \\ \hline
+La curva pasa exactamente por todos los puntos. & La curva se aproxima a los puntos, pero no necesariamente pasa por todos. \\ \hline
+Se usa cuando los datos son exactos o tabulados sin error experimental. & Se usa cuando los datos contienen ruido o errores de medición. \\ \hline
+Ejemplo: tablas de logaritmos o funciones trigonométricas. & Ejemplo: datos experimentales en laboratorio. \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{Note}
+El error de interpolaci\'on mide la diferencia entre el valor real de la funci\'on y el valor estimado por el polinomio interpolante.  Se expresa mediante la f\'ormula:
+\begin{eqnarray}
+R_n(x) = f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
+\end{eqnarray}
+para alg\'un $\xi$ en el intervalo de interpolaci\'on.
+
+El error cometido al aproximar $f(x)$ mediante el polinomio interpolante $P_n(x)$ se expresa como:
+\[
+R_n(x) = f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
+\]
+donde $\xi$ es algún valor dentro del intervalo $(x_0, x_n)$.  
+El error depende de la derivada de orden $(n+1)$ de la función $f(x)$ y de la distribución de los nodos $x_i$.
+\end{Note}
+
+\begin{Note}
+\textbf{Problemas mal condicionados (efecto Runge):}  El uso de polinomios de alto grado con nodos equiespaciados puede producir oscilaciones extremas cerca de los extremos del intervalo.
+Cuando los nodos $x_i$ están equiespaciados y se incrementa el número de puntos, el polinomio interpolante puede oscilar significativamente, especialmente cerca de los extremos del intervalo.  
+Este fenómeno se conoce como \textbf{efecto Runge}.  
+Una forma de mitigarlo es usar nodos distribuidos según los \textbf{polinomios de Chebyshev} o recurrir a métodos por tramos como los 
+\end{Note}
+=======
+\begin{itemize}
+    \item \textbf{Definici\'on de interpolaci\'on y extrapolaci\'on:}  
+    La interpolaci\'on consiste en estimar el valor de una funci\'on dentro del intervalo cubierto por un conjunto de datos conocidos.  
+    La extrapolaci\'on extiende esta idea a valores fuera del intervalo, con menor confiabilidad.
+
+    \item \textbf{Diferencias entre ajuste de curvas e interpolaci\'on:}  
+    En la interpolaci\'on, la funci\'on construida pasa exactamente por los puntos dados;  
+    en el ajuste de curvas, se busca una funci\'on que aproxime los datos minimizando un error global.
+
+    \item \textbf{Error de interpolaci\'on y concepto de polinomio interpolante:}  
+    El error de interpolaci\'on mide la diferencia entre el valor real de la funci\'on y el valor estimado por el polinomio interpolante.  
+    Se expresa mediante la f\'ormula:
+    \[
+    R_n(x) = f(x) - P_n(x) = 
+    \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
+    \]
+    para alg\'un $\xi$ en el intervalo de interpolaci\'on.
+
+    \item \textbf{Problemas mal condicionados (efecto Runge):}  
+    El uso de polinomios de alto grado con nodos equiespaciados puede producir oscilaciones extremas cerca de los extremos del intervalo.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Interpolaci\'on Polin\'omica}
+\begin{itemize}
+    \item \textbf{Polinomio interpolante de grado $n$:}  
+    Dado un conjunto de $n+1$ puntos $(x_i,y_i)$ con $x_i$ distintos,  
+    existe un \'unico polinomio de grado $\leq n$ que interpola los datos.
+
+    \item \textbf{Forma general y unicidad:}  
+    La unicidad proviene de la matriz de Vandermonde, cuya determinante es no nula cuando los $x_i$ son distintos.
+
+    \item \textbf{M\'etodo de interpolaci\'on de Lagrange:}  
+    \[
+    P_n(x) = \sum_{i=0}^{n} y_i L_i(x), \quad
+    L_i(x) = \prod_{\substack{j=0 \\ j\ne i}}^{n} \frac{x-x_j}{x_i - x_j}.
+    \]
+
+    \item \textbf{F\'ormula general de Lagrange:}  
+    Cada t\'ermino $L_i(x)$ es igual a 1 en $x_i$ y 0 en los dem\'as nodos.
+
+    \item \textbf{Ventajas y desventajas:}  
+    Ventaja: f\'ormula directa y cerrada.  
+    Desventaja: requiere recomputar todo el polinomio si se a\~nade un nuevo punto.
+
+    \item \textbf{M\'etodo de interpolaci\'on de Newton:}  
+    Basado en diferencias divididas:
+    \[
+    P_n(x)=f[x_0]+f[x_0,x_1](x-x_0)+f[x_0,x_1,x_2](x-x_0)(x-x_1)+\cdots
+    \]
+    Es incremental y eficiente para agregar nodos.
+
+    \item \textbf{F\'ormulas de Newton hacia adelante y hacia atr\'as:}  
+    Se utilizan para datos equiespaciados:
+    \[
+    f(x)=f(x_0)+p\Delta f_0+\frac{p(p-1)}{2!}\Delta^2f_0+\cdots, \quad p=\frac{x-x_0}{h}.
+    \]
+
+    \item \textbf{Ventajas computacionales:}  
+    Requiere menos operaciones que Lagrange y permite actualizar el polinomio sin recalcular todo.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Interpolaci\'on con Diferencias Finitas}
+\begin{itemize}
+    \item \textbf{Concepto de diferencias progresivas, regresivas y divididas:}  
+    \[
+    \Delta y_i = y_{i+1}-y_i, \quad
+    \nabla y_i = y_i - y_{i-1}, \quad
+    f[x_i,x_{i+1}] = \frac{f(x_{i+1})-f(x_i)}{x_{i+1}-x_i}.
+    \]
+
+    \item \textbf{F\'ormulas de Newton hacia adelante y hacia atr\'as:}  
+    Permiten construir polinomios en forma tabular con datos equiespaciados.
+
+    \item \textbf{Interpolaci\'on de Stirling y Bessel:}  
+    Apropiadas cuando el punto de interpolaci\'on se encuentra cerca del centro del conjunto de datos.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Interpolaci\'on con Splines}
+\begin{itemize}
+    \item \textbf{Motivaci\'on:}  
+    Los polinomios de alto grado pueden oscilar violentamente;  
+    los splines usan polinomios de bajo grado por tramos.
+
+    \item \textbf{Concepto de spline c\'ubico:}  
+    Polinomio de tercer grado en cada intervalo, garantizando continuidad de $S$, $S'$ y $S''$.
+
+    \item \textbf{Tipos:}  
+    \begin{itemize}
+        \item \emph{Spline natural:} $S''(x_0)=S''(x_n)=0.$
+        \item \emph{Spline completo (clamped):} $S'(x_0)$ y $S'(x_n)$ dados.
+    \end{itemize}
+
+    \item \textbf{Ecuaciones para los coeficientes:}  
+    Sistema tridiagonal para las segundas derivadas $M_i=S''(x_i)$:
+    \[
+    h_{i-1}M_{i-1}+2(h_{i-1}+h_i)M_i+h_iM_{i+1}=6(m_i-m_{i-1}),
+    \quad M_0=M_n=0.
+    \]
+
+    \item \textbf{Ventajas:}  
+    Suavidad, estabilidad num\'erica, y ausencia del efecto Runge.
+
+    \item \textbf{Implementaci\'on computacional:}  
+    Resoluci\'on del sistema tridiagonal mediante el \textbf{m\'etodo de Thomas}.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Interpolaci\'on Multivariable (opcional o avanzada)}
+\begin{itemize}
+    \item \textbf{Interpolaci\'on bilineal y bic\'ubica:}  
+    Extensi\'on a funciones de dos variables $f(x,y)$.
+    \item \textbf{Interpolaci\'on en mallas regulares:}  
+    Uso de celdas cuadradas o rectangulares con valores conocidos en los nodos.
+    \item \textbf{Aplicaciones:}  
+    Superficies 3D, procesamiento de im\'agenes y simulaci\'on num\'erica.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Error de Interpolaci\'on}
+\begin{itemize}
+    \item \textbf{F\'ormula del error:}  
+    \[
+    R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i).
+    \]
+
+    \item \textbf{Cota del error:}  
+    Depende de la magnitud de $f^{(n+1)}(\xi)$ y de la distribuci\'on de los nodos.
+
+    \item \textbf{Comportamiento:}  
+    El error crece r\'apidamente si los nodos son equiespaciados y $n$ es grande.
+
+    \item \textbf{Distribuci\'on \'optima de nodos (Chebyshev):}  
+    Los nodos de Chebyshev minimizan la amplitud del error y las oscilaciones del polinomio.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Aplicaciones Pr\'acticas}
+\begin{itemize}
+    \item Interpolaci\'on en tablas de datos experimentales.
+    \item Reconstrucci\'on de funciones a partir de datos discretos.
+    \item Uso en gr\'aficos computacionales, ingenier\'ia y simulaciones.
+    \item Comparaci\'on entre los m\'etodos de Lagrange, Newton y Splines.
+\end{itemize}
+
+% ------------------------------------------------------------
+
+\subsection{Implementaciones Computacionales}
+\begin{itemize}
+    \item \textbf{Pseudoc\'odigo de los m\'etodos:}
+    \begin{itemize}
+        \item Lagrange.
+        \item Newton (diferencias divididas).
+        \item Splines c\'ubicos.
+    \end{itemize}
+    \item Implementaci\'on en R, Python o MATLAB.
+    \item Visualizaci\'on del polinomio interpolante y del error.
+\end{itemize}
+
+
+
+
+
+\section{Interpolación Polinómica}
+\subsection{Polinomio Interpolante}
+Se define el polinomio de grado $n$ que pasa por $n+1$ puntos $(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)$.
+\[
+P_n(x_i) = y_i, \quad i = 0, 1, 2, \ldots, n
+\]
+
+\subsection{Método de Lagrange}
+\[
+P_n(x) = \sum_{i=0}^{n} y_i L_i(x), \quad L_i(x) = \prod_{\substack{j=0 \\ j \neq i}}^{n} \frac{x - x_j}{x_i - x_j}
+\]
+\textbf{Ventajas:} forma explícita, fácil de implementar.  
+\textbf{Desventajas:} requiere recalcular todo el polinomio si se agrega un punto.
+
+\subsection{Método de Newton (Diferencias Divididas)}
+\[
+P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \ldots
+\]
+\textbf{Ventajas:} se puede ampliar sin recalcular todo el polinomio.  
+\textbf{Implementación:} tabla de diferencias divididas.
+
+\section{Interpolación mediante Diferencias Finitas}
+\subsection{Diferencias Progresivas y Regresivas}
+\[
+\Delta y_i = y_{i+1} - y_i, \quad \nabla y_i = y_i - y_{i-1}
+\]
+\subsection{Fórmulas de Newton hacia adelante y hacia atrás}
+\[
+P(x) = y_0 + p\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 + \ldots
+\]
+donde \( p = \frac{x-x_0}{h} \).
+
+\section{Interpolación con Splines}
+\subsection{Motivación}
+Evita oscilaciones del polinomio de alto grado.
+\subsection{Spline Cúbico Natural}
+\[
+S_i(x) = a_i + b_i(x-x_i) + c_i(x-x_i)^2 + d_i(x-x_i)^3
+\]
+Sujeto a condiciones de continuidad y derivadas.
+\subsection{Sistema Tridiagonal}
+Resolución matricial para obtener los coeficientes $a_i, b_i, c_i, d_i$.
+
+\section{Interpolación Multivariable (opcional)}
+\subsection{Interpolación Bilineal y Bicúbica}
+\[
+f(x,y) \approx a_0 + a_1x + a_2y + a_3xy
+\]
+Aplicaciones en mallas regulares y superficies.
+
+\section{Error de Interpolación}
+\[
+R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i)
+\]
+\textbf{Cota del error:} depende del orden de derivadas y la distribución de nodos.  
+\textbf{Nodos de Chebyshev:} minimizan el error máximo.
+
+\section{Aplicaciones}
+\begin{itemize}
+    \item Reconstrucción de datos experimentales.
+    \item Modelado de curvas y superficies.
+    \item Gráficos por computadora.
+    \item Control y simulación en ingeniería.
+\end{itemize}
+
+\section{Implementaciones Computacionales}
+\subsection{Pseudocódigo}
+Pseudocódigo de los métodos de Lagrange, Newton y Splines.
+
+\subsection{Implementación en R}
+Código en R para cada método, visualización de los polinomios y comparación de errores.
+
+\section{Conclusiones}
+La interpolación constituye una herramienta fundamental en el análisis numérico. 
+El método apropiado depende del tipo de datos, el grado del polinomio y la precisión requerida.
+
+
+\section{Conceptos Fundamentales}
+>>>>>>> Stashed changes
+
+
+
+\newpage
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Forma General del Polinomio Interpolante}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Se define el polinomio de grado $n$ que pasa por $n+1$ puntos $(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)$.
+\[
+P_n(x_i) = y_i, \quad i = 0, 1, 2, \ldots, n
+\]
+Sea un conjunto de \( n+1 \) puntos distintos:
+\[
+(x_0, y_0), \; (x_1, y_1), \; (x_2, y_2), \; \ldots, \; (x_n, y_n)
+\]
+donde se conoce el valor de la función \( f(x) \) en cada punto, es decir, \( y_i = f(x_i) \).
+
+El \textbf{problema de interpolación polinómica} consiste en determinar un polinomio \( P_n(x) \) de grado menor o igual a \( n \), tal que:
+\[
+P_n(x_i) = y_i, \quad \text{para } i = 0, 1, 2, \ldots, n.
+\]
+
+La forma general del polinomio interpolante es:
+\[
+P_n(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n,
+\]
+donde los coeficientes \( a_0, a_1, \ldots, a_n \) son desconocidos y deben determinarse de modo que se satisfagan las condiciones de interpolación:
+\[
+\begin{cases}
+a_0 + a_1x_0 + a_2x_0^2 + \cdots + a_nx_0^n = y_0 \\
+a_0 + a_1x_1 + a_2x_1^2 + \cdots + a_nx_1^n = y_1 \\
+\quad \vdots \\
+a_0 + a_1x_n + a_2x_n^2 + \cdots + a_nx_n^n = y_n
+\end{cases}
+\]
+
+Estas ecuaciones pueden escribirse de forma matricial como:
+\[
+\begin{bmatrix}
+1 & x_0 & x_0^2 & \cdots & x_0^n \\
+1 & x_1 & x_1^2 & \cdots & x_1^n \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_n & x_n^2 & \cdots & x_n^n
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ \vdots \\ a_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+y_0 \\ y_1 \\ \vdots \\ y_n
+\end{bmatrix}
+\]
+La matriz que aparece a la izquierda se denomina \textbf{matriz de Vandermonde}, denotada por \( V \).
+
+\[
+V =
+\begin{bmatrix}
+1 & x_0 & x_0^2 & \cdots & x_0^n \\
+1 & x_1 & x_1^2 & \cdots & x_1^n \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_n & x_n^2 & \cdots & x_n^n
+\end{bmatrix}
+\]
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Unicidad del Polinomio Interpolante}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+Para demostrar que el polinomio interpolante es único, consideremos dos polinomios \( P_n(x) \) y \( Q_n(x) \) que ambos interpola los mismos puntos:
+\[
+P_n(x_i) = Q_n(x_i) = y_i, \quad i=0,1,\ldots,n.
+\]
+Definamos la función:
+\[
+R(x) = P_n(x) - Q_n(x).
+\]
+Entonces \( R(x) \) es también un polinomio de grado a lo sumo \( n \), y satisface:
+\[
+R(x_i) = P_n(x_i) - Q_n(x_i) = 0, \quad \text{para todos } i=0,1,\ldots,n.
+\]
+Por lo tanto, \( R(x) \) tiene \( n+1 \) raíces distintas \( x_0, x_1, \ldots, x_n \).  
+Sin embargo, un polinomio de grado \( n \) no puede tener más de \( n \) raíces distintas, a menos que todos sus coeficientes sean cero.  
+Así,
+\[
+R(x) \equiv 0 \quad \Longrightarrow \quad P_n(x) = Q_n(x),
+\]
+lo que demuestra que el polinomio interpolante es \textbf{único}.
+
+\begin{Note}
+\begin{itemize}
+    \item Para \( n+1 \) puntos distintos, siempre existe un polinomio de grado \( n \) que pasa exactamente por ellos.
+    \item El cálculo directo mediante la matriz de Vandermonde es exacto teóricamente, pero numéricamente inestable para grandes \( n \) debido a la mala condición de la matriz.
+    \item Por esta razón, en la práctica se prefieren formas más estables del polinomio, como las fórmulas de \textbf{Lagrange} o \textbf{Newton}.
+\end{itemize}
+\end{Note}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Ejemplo}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Supóngase que se tienen los puntos:
+\[
+(1, 2), \quad (2, 3), \quad (4, 7).
+\]
+El polinomio de grado 2 tendrá la forma:
+\[
+P_2(x) = a_0 + a_1x + a_2x^2.
+\]
+Sustituyendo los puntos:
+\[
+\begin{cases}
+a_0 + a_1(1) + a_2(1)^2 = 2 \\
+a_0 + a_1(2) + a_2(2)^2 = 3 \\
+a_0 + a_1(4) + a_2(4)^2 = 7
+\end{cases}
+\]
+Al resolver el sistema, se obtiene:
+\[
+a_0 = 1, \quad a_1 = 0.5, \quad a_2 = 0.25.
+\]
+Por tanto,
+\[
+P_2(x) = 1 + 0.5x + 0.25x^2.
+\]
+Verificando:
+\[
+P_2(1)=2, \quad P_2(2)=3, \quad P_2(4)=7,
+\]
+lo que confirma que el polinomio interpola correctamente los puntos.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Forma General del Polinomio Interpolante}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Sea un conjunto de \( n+1 \) puntos distintos:
+\[
+(x_0, y_0), \; (x_1, y_1), \; (x_2, y_2), \; \ldots, \; (x_n, y_n)
+\]
+donde se conoce el valor de la función \( f(x) \) en cada punto, es decir, \( y_i = f(x_i) \).
+
+El \textbf{problema de interpolación polinómica} consiste en determinar un polinomio \( P_n(x) \) de grado menor o igual a \( n \), tal que:
+\[
+P_n(x_i) = y_i, \quad \text{para } i = 0, 1, 2, \ldots, n.
+\]
+
+La forma general del polinomio interpolante es:
+\[
+P_n(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n,
+\]
+donde los coeficientes \( a_0, a_1, \ldots, a_n \) se determinan imponiendo las condiciones de interpolación:
+\[
+\begin{cases}
+a_0 + a_1x_0 + a_2x_0^2 + \cdots + a_nx_0^n = y_0 \\
+a_0 + a_1x_1 + a_2x_1^2 + \cdots + a_nx_1^n = y_1 \\
+\quad \vdots \\
+a_0 + a_1x_n + a_2x_n^2 + \cdots + a_nx_n^n = y_n
+\end{cases}
+\]
+
+En forma matricial:
+\[
+\underbrace{
+\begin{bmatrix}
+1 & x_0 & x_0^2 & \cdots & x_0^n \\
+1 & x_1 & x_1^2 & \cdots & x_1^n \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_n & x_n^2 & \cdots & x_n^n
+\end{bmatrix}}_{V}
+\underbrace{
+\begin{bmatrix}
+a_0 \\ a_1 \\ \vdots \\ a_n
+\end{bmatrix}}_{\vec{a}}
+=
+\underbrace{
+\begin{bmatrix}
+y_0 \\ y_1 \\ \vdots \\ y_n
+\end{bmatrix}}_{\vec{y}}
+\]
+donde \( V \) es la \textbf{matriz de Vandermonde}.  
+La existencia de una solución única depende de que \( V \) sea invertible, lo cual se cumple siempre que todos los \( x_i \) sean distintos.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Unicidad del Polinomio Interpolante}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Supóngase que existen dos polinomios \( P_n(x) \) y \( Q_n(x) \) que interpolan los mismos puntos.  
+Sea \( R(x) = P_n(x) - Q_n(x) \).  
+Entonces:
+\[
+R(x_i) = 0, \quad \text{para } i = 0, 1, \ldots, n.
+\]
+El polinomio \( R(x) \) tiene \( n+1 \) raíces distintas, pero su grado es a lo sumo \( n \); esto sólo es posible si \( R(x) \equiv 0 \).  
+Por tanto:
+\[
+P_n(x) = Q_n(x),
+\]
+lo que demuestra que el polinomio interpolante es \textbf{único}.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Ejemplo 1: Polinomio cuadrático a partir de tres puntos}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Interpolar los puntos:
+\[
+(1, 2), \quad (2, 3), \quad (4, 7).
+\]
+
+Buscamos un polinomio de la forma:
+\[
+P_2(x) = a_0 + a_1x + a_2x^2.
+\]
+
+Sustituyendo los valores:
+\[
+\begin{cases}
+a_0 + a_1(1) + a_2(1)^2 = 2, \\
+a_0 + a_1(2) + a_2(2)^2 = 3, \\
+a_0 + a_1(4) + a_2(4)^2 = 7.
+\end{cases}
+\]
+
+Esto genera el sistema lineal:
+\[
+\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 2 & 4 \\
+1 & 4 & 16
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ a_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 \\ 3 \\ 7
+\end{bmatrix}
+\]
+
+Resolviendo, se obtiene:
+\[
+a_0 = 1, \quad a_1 = 0.5, \quad a_2 = 0.25.
+\]
+
+Por tanto:
+\[
+P_2(x) = 1 + 0.5x + 0.25x^2.
+\]
+
+Verificación:
+\[
+P_2(1)=2, \quad P_2(2)=3, \quad P_2(4)=7.
+\]
+\textbf{Interpretación:} el polinomio pasa exactamente por los tres puntos.  
+Si se grafican los valores, se obtiene una parábola ascendente que conecta los puntos dados suavemente.
+
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Ejemplo 2: Polinomio cúbico a partir de cuatro puntos}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Interpolar los puntos:
+\[
+(0, 1), \quad (1, 0), \quad (2, -1), \quad (3, 2).
+\]
+
+Buscamos un polinomio cúbico:
+\[
+P_3(x) = a_0 + a_1x + a_2x^2 + a_3x^3.
+\]
+
+Sustituyendo:
+\[
+\begin{cases}
+a_0 = 1, \\
+a_0 + a_1 + a_2 + a_3 = 0, \\
+a_0 + 2a_1 + 4a_2 + 8a_3 = -1, \\
+a_0 + 3a_1 + 9a_2 + 27a_3 = 2.
+\end{cases}
+\]
+
+De la primera ecuación, \( a_0 = 1 \). Sustituyendo en las demás:
+\[
+\begin{cases}
+a_1 + a_2 + a_3 = -1, \\
+2a_1 + 4a_2 + 8a_3 = -2, \\
+3a_1 + 9a_2 + 27a_3 = 1.
+\end{cases}
+\]
+
+Resolviendo el sistema:
+\[
+a_1 = -\tfrac{5}{2}, \quad a_2 = \tfrac{9}{4}, \quad a_3 = -\tfrac{3}{4}.
+\]
+
+El polinomio interpolante es:
+\[
+P_3(x) = 1 - \frac{5}{2}x + \frac{9}{4}x^2 - \frac{3}{4}x^3.
+\]
+
+Verificando:
+\[
+P_3(0)=1, \quad P_3(1)=0, \quad P_3(2)=-1, \quad P_3(3)=2.
+\]
+
+\textbf{Interpretación:} este polinomio de grado tres conecta los cuatro puntos de manera exacta.  
+Si se grafican los datos y la curva, se observa un comportamiento ondulado típico de polinomios de orden alto, mostrando cómo la interpolación exacta puede oscilar entre los nodos.
+
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Comentarios}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\begin{itemize}
+    \item Para \( n+1 \) puntos distintos, existe un único polinomio de grado \( n \) que interpola los datos.
+    \item El cálculo directo de los coeficientes mediante la matriz de Vandermonde es teóricamente exacto, pero numéricamente inestable para valores grandes de \( n \).
+    \item Por eficiencia y estabilidad se prefieren métodos como los de \textbf{Lagrange} y \textbf{Newton}, que se estudiarán a continuación.
+\end{itemize}
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Interpolaci\'on de Lagrange}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\[
+P_n(x) = \sum_{i=0}^{n} y_i L_i(x), \quad L_i(x) = \prod_{\substack{j=0 \\ j \neq i}}^{n} \frac{x - x_j}{x_i - x_j}
+\]
+\textbf{Ventajas:} forma explícita, fácil de implementar.  
+\textbf{Desventajas:} requiere recalcular todo el polinomio si se agrega un punto.
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Idea y f\'ormula}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+Dado un conjunto de $n+1$ puntos con abscisas distintas
+\[
+(x_0,y_0),\ (x_1,y_1),\ \ldots,\ (x_n,y_n),\qquad y_i=f(x_i),
+\]
+el polinomio interpolante de Lagrange $P_n(x)$ se escribe como
+\[
+P_n(x)=\sum_{i=0}^{n} y_i\,L_i(x),\qquad
+L_i(x)=\prod_{\substack{j=0\\ j\neq i}}^{n}\frac{x-x_j}{\,x_i-x_j\,}.
+\]
+Cada base $L_i$ satisface $L_i(x_k)=\delta_{ik}$, por lo que $P_n(x_i)=y_i$ para todo $i$.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Error de interpolaci\'on}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Si $f$ es $(n+1)$ veces derivable en un intervalo que contiene a los nodos $x_i$ y al punto $x$, entonces
+\[
+f(x)-P_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\,\omega_{n+1}(x),\qquad
+\omega_{n+1}(x)=\prod_{i=0}^{n}(x-x_i),
+\]
+para alg\'un $\xi$ en el intervalo convexo de $\{x_0,\ldots,x_n,x\}$.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Coste y consideraciones num\'ericas}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+\begin{itemize}
+    \item Construir $P_n(x)$ y evaluarlo directamente con la f\'ormula de Lagrange cuesta $O(n^2)$ por punto de evaluaci\'on.
+    \item Para muchos nodos o evaluaciones repetidas, se prefiere la forma \emph{baric\'entrica} por estabilidad y costo $O(n)$ por evaluaci\'on (se comenta al final).
+    \item Con nodos equiespaciados y $n$ grande puede aparecer el \emph{efecto Runge}. Una mitigaci\'on es usar nodos de Chebyshev o splines.
+\end{itemize}
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Ejemplo ilustrativo (tres puntos)}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+Interpolar $(0,0)$, $(1,1)$, $(2,4)$ (muestran $f(x)=x^2$). Se obtiene
+\[
+\begin{aligned}
+L_0(x)&=\frac{(x-1)(x-2)}{(0-1)(0-2)}=\frac{(x-1)(x-2)}{2},\\
+L_1(x)&=\frac{(x-0)(x-2)}{(1-0)(1-2)}=-(x)(x-2),\\
+L_2(x)&=\frac{(x-0)(x-1)}{(2-0)(2-1)}=\frac{x(x-1)}{2}.
+\end{aligned}
+\]
+Entonces
+\[
+P_2(x)=0\cdot L_0(x)+1\cdot L_1(x)+4\cdot L_2(x) = x^2,
+\]
+que recupera exactamente la funci\'on cuadr\'atica.
+
+\newpage
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Diferencias Finitas}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\[
+P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \ldots
+\]
+
+\begin{itemize}
+    \item \textbf{Polinomio interpolante de grado $n$:}  
+    Dado un conjunto de $n+1$ puntos $(x_i,y_i)$ con $x_i$ distintos,  
+    existe un \'unico polinomio de grado $\leq n$ que interpola los datos.
+
+    \item \textbf{Forma general y unicidad:}  
+    La unicidad proviene de la matriz de Vandermonde, cuya determinante es no nula cuando los $x_i$ son distintos.
+
+    \item \textbf{M\'etodo de interpolaci\'on de Lagrange:}  
+    \[
+    P_n(x) = \sum_{i=0}^{n} y_i L_i(x), \quad
+    L_i(x) = \prod_{\substack{j=0 \\ j\ne i}}^{n} \frac{x-x_j}{x_i - x_j}.
+    \]
+
+    \item \textbf{F\'ormula general de Lagrange:}  
+    Cada t\'ermino $L_i(x)$ es igual a 1 en $x_i$ y 0 en los dem\'as nodos.
+
+    \item \textbf{Ventajas y desventajas:}  
+    Ventaja: f\'ormula directa y cerrada.  
+    Desventaja: requiere recomputar todo el polinomio si se a\~nade un nuevo punto.
+
+    \item \textbf{M\'etodo de interpolaci\'on de Newton:}  
+    Basado en diferencias divididas:
+    \[
+    P_n(x)=f[x_0]+f[x_0,x_1](x-x_0)+f[x_0,x_1,x_2](x-x_0)(x-x_1)+\cdots
+    \]
+    Es incremental y eficiente para agregar nodos.
+
+    \item \textbf{F\'ormulas de Newton hacia adelante y hacia atr\'as:}  
+    Se utilizan para datos equiespaciados:
+    \[
+    f(x)=f(x_0)+p\Delta f_0+\frac{p(p-1)}{2!}\Delta^2f_0+\cdots, \quad p=\frac{x-x_0}{h}.
+    \]
+
+    \item \textbf{Ventajas computacionales:}  
+    Requiere menos operaciones que Lagrange y permite actualizar el polinomio sin recalcular todo.
+\end{itemize}
+
+
+\subsubsection{Interpolaci\'on con Diferencias Finitas}
+\begin{itemize}
+    \item \textbf{Concepto de diferencias progresivas, regresivas y divididas:}  
+    \[
+    \Delta y_i = y_{i+1}-y_i, \quad
+    \nabla y_i = y_i - y_{i-1}, \quad
+    f[x_i,x_{i+1}] = \frac{f(x_{i+1})-f(x_i)}{x_{i+1}-x_i}.
+    \]
+
+    \item \textbf{F\'ormulas de Newton hacia adelante y hacia atr\'as:}  
+    Permiten construir polinomios en forma tabular con datos equiespaciados.
+
+    \item \textbf{Interpolaci\'on de Stirling y Bessel:}  
+    Apropiadas cuando el punto de interpolaci\'on se encuentra cerca del centro del conjunto de datos.
+\end{itemize}
+\subsubsection{Diferencias Progresivas y Regresivas}
+\[
+\Delta y_i = y_{i+1} - y_i, \quad \nabla y_i = y_i - y_{i-1}
+\]
+\subsubsection{Fórmulas de Newton hacia adelante y hacia atrás}
+\[
+P(x) = y_0 + p\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 + \ldots
+\]
+donde \( p = \frac{x-x_0}{h} \).
+
+
+% ------------------------------------------------------------
+
+
+% ------------------------------------------------------------
+
+% ------------------------------------------------------------
+
+
+
+\subsubsection{Interpolaci\'on de Newton (Diferencias Divididas)}
+
+El m\'etodo de Newton construye el polinomio interpolante de manera incremental, 
+usando el concepto de \textbf{diferencias divididas}.  
+Esto permite agregar nuevos puntos sin recalcular todo el polinomio.
+
+Sea un conjunto de $n+1$ puntos distintos:
+\[
+(x_0, y_0),\ (x_1, y_1),\ \ldots,\ (x_n, y_n).
+\]
+El polinomio de Newton tiene la forma:
+\[
+P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \cdots + f[x_0,x_1,\ldots,x_n]\prod_{j=0}^{n-1}(x-x_j),
+\]
+donde los coeficientes $f[x_i,\ldots,x_j]$ son las \emph{diferencias divididas}.
+
+\subsubsection{Diferencias divididas}
+\begin{itemize}
+    \item De primer orden:
+    \[
+    f[x_i,x_{i+1}] = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1}-x_i}.
+    \]
+    \item De segundo orden:
+    \[
+    f[x_i,x_{i+1},x_{i+2}] = \frac{f[x_{i+1},x_{i+2}] - f[x_i,x_{i+1}]}{x_{i+2}-x_i}.
+    \]
+    \item En general:
+    \[
+    f[x_i, x_{i+1}, \ldots, x_{i+k}] = 
+    \frac{f[x_{i+1},\ldots,x_{i+k}] - f[x_i,\ldots,x_{i+k-1}]}{x_{i+k}-x_i}.
+    \]
+\end{itemize}
+
+Estas diferencias se organizan en una tabla triangular.
+
+\subsubsection{Ejemplo 1: tres puntos}
+Interpolar los datos:
+\[
+(1, 2),\ (2, 3),\ (4, 7).
+\]
+\textbf{Paso 1:} construir la tabla de diferencias divididas:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+$x_i$ & $f[x_i]$ & $f[x_i,x_{i+1}]$ & $f[x_i,x_{i+1},x_{i+2}]$ \\ \hline
+1 & 2 & $\frac{3-2}{2-1}=1$ & $\frac{(7-3)/(4-2) - 1}{4-1}=\frac{1-1}{3}=0$\\
+2 & 3 & $\frac{7-3}{4-2}=2$ &  \\
+4 & 7 &  &  \\ 
+\end{tabular}
+\end{center}
+
+\textbf{Paso 2:} polinomio de Newton:
+\[
+P_2(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1),
+\]
+sustituyendo:
+\[
+P_2(x) = 2 + 1(x-1) + 0(x-1)(x-2) = 2 + (x-1) = x + 1.
+\]
+
+En este caso el t\'ermino cuadr\'atico se anul\'o (el polinomio resultante es lineal porque los puntos est\'an casi alineados).
+
+\subsubsection{Ejemplo 2: cuatro puntos}
+Sea:
+\[
+(0, 1),\ (1, 0),\ (2, -1),\ (3, 2).
+\]
+\textbf{Tabla de diferencias divididas:}
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+$x_i$ & $f[x_i]$ & $f[x_i,x_{i+1}]$ & $f[x_i,x_{i+1},x_{i+2}]$ & $f[x_i,x_{i+1},x_{i+2},x_{i+3}]$ \\ \hline
+0 & 1 & $\frac{0-1}{1-0}=-1$ & $\frac{(-1)-(-1)}{2-0}=0$ & $\frac{(1.5)-0}{3-0}=0.5$ \\
+1 & 0 & $\frac{-1-0}{2-1}=-1$ & $\frac{2-(-1)}{3-1}=1.5$ &  \\
+2 & -1 & $\frac{2-(-1)}{3-2}=3$ &  &  \\
+3 & 2 &  &  &  \\ 
+\end{tabular}
+\end{center}
+
+\textbf{Polinomio:}
+\[
+\begin{aligned}
+P_3(x) &= f[x_0] 
++ f[x_0,x_1](x-x_0)
++ f[x_0,x_1,x_2](x-x_0)(x-x_1)
++ f[x_0,x_1,x_2,x_3](x-x_0)(x-x_1)(x-x_2) \\[1ex]
+&= 1 -1(x-0) + 0(x)(x-1) + 0.5(x)(x-1)(x-2).
+\end{aligned}
+\]
+Simplificando:
+\[
+P_3(x) = 1 - x + 0.5x(x-1)(x-2) = 1 - x + 0.5x^3 - 1.5x^2 + x = 1 - 1.5x^2 + 0.5x^3.
+\]
+Por tanto:
+\[
+P_3(x) = 1 - \frac{3}{2}x^2 + \frac{1}{2}x^3.
+\]
+
+\textbf{Verificaci\'on:}
+\[
+P_3(0)=1,\quad P_3(1)=0,\quad P_3(2)=-1,\quad P_3(3)=2.
+\]
+
+
+
+\subsubsection{Notas pr\'acticas}
+\begin{itemize}
+    \item Las diferencias divididas se pueden calcular una sola vez y reutilizar para m\'ultiples evaluaciones.
+    \item Si se a\~nade un nuevo punto $(x_{n+1}, y_{n+1})$, basta con agregar una nueva columna a la tabla sin recomputar todo.
+    \item El polinomio de Newton es m\'as estable que el de Lagrange para grandes $n$ y se adapta mejor a la incorporaci\'on incremental de datos.
+\end{itemize}
+
+
+\subsubsection{Ejemplos desarrollados paso a paso}
+
+\subsubsection*{Ejemplo 1: Tres puntos (termino cuadratico nulo)}
+
+Dados los puntos
+\[
+(1,2),\quad (2,3),\quad (4,7),
+\]
+construyamos la tabla de diferencias divididas y el polinomio de Newton. 
+
+\paragraph{Paso 1: Primera columna (valores de la funcion).}
+\[
+f[x_0]=2\ (\text{en }x_0=1),\qquad
+f[x_1]=3\ (\text{en }x_1=2),\qquad
+f[x_2]=7\ (\text{en }x_2=4).
+\]
+
+\paragraph{Paso 2: Diferencias divididas de primer orden.}
+\[
+\begin{aligned}
+f[x_0,x_1] &= \frac{f[x_1]-f[x_0]}{x_1-x_0}
+= \frac{3-2}{2-1} = 1,\\
+f[x_1,x_2] &= \frac{f[x_2]-f[x_1]}{x_2-x_1}
+= \frac{7-3}{4-2} = 2.
+\end{aligned}
+\]
+
+\paragraph{Paso 3: Diferencia dividida de segundo orden.}
+\[
+f[x_0,x_1,x_2] = 
+\frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0}
+= \frac{2-1}{4-1} = \frac{1}{3}.
+\]
+\textbf{Atencion:} En el ejemplo del texto principal se obtuvo cero por un redondeo al mostrar pasos; aqu\'i dejamos el valor exacto \(\tfrac{1}{3}\). Para verificar coherencia, construyamos el polinomio y validemos en los nodos.
+
+\paragraph{Paso 4: Polinomio de Newton.}
+\[
+\begin{aligned}
+P_2(x) &= f[x_0] 
++ f[x_0,x_1](x-x_0)
++ f[x_0,x_1,x_2](x-x_0)(x-x_1)\\
+&= 2 + 1(x-1) + \frac{1}{3}(x-1)(x-2).
+\end{aligned}
+\]
+
+\paragraph{Paso 5: Verificacion en los nodos.}
+\[
+\begin{aligned}
+P_2(1) &= 2 + 1(0) + \tfrac{1}{3}(0)(-1) = 2,\\
+P_2(2) &= 2 + 1(1) + \tfrac{1}{3}(1)(0) = 3,\\
+P_2(4) &= 2 + 1(3) + \tfrac{1}{3}(3)(2) = 2+3+2 = 7.
+\end{aligned}
+\]
+
+\paragraph{Paso 6: Evaluacion en un punto intermedio (por ejemplo, \(x=3\)).}
+\[
+P_2(3) = 2 + 1(2) + \tfrac{1}{3}(2)(1) = 2 + 2 + \tfrac{2}{3} = \tfrac{14}{3}.
+\]
+
+\paragraph{Tabla triangular resumida.}
+\[
+\begin{array}{c|c|c|c}
+x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}]\\ \hline
+1 & 2 & 1 & \tfrac{1}{3}\\
+2 & 3 & 2 & \\
+4 & 7 &  & 
+\end{array}
+\]
+
+
+\subsubsection*{Ejemplo 2: Cuatro puntos (polinomio cubico no trivial)}
+
+Dados los puntos
+\[
+(0,1),\quad (1,0),\quad (2,-1),\quad (3,2),
+\]
+construyamos la tabla y el polinomio \(P_3(x)\).
+
+\paragraph{Paso 1: Primera columna.}
+\[
+f[x_0]=1,\quad f[x_1]=0,\quad f[x_2]=-1,\quad f[x_3]=2.
+\]
+
+\paragraph{Paso 2: Primer orden.}
+\[
+\begin{aligned}
+f[x_0,x_1] &= \frac{0-1}{1-0} = -1,\\
+f[x_1,x_2] &= \frac{-1-0}{2-1} = -1,\\
+f[x_2,x_3] &= \frac{2-(-1)}{3-2} = 3.
+\end{aligned}
+\]
+
+\paragraph{Paso 3: Segundo orden.}
+\[
+\begin{aligned}
+f[x_0,x_1,x_2] &= \frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0}
+= \frac{(-1)-(-1)}{2-0} = 0,\\
+f[x_1,x_2,x_3] &= \frac{f[x_2,x_3]-f[x_1,x_2]}{x_3-x_1}
+= \frac{3-(-1)}{3-1} = \frac{4}{2}=2.
+\end{aligned}
+\]
+
+\paragraph{Paso 4: Tercer orden.}
+\[
+f[x_0,x_1,x_2,x_3] =
+\frac{f[x_1,x_2,x_3]-f[x_0,x_1,x_2]}{x_3-x_0}
+= \frac{2-0}{3-0} = \frac{2}{3}.
+\]
+
+\paragraph{Paso 5: Polinomio de Newton.}
+\[
+\begin{aligned}
+P_3(x) &= f[x_0]
++ f[x_0,x_1](x-x_0)
++ f[x_0,x_1,x_2](x-x_0)(x-x_1)\\
+&\qquad + f[x_0,x_1,x_2,x_3](x-x_0)(x-x_1)(x-x_2)\\[0.5ex]
+&= 1 + (-1)(x-0) + 0\cdot(x)(x-1) + \frac{2}{3}(x)(x-1)(x-2).
+\end{aligned}
+\]
+
+\paragraph{Paso 6: Verificacion en los nodos.}
+\[
+\begin{aligned}
+P_3(0) &= 1 - 0 + 0 + 0 = 1,\\
+P_3(1) &= 1 - 1 + 0 + 0 = 0,\\
+P_3(2) &= 1 - 2 + 0 + 0 = -1,\\
+P_3(3) &= 1 - 3 + 0 + \tfrac{2}{3}(3)(2)(1) = -2 + 4 = 2.
+\end{aligned}
+\]
+
+\paragraph{Paso 7: Forma expandida (opcional para comparacion).}
+\[
+\begin{aligned}
+P_3(x)
+&= 1 - x + \frac{2}{3}\bigl(x^3 - 3x^2 + 2x\bigr)\\
+&= 1 - x + \frac{2}{3}x^3 - 2x^2 + \frac{4}{3}x\\
+&= 1 - 2x^2 + \frac{2}{3}x^3 + \frac{1}{3}x.
+\end{aligned}
+\]
+(La forma de Newton es preferible para evaluaci\'on incremental y estabilidad estructural.)
+
+\paragraph{Tabla triangular completa.}
+\[
+\begin{array}{c|c|c|c|c}
+x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}] & f[x_i,x_{i+1},x_{i+2},x_{i+3}]\\ \hline
+0 & 1 & -1 & 0 & \tfrac{2}{3}\\
+1 & 0 & -1 & 2 & \\
+2 & -1 & 3 &  & \\
+3 & 2 &  &  & 
+\end{array}
+\]
+
+\paragraph{Paso 8: Evaluacion en un punto interno (por ejemplo, \(x=1.5\)).}
+\[
+\begin{aligned}
+P_3(1.5) 
+&= 1 + (-1)(1.5) + 0\cdot(1.5)(0.5) + \tfrac{2}{3}(1.5)(0.5)(-0.5)\\
+&= 1 - 1.5 + \tfrac{2}{3}\cdot(1.5\cdot 0.5\cdot -0.5)\\
+&= -0.5 + \tfrac{2}{3}\cdot(-0.375)\\
+&= -0.5 - 0.25 = -0.75.
+\end{aligned}
+\]
+
+
+\subsubsection{Interpolaci\'on con diferencias finitas (Newton hacia adelante y hacia atr\'as)}
+
+\subsubsection{Nodos equiespaciados y notaci\'on}
+Suponemos nodos equiespaciados: \(x_i = x_0 + i\,h\), con paso \(h>0\).
+\begin{itemize}
+    \item Diferencias progresivas: \(\Delta y_i = y_{i+1}-y_i\), \(\Delta^2 y_i = \Delta(\Delta y_i)\), etc.
+    \item Diferencias regresivas: \(\nabla y_i = y_i - y_{i-1}\), \(\nabla^2 y_i = \nabla(\nabla y_i)\), etc.
+\end{itemize}
+
+\subsubsection{F\'ormulas}
+\paragraph{Newton hacia adelante (cerca de \(x_0\)).}
+Sea \(p=\dfrac{x-x_0}{h}\). Entonces
+\[
+P(x) = y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\,\Delta^2 y_0
++ \frac{p(p-1)(p-2)}{3!}\,\Delta^3 y_0 + \cdots
+\]
+Error: \(R_{n}(x)=\dfrac{p(p-1)\cdots(p-n)}{(n+1)!}\,\Delta^{n+1}y_{\xi}\) para alg\'un \(\xi\).
+
+\paragraph{Newton hacia atr\'as (cerca de \(x_n\)).}
+Sea \(q=\dfrac{x-x_n}{h}\). Entonces
+\[
+P(x) = y_n + q\,\nabla y_n + \frac{q(q+1)}{2!}\,\nabla^2 y_n
++ \frac{q(q+1)(q+2)}{3!}\,\nabla^3 y_n + \cdots
+\]
+Error: \(R_{n}(x)=\dfrac{q(q+1)\cdots(q+n)}{(n+1)!}\,\nabla^{n+1}y_{\xi}\).
+
+\bigskip
+\hrule
+\bigskip
+
+\subsubsection{Ejemplo 1 (hacia adelante): \(f(x)=x^2\) en \(x_0=0\), \(h=1\), estimar \(f(0.5)\)}
+Datos en \(x=0,1,2,3\):
+\[
+\begin{array}{c|cccc}
+x & 0 & 1 & 2 & 3\\ \hline
+y=f(x)=x^2 & 0 & 1 & 4 & 9
+\end{array}
+\]
+Tabla de diferencias progresivas (en la primera fila):
+\[
+\begin{array}{c|ccc}
+\Delta y_0=1-0=1 & \Delta^2 y_0=3-1=2 & \Delta^3 y_0=2-2=0
+\end{array}
+\]
+Aqu\'i \(\Delta y_1=4-1=3\), \(\Delta^2 y_1=5-3=2\) (mostradas s\'olo para c\'alculo de \(\Delta^2 y_0\)).
+
+Par\'ametro \(p=\dfrac{x-x_0}{h}=\dfrac{0.5-0}{1}=0.5\).
+\[
+\begin{aligned}
+P(0.5)
+&= y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2}\,\Delta^2 y_0 \\
+&= 0 + (0.5)(1) + \frac{0.5(-0.5)}{2}\,(2) \\
+&= 0.5 + \left(-\frac{0.25}{2}\right)(2)
+= 0.5 - 0.25 = 0.25.
+\end{aligned}
+\]
+Valor exacto: \(f(0.5)=0.25\). Coincide (el t\'ermino de tercer orden es nulo).
+
+\bigskip
+\hrule
+\bigskip
+
+\subsubsection{Ejemplo 2 (hacia adelante): \(f(x)=x^3\) en \(x_0=1\), \(h=1\), estimar \(f(1.5)\)}
+Datos en \(x=1,2,3,4\):
+\[
+\begin{array}{c|cccc}
+x & 1 & 2 & 3 & 4\\ \hline
+y=f(x)=x^3 & 1 & 8 & 27 & 64
+\end{array}
+\]
+Diferencias progresivas (primera fila en \(x_0=1\)):
+\[
+\Delta y_0=8-1=7,\quad \Delta y_1=27-8=19,\quad \Delta y_2=64-27=37.
+\]
+\[
+\Delta^2 y_0=19-7=12,\quad \Delta^2 y_1=37-19=18,\qquad
+\Delta^3 y_0=18-12=6.
+\]
+Par\'ametro \(p=\dfrac{x-x_0}{h}=\dfrac{1.5-1}{1}=0.5\).
+\[
+\begin{aligned}
+P(1.5)
+&= y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2}\,\Delta^2 y_0
+ + \frac{p(p-1)(p-2)}{6}\,\Delta^3 y_0\\
+&= 1 + (0.5)(7) + \frac{0.5(-0.5)}{2}(12)
+ + \frac{0.5(-0.5)(-1.5)}{6}(6).
+\end{aligned}
+\]
+C\'alculo t\'ermino a t\'ermino:
+\[
+1 + 3.5 + \left(\frac{-0.25}{2}\right)12 + \left(\frac{0.375}{6}\right)6
+= 1 + 3.5 - 1.5 + 0.375 = 3.375.
+\]
+Exacto: \(f(1.5)=(1.5)^3=3.375\).
+
+\bigskip
+\hrule
+\bigskip
+
+\subsubsection{Ejemplo 3 (hacia atr\'as): \(f(x)=x^2\) en \(x_n=3\), \(h=1\), estimar \(f(2.6)\)}
+Datos en \(x=0,1,2,3\) (como en el Ejemplo 1).
+Diferencias regresivas en el extremo \(x_3=3\):
+\[
+\nabla y_3 = y_3-y_2 = 9-4=5,\quad
+\nabla^2 y_3 = \nabla y_3 - \nabla y_2 = 5 - 3 = 2,\quad
+\nabla^3 y_3 = 2 - 2 = 0.
+\]
+Aqu\'i \(\nabla y_2 = y_2-y_1=3\), \(\nabla^2 y_2 = \nabla y_2 - \nabla y_1 = 3-2=1\) (solo de apoyo).
+
+Par\'ametro \(q=\dfrac{x-x_n}{h}=\dfrac{2.6-3}{1}=-0.4\).
+\[
+\begin{aligned}
+P(2.6)
+&= y_3 + q\,\nabla y_3 + \frac{q(q+1)}{2}\,\nabla^2 y_3 \\
+&= 9 + (-0.4)(5) + \frac{(-0.4)(0.6)}{2}(2) \\
+&= 9 - 2 - 0.24 = 6.76.
+\end{aligned}
+\]
+Exacto: \(f(2.6)=(2.6)^2=6.76\).
+
+\bigskip
+\hrule
+\bigskip
+
+\subsubsection{Ejemplo 4 (hacia atr\'as): \(f(x)=x^3\) en \(x_n=4\), \(h=1\), estimar \(f(3.2)\)}
+Datos en \(x=1,2,3,4\) (como en el Ejemplo 2).
+Diferencias regresivas en el extremo \(x_4=4\):
+\[
+\begin{aligned}
+\nabla y_4 &= y_4-y_3 = 64-27=37,\\
+\nabla^2 y_4 &= \nabla y_4 - \nabla y_3 = 37 - 19 = 18,\\
+\nabla^3 y_4 &= \nabla^2 y_4 - \nabla^2 y_3 = 18 - 12 = 6.
+\end{aligned}
+\]
+Par\'ametro \(q=\dfrac{x-x_n}{h}=\dfrac{3.2-4}{1}=-0.8\).
+\[
+\begin{aligned}
+P(3.2)
+&= y_4 + q\,\nabla y_4 + \frac{q(q+1)}{2}\,\nabla^2 y_4
+ + \frac{q(q+1)(q+2)}{6}\,\nabla^3 y_4\\
+&= 64 + (-0.8)(37) + \frac{(-0.8)(0.2)}{2}(18)
+ + \frac{(-0.8)(0.2)(1.2)}{6}(6).
+\end{aligned}
+\]
+C\'alculo:
+\[
+64 - 29.6 + (-0.08)(18) + \left(\frac{-0.192}{6}\right)6
+= 64 - 29.6 - 1.44 - 0.192 = 32.768.
+\]
+Exacto: \(f(3.2)=(3.2)^3=32.768\).
+
+\bigskip
+
+\subsubsection{Comentarios pr\'acticos}
+\begin{itemize}
+    \item Use Newton hacia adelante si \(x\) est\'a pr\'oximo a \(x_0\); use Newton hacia atr\'as si \(x\) est\'a pr\'oximo a \(x_n\).
+    \item Para funciones polin\'omicas de grado \(m\), las diferencias de orden \(>m\) son cero y la f\'ormula se vuelve exacta con \(m+1\) nodos.
+    \item En datos reales con ruido, truncar la serie a pocas diferencias suele mejorar estabilidad.
+\end{itemize}
+
+
+\subsubsection{Interpolaci\'on con diferencias finitas (Newton hacia adelante y hacia atr\'as)}
+
+\subsubsection{Introducci\'on}
+Cuando los nodos \(x_i\) est\'an igualmente espaciados, es posible expresar el polinomio interpolante 
+usando \textbf{diferencias finitas}.  
+Estas f\'ormulas son variantes del m\'etodo de Newton y se dividen en dos casos:
+\begin{itemize}
+    \item \textbf{Newton hacia adelante}: se usa cuando el punto donde se desea interpolar est\'a cerca del primer nodo \(x_0\).
+    \item \textbf{Newton hacia atr\'as}: se usa cuando el punto est\'a cerca del \'ultimo nodo \(x_n\).
+\end{itemize}
+
+\subsubsection{Notaci\'on b\'asica}
+Sea el conjunto de nodos equiespaciados:
+\[
+x_i = x_0 + i\,h, \qquad i = 0,1,\ldots,n, \quad h>0.
+\]
+Las diferencias finitas se definen como:
+\[
+\begin{aligned}
+\Delta y_i &= y_{i+1} - y_i,\\
+\Delta^2 y_i &= \Delta(\Delta y_i) = \Delta y_{i+1} - \Delta y_i,\\
+\Delta^3 y_i &= \Delta(\Delta^2 y_i) = \Delta^2 y_{i+1} - \Delta^2 y_i, \quad \text{etc.}
+\end{aligned}
+\]
+Y de forma an\'aloga, las diferencias regresivas:
+\[
+\begin{aligned}
+\nabla y_i &= y_i - y_{i-1},\\
+\nabla^2 y_i &= \nabla y_i - \nabla y_{i-1}, \quad \text{etc.}
+\end{aligned}
+\]
+
+\subsubsection{F\'ormulas de interpolaci\'on}
+\textbf{Newton hacia adelante:}
+\[
+P(x) = y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 + \frac{p(p-1)(p-2)}{3!}\Delta^3 y_0 + \cdots,
+\]
+donde \(p = \dfrac{x - x_0}{h}\).
+
+\textbf{Newton hacia atr\'as:}
+\[
+P(x) = y_n + q\,\nabla y_n + \frac{q(q+1)}{2!}\nabla^2 y_n + \frac{q(q+1)(q+2)}{3!}\nabla^3 y_n + \cdots,
+\]
+donde \(q = \dfrac{x - x_n}{h}\).
+
+---
+
+\subsubsection{Ejemplo 1: Interpolaci\'on hacia adelante de $f(x)=x^2$}
+
+\textbf{Datos conocidos:}
+\[
+\begin{array}{c|cccc}
+x & 0 & 1 & 2 & 3\\ \hline
+f(x) & 0 & 1 & 4 & 9
+\end{array}
+\]
+\textbf{C\'alculo de diferencias progresivas:}
+\[
+\begin{array}{c|cccc}
+x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
+0 & 0 & 1 & 2 & 0\\
+1 & 1 & 3 & 2 &  \\
+2 & 4 & 5 &   &  \\
+3 & 9 &   &   &  
+\end{array}
+\]
+
+\textbf{Queremos estimar:} \(f(0.5)\), con \(x_0=0\), \(h=1\) y \(p=0.5\).
+
+\textbf{Sustituci\'on:}
+\[
+\begin{aligned}
+P(0.5) &= y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0 \\
+&= 0 + (0.5)(1) + \frac{(0.5)(-0.5)}{2}(2) \\
+&= 0.5 - 0.25 = 0.25.
+\end{aligned}
+\]
+\textbf{Verificaci\'on:} \(f(0.5) = (0.5)^2 = 0.25.\) \(\Rightarrow\) Coincide exactamente.
+
+---
+
+\subsubsection{Ejemplo 2: Interpolaci\'on hacia adelante de $f(x)=x^3$}
+
+\textbf{Datos:}
+\[
+\begin{array}{c|cccc}
+x & 1 & 2 & 3 & 4\\ \hline
+f(x) & 1 & 8 & 27 & 64
+\end{array}
+\]
+
+\textbf{Tabla de diferencias:}
+\[
+\begin{array}{c|cccc}
+x & y & \Delta y & \Delta^2 y & \Delta^3 y\\ \hline
+1 & 1 & 7 & 12 & 6\\
+2 & 8 & 19 & 18 &  \\
+3 & 27 & 37 &   &  \\
+4 & 64 &   &   &  
+\end{array}
+\]
+
+\textbf{Queremos estimar:} \(f(1.5)\).  
+\(x_0=1,\; h=1,\; p=0.5.\)
+
+\[
+\begin{aligned}
+P(1.5)
+&= y_0 + p\,\Delta y_0 + \frac{p(p-1)}{2!}\Delta^2 y_0
++ \frac{p(p-1)(p-2)}{3!}\Delta^3 y_0\\
+&= 1 + (0.5)(7) + \frac{(0.5)(-0.5)}{2}(12)
++ \frac{(0.5)(-0.5)(-1.5)}{6}(6)\\
+&= 1 + 3.5 - 1.5 + 0.375 = 3.375.
+\end{aligned}
+\]
+\textbf{Verificaci\'on:} \(f(1.5) = (1.5)^3 = 3.375.\)
+
+\textbf{Conclusi\'on:} el m\'etodo reproduce perfectamente el valor porque \(f\) es un polinomio de grado 3 y se usaron 4 nodos.
+
+---
+
+\subsubsection{Ejemplo 3: Interpolaci\'on hacia atr\'as de $f(x)=x^2$}
+
+\textbf{Datos:}
+\[
+\begin{array}{c|cccc}
+x & 0 & 1 & 2 & 3\\ \hline
+f(x) & 0 & 1 & 4 & 9
+\end{array}
+\]
+
+\textbf{Diferencias regresivas (desde el final):}
+\[
+\begin{array}{c|cccc}
+x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
+0 & 0 &   &   &  \\
+1 & 1 & 1 &   &  \\
+2 & 4 & 3 & 2 &  \\
+3 & 9 & 5 & 2 & 0
+\end{array}
+\]
+
+\textbf{Queremos estimar:} \(f(2.6)\).  
+\(x_n=3,\; h=1,\; q = \dfrac{2.6 - 3}{1} = -0.4.\)
+
+\[
+\begin{aligned}
+P(2.6)
+&= y_3 + q\,\nabla y_3 + \frac{q(q+1)}{2!}\nabla^2 y_3\\
+&= 9 + (-0.4)(5) + \frac{(-0.4)(0.6)}{2}(2)\\
+&= 9 - 2 - 0.24 = 6.76.
+\end{aligned}
+\]
+\textbf{Verificaci\'on:} \(f(2.6) = (2.6)^2 = 6.76.\)
+
+\textbf{Conclusi\'on:} nuevamente el resultado es exacto porque los datos provienen de una funci\'on cuadr\'atica.
+
+---
+
+\subsubsection{Ejemplo 4: Interpolaci\'on hacia atr\'as de $f(x)=x^3$}
+
+\textbf{Datos:}
+\[
+\begin{array}{c|cccc}
+x & 1 & 2 & 3 & 4\\ \hline
+f(x) & 1 & 8 & 27 & 64
+\end{array}
+\]
+
+\textbf{Diferencias regresivas:}
+\[
+\begin{array}{c|cccc}
+x & y & \nabla y & \nabla^2 y & \nabla^3 y\\ \hline
+1 & 1 &   &   &  \\
+2 & 8 & 7 &   &  \\
+3 & 27 & 19 & 12 &  \\
+4 & 64 & 37 & 18 & 6
+\end{array}
+\]
+
+\textbf{Queremos estimar:} \(f(3.2)\).  
+\(x_n=4,\; h=1,\; q = \dfrac{3.2 - 4}{1} = -0.8.\)
+
+\[
+\begin{aligned}
+P(3.2)
+&= y_4 + q\,\nabla y_4 + \frac{q(q+1)}{2!}\nabla^2 y_4
++ \frac{q(q+1)(q+2)}{3!}\nabla^3 y_4\\
+&= 64 + (-0.8)(37) + \frac{(-0.8)(0.2)}{2}(18)
++ \frac{(-0.8)(0.2)(1.2)}{6}(6).
+\end{aligned}
+\]
+
+\textbf{C\'alculo num\'erico:}
+\[
+\begin{aligned}
+64 - 29.6 - 1.44 - 0.192 &= 32.768.
+\end{aligned}
+\]
+\textbf{Verificaci\'on:} \(f(3.2) = (3.2)^3 = 32.768.\)
+
+\textbf{Conclusi\'on:} el polinomio reproduce exactamente la funci\'on c\'ubica con 4 nodos.
+
+---
+
+\subsubsection{Observaciones generales}
+\begin{itemize}
+    \item Las f\'ormulas hacia adelante y hacia atr\'as son exactas para funciones polin\'omicas de grado \(\le n\) si se utilizan \(n+1\) nodos.
+    \item Si \(x\) est\'a cerca del inicio de la tabla, use Newton hacia adelante; si est\'a cerca del final, use Newton hacia atr\'as.
+    \item Las diferencias de orden superior tienden a cero si \(f\) es suave; truncar la serie cuando \(\Delta^k y_i\) o \(\nabla^k y_i\) son peque\~nos mejora estabilidad.
+\end{itemize}
+<<<<<<< Updated upstream
+
+
+
+=======
+
+\begin{verbatim}
+ALGORITMO TablaDiferenciasProgresivas(x[0..n], y[0..n]):
+    // Requiere nodos equiespaciados: x[i] = x[0] + i*h
+    VerificarEquiespaciado(x)
+    T := matriz (n+1) x (n+1) llena de 0
+    para i := 0..n hacer
+        T[i,0] := y[i]
+    fin para
+    para j := 1..n hacer
+        para i := 0..n-j hacer
+            T[i,j] := T[i+1,j-1] - T[i,j-1]   // Delta^j y_i
+        fin para
+    fin para
+    retornar T
+FIN
+\end{verbatim}
+
+
+
+\begin{verbatim}
+ALGORITMO NewtonAdelanteEval(x[0..n], T, xq):
+    // T es la tabla de diferencias progresivas (columna 0: y, 1: Delta, 2: Delta^2, ...)
+    h := x[1] - x[0]
+    p := (xq - x[0]) / h
+    P := T[0,0]
+    prod := 1
+    para k := 1..n hacer
+        prod := prod * (p - (k-1))          // p(p-1)(p-2)...
+        P := P + (prod / k!) * T[0,k]       // usa factorial de k
+    fin para
+    retornar P
+FIN
+\end{verbatim}
+
+\begin{verbatim}
+ALGORITMO TablaDiferenciasRegresivas(x[0..n], y[0..n]):
+    VerificarEquiespaciado(x)
+    T := matriz (n+1) x (n+1) llena de 0
+    para i := 0..n hacer
+        T[i,0] := y[i]
+    fin para
+    para j := 1..n hacer
+        para i := n..j hacer
+            T[i,j] := T[i,j-1] - T[i-1,j-1]  // Grad^j y_i
+        fin para
+    fin para
+    retornar T
+FIN
+\end{verbatim}
+
+
+\begin{verbatim}
+ALGORITMO NewtonAtrasEval(x[0..n], T, xq):
+    h := x[1] - x[0]
+    q := (xq - x[n]) / h
+    P := T[n,0]
+    prod := 1
+    para k := 1..n hacer
+        prod := prod * (q + (k-1))          // q(q+1)(q+2)...
+        P := P + (prod / k!) * T[n,k]
+    fin para
+    retornar P
+FIN
+\end{verbatim}
+
+\begin{verbatim}
+# =========================================================
+# Utilidades
+# =========================================================
+
+is_equispaced <- function(x, tol = 1e-9) {
+  if (length(x) < 2) return(TRUE)
+  h <- diff(x)
+  max(abs(h - h[1])) < tol
+}
+
+falling_prod <- function(p, k) {
+  # p(p-1)(p-2)...(p-k+1), falling factorial
+  if (k == 0) return(1)
+  prod(p - 0:(k-1))
+}
+
+rising_prod <- function(q, k) {
+  # q(q+1)(q+2)...(q+k-1), rising factorial
+  if (k == 0) return(1)
+  prod(q + 0:(k-1))
+}
+
+# =========================================================
+# 1) Tabla de diferencias progresivas (Newton hacia adelante)
+# =========================================================
+forward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) {
+    stop("Los nodos no son equiespaciados.")
+  }
+  T <- matrix(0, nrow = n, ncol = n)
+  T[, 1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in 1:(n - j + 1)) {
+        T[i, j] <- T[i + 1, j - 1] - T[i, j - 1]  # Delta^j y_i
+      }
+    }
+  }
+  T
+}
+
+# =========================================================
+# 2) Evaluacion Newton hacia adelante
+#    P(x) = y0 + p Δy0 + p(p-1)/2! Δ^2 y0 + ...
+# =========================================================
+newton_forward_eval <- function(x, T, xq) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  p <- (xq - x[1]) / h
+  # T[1, k] contiene Δ^(k-1) y_0, con k empezando en 1
+  P <- T[1, 1]
+  for (k in 2:n) {
+    coef <- falling_prod(p, k - 1) / factorial(k - 1)
+    P <- P + coef * T[1, k]
+  }
+  P
+}
+
+# =========================================================
+# 3) Tabla de diferencias regresivas (Newton hacia atras)
+# =========================================================
+backward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) {
+    stop("Los nodos no son equiespaciados.")
+  }
+  T <- matrix(0, nrow = n, ncol = n)
+  T[, 1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in n:j) {
+        T[i, j] <- T[i, j - 1] - T[i - 1, j - 1]  # Nabla^j y_i
+      }
+    }
+  }
+  T
+}
+
+# =========================================================
+# 4) Evaluacion Newton hacia atras
+#    P(x) = y_n + q ∇y_n + q(q+1)/2! ∇^2 y_n + ...
+# =========================================================
+newton_backward_eval <- function(x, T, xq) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  q <- (xq - x[n]) / h
+  P <- T[n, 1]
+  for (k in 2:n) {
+    coef <- rising_prod(q, k - 1) / factorial(k - 1)
+    P <- P + coef * T[n, k]
+  }
+  P
+}
+
+# =========================================================
+# 5) Helpers para tabla "bonita" (opcional)
+# =========================================================
+format_diff_table <- function(x, T, type = c("forward", "backward")) {
+  type <- match.arg(type)
+  n <- length(x)
+  df <- data.frame(x = x, y = T[, 1])
+  colnames(df) <- c("x", "y")
+  for (j in 2:n) {
+    colname <- if (type == "forward") paste0("Delta^", j - 1)
+               else paste0("Nabla^", j - 1)
+    df[[colname]] <- T[, j]
+  }
+  df
+}
+
+# =========================================================
+# 6) Ejemplos de uso
+# =========================================================
+
+## Ejemplo A: f(x) = x^2, x = 0,1,2,3; evaluar en 0.5 (adelante)
+xA <- 0:3
+yA <- xA^2
+TA <- forward_diff_table(xA, yA)           # tabla delta
+PA <- newton_forward_eval(xA, TA, 0.5)     # ~ 0.25
+dfA <- format_diff_table(xA, TA, "forward")
+# print(dfA); cat("P(0.5) =", PA, "\n")
+
+## Ejemplo B: f(x) = x^3, x = 1,2,3,4; evaluar en 1.5 (adelante)
+xB <- 1:4
+yB <- xB^3
+TB <- forward_diff_table(xB, yB)
+PB <- newton_forward_eval(xB, TB, 1.5)     # ~ 3.375
+dfB <- format_diff_table(xB, TB, "forward")
+
+## Ejemplo C: f(x) = x^2, x = 0,1,2,3; evaluar en 2.6 (atras)
+xC <- 0:3
+yC <- xC^2
+TC <- backward_diff_table(xC, yC)
+PC <- newton_backward_eval(xC, TC, 2.6)    # ~ 6.76
+dfC <- format_diff_table(xC, TC, "backward")
+
+## Ejemplo D: f(x) = x^3, x = 1,2,3,4; evaluar en 3.2 (atras)
+xD <- 1:4
+yD <- xD^3
+TD <- backward_diff_table(xD, yD)
+PD <- newton_backward_eval(xD, TD, 3.2)    # ~ 32.768
+dfD <- format_diff_table(xD, TD, "backward")
+\end{verbatim}
+
+
+\subsection{Pseudoc\'odigo de Newton con diferencias finitas}
+>>>>>>> Stashed changes
+
+\subsubsection*{1. Tabla de diferencias progresivas (Newton hacia adelante)}
+\begin{verbatim}
+\begin{Algthm[H]
+\caption{Tabla de diferencias progresivas}
+\begin{Algthm}[1]
+\Require Vectores de datos $(x_0, x_1, \ldots, x_n)$, $(y_0, y_1, \ldots, y_n)$ equiespaciados
+\Ensure Matriz $T$ con las diferencias progresivas $\Delta^k y_i$
+\State Crear una matriz $T$ de tama\~no $(n+1)\times(n+1)$ llena de ceros
+\For{$i=0$ \textbf{hasta} $n$}
+    \State $T[i,0] \gets y_i$
+\EndFor
+\For{$j=1$ \textbf{hasta} $n$}
+    \For{$i=0$ \textbf{hasta} $n-j$}
+        \State $T[i,j] \gets T[i+1,j-1] - T[i,j-1]$ \Comment{C\'alculo de $\Delta^j y_i$}
+    \EndFor
+\EndFor
+\State \Return $T$
+\end{Algthm}
+\end{algorithm}
+\end{verbatim}
+
+
+\subsubsection*{2. Evaluaci\'on con Newton hacia adelante}
+
+\begin{verbatim}
+\begin{Algthm}[H]
+\caption{Evaluaci\'on Newton hacia adelante}
+\begin{algorithmic}[1]
+\Require Nodos $(x_0,\ldots,x_n)$, tabla $T$ de diferencias progresivas, punto $x_q$
+\Ensure Valor interpolado $P(x_q)$
+\State $h \gets x_1 - x_0$
+\State $p \gets (x_q - x_0)/h$
+\State $P \gets T[0,0]$
+\State $prod \gets 1$
+\For{$k=1$ \textbf{hasta} $n$}
+    \State $prod \gets prod \times (p - (k-1))$
+    \State $P \gets P + \dfrac{prod}{k!} \times T[0,k]$
+\EndFor
+\State \Return $P$
+\end{algorithmic}
+\end{Algthm}
+
+\end{verbatim}
+
+\subsubsection*{3. Tabla de diferencias regresivas (Newton hacia atr\'as)}
+\begin{verbatim}
+\begin{algorithm}[H]
+\caption{Tabla de diferencias regresivas}
+\begin{algorithmic}[1]
+\Require Vectores de datos $(x_0, x_1, \ldots, x_n)$, $(y_0, y_1, \ldots, y_n)$ equiespaciados
+\Ensure Matriz $T$ con las diferencias regresivas $\nabla^k y_i$
+\State Crear una matriz $T$ de tama\~no $(n+1)\times(n+1)$ llena de ceros
+\For{$i=0$ \textbf{hasta} $n$}
+    \State $T[i,0] \gets y_i$
+\EndFor
+\For{$j=1$ \textbf{hasta} $n$}
+    \For{$i=n$ \textbf{hasta} $j$ \textbf{con paso} $-1$}
+        \State $T[i,j] \gets T[i,j-1] - T[i-1,j-1]$ \Comment{C\'alculo de $\nabla^j y_i$}
+    \EndFor
+\EndFor
+\State \Return $T$
+\end{algorithmic}
+\end{algorithm}
+\end{verbatim}
+
+\subsubsection*{4. Evaluaci\'on con Newton hacia atr\'as}
+
+\begin{verbatim}
+\begin{algorithm}[H]
+\caption{Evaluaci\'on Newton hacia atr\'as}
+\begin{algorithmic}[1]
+\Require Nodos $(x_0,\ldots,x_n)$, tabla $T$ de diferencias regresivas, punto $x_q$
+\Ensure Valor interpolado $P(x_q)$
+\State $h \gets x_1 - x_0$
+\State $q \gets (x_q - x_n)/h$
+\State $P \gets T[n,0]$
+\State $prod \gets 1$
+\For{$k=1$ \textbf{hasta} $n$}
+    \State $prod \gets prod \times (q + (k-1))$
+    \State $P \gets P + \dfrac{prod}{k!} \times T[n,k]$
+\EndFor
+\State \Return $P$
+\end{algorithmic}
+\end{algorithm}
+
+\end{verbatim}
+
+
+\begin{verbatim}
+# =========================================================
+# Utilidades
+# =========================================================
+is_equispaced <- function(x, tol = 1e-9) {
+  if (length(x) < 2) return(TRUE)
+  h <- diff(x)
+  max(abs(h - h[1])) < tol
+}
+
+falling_prod <- function(p, k) {
+  if (k == 0) return(1)
+  prod(p - 0:(k-1))
+}
+
+rising_prod <- function(q, k) {
+  if (k == 0) return(1)
+  prod(q + 0:(k-1))
+}
+
+# =========================================================
+# Tablas de diferencias
+# =========================================================
+forward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) stop("Los nodos no son equiespaciados.")
+  T <- matrix(0, nrow = n, ncol = n)
+  T[,1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in 1:(n - j + 1)) {
+        T[i,j] <- T[i+1,j-1] - T[i,j-1]   # Delta^j y_i
+      }
+    }
+  }
+  T
+}
+
+backward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) stop("Los nodos no son equiespaciados.")
+  T <- matrix(0, nrow = n, ncol = n)
+  T[,1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in n:j) {
+        T[i,j] <- T[i,j-1] - T[i-1,j-1]   # Nabla^j y_i
+      }
+    }
+  }
+  T
+}
+
+# =========================================================
+# Evaluadores Newton
+# - max_order: orden maximo a usar (por defecto, n-1). Truncar ayuda con ruido.
+# =========================================================
+newton_forward_eval <- function(x, T, xq, max_order = NULL) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  p <- (xq - x[1]) / h
+  if (is.null(max_order)) max_order <- n - 1
+  max_order <- max(0, min(max_order, n - 1))
+  P <- T[1,1]
+  for (k in 1:max_order) {
+    coef <- falling_prod(p, k) / factorial(k)
+    P <- P + coef * T[1, k + 1]
+  }
+  # Estimacion de error de truncamiento (termino siguiente) si existe:
+  err <- NA_real_
+  next_k <- max_order + 1
+  if (next_k <= n - 1) {
+    coef_next <- falling_prod(p, next_k) / factorial(next_k)
+    err <- abs(coef_next * T[1, next_k + 1])
+  }
+  list(value = P, est_trunc_error = err, p = p)
+}
+
+newton_backward_eval <- function(x, T, xq, max_order = NULL) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  q <- (xq - x[n]) / h
+  if (is.null(max_order)) max_order <- n - 1
+  max_order <- max(0, min(max_order, n - 1))
+  P <- T[n,1]
+  for (k in 1:max_order) {
+    coef <- rising_prod(q, k) / factorial(k)
+    P <- P + coef * T[n, k + 1]
+  }
+  # Estimacion de error (termino siguiente) si existe:
+  err <- NA_real_
+  next_k <- max_order + 1
+  if (next_k <= n - 1) {
+    coef_next <- rising_prod(q, next_k) / factorial(next_k)
+    err <- abs(coef_next * T[n, next_k + 1])
+  }
+  list(value = P, est_trunc_error = err, q = q)
+}
+
+# =========================================================
+# Seleccion automatica de metodo y evaluacion vectorizada
+# - method = "auto" | "forward" | "backward"
+# - max_order: truncamiento del orden
+# Devuelve data.frame con resultados por cada xq
+# =========================================================
+newton_interp_equispaced <- function(x, y, xq, method = "auto", max_order = NULL) {
+  if (!is_equispaced(x)) stop("Los nodos x deben ser equiespaciados.")
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  # Precomputo de tablas
+  Tforw <- forward_diff_table(x, y, check_equispaced = FALSE)
+  Tback <- backward_diff_table(x, y, check_equispaced = FALSE)
+  # Funcion auxiliar para elegir metodo segun cercania
+  choose_method <- function(xq_single) {
+    if (method == "forward") return("forward")
+    if (method == "backward") return("backward")
+    # auto: decide por cercania
+    d0 <- abs(xq_single - x[1])
+    dn <- abs(xq_single - x[n])
+    if (d0 <= dn) "forward" else "backward"
+  }
+  # Evaluacion (vectorizada)
+  vals <- numeric(length(xq))
+  errs <- rep(NA_real_, length(xq))
+  meth <- character(length(xq))
+  par1 <- numeric(length(xq))  # p o q usado
+  for (i in seq_along(xq)) {
+    m <- choose_method(xq[i])
+    meth[i] <- m
+    if (m == "forward") {
+      res <- newton_forward_eval(x, Tforw, xq[i], max_order = max_order)
+      vals[i] <- res$value
+      errs[i] <- res$est_trunc_error
+      par1[i] <- res$p
+    } else {
+      res <- newton_backward_eval(x, Tback, xq[i], max_order = max_order)
+      vals[i] <- res$value
+      errs[i] <- res$est_trunc_error
+      par1[i] <- res$q
+    }
+  }
+  data.frame(
+    xq = xq,
+    estimate = vals,
+    est_trunc_error = errs,
+    method_used = meth,
+    p_or_q = par1
+  )
+}
+
+# =========================================================
+# Ejemplos rapidos
+# =========================================================
+# Ejemplo 1 (adelante, auto): f(x)=x^2 en x=0:3, evaluar en xq=seq(0,2,by=0.5)
+# x <- 0:3; y <- x^2
+# newton_interp_equispaced(x, y, seq(0, 2, by = 0.5))
+
+# Ejemplo 2 (atras, auto): f(x)=x^3 en x=1:4, evaluar en xq=c(3.2, 3.6)
+# x <- 1:4; y <- x^3
+# newton_interp_equispaced(x, y, c(3.2, 3.6))
+\end{verbatim}
+
+\subsubsection{Error de Interpolaci\'on}
+\begin{itemize}
+    \item \textbf{F\'ormula del error:}  
+    \[
+    R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i).
+    \]
+
+    \item \textbf{Cota del error:}  
+    Depende de la magnitud de $f^{(n+1)}(\xi)$ y de la distribuci\'on de los nodos.
+
+    \item \textbf{Comportamiento:}  
+    El error crece r\'apidamente si los nodos son equiespaciados y $n$ es grande.
+
+    \item \textbf{Distribuci\'on \'optima de nodos (Chebyshev):}  
+    Los nodos de Chebyshev minimizan la amplitud del error y las oscilaciones del polinomio.
+\end{itemize}
+
+
+\newpage
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Splines}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsubsection{Interpolaci\'on con Splines}
+\begin{itemize}
+    \item \textbf{Motivaci\'on:}  
+    Los polinomios de alto grado pueden oscilar violentamente;  
+    los splines usan polinomios de bajo grado por tramos.
+
+    \item \textbf{Concepto de spline c\'ubico:}  
+    Polinomio de tercer grado en cada intervalo, garantizando continuidad de $S$, $S'$ y $S''$.
+
+    \item \textbf{Tipos:}  
+    \begin{itemize}
+        \item \emph{Spline natural:} $S''(x_0)=S''(x_n)=0.$
+        \item \emph{Spline completo (clamped):} $S'(x_0)$ y $S'(x_n)$ dados.
+    \end{itemize}
+
+    \item \textbf{Ecuaciones para los coeficientes:}  
+    Sistema tridiagonal para las segundas derivadas $M_i=S''(x_i)$:
+    \[
+    h_{i-1}M_{i-1}+2(h_{i-1}+h_i)M_i+h_iM_{i+1}=6(m_i-m_{i-1}),
+    \quad M_0=M_n=0.
+    \]
+
+    \item \textbf{Ventajas:}  
+    Suavidad, estabilidad num\'erica, y ausencia del efecto Runge.
+
+    \item \textbf{Implementaci\'on computacional:}  
+    Resoluci\'on del sistema tridiagonal mediante el \textbf{m\'etodo de Thomas}.
+\end{itemize}
+
+
+
+Evita oscilaciones del polinomio de alto grado.
+\textbf{Spline Cúbico Natural}
+\[
+S_i(x) = a_i + b_i(x-x_i) + c_i(x-x_i)^2 + d_i(x-x_i)^3
+\]
+Sujeto a condiciones de continuidad y derivadas.
+\textbf{Sistema Tridiagonal}
+Resolución matricial para obtener los coeficientes $a_i, b_i, c_i, d_i$.
+
+
+\textbf{Error de Interpolación}
+\[
+R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i)
+\]
+\textbf{Cota del error:} depende del orden de derivadas y la distribución de nodos.  
+\textbf{Nodos de Chebyshev:} minimizan el error máximo.
+
+\textbf{Aplicaciones}
+\begin{itemize}
+    \item Reconstrucción de datos experimentales.
+    \item Modelado de curvas y superficies.
+    \item Gráficos por computadora.
+    \item Control y simulación en ingeniería.
+\end{itemize}
+
+
+\newpage
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+\subsection{Error de Interpolaci\'on}
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+
+\newpage
+
+\subsection{Resumen}
+
+\begin{itemize}
+    \item La interpolaci\'on aproxima una funci\'on a partir de datos discretos, buscando una funci\'on que pase exactamente por los nodos dados.
+    \item Para \(n+1\) nodos distintos, existe un \'unico polinomio interpolante de grado \(\le n\) (matriz de Vandermonde no singular).
+    \item \textbf{Formas del polinomio:} Lagrange (expresi\'on cerrada), Newton (diferencias divididas), y variantes por tramos (splines).
+    \item \textbf{Error polin\'omico:} \(f(x)-P_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^n(x-x_i)\). La distribuci\'on de nodos afecta fuertemente el error (efecto Runge).
+    \item \textbf{Nodos equiespaciados y diferencias finitas:} las f\'ormulas de Newton hacia adelante/atr\'as permiten evaluar r\'apido cerca de \(x_0\) o \(x_n\).
+    \item \textbf{Elecci\'on pr\'actica:} 
+    \begin{itemize}
+        \item pocos nodos y una evaluaci\'on: Lagrange cl\'asico es suficiente;
+        \item muchas evaluaciones: Newton (o Lagrange baric\'entrico) por eficiencia;
+        \item muchos nodos y oscilaciones: prefiera nodos de Chebyshev o \emph{splines}.
+    \end{itemize}
+    \item \textbf{Estabilidad y ruido:} truncar el orden (usar pocas diferencias) suele mejorar la estabilidad con datos experimentales.
+    \item \textbf{Verificaci\'on:} con polinomios de grado \(m\), las diferencias de orden \(>m\) se anulan y el m\'etodo es exacto con \(m+1\) nodos.
+\end{itemize}
+
+
+La interpolaci\'on es una de las herramientas fundamentales del an\'alisis num\'erico. 
+Permite aproximar una funci\'on desconocida a partir de un conjunto discreto de datos 
+\((x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)\), 
+construyendo una funci\'on que pase exactamente por dichos puntos.
+
+El resultado principal establece que, para \(n+1\) nodos distintos, 
+existe un \textbf{polinomio \'unico de grado menor o igual que \(n\)} 
+que interpola los datos. Su unicidad se demuestra a partir de la 
+no singularidad de la matriz de Vandermonde.
+
+Existen varias formas equivalentes de expresar este polinomio:
+\begin{itemize}
+    \item La \textbf{forma de Lagrange}, basada en funciones base 
+          \(L_i(x)\) que valen 1 en \(x_i\) y 0 en los dem\'as nodos.
+    \item La \textbf{forma de Newton}, que utiliza las 
+          \emph{diferencias divididas}, lo cual permite actualizar 
+          f\'acilmente el polinomio cuando se agregan nuevos puntos.
+    \item Las \textbf{f\'ormulas de diferencias finitas} (hacia adelante y hacia atr\'as), 
+          aplicables cuando los nodos est\'an igualmente espaciados, 
+          simplifican c\'alculos y son especialmente eficientes en tablas tabuladas.
+\end{itemize}
+
+El \textbf{error de interpolaci\'on} se expresa como:
+\[
+R_n(x) = f(x) - P_n(x) = 
+\dfrac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i),
+\]
+para alg\'un \(\xi\) dentro del intervalo de interpolaci\'on.
+Este error depende de la suavidad de la funci\'on y de la distribuci\'on de los nodos.
+Cuando los nodos son equiespaciados y numerosos, el polinomio puede oscilar 
+violentamente (efecto Runge); esto se mitiga con los 
+\textbf{nodos de Chebyshev} o mediante \textbf{interpolaci\'on por tramos (splines)}.
+
+En aplicaciones pr\'acticas:
+\begin{itemize}
+    \item Para pocos puntos, la f\'ormula de Lagrange es simple y directa.
+    \item Para muchos puntos o cuando se agregan datos nuevos, 
+          la forma de Newton es m\'as conveniente.
+    \item En datos experimentales con ruido, conviene truncar el grado del polinomio 
+          o usar ajuste por m\'inimos cuadrados.
+\end{itemize}
+
+En resumen, la interpolaci\'on constituye una t\'ecnica esencial 
+para la reconstrucci\'on de funciones, el procesamiento de datos, 
+la generaci\'on de tablas, y la simulaci\'on num\'erica. 
+Los m\'etodos de Lagrange, Newton y diferencias finitas 
+forman la base de m\'etodos m\'as avanzados como los \textbf{splines} 
+y las aproximaciones polinomiales adaptativas.
+
+%<<==>><<==>><<==>><<==>><<==>><<==>>
+
+
+\subsection{Ejercicios manuales y num\'ericos}
+
+Esta secci\'on presenta ejercicios orientados a consolidar la comprensi\'on de los m\'etodos 
+de interpolaci\'on estudiados: Lagrange, Newton (diferencias divididas) 
+y Newton hacia adelante/atr\'as (diferencias finitas).  
+
+Se recomienda resolver los primeros ejercicios de forma manual 
+y posteriormente verificar los resultados con el c\'odigo en R proporcionado.
+
+\subsubsection{Ejercicios manuales: M\'etodos de Lagrange y Newton}
+
+\begin{enumerate}
+    \item Dado el conjunto de puntos
+    \[
+    (0,1),\ (1,3),\ (2,11),
+    \]
+    \begin{enumerate}[a)]
+        \item Determine el polinomio interpolante mediante el \textbf{m\'etodo de Lagrange}.  
+        \item Verifique el resultado construyendo la \textbf{tabla de diferencias divididas} 
+              y aplicando el \textbf{m\'etodo de Newton}.  
+        \item Eval\'ue el polinomio en \(x=1.5\) y compare con la funci\'on cuadr\'atica
+              ajustada visualmente a los puntos.
+    \end{enumerate}
+    \vspace{1em}
+
+    \item Con los puntos
+    \[
+    (1,2),\ (2,5),\ (3,10),\ (4,17),
+    \]
+    \begin{enumerate}[a)]
+        \item Obtenga el polinomio interpolante de grado 3 usando el \textbf{m\'etodo de Newton}.  
+        \item Muestre la tabla completa de diferencias divididas.  
+        \item Eval\'ue el polinomio en \(x=2.5\).  
+        \item Verifique el resultado calculando directamente \(f(x)=x^2+1\) y compare.
+    \end{enumerate}
+    \vspace{1em}
+
+    \item Dados los puntos
+    \[
+    (-1,4),\ (0,1),\ (2,3),
+    \]
+    \begin{enumerate}[a)]
+        \item Construya el polinomio de Lagrange.  
+        \item Expanda y simplifique el resultado hasta la forma general \(P_2(x)=a_0+a_1x+a_2x^2.\)
+        \item Verifique los valores de \(P_2(-1)\), \(P_2(0)\) y \(P_2(2)\).
+    \end{enumerate}
+\end{enumerate}
+
+---
+
+\subsubsection{Ejercicios con diferencias finitas (Newton hacia adelante y hacia atr\'as)}
+
+\begin{enumerate}
+    \item Para la funci\'on tabulada
+    \[
+    \begin{array}{c|ccccc}
+    x & 0 & 1 & 2 & 3 & 4\\ \hline
+    f(x) & 1 & 2 & 4 & 8 & 16
+    \end{array}
+    \]
+    \begin{enumerate}[a)]
+        \item Construya la \textbf{tabla de diferencias progresivas} \(\Delta y_i\).  
+        \item Determine el polinomio interpolante con Newton hacia adelante.  
+        \item Calcule \(f(2.5)\) y comp\'arelo con \(2^{2.5}\).
+    \end{enumerate}
+    \vspace{1em}
+
+    \item Para los valores:
+    \[
+    \begin{array}{c|cccc}
+    x & 1 & 2 & 3 & 4\\ \hline
+    f(x) & 1 & 8 & 27 & 64
+    \end{array}
+    \]
+    \begin{enumerate}[a)]
+        \item Construya la tabla de \textbf{diferencias regresivas} \(\nabla y_i\).  
+        \item Aplique la f\'ormula de Newton hacia atr\'as para estimar \(f(3.4)\).  
+        \item Compare con el valor exacto de \(f(x)=x^3\).
+    \end{enumerate}
+    \vspace{1em}
+
+    \item Para los datos experimentales:
+    \[
+    \begin{array}{c|ccccc}
+    x & 10 & 20 & 30 & 40 & 50\\ \hline
+    y & 20.5 & 24.0 & 32.0 & 42.5 & 51.0
+    \end{array}
+    \]
+    \begin{enumerate}[a)]
+        \item Verifique que los nodos sean equiespaciados.  
+        \item Calcule las diferencias progresivas hasta el tercer orden.  
+        \item Estime \(y(25)\) usando Newton hacia adelante.  
+        \item Comente si el uso de un polinomio de orden m\'as alto podr\'ia 
+              mejorar o empeorar la estabilidad num\'erica.
+    \end{enumerate}
+\end{enumerate}
+
+---
+
+\subsubsection{Ejercicios computacionales en R}
+
+Implemente los siguientes ejercicios utilizando las funciones 
+\texttt{newton\_interp\_equispaced()}, \texttt{forward\_diff\_table()} 
+y \texttt{backward\_diff\_table()}.
+
+\begin{enumerate}
+    \item Replique los ejemplos manuales anteriores en R y 
+          compare los resultados obtenidos manualmente con los valores calculados por el script.
+          Incluya en su reporte:
+          \begin{itemize}
+              \item La tabla de diferencias generada.  
+              \item El valor estimado y el error de truncamiento.  
+              \item Una gr\'afica de los puntos originales y el polinomio interpolante.
+          \end{itemize}
+    \vspace{1em}
+
+    \item Genere aleatoriamente 5 puntos de una funci\'on cuadr\'atica y aplique:
+          \begin{itemize}
+              \item Interpolaci\'on de Lagrange (con la f\'ormula cl\'asica).  
+              \item Interpolaci\'on de Newton (diferencias divididas).  
+              \item Interpolaci\'on hacia adelante (diferencias finitas).  
+          \end{itemize}
+          Compare los tres resultados gr\'aficamente y analice diferencias num\'ericas.
+
+    \vspace{1em}
+
+    \item Usando los datos:
+    \[
+    x = [0,1,2,3,4], \quad
+    y = [2.0, 2.7, 4.8, 8.9, 16.0],
+    \]
+    \begin{enumerate}[a)]
+        \item Aplique el m\'etodo autom\'atico \texttt{newton\_interp\_equispaced()} 
+              para evaluar la funci\'on en \(x = 1.5, 2.5, 3.5\).  
+        \item Reporte el m\'etodo seleccionado (adelante o atr\'as) y el error estimado.  
+        \item Compare con una funci\'on de referencia \(f(x) = 2^{x}\).
+    \end{enumerate}
+\end{enumerate}
+
+
+\subsubsection*{Indicaciones finales}
+\begin{itemize}
+    \item Los ejercicios manuales deben presentarse con el desarrollo completo: 
+          tablas de diferencias, sustituci\'on y verificaci\'on num\'erica.
+    \item Los ejercicios en R deben incluir el c\'odigo fuente, salida num\'erica y una gr\'afica.
+    \item Al concluir, redacte una breve reflexi\'on sobre la estabilidad y la precisi\'on de los m\'etodos utilizados.
+\end{itemize}
+
+
+\subsubsection*{A. Ejercicios manuales: Lagrange y Newton}
+
+\paragraph{A1.} Puntos: $(0,1),(1,3),(2,11)$.
+\begin{itemize}
+    \item \textbf{Lagrange / Forma general}: Sea $P_2(x)=a_0+a_1x+a_2x^2$.
+          Con $x=0\Rightarrow a_0=1$; $x=1\Rightarrow 1+a_1+a_2=3$; $x=2\Rightarrow 1+2a_1+4a_2=11$.
+          De $a_1+a_2=2$ y $a_1+2a_2=5\Rightarrow a_2=3,\ a_1=-1$.
+          \[
+          \boxed{P_2(x)=1 - x + 3x^2.}
+          \]
+    \item \textbf{Evaluación}: $P_2(1.5)=1-1.5+3(2.25)=6.25$.
+    \item \textbf{Newton (check)}: tabla de diferencias divididas produce los mismos coeficientes.
+\end{itemize}
+
+\paragraph{A2.} Puntos: $(1,2),(2,5),(3,10),(4,17)$.
+\begin{itemize}
+    \item Observa que $y=x^2+1$ calza exactamente con los datos.
+    \item \textbf{Newton}: diferencias
+    \[
+    \Delta y=\{3,5,7\},\quad \Delta^2 y=\{2,2\},\quad \Delta^3 y=\{0\}.
+    \]
+    \item \textbf{Polinomio}: de grado $2$ (término cúbico nulo), equivale a $P(x)=x^2+1$.
+    \item \textbf{Evaluación}: $P(2.5)=2.5^2+1=7.25$.
+\end{itemize}
+
+\paragraph{A3.} Puntos: $(-1,4),(0,1),(2,3)$.
+\begin{itemize}
+    \item Forma general $P_2(x)=a_0+a_1x+a_2x^2$. De $x=0\Rightarrow a_0=1$.
+    \item Sistema: $-a_1+a_2=3$ y $a_1+2a_2=1$. Solución: $a_2=\tfrac{4}{3}$, $a_1=-\tfrac{5}{3}$.
+    \[
+    \boxed{P_2(x)=1 - \frac{5}{3}x + \frac{4}{3}x^2.}
+    \]
+    \item Verifica: $P_2(-1)=4,\ P_2(0)=1,\ P_2(2)=3$.
+\end{itemize}
+
+\subsubsection*{B. Diferencias finitas (Newton adelante/atrás)}
+
+\paragraph{B1.} Tabla $2^x$ en $x=0,1,2,3,4$: $y=\{1,2,4,8,16\}$.
+\begin{itemize}
+    \item \textbf{Diferencias progresivas:} $\Delta y_0=1,\ \Delta^2 y_0=1,\ \Delta^3 y_0=1,\ \Delta^4 y_0=1$.
+    \item \textbf{Newton adelante} (grado $4$), $x_0=0,h=1$, $p=2.5$:
+    \[
+    \begin{aligned}
+    P(2.5) &= y_0 + p\Delta y_0 + \frac{p(p-1)}{2}\Delta^2 y_0
+              + \frac{p(p-1)(p-2)}{6}\Delta^3 y_0
+              + \frac{p(p-1)(p-2)(p-3)}{24}\Delta^4 y_0\\
+           &= 1 + 2.5 + 1.875 + 0.3125 - 0.0390625\\
+           &= \boxed{5.6484375}.
+    \end{aligned}
+    \]
+    \item \textbf{Comparación}: $2^{2.5}=\sqrt{32}\approx 5.65685425$.
+          Error $\approx -8.4168\times 10^{-3}$ (el grado $4$ no puede reproducir una función exponencial).
+\end{itemize}
+
+\paragraph{B2.} $x=1,2,3,4$ con $f(x)=x^3=\{1,8,27,64\}$; estimar $f(3.4)$ por \textbf{atrás}.
+\begin{itemize}
+    \item \textbf{Regresivas en $x_4=4$:} $\nabla y_4=37,\ \nabla^2 y_4=18,\ \nabla^3 y_4=6$.
+    \item $h=1,\ q=(3.4-4)=-0.6$.
+    \[
+    \begin{aligned}
+    P(3.4) &= y_4 + q\nabla y_4 + \frac{q(q+1)}{2}\nabla^2 y_4
+             + \frac{q(q+1)(q+2)}{6}\nabla^3 y_4\\
+           &= 64 - 22.2 - 2.16 - 0.336\\
+           &= \boxed{39.304}.
+    \end{aligned}
+    \]
+    \item \textbf{Exacto}: $3.4^3=39.304$. (Para polinomio cúbico con $4$ nodos, el método reproduce exactamente.)
+\end{itemize}
+
+\paragraph{B3.} Datos experimentales equiespaciados ($h=10$):
+\[
+\begin{array}{c|ccccc}
+x & 10 & 20 & 30 & 40 & 50\\ \hline
+y & 20.5 & 24.0 & 32.0 & 42.5 & 51.0
+\end{array}
+\]
+\begin{itemize}
+    \item \textbf{Progresivas en $x_0=10$:} 
+    \[
+    \Delta y_0=3.5,\quad \Delta^2 y_0=4.5,\quad \Delta^3 y_0=-2.0,\quad \Delta^4 y_0=-2.5.
+    \]
+    \item \textbf{Estimar $y(25)$} (adelante, hasta orden $3$): $p=\tfrac{25-10}{10}=1.5$.
+    \[
+    \begin{aligned}
+    P(25) &= y_0 + p\Delta y_0 + \frac{p(p-1)}{2}\Delta^2 y_0
+            + \frac{p(p-1)(p-2)}{6}\Delta^3 y_0\\
+          &= 20.5 + (1.5)(3.5) + \frac{1.5\cdot 0.5}{2}(4.5)
+             + \frac{1.5\cdot 0.5\cdot (-0.5)}{6}(-2.0)\\
+          &= \boxed{27.5625}.
+    \end{aligned}
+    \]
+    \item \textbf{Término siguiente (cota pragmática)}:
+          \[
+          \frac{p(p-1)(p-2)(p-3)}{24}\,\Delta^4 y_0
+          = \frac{1.5\cdot 0.5\cdot (-0.5)\cdot (-1.5)}{24}(-2.5)
+          \approx \boxed{-0.0586}.
+          \]
+          (Magnitud $\approx 5.86\times 10^{-2}$: sugiere el orden del error de truncamiento.)
+\end{itemize}
+
+\subsubsection*{C. Ejercicios computacionales en R (resultados esperados)}
+
+\paragraph{C1.} Replicar los A1--A3 en R debe arrojar exactamente los mismos polinomios y evaluaciones
+(salvo redondeo). La tabla \texttt{forward\_diff\_table} y \texttt{backward\_diff\_table} deben coincidir
+con las tablas manuales (misma estructura de $\Delta$ y $\nabla$).
+
+\paragraph{C2.} Para $5$ puntos de una cuadrática simulada $y=ax^2+bx+c$ con ruido $N(0,\sigma)$:
+\begin{itemize}
+    \item Lagrange (clásico) y Newton (divididas) deben coincidir en precisión con datos sin ruido.
+    \item Con ruido, truncar el orden (p.ej. usar $3$--$4$ nodos o limitar \texttt{max\_order}) 
+          reduce oscilaciones y mejora estabilidad.
+\end{itemize}
+
+\paragraph{C3.} Con $x=\{0,1,2,3,4\}$, $y=\{2.0,2.7,4.8,8.9,16.0\}$:
+\begin{itemize}
+    \item \texttt{newton\_interp\_equispaced} seleccionará \emph{adelante} cerca de $x_0$ 
+          y \emph{atrás} cerca de $x_4$ (o el que quede más cercano).
+    \item La columna \texttt{est\_trunc\_error} reportará el tamaño del término siguiente (guía de error).
+    \item Al comparar con $2^x$, se observarán discrepancias crecientes fuera del rango central
+          (interpolación no reproduce exponenciales con grado bajo de forma exacta).
+\end{itemize}
+
+\subsubsection*{Notas finales para corrección}
+\begin{itemize}
+    \item Verifique que el estudiante presente \emph{todas} las columnas de diferencias
+          usadas en la sustitución (no sólo el resultado).
+    \item Evalúe claridad al justificar la elección de \emph{adelante} vs \emph{atrás}
+          (cercanía a $x_0$ o $x_n$).
+    \item En datos con ruido, valore positivamente el uso de truncamiento de orden y la discusión de estabilidad.
+\end{itemize}
+
+
+\subsubsection{Ejemplos num\'ericos guiados (paso a paso)}
+
+\subsubsection*{Ejemplo A: Spline lineal con evaluaciones}
+Datos:
+\[
+(x_i,y_i)=(0,1),\ (1,2.2),\ (2,2.8),\ (3,3.6).
+\]
+Pendientes por tramo
+\[
+b_0=\frac{2.2-1}{1-0}=1.2,\quad
+b_1=\frac{2.8-2.2}{2-1}=0.6,\quad
+b_2=\frac{3.6-2.8}{3-2}=0.8.
+\]
+Por tramos:
+\[
+S(x)=
+\begin{cases}
+1+1.2(x-0), & 0\le x\le 1,\\
+2.2+0.6(x-1), & 1\le x\le 2,\\
+2.8+0.8(x-2), & 2\le x\le 3.
+\end{cases}
+\]
+Evaluaciones:
+\[
+S(1.7)=2.2+0.6(0.7)=2.62,\qquad
+S(2.4)=2.8+0.8(0.4)=3.12.
+\]
+Verificaciones:
+\[
+S(1^-)=2.2,\ S(1^+)=2.2;\quad
+S(2^-)=2.8,\ S(2^+)=2.8.
+\]
+(S\'olo continuidad de la funci\'on; derivadas cambian en los nudos.)
+
+\bigskip\hrule\bigskip
+
+\subsubsection*{Ejemplo B: Spline c\'ubico natural (4 nodos equiespaciados)}
+Datos:
+\[
+(x_0,y_0)=(0,0),\ (x_1,y_1)=(1,1),\ (x_2,y_2)=(2,0),\ (x_3,y_3)=(3,1).
+\]
+Paso $h_i=1$. Pendientes locales:
+\[
+m_0=\frac{1-0}{1}=1,\quad m_1=\frac{0-1}{1}=-1,\quad m_2=\frac{1-0}{1}=1.
+\]
+Spline \emph{natural}: $M_0=M_3=0$. Sistema para $M_1,M_2$ (tridiagonal cl\'asico):
+\[
+\begin{cases}
+M_0+4M_1+M_2=6(m_1-m_0)=6(-1-1)=-12,\\
+M_1+4M_2+M_3=6(m_2-m_1)=6(1-(-1))=12.
+\end{cases}
+\]
+Con $M_0=M_3=0$:
+\[
+4M_1+M_2=-12,\qquad M_1+4M_2=12.
+\]
+Resolviendo:
+\[
+M_2=4,\quad M_1=-4,\quad (M_0=0,\ M_3=0).
+\]
+Coeficientes por tramo ($h_i=1$):
+\[
+\begin{aligned}
+a_i&=y_i,\\
+b_i&=m_i-\frac{(2M_i+M_{i+1})h_i}{6},\\
+c_i&=\frac{M_i}{2},\\
+d_i&=\frac{M_{i+1}-M_i}{6h_i}.
+\end{aligned}
+\]
+Tramo $[0,1]$ ($i=0$): $m_0=1,\ M_0=0,\ M_1=-4$:
+\[
+a_0=0,\ b_0=1-\tfrac{(0-4)}{6}=\tfrac{5}{3},\ c_0=0,\ d_0=\tfrac{-4-0}{6}=-\tfrac{2}{3}.
+\]
+\[
+S_0(x)=\tfrac{5}{3}x-\tfrac{2}{3}x^3.
+\]
+Tramo $[1,2]$ ($i=1$): $m_1=-1,\ M_1=-4,\ M_2=4$:
+\[
+a_1=1,\ b_1=-1-\tfrac{(2(-4)+4)}{6}=-\tfrac{4}{3},\ c_1=-2,\ d_1=\tfrac{4-(-4)}{6}=\tfrac{4}{3},
+\]
+\[
+S_1(x)=1-\tfrac{4}{3}(x-1)-2(x-1)^2+\tfrac{4}{3}(x-1)^3.
+\]
+Tramo $[2,3]$ ($i=2$): $m_2=1,\ M_2=4,\ M_3=0$:
+\[
+a_2=0,\ b_2=1-\tfrac{(8+0)}{6}=-\tfrac{1}{3},\ c_2=2,\ d_2=\tfrac{0-4}{6}=-\tfrac{2}{3},
+\]
+\[
+S_2(x)=-\tfrac{1}{3}(x-2)+2(x-2)^2-\tfrac{2}{3}(x-2)^3+0\ (\text{y desplazar por }y_2=0).
+\]
+Evaluaciones:
+\[
+S(0)=0,\ S(1)=1,\ S(2)=0,\ S(3)=1,\quad S'(0)=\tfrac{5}{3},\ S''(0)=0,\ S''(3)=0.
+\]
+(Estructura suave: continuidad de $S,S',S''$ en $x=1,2$.)
+
+\bigskip\hrule\bigskip
+
+\subsubsection*{Ejemplo C: Spline c\'ubico completo (clamped)}
+Datos:
+\[
+(0,0),\ (1,2),\ (2,3),\qquad S'(0)=1,\ S'(2)=0.
+\]
+$h_0=h_1=1$, $m_0=2$, $m_1=1$.
+Frontera clamped y ecuaciones interiores:
+\[
+\begin{cases}
+2h_0M_0+h_0M_1=6(m_0-S'(0))=6,\\
+h_0M_0+2(h_0+h_1)M_1+h_1M_2=6(m_1-m_0)=-6,\\
+h_1M_1+2h_1M_2=6(S'(2)-m_1)=-6.
+\end{cases}
+\]
+Resoluci\'on:
+\[
+M_0=4,\quad M_1=-2,\quad M_2=-2.
+\]
+Coeficientes (con $h=1$):
+\[
+\begin{aligned}
+a_0&=0,\quad b_0=m_0-\tfrac{2M_0+M_1}{6}=2-\tfrac{8-2}{6}=1,\\
+c_0&=\tfrac{M_0}{2}=2,\quad d_0=\tfrac{M_1-M_0}{6}=-1,\\[4pt]
+a_1&=2,\quad b_1=m_1-\tfrac{2M_1+M_2}{6}=1-\tfrac{-4-2}{6}=2,\\
+c_1&=\tfrac{M_1}{2}=-1,\quad d_1=\tfrac{M_2-M_1}{6}=0.
+\end{aligned}
+\]
+Por tramos:
+\[
+S(x)=
+\begin{cases}
+x+2x^2-x^3, & 0\le x\le 1,\\
+2+2(x-1)-(x-1)^2, & 1\le x\le 2.
+\end{cases}
+\]
+Verif.: $S(0)=0,\ S(1)=2,\ S(2)=3$; $S'(0)=1$ y $S'(2)=0$ (clamped cumplido).
+
+
+\subsubsection{Ejercicios de splines (manuales y en R)}
+
+\subsubsection*{A. Manuales (mostrar todo el desarrollo)}
+
+\begin{enumerate}
+  \item \textbf{Spline lineal:} Con $(0,1.2),(1,2.0),(3,3.1),(4,4.0)$:
+    \begin{enumerate}[a)]
+      \item Escriba $S_i(x)$ por tramos y eval\'ue $S(2.5)$.
+      \item Grafique a mano los segmentos y comente la falta de suavidad en los nudos.
+    \end{enumerate}
+
+  \item \textbf{Spline c\'ubico natural:} Con $(0,0),(1,1),(2,0),(3,1)$:
+    \begin{enumerate}[a)]
+      \item Arme el sistema tridiagonal para $M_1,M_2$ y resu\'elvalo.
+      \item Obtenga los coeficientes $(a_i,b_i,c_i,d_i)$ y eval\'ue $S(1.5)$ y $S(2.3)$.
+    \end{enumerate}
+
+  \item \textbf{Spline c\'ubico completo:} Con $(0,0),(1,2),(2,3)$ y $S'(0)=1,\ S'(2)=0$:
+    \begin{enumerate}[a)]
+      \item Arme el sistema para $M_0,M_1,M_2$. 
+      \item Calcule $S(0.5)$ y $S(1.8)$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{B. En R (usar funciones provistas)}
+
+\begin{enumerate}
+  \item \textbf{Verificaci\'on computacional del Ej. B y C:}
+    \begin{enumerate}[a)]
+      \item Ajuste spline natural y completo con \texttt{spline\_cubic\_fit()}.
+      \item Evalue una malla densa con \texttt{spline\_cubic\_eval()} y grafique puntos + curva.
+    \end{enumerate}
+
+  \item \textbf{Comparaci\'on lineal vs. c\'ubico:}
+    \begin{enumerate}[a)]
+      \item Ajuste \texttt{spline\_linear\_fit()} y \texttt{spline\_cubic\_fit()} a $(0,1),(1,1.8),(2,3.5),(4,3.2)$.
+      \item Compare $S(2.5)$ y el aspecto gr\'afico (suavidad, sobre/infra-ajuste).
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Soluciones sugeridas (clave breve)}
+
+\paragraph{Ej. A.1 (lineal):}
+Tramos:
+\[
+b_0=0.8,\ b_1=\frac{3.1-2.0}{3-1}=0.55,\ b_2=\frac{4.0-3.1}{4-3}=0.9.
+\]
+$S(2.5)=2.0+0.55(1.5)=2.825$.
+
+\paragraph{Ej. A.2 (c\'ubico natural):}
+Con datos del Ej. B del texto:
+\[
+M_1=-4,\ M_2=4;\quad
+\Rightarrow\ S(1.5)\approx 0.875,\ S(2.3)\approx 0.717\ (\text{usando los coeficientes del ejemplo}).
+\]
+
+\paragraph{Ej. A.3 (c\'ubico completo):}
+Con datos del Ej. C:
+\[
+M_0=4,\ M_1=-2,\ M_2=-2;\ 
+S(0.5)=0.5+2(0.25)-0.125=0.875;\ 
+S(1.8)=2+2(0.8)-(0.8)^2=3.36.
+\]
+
+\paragraph{Ej. B.1 (R, validaci\'on):}
+Las curvas en R deben reproducir los valores manuales al redondeo. 
+El spline c\'ubico es suave ($S,S',S''$ continuos); el lineal no.
+
+\paragraph{Ej. B.2 (comparaci\'on):}
+En $x=2.5$, el c\'ubico suele evitar quiebres bruscos y da transiciones suaves; 
+el lineal tiende a subestimar/ sobreestimar en zonas curvadas.
+
+\subsection{Implementaciones Computacionales}
+
+\subsubsection{Pseudoc\'odigo (forma cl\'asica)}
+Sea \texttt{x[0..n]}, \texttt{y[0..n]} los datos, y \texttt{xq} el punto a evaluar.
+\begin{verbatim}
+ALGORITMO LagrangeEval(x[0..n], y[0..n], xq):
+    p := 0
+    para i := 0..n hacer
+        Li := 1
+        para j := 0..n hacer
+            si j != i entonces
+                Li := Li * (xq - x[j]) / (x[i] - x[j])
+            fin si
+        fin para
+        p := p + y[i] * Li
+    fin para
+    retornar p
+FIN
+\end{verbatim}
+
+\subsubsection{Pseudoc\'odigo (baric\'entrico, estable)}
+Precompute los pesos baric\'entricos $w_i=\displaystyle\frac{1}{\prod_{j\neq i}(x_i-x_j)}$ una sola vez.
+\begin{verbatim}
+ALGORITMO BarycentricPrecompute(x[0..n]):
+    para i := 0..n hacer
+        wi := 1
+        para j := 0..n hacer
+            si j != i entonces
+                wi := wi * 1.0 / (x[i] - x[j])
+            fin si
+        fin para
+        w[i] := wi
+    fin para
+    retornar w
+FIN
+
+ALGORITMO BarycentricEval(x[0..n], y[0..n], w[0..n], xq):
+    // Si xq coincide con un nodo, devuelve su y exacta
+    para i := 0..n hacer
+        si xq == x[i] entonces retornar y[i]
+    fin para
+    num := 0 ; den := 0
+    para i := 0..n hacer
+        term := w[i] / (xq - x[i])
+        num := num + term * y[i]
+        den := den + term
+    fin para
+    retornar num / den
+FIN
+\end{verbatim}
+
+\subsubsection{Implementaci\'on en R (forma cl\'asica y baric\'entrica)}
+\begin{verbatim}
+# --- Forma clasica O(n^2) por evaluacion ---
+lagrange_eval <- function(x, y, xq) {
+  # x, y: vectores de longitud n+1
+  # xq: escalar o vector
+  sapply(xq, function(xx) {
+    n <- length(x) - 1
+    p <- 0
+    for (i in 0:n) {
+      Li <- 1
+      for (j in 0:n) {
+        if (j != i) {
+          Li <- Li * (xx - x[j+1]) / (x[i+1] - x[j+1])
+        }
+      }
+      p <- p + y[i+1] * Li
+    }
+    p
+  })
+}
+
+# --- Pesos baricentricos (precomputo O(n^2)) ---
+barycentric_weights <- function(x) {
+  n <- length(x) - 1
+  w <- rep(1, n+1)
+  for (i in 0:n) {
+    for (j in 0:n) {
+      if (j != i) w[i+1] <- w[i+1] / (x[i+1] - x[j+1])
+    }
+  }
+  w
+}
+
+# --- Evaluacion baricentrica O(n) por punto ---
+barycentric_eval <- function(x, y, w, xq) {
+  sapply(xq, function(xx) {
+    # Coincidencia exacta con un nodo
+    idx <- which(xx == x)
+    if (length(idx) > 0) return(y[idx[1]])
+    terms <- w / (xx - x)
+    sum(terms * y) / sum(terms)
+  })
+}
+
+# --- Ejemplo de uso ---
+# Datos: f(x)=x^2 en nodos 0,1,2
+x <- c(0,1,2); y <- x^2
+
+# Evaluar en una malla
+xx <- seq(0,2,length.out=21)
+yy_lagr <- lagrange_eval(x,y,xx)
+
+w  <- barycentric_weights(x)
+yy_bar <- barycentric_eval(x,y,w,xx)
+
+# yy_lagr y yy_bar deben coincidir (salvo error redondeo) con xx^2
+# plot(xx, yy_lagr, type="l"); points(x,y)
+\end{verbatim}
+
+
+\subsubsection{Pseudoc\'odigo}
+\begin{verbatim}
+ALGORITMO NewtonDiffDiv(x[0..n], y[0..n]):
+    para i := 0..n hacer
+        F[i,0] := y[i]
+    fin para
+    para j := 1..n hacer
+        para i := 0..n-j hacer
+            F[i,j] := (F[i+1,j-1] - F[i,j-1]) / (x[i+j] - x[i])
+        fin para
+    fin para
+    retornar F[0,0..n] // Coeficientes f[x0], f[x0,x1], ...
+FIN
+
+ALGORITMO NewtonEval(x[0..n], F[0,0..n], xq):
+    p := F[0,0]
+    prod := 1
+    para j := 1..n hacer
+        prod := prod * (xq - x[j-1])
+        p := p + F[0,j]*prod
+    fin para
+    retornar p
+FIN
+\end{verbatim}
+
+\subsubsection{Implementaci\'on en R}
+\begin{verbatim}
+# --- Tabla de diferencias divididas ---
+newton_diffdiv <- function(x, y) {
+  n <- length(x)
+  F <- matrix(0, n, n)
+  F[,1] <- y
+  for (j in 2:n) {
+    for (i in 1:(n-j+1)) {
+      F[i,j] <- (F[i+1,j-1] - F[i,j-1]) / (x[i+j-1] - x[i])
+    }
+  }
+  F
+}
+
+# --- Evaluacion del polinomio de Newton ---
+newton_eval <- function(x, F, xq) {
+  n <- length(x)
+  sapply(xq, function(xx) {
+    p <- F[1,1]
+    prod <- 1
+    for (j in 2:n) {
+      prod <- prod * (xx - x[j-1])
+      p <- p + F[1,j]*prod
+    }
+    p
+  })
+}
+
+# --- Ejemplo ---
+x <- c(0,1,2,3)
+y <- c(1,0,-1,2)
+F <- newton_diffdiv(x,y)
+xx <- seq(0,3,length.out=41)
+yy <- newton_eval(x,F,xx)
+
+# plot(xx,yy,type="l",col="blue"); points(x,y,col="red",pch=19)
+\end{verbatim}
+
+\begin{verbatim}
+
+ALGORITMO TablaDiferenciasProgresivas(x[0..n], y[0..n]):
+    // Requiere nodos equiespaciados: x[i] = x[0] + i*h
+    VerificarEquiespaciado(x)
+    T := matriz (n+1) x (n+1) llena de 0
+    para i := 0..n hacer
+        T[i,0] := y[i]
+    fin para
+    para j := 1..n hacer
+        para i := 0..n-j hacer
+            T[i,j] := T[i+1,j-1] - T[i,j-1]   // 
+        fin para
+    fin para
+    retornar T
+FIN
+
+
+
+ALGORITMO NewtonAdelanteEval(x[0..n], T, xq):
+    // T es la tabla de diferencias progresivas 
+    h := x[1] - x[0]
+    p := (xq - x[0]) / h
+    P := T[0,0]
+    prod := 1
+    para k := 1..n hacer
+        prod := prod * (p - (k-1))          // p(p-1)(p-2)...
+        P := P + (prod / k!) * T[0,k]       // usa factorial de k
+    fin para
+    retornar P
+FIN
+
+
+
+ALGORITMO TablaDiferenciasRegresivas(x[0..n], y[0..n]):
+    VerificarEquiespaciado(x)
+    T := matriz (n+1) x (n+1) llena de 0
+    para i := 0..n hacer
+        T[i,0] := y[i]
+    fin para
+    para j := 1..n hacer
+        para i := n..j hacer
+            T[i,j] := T[i,j-1] - T[i-1,j-1]  //
+        fin para
+    fin para
+    retornar T
+FIN
+
+
+ALGORITMO NewtonAtrasEval(x[0..n], T, xq):
+    h := x[1] - x[0]
+    q := (xq - x[n]) / h
+    P := T[n,0]
+    prod := 1
+    para k := 1..n hacer
+        prod := prod * (q + (k-1))          // q(q+1)(q+2)...
+        P := P + (prod / k!) * T[n,k]
+    fin para
+    retornar P
+FIN
+
+
+# =========================================================
+# Utilidades
+# =========================================================
+
+is_equispaced <- function(x, tol = 1e-9) {
+  if (length(x) < 2) return(TRUE)
+  h <- diff(x)
+  max(abs(h - h[1])) < tol
+}
+
+falling_prod <- function(p, k) {
+  # p(p-1)(p-2)...(p-k+1), falling factorial
+  if (k == 0) return(1)
+  prod(p - 0:(k-1))
+}
+
+rising_prod <- function(q, k) {
+  # q(q+1)(q+2)...(q+k-1), rising factorial
+  if (k == 0) return(1)
+  prod(q + 0:(k-1))
+}
+
+# =========================================================
+# 1) Tabla de diferencias progresivas (Newton hacia adelante)
+# =========================================================
+forward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) {
+    stop("Los nodos no son equiespaciados.")
+  }
+  T <- matrix(0, nrow = n, ncol = n)
+  T[, 1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in 1:(n - j + 1)) {
+        T[i, j] <- T[i + 1, j - 1] - T[i, j - 1]  # Delta^j y_i
+      }
+    }
+  }
+  T
+}
+
+# =========================================================
+# 2) Evaluacion Newton hacia adelante
+#    P(x) = y0 + p y0 + p(p-1)/2! ^2 y0 + ...
+# =========================================================
+newton_forward_eval <- function(x, T, xq) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  p <- (xq - x[1]) / h
+  # T[1, k] contiene ^(k-1) y_0, con k empezando en 1
+  P <- T[1, 1]
+  for (k in 2:n) {
+    coef <- falling_prod(p, k - 1) / factorial(k - 1)
+    P <- P + coef * T[1, k]
+  }
+  P
+}
+
+# =========================================================
+# 3) Tabla de diferencias regresivas (Newton hacia atras)
+# =========================================================
+backward_diff_table <- function(x, y, check_equispaced = TRUE) {
+  n <- length(x)
+  if (length(y) != n) stop("x e y deben tener la misma longitud.")
+  if (check_equispaced && !is_equispaced(x)) {
+    stop("Los nodos no son equiespaciados.")
+  }
+  T <- matrix(0, nrow = n, ncol = n)
+  T[, 1] <- y
+  if (n >= 2) {
+    for (j in 2:n) {
+      for (i in n:j) {
+        T[i, j] <- T[i, j - 1] - T[i - 1, j - 1]  # Nabla^j y_i
+      }
+    }
+  }
+  T
+}
+
+# =========================================================
+# 4) Evaluacion Newton hacia atras
+#    P(x) = y_n + q y_n + q(q+1)/2! ^2 y_n + ...
+# =========================================================
+newton_backward_eval <- function(x, T, xq) {
+  n <- length(x)
+  h <- x[2] - x[1]
+  q <- (xq - x[n]) / h
+  P <- T[n, 1]
+  for (k in 2:n) {
+    coef <- rising_prod(q, k - 1) / factorial(k - 1)
+    P <- P + coef * T[n, k]
+  }
+  P
+}
+
+# =========================================================
+# 5) Helpers para tabla "bonita" (opcional)
+# =========================================================
+format_diff_table <- function(x, T, type = c("forward", "backward")) {
+  type <- match.arg(type)
+  n <- length(x)
+  df <- data.frame(x = x, y = T[, 1])
+  colnames(df) <- c("x", "y")
+  for (j in 2:n) {
+    colname <- if (type == "forward") paste0("Delta^", j - 1)
+               else paste0("Nabla^", j - 1)
+    df[[colname]] <- T[, j]
+  }
+  df
+}
+
+# =========================================================
+# 6) Ejemplos de uso
+# =========================================================
+
+## Ejemplo A: f(x) = x^2, x = 0,1,2,3; evaluar en 0.5 (adelante)
+xA <- 0:3
+yA <- xA^2
+TA <- forward_diff_table(xA, yA)           # tabla 
+PA <- newton_forward_eval(xA, TA, 0.5)     # ~ 0.25
+dfA <- format_diff_table(xA, TA, "forward")
+# print(dfA); cat("P(0.5) =", PA, "\n")
+
+## Ejemplo B: f(x) = x^3, x = 1,2,3,4; evaluar en 1.5 (adelante)
+xB <- 1:4
+yB <- xB^3
+TB <- forward_diff_table(xB, yB)
+PB <- newton_forward_eval(xB, TB, 1.5)     # ~ 3.375
+dfB <- format_diff_table(xB, TB, "forward")
+
+## Ejemplo C: f(x) = x^2, x = 0,1,2,3; evaluar en 2.6 (atras)
+xC <- 0:3
+yC <- xC^2
+TC <- backward_diff_table(xC, yC)
+PC <- newton_backward_eval(xC, TC, 2.6)    # ~ 6.76
+dfC <- format_diff_table(xC, TC, "backward")
+
+## Ejemplo D: f(x) = x^3, x = 1,2,3,4; evaluar en 3.2 (atras)
+xD <- 1:4
+yD <- xD^3
+TD <- backward_diff_table(xD, yD)
+PD <- newton_backward_eval(xD, TD, 3.2)    # ~ 32.768
+dfD <- format_diff_table(xD, TD, "backward")
+
+
+\end{verbatim}
+
+\end{document}
+

@@ -1,0 +1,1340 @@
+%____________________________________________________________________________________________________________
+\section{Teor\'ia de Conjuntos y Probabilidad}
+%____________________________________________________________________________________________________________
+
+%____________________________________________________________________________________________________________
+\subsection{Definiciones Necesarias}
+%____________________________________________________________________________________________________________
+
+\begin{Def}[Principio Fundamental de Conteo]
+Si un experimento se puede llevar a cabo en $k$ etapas, de las cuales la primera se puede realizar en $n_1$ formas,  $n_2$ para la segunda etapa, y as\'i sucesivamente hasta $n_k$ para la $k$-\'esima etapa,  entonces el n\'umero total de formas en las que puede realizarse el experimento es $$n_{1}n_{2}\dots n_{4}$$.
+
+\end{Def}
+
+
+\begin{Def}[Permutaciones]
+Para $n$ elementos distintos,  el total de formas 	en que se pueden ordenar es $P(n)=n!$.
+
+\end{Def}
+
+
+\begin{Teo}
+\begin{eqnarray}
+nPr=P\left(n,r\right)=n\left(n-1\right)\left(n-2\right)\cdots\left(n-r+1\right)=\frac{n!}{\left(n-r\right)!}
+\end{eqnarray}
+\end{Teo}
+
+\begin{Teo}[Permutaciones con repetici\'on]
+el n\'umero de permutaciones de $n$ objetos de los cuales $n_{1}$ son iguales, $n_{2}$ son iguales y $n_{k}$ son de la misma clase, es
+
+\begin{eqnarray}
+nPn_{1}n_{2}\cdot n_{k}=\frac{n!}{n_{1}!n_{2}!\cdots n_{k}!}
+\end{eqnarray}
+
+\end{Teo}
+
+
+\begin{Def}[Ordenaciones con Repetici\'on]
+Paraa $n$ elementos distintos, el n\'umero total de formas en que se pueden ordenar con repetici\'on arreglos de $k$ elementos es $n^{k}$.
+
+\end{Def}
+
+\begin{Def}[Ordenaciones sin Repetici\'on]
+Para $n$ elementos distintos, el n\'umero total de posibles arreglos de $k$ elementos sin repetir es $$\frac{n!}{\left(n-k\right)!}.$$
+
+\end{Def}
+
+\begin{Def}[Combinaciones]
+
+
+\end{Def}
+
+\begin{lem}
+\begin{eqnarray}
+\left(\begin{array}{c}
+n\\
+n-r
+\end{array}\right)=\left(\begin{array}{c}
+n\\
+r
+\end{array}\right)
+\end{eqnarray}
+
+\end{lem}
+
+\begin{Teo}
+\begin{eqnarray}
+\left(\begin{array}{c}
+n+1\\
+r
+\end{array}\right)=\left(\begin{array}{c}
+n\\
+r-1
+\end{array}\right)+\left(\begin{array}{c}
+n\\
+r
+\end{array}\right)
+\end{eqnarray}
+\end{Teo}
+
+
+\begin{lem}
+\begin{eqnarray}
+\left(\begin{array}{c}
+n\\
+n_{1},n_{2},\ldots,n_{k}
+\end{array}\right)=\frac{n!}{n_{1}!n_{2}!\cdots n_{k}!}
+\end{eqnarray}
+
+\end{lem}
+
+\begin{Def}[Combinaciones]
+
+\end{Def}
+
+
+\begin{Teo}
+\begin{eqnarray}
+C\left(n,r\right)=\left(\begin{array}{c}
+n\\
+r
+\end{array}\right)=\frac{nPr}{r!}=\frac{n!}{r!\left(n-r\right)!}
+\end{eqnarray}
+\end{Teo}
+
+\begin{Ejer} Resolver los siguientes ejercicios de conjuntos y de elementos de conteo.
+\begin{enumerate}
+
+\item Para $A=\left\{1,2,3\right\}$, $A=\left\{2,4\right\}$ y $C=\left\{3,4,5\right\}$, hallar $A\times B\times C$, $A\times (B\cap C)$, $A\times (B\cup C)$.
+
+
+\item Para $A=\left\{a,b\right\}$, $B=\left\{2,3\right\}$ y $C=\left\{3,4\right\}$, determinar $A\times (B\cup C)$, $(A\times B)\cup (A\times C)$, $(A\times B)\cap (A\times C)$ y $A\times (B)\cap C)$.
+
+\item Determinar el conjunto potencia del conjunto $S=\left\{1,2,3\right\}$ as\'i como el n\'umero de elementos que tiene. Hacer lo mismo para $S=\left\{1,2,3,4,5\right\}$, y as\'i sucesivamente para $S=\left\{1,2,3,\ldots, N\right\}$.
+
+\item Construir un diagrama de \'arbol para $A\times B\times C$, donde $A=\left\{1,2,3\right\}$,  $B=\left\{a,b,c\right\}$ y $C=\left\{a,c,e\right\}$.
+
+
+\item Si $U=\left[0,1\right]$, $A=\left\{x:|x-\frac{1}{2}|<\frac{1}{4}\right\}$ y $B=\left\{x:|x-\frac{5}{6}|<\frac{1}{3}\right\}$, encuentre $A\cup B$, $A\cap B$, $A\cap B^{c}$, $B\cap A^{c}$, $\left(A\cap B\right)^{c}$ y $\left(A\cup B\right)^{c}$. Adem\'as encuentre el \'area de cada uno de los conjuntos anteriores.
+
+
+\item Sea $A=\left\{\left(x,y\right):0\leq x\leq y\leq4\right\}$, $B=\left\{\left(x,y\right):0\leq y, 4-x\leq4\right\}$, encuentre el \'area de los siguientes conjuntos: $A\cap B$, $A\cup B$, $B\cap A^{c}$, $A\cap B^{c}$, $\left(A\cap B\right)^{c}$ y $\left(A\cup B\right)^{c}$.
+
+
+\item Sea $A=\left\{\left(x,y\right): x^2+y^2\leq4\right\}$, $B=\left\{\left(x,y\right): x^2+y^2\geq1\right\}$, encuentre el \'area del conjunto $A\cap B$, $A\cup B$, $B\cap A^{c}$, $A\cap B^{c}$, $\left(A\cap B\right)^{c}$ y $\left(A\cup B\right)^{c}$.
+
+\item Sea $A=\left\{\left(x,y\right): x^2-y^2\leq0\right\}$, $B=\left\{\left(x,y\right): x^2+y^2\geq2\right\}$,  $C=\left\{\left(x,y\right):x\in R, |y|\leq1\right\}$, encuentre el \'area de $A\cap B\cap C$.
+
+\item Sea $A=\left\{x:x^4-16\leq0\right\}$, $B=\left\{x:x^3-x\leq0\right\}$. Encuentre $A\cap B$, $A\cup B$, $A-B$, $B-A$, $\left(A\cup B\right)-A$, $\left(A\cup B\right)-B$ y $\left(A\cup B\right)-\left(A\cap B\right)$, adem\'as de sus \'areas.
+
+\item Sea $A=\left\{x:x\in R, y\in R, 1<x^{2}+y^{2}\leq2\right\}$, $B=\left\{(x,y):x\in R, y\in R, x\in\left[-3,0\right], y\in\left[-3,0\right]\right\}$, encuentre el \'area del conjunto $A\cap B$, $A\cup B$, $B\cap A^{c}$, $A\cap B^{c}$, $\left(A\cap B\right)^{c}$ y $\left(A\cup B\right)^{c}$
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer} Resolver los siguientes ejercicios
+
+\begin{enumerate}
+\item Si no se permiten repeticiones, dado el conjunto $A=\left\{1,2,3,4,5,6\right\}$, cu\'antos n\'umeros de 4 d\'igitos se pueden formar cu\'antos de estos son menores que $400$? cu\'antos son pares? cu\'antos son m\'ultiplos de 5?
+
+
+\item De cuantas maneras se pueden acomodar 7 personas, si se quiere que:  3 de ellas siempre est\'en juntas?  3 de ellas nunca est\'en juntas?
+
+\item De cu\'antas maneras se pueden acomodar 4 ni\~nas y 2 ni\~nos si se quiere qu se sienten todos los nin\~nos juntos y todas las ni\~nas juntas? se sienten de manera alternada ni\~nos y ni\~nas?
+
+
+\item Cu\'antas permutaciones distintas pueden formarse con todas las letras de las siguientes palabras: estad\'istica, carrera,  murcielago, Probabilidad.
+
+
+\item Desarrollar y simplificar:
+
+\begin{itemize}
+\begin{multicols}{2}
+\item $\left(2x+y^2\right)^5$,
+\item $\left(x^2-2y\right)^6$,
+\item $\left(a+b+c\right)^4$,
+\item $\left(a+b+c+d\right)^5$,
+\end{multicols}
+\end{itemize}
+
+\item De c\'uantas maneras puede elegirse un comit\'e de 3 hombres y 5 mujeres, de un grupo de 7 hombres y 10 mujeres?
+
+\item Un estudiante tiene que responder 8 de 10 preguntas en un examen, cu\'antas maneras de responder tiene si 3 son obligatorias? si debe de responde 4 de las 5 primeras preguntas?
+
+
+\item Un estudiante debe de responder un examen de 10 preguntas de opci\'on m\'ultiple: $\left\{a,b,c\right\}$. Cu\'antas maneras tiene de responder si lo hace al azar?. 
+
+
+\item De cuantas maneras pueden repartirse 20 estudiantes en 3 grupos, $A_{1},A_{2}$ y $A_{3}$,   si todos deben de tener el mismo n\'umero de estudiantes? si la \'unica condici\'on es que haya m\'as de dos estudiantes?
+
+\item Simplifique las siguyientes expresiones:
+
+\begin{itemize}
+\begin{multicols}{4}
+\item $\frac{(n+1)!}{n!}$,
+\item $\frac{n!}{(n-2)!}$,
+\item $\frac{(n-1)!}{(n+2)!}$,
+\item $\frac{(n-r+1)!}{(n-r-1)!}$.
+\end{multicols}
+\end{itemize}
+
+\end{enumerate}
+
+\end{Ejer}
+
+
+
+%____________________________________________________________________________________________________________
+\subsection{Teor\'ia de conjuntos}
+%____________________________________________________________________________________________________________
+
+\begin{Def}
+La uni\'on de dos conjuntos $A$ y $B$, $A\cup B$ es el conjunto formado por los elementos en $U$, que pertenecen a $A$ o $B$ o ambos
+\begin{eqnarray}
+A\cup B = \left\{x\in U| x\in A, x\in B, \textrm{o ambos}\right\}
+\end{eqnarray}
+\end{Def}
+
+
+\begin{Def}
+La intersecci\'on de dos conjuntos $A$ y $B$, $A\cap B$ es el conjunto formado por los elementos en $U$, que pertenecen a $A$ y $B$ simult\'aneamente
+\begin{eqnarray}
+A\cap B = \left\{x\in U| x\in A\textrm{ y } x\in B\right\}
+\end{eqnarray}
+\end{Def}
+
+\begin{Def}
+El complemento de un conjunto $A$ es el conjunto formado por los elementos en $U$, que no pertenecen a $A$
+\begin{eqnarray}
+A^c = \left\{x\in U| x\notin A\right\}
+\end{eqnarray}
+\end{Def}
+
+
+\begin{Def}
+La diferencia de dos conjuntos $A$ y $B$, $A-B$ es el conjunto formado por los elementos en $U$, que pertenecen a $A$ y que no pertenecen a $B$
+\begin{eqnarray}
+A- B = \left\{x\in U| x\in A\textrm{ y } x\notin B\right\}
+\end{eqnarray}
+\end{Def}
+
+
+\begin{Def}
+La cardinalidad de un conjunto $A$, es el n\'umero de elementos que contiene el conjunto, y se denota por $n\left(A\right)$
+\end{Def}
+
+\begin{Prop}
+Sean $A$ y $B$ conjuntos en $U$, si
+\begin{itemize}
+\item Si $A\cap B=\emptyset$, entonces 
+\begin{eqnarray}
+n\left(A\cup B\right)=n\left(A\right)+n\left(B\right)
+\end{eqnarray}
+\item Si $A\cap B\neq \emptyset$, entonces 
+\begin{eqnarray}
+n\left(A\cup B\right)=n\left(A\right)+n\left(B\right)-n\left(A\cap B\right)
+\end{eqnarray}
+\end{itemize}
+\end{Prop}
+
+\begin{Prop}
+Sean $A$, $B$ y $C$ conjuntos en $U$, se tienen las siguientes propiedades
+\begin{eqnarray}
+\begin{array}{l}
+A\cap (B\cup C)= (A\cap B) \cup (A\cap C)\\
+A\cup (B\cap C)= (A\cup B) \cap (A\cup C)\\
+(A\cup B)^c= A^c \cap B^c\\
+(A\cap B)^c= A^c \cup B^c\\
+A-B=A\cap B^c
+\end{array}
+\end{eqnarray}
+\end{Prop}
+
+Finalmente, para tres conjuntos $A$, $B$ y $C$ se tiene el siguiente gr\'afico
+
+
+\begin{figure}[H] % opciones: h (here), t (top), b (bottom), H (exacto, si cargas float)
+    \centering
+    \includegraphics[width=0.4\textwidth]{ImagenTresConjuntos.png}
+    \caption{Regiones disjuntas mutuamente excluyentes.}
+    \label{fig:miimagen}
+\end{figure}
+
+%![Regiones disjuntas mutuamente excluyentes](ImagenTresConjuntos.png){ width=250px }
+
+\begin{Prop}
+Sean $A$, $B$ y $C$ conjuntos en $U$, entonces
+\begin{eqnarray}
+n\left(A\cup B\cup C\right)= n\left(A\right)+n\left(B\right)+n\left(C\right)-n\left(A\cap B\right)-n\left(A\cap C\right)-n\left(B\cap C\right)+n\left(A\cap B \cap C\right)
+\end{eqnarray}
+\end{Prop}
+
+
+\subsection{Introducci\'on a la Probabilidad}
+
+\begin{Def}
+Definicion de probabilidad
+\end{Def}
+
+
+
+\begin{Prop}
+Propiedades de probabilidad
+\end{Prop}
+
+
+\begin{Def}
+Sean $A$ y $B$ dos eventos. La {\em Probabilidad Condicional} del evento $A$ dado que ocurre el evento $B$, denotado por $\Prob\left[A|B\right]$,est\' definida por
+
+\begin{equation}
+\Prob\left[A|B\right]=\frac{\Prob\left[AB\right]}{\Prob\left[B\right]}
+\end{equation}
+\end{Def}
+
+Lo anterior si $\Prob\left[B\right]>0$
+
+De lo anterios se desprende que:
+
+$\Prob\left[AB\right]=\Prob\left[A|B\right]\Prob\left[B\right]=\Prob\left[B|A\right]\Prob\left[A\right]$
+
+
+\begin{Propty} Dado el evento $B$ con $\Prob\left[B\right]>0$, se cumplen las siguientes propiedades
+\begin{enumerate}
+\item \begin{equation}\Prob\left[\emptyset|B\right]=0\end{equation}
+\item Sean $A_{1},A_{2},\ldots,A_{n}$ eventos mutuamente excluyentes, entonces
+\begin{equation}
+\Prob\left[A_{1}\cup A_{2}\cup \ldots\cup A_{n}|B\right]=\sum_{i=1}^{n}\Prob\left[A_{i}|B\right]
+\end{equation}
+\item Si $A$ es un evento, entonces
+\begin{equation}
+\Prob\left[A^{c}|B\right]=1-\Prob\left[A|B\right]
+\end{equation}
+\item Sean $A_{1}$ y $A_{2}$ eventos, entonces
+\begin{equation}
+\Prob\left[A_{1}|B\right]=\Prob\left[A_{1}\cap A_{2}|B\right]+\Prob\left[A_{1}\cap A_{2}^{c}|B\right]
+\end{equation}
+\item Sean $A_{1}$ y $A_{2}$ eventos, entonces
+\begin{equation}
+\Prob\left[A_{1}\cup A_{2}|B\right]=\Prob\left[A_{1}|B\right]+\Prob\left[A_{2}|B\right]-\Prob\left[A_{1}\cap A_{2}^{c}|B\right]
+\end{equation}
+\item Sean $A_{1},A_{2},\ldots,A_{n}$ son eventos, entonces
+\begin{equation}
+\Prob\left[A_{1}\cup A_{2}\cup \ldots\cup A_{n}|B\right]\leq\sum_{i=1}^{n}\Prob\left[A_{i}|B\right]
+\end{equation}
+\end{enumerate}
+\end{Propty}
+
+
+\begin{Def}
+Dados dos eventos $A$ y $B$, se dice que son independientes si 
+\begin{equation}
+\Prob\left[A|B\right]=\Prob\left[A\right]
+\end{equation}
+\end{Def}
+
+
+
+
+\begin{Propty}
+Sean $A_{1},A_{2},\ldots,A_{n}$ eventos mutuamente excluyentes. Sea $B$ un evento cualquiera, entonces
+\begin{equation}
+\Prob\left[B\right]=\sum_{i=1}^{n}\Prob\left[B|A_{i}\right]\Prob\left[A_{i}\right]
+\end{equation}
+\end{Propty}
+
+\begin{Propty}
+Sean $A_{1},A_{2},\ldots,A_{n}$ eventos mutuamente excluyentes. Sea $B$ un evento cualquiera, con $\Prob\left[B\right]>0$, entonces para cualquier $j=1,\ldots,n$ se cumple que 
+\begin{equation}
+\Prob\left[A_{j}|B\right]=\frac{\Prob\left[B|A_{j}\right]\Prob\left[A_{j
+}\right]}{\sum_{i=1}^{n}\Prob\left[B|A_{i}\right]\Prob\left[A_{i}\right]}
+\end{equation}
+\end{Propty}
+
+
+\begin{Ejer} Resolver los siguientes ejercicios:
+\begin{enumerate}
+
+\item Para $\Prob\left[A-B\right]=\Prob\left[B-A\right]$, $\Prob\left[A\cup B\right]=1/2$ y $\Prob\left[A\cap B\right]=1/4$, encontrar $\Prob\left[B\right]$ y $\Prob\left[A^{c}\cap B\right]$.
+
+\item Para $\Prob\left[A^{c}\cap B^{c}\right]=1/2$, $\Prob\left[A^{c}\right]=2/3$ y $\Prob\left[A\cap B\right]=1/4$, hallar $\Prob\left[B\right]$ y $\Prob\left[A^{c}\cap B\right]$.
+
+\item Para $\Prob\left[A\right]=1/4$, $\Prob\left[B\right]=3/4$ y $A\cap B=\emptyset$, calcular $\Prob\left[A\cup B\right]$, $\Prob\left[A^{c}\cup B\right]$ y $\Prob\left[A\cup B^{c}\right]$.
+
+\item Para $\Prob\left[A\cup B\right]=\Prob\left[B\right]=1/2$, $\Prob\left[A\cap B\right]=1/4$. Calcular $\Prob\left[A\right]$, $\Prob\left[A^{c}\right]$ y $\Prob\left[B\right]$.
+
+\item Si se lanzan dos dados,  cu\'{a}l es la probabilidad de que las caras que muestren:
+\begin{enumerate}
+\item sumen seis?
+\item su producto sea seis?
+\item el valor de la diferencia sea uno?
+\end{enumerate}
+
+\item De una urna, con tres bolas blancas, dos negras y cuatro verdes, se sacan tres sin reposici\'{o}n. Explique la probabilidad de obtener:
+\begin{enumerate}
+\item bolas de tres colores;
+\item bolas de un color;
+\item dos bolas blancas;
+\item por lo menos una bola blanca.
+\end{enumerate}
+
+\item En una competencia de nataci\'{o}n intervienen tres j\'{o}venes que llamaremos $A,B$ y $C$. Por su trayectoria en este tipo de competencias, se sabe que la probabilidad de que $A$ gane es el doble de la de $B$, y la probabilidad de que $B$ gane es el triple de la de $C$. Calcular:
+\begin{enumerate}
+\item Las probabilidades $\Prob\left[A\right]$, $\Prob\left[B\right]$ y $\Prob\left[C\right]$ que tiene cada joven de ganar.
+\item La probabilidad de que $A$ no gane.
+
+Sugerencia: $\Prob\left[A\cup B\cup C\right]=\Prob\left[A\right]+\Prob\left[B\right]+\Prob\left[C\right]-\Prob\left[A\cap B\right]-\Prob\left[A\cap C\right]-\Prob\left[B\cap C\right]+\Prob\left[A\cap B\cap C\right]$
+\end{enumerate}
+
+\item Si una persona acude con su dentista, supongamos que la probabilidad de que le limpie la dentadura es de $0.44$, la probabilidad de que le tape una caries es de $0.24$, la probabilidad de que se le extraiga un diente es  $0.21$, la probabilidad de que se le limpie la dentatura y le tape una caries es de $0.08$, la probabilidad de que le limpie la dentadura y le extraiga un diente es $0.11$, la probabilidad de que le tape una caries y le saque un diente es de $0.07$, y la probabilidad de que le limpie la dentadura, le tape una caries y le saque un diente es $0.03$.  Cu\'{a}l es la probabilidad de que una persona que acudea su dentista se le haga por lo menos una de estas cosas?
+
+\item Un equipo de baloncesto consta de 6 jugadores negros y 6 jugadores blancos. Para acomodarlos en sus habitaciones se van a elegir pares de jugadores. Si estos pares se forman al azar,  cu\'l es la probabilidad de que ninguno de los jugadores negros tengan un compa\~nero de cuarto blanco? Sugerencia: contar primero cuantas maneras posibles hay de encontrar pares solamente con jugadores negros, luego cuantas maneras distintas hay de encontrar pares de jugadores blancos y aplicar la regla fundamental del conteo, finalmente determinar cuantos posibles pares hay considerando elecciones sin reemplazo y aplicar nuevamente la regla fundamental del conteo.
+
+\item En la urna I hay tres bolas blancas y 5 negras. En la II hay cinco blancas y tres negras. De cada urna se separa una bola. Determine la probabilidad de obtener:
+\begin{enumerate}
+\item dos bolas blancas;
+\item bolas de diferentes colores,
+\item por lo menos una bola blanca.
+\end{enumerate}
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer} Resolver los siguientes ejercicios: 
+\begin{enumerate}
+\item Hay tres urnas: en la I se han puesto tres bolas blancas y dos negras; en la II hay cuatro bolas blancas y una negra; y en la III dos blancas y dos negras. De cada urna se escoge una bola. Determine la probabilidad de obtener:
+\begin{enumerate}
+\item tres bolas blancas;
+\item una bola blanca,
+\item por lo menos una bola blanca.
+\end{enumerate}
+
+\item En m\'exico la probabilidad, que un directivo sea egresado de una universidad privada o que tenga maestr\'ia, es de $60\%$. De que sea egresado de una universidad privada es $20\%$ y la de que tenga una maestr\'ia es de $40\%$,  cu\'al es la probabilidad de que uno escogido al azar sea egresado de una universidad privada y tenga maestr\'ia?
+
+\item Los ahorradores de una peque\~na poblaci\'on cuentan con tres bancos: A, B y C. Suponga que $60\%$ de las familias de la ciudad han depositado sus ahorros en el banco $A$, $40\%$ en el B y $30\%$ en el C. Tambi\'en, que $20\%$  de los habitantes abri\'o cuentas en A y B, $10\%$  en A y C; $20\%$  en B y C y $5\%$ en A, B y C.  Qu\'e porcentaje de las familias de la ciudad manejan sus cuentas en al menos uno de los tres bancos?
+
+\item Despu\'es de realizar un estudio en una universidad particular, en el \'area de posgrado, se estim\' que $30\%$  de los estudiantes estaban seriamente preocupados por sus posibilidades de encontrar trabajo, $25\%$  por sus notas y $20\%$ por ambas cosas.  cu\'al es la probabilidad de que un estudiante del \'ultimo curso, elegido al azar, est\' preocupado por al menos una de las dos cosas?
+
+\item Si se tiran tres dados,  cu\'al es la probabilidad de que en dos aparezca el mismo n\'umero?
+
+\item Si se lanzan tres dados y dos monedas,  cu\'antas probabilidades hay de obtener dos 6 y dos soles?
+
+\item En un examen, un estudiante obtendr\'a una de las siguientes calificaciones: A, B, C y D. Con A, B y C, aprobar\'. La probabilidad de que saque A o B es de 0.6. Indique la probabilidad de que obtenga C si se sabe que la probabilidad de que apruebe el examen es de 0.9.
+
+\item Se lanzan tres dados. Calcule la probabilidad de que la suma de los n\'umeros obtenidos sea mayor que 10, si la suma en los dos primeros dados es cinco.
+
+\item Un profesor de estad\'istica de una universidad imparte clases a un grupo, que consiste de 10 estudiantes de contabilidad, 14 de administraci\'on, 9 de tecnolog\'a de alimentos y 3 de mercadotecnia. Por experiencia, sabe que la probailidad de que un estudiante de conta, 14 de contabilidad, 14 de adminsitraci\'on, 9 de tecnolog\'ia de alimentos y 3 de mercadotecnia. Por experiencia sabe que la probabilidad de que un estudiante de contabilidad le copie la tarea a un compa\'ero, en lugar de resolverla, es de 0.9, para la administraci\'on, tecnolog\'ia de alimentos y mercadotecnia, las cifras correspondientes son de 0.7, 0.4 y 0.8, respectivamente. si al calificar una tarea descubre que las soluciones han sido copiadas,  cu\'al es la probabilidad de que se trate de la de un alumno de contabilidad?
+
+\item El departamento de ventas de una compa\~n\'ia farmac\'eutica public\'o los siguientes datos relativos a las ventas de cierto analg\'esico fabricado por ellos
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+ Analg\'esico & $\%$ de Ventas & $\%$ del grupo vendido en dosis fuerte \\\hline
+C\'psulas & 57 & 38 \\\hline
+Tabletas & 43 & 31 \\\hline
+\end{tabular}
+\end{center}
+\end{table}
+Si un cliente adquiri\'o la dosis fuerte de este medicamento,  cu\'al es la probabilidad de que lo comprara en forma de c\'apsulas?
+
+\end{enumerate}
+\end{Ejer}
+
+
+\subsection{Probabilidad Condicional}
+
+
+\begin{Ejer} Resolver la siguiente lista de ejercicios relacionados con Probabilidad Condicional e Independencia de Eventos
+\begin{enumerate}
+
+
+\item Un recipiente contiene 5 transistores defectuosos (fallan inmediatamente al ponerse en uso), 10 parcialmente defectuosos (fallan despu\'s de unas horas en uso) y 25 transistores aceptables. Del recipiente se toma de manera aleatoria un transistor y se pone en funcionamiento. Si no falla inmediatamente,  cu\'al es la probabilidad de que sea aceptable?
+
+
+\item La organizaci\'on en la ue trabaja Luis va a ofrecer, a los empleados que tienen por lo menos un hijo var\'on, una comida para padre e hijo. Se invita a cada uno de estos empleados a que asista con su hijo menor. Si se sabe Luis tiene s\o'lo dos hijos,  cu\a'l es la probabilidad condicional de que ambos sean ni\~nos puesto que est\'a invitado a la comida? Suponga que el espacio muestral est\'a dado por $S=\left\{\left(b,b\right),\left(b,g\right),\left(g,b\right),\left(g,g\right)\right\}$ y que todos estos resultados sean igualmente posibles. Sugerencia: Sea B el evento de que los dos son varones y A el evento que por lo menos uno de ellos es var\'on.
+
+\item La se\~nora P\'erez piensa que hay un $30\%$ de posibilidad de que la empresa donde labora abra una sucursal en San Luis. Si lo hace, ella tiene un $60\%$ de seguridad de que ser\' nombrada directora de esta nueva oficina.  Con que probabilidad la se\~nora P\'erez ser\' la directora de una sucursal en San Luis?
+
+
+
+\item Si $\Prob\left[A^{c}\right]=1/3$, $\Prob\left[A\cap B\right]=1/4$ y $\Prob\left[A\cup B\right]=2/3$, calcule $\Prob\left[B\right]$, $\Prob\left[A\cap B^{c}\right]$ y $\Prob\left[B-A\right]$.
+
+\item Si $\Prob\left[A^{c}\right]=1/3$, $\Prob\left[A\cup B\right]=5/6$ y $\Prob\left[B^{c}\right]=1/2$, calcule $\Prob\left[A\cap B\right]$, $\Prob\left[A\cap B^{c}\right]$ y $\Prob\left[B-A\right]$.
+
+\item La sangre se clasifica por factores en $Rh$ positivo y $Rh$ negativo y tambi\'n de acuerdo al tipo. Si la sangre contiene un ant\'igeno $A$, es de tipo $A$; si tiene un ant\'igeno $B$, es de tipo $B$; si tiene ambos ant\'igenos $A$ y $B$, es de tipo $AB$, si carece de ambos ant\'igenos es de tipo $O$. En una encuesta a 75 individuos, se encontr\' que 65 de ellos ten\'ian factor $Rh^{+}$, de los cuales 25 con ant\'igeno $A$, 30 con ant\'igeno $B$ y 10 con ambos ant\'igenos. De los 10 con factor $Rh^{-}$ 3 ten\'ian ant\'igeno $A$, 4 con ant\'igeno $B$ y 1 con ambos ant\'igenos. Si se selecciona al azar a una de las 75 personas, calcule la probabilidad de que tenga sangre con:
+
+\begin{enumerate}
+\item Factor $Rh^{+}$ y tipo $A$,
+\item Factor $Rh^{+}$ y tipo $AB$,
+\item Factor $Rh^{+}$ y tipo $O$,
+\item Factor $Rh^{-}$ y tipo B,
+\item Factor $Rh^{-}$ y tipo $O$,
+\end{enumerate}
+
+
+\item Se sabe que un grupo grande de personas $10\%$ toman desayuno caliente, $20\%$ toman almuerzo caliente y $25\%$ toma desayuno cliente o almuerzo caliente. Encuentra la probabilidad de que una persona elegida al azar del grupo
+\begin{enumerate}
+\item tome desayuno caliente y un almuerzo caliente
+\item Tome un desayuno caliente, dado que la persona elegida tom\' un desayuno caliente
+\end{enumerate}
+
+\item Si los eventos $A$ y $B$ son independientes y $\Prob\left[A\right]=0.3$, $\Prob\left[B\right]=0.5$, encuentra $\Prob\left[A\cap B\right]$ y $\Prob\left[A\cup B\right]$.
+
+\item Los eventos $A$ y $B$ son tales que $\Prob\left[A\right]=2/3$, $\Prob\left[A|B\right]=2/3$, $\Prob\left[B\right]=1/4$. Encuentra $\Prob\left[A|B\right]$, $\Prob\left[B|A\right]$ y $\Prob\left[A\cap B\right]$.
+
+\item En un grupo de 100 personas, 40 tienen un gato, 25 tienen un perro y 15 tienen un perro y un gato. Encuentra la probabilidad de que una persona elegida al azar
+\begin{enumerate}
+\item tenga un perro o un gato,
+\item tenga un perro o un gato, pero no ambos.
+\item tenga un perro dado que tiene un gato,
+\item no tenga gato dado que tenga un perro.
+\end{enumerate}
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer} Resolver la siguiente lista de ejercicios relacionados con Probabilidad Condicional e Independencia de Eventos
+\begin{enumerate}
+
+\item Sean $A$ y $B$ eventos exhaustivos y se sabe que $\Prob\left[A|B\right]=1/4$ y $\Prob\left[B\right]=1/3$. Encuentra $\Prob\left[A\right]$.
+
+\item Una bolsa contiene 4 canicas rojas y 6 negras. Se saca una canica al azar y no se regresa. Entonces se saca otra canica. Encontrar la probabilidad de que
+\begin{enumerate}
+\item la segunda canica sea roja, dado que la primera fue roja
+\item las dos canicas sean rojas,
+\item las canicas sean de diferente color.
+\end{enumerate}
+
+\item Sean $A$ y $B$ dos eventos independientes tales que $\Prob\left[A\right]=0.2$, $\Prob\left[B\right]=0.15$, Evalue las siguientes probabilidades
+\begin{enumerate}
+\item $\Prob\left[A|B\right]$
+\item $\Prob\left[A\cap B\right]=1/4$
+\item $\Prob\left[A\cup B\right]=1/4$.
+\end{enumerate}
+
+\item Sean $A$ y $B$ dos eventos tales que $\Prob\left[A\right]=0.4$, $\Prob\left[B\right]=0.25$. Si $A$ y $B$ son independientes evalue las siguientes probabilidades
+\begin{enumerate}
+\item $\Prob\left[A\cap B\right]$
+\item $\Prob\left[A\cap B^{c}\right]$
+\item $\Prob\left[A^{c}\cap B^{c}\right]$.
+\end{enumerate}
+	
+\item Si $\Prob\left[A^{c}\right]=1/3$, $\Prob\left[B|A\right]=1/2$, calcule $\Prob\left[B\cap A\right]$.
+
+\item Si $\Prob\left[A\right]=1/4$, $\Prob\left[B|A\right]=1/4$, calcule $\Prob\left[B^{c}\cap A\right]$.
+
+\item Si $\Prob\left[A\right]=1/3$, $\Prob\left[A|B\right]=1/5$, y $\Prob\left[B|A\right]=1/2$, calcule $\Prob\left[B\right]$.
+
+\item Si $\Prob\left[B\right]=\Prob\left[B^{c}\right]$, $\Prob\left[A|B^{c}\right]+\Prob\left[A|B\right]=4/5$, determine $\Prob\left[A\right]$.
+
+\item Si A y B son independientes y $\Prob\left[A^{c}\right]=1/2$. $\Prob\left[A\cap B\right]=1/5$, determine $\Prob\left[B\right]$.
+
+\item Si A y B son independientes y $\Prob\left[A\right]>0$, $\Prob\left[A\right]=3\Prob\left[A\cap B\right]$, determine $\Prob\left[B\right]$.
+
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer} Resolver la siguiente lista de ejercicios:
+\begin{enumerate}
+\item Si A, B y C son independientes y $\Prob\left[A\cap B\right]=1/2$, $\Prob\left[C^{c}\right]=1/3$, determine $\Prob\left[A\cap B\cap C\right]$.
+
+\item Si A, B y C son independientes y $\Prob\left[A\cap B\cap C\right]=1/8$, $\Prob\left[A\right]=2\Prob\left[B\right]=4\Prob\left[C\right]$, determine $\Prob\left[C^{c}\right]$.
+
+\item Si A y B son independientes y $\Prob\left[A\right]>0$, $2\Prob\left[A\right]=5\Prob\left[A\cap B\right]$, determine $\Prob\left[B^{c}\right]$.
+
+\item Si A, B, C y D son independientes y $\Prob\left[A\cap B\cap C\right]=1/24$, $\Prob\left[A\right]=2\Prob\left[B\right]=3\Prob\left[C\right]=4\Prob\left[D\right]$, determine $\Prob\left[D\right]$.
+
+\item \'Pueden ser mutuamente excluyentes los eventos A y B, si $\Prob\left[A\right]=0.54781$ y $\Prob\left[B\right]=0.49719$
+
+\item Si los eventos A y B son independientes y $\Prob\left[A\right]=0.3$ y $\Prob\left[B\right]=0.5$, encuentra $\Prob\left[A\cap B\right]$ y $\Prob\left[A\cup B\right]$.
+
+\item A y B son eventos exhaustivos y se sabe que $\Prob\left[A|B\right]=1/4$ y $\Prob\left[B\right]=2/3$. Encuentra $\Prob\left[A\right]$.
+
+\item Sean A y B dos eventos independientes tales que $\Prob\left[A\right]=0.2$ y $\Prob\left[B\right]=0.15$. Eval\'ua las siguientes probabilidades: $\Prob\left[A|B\right]$, $\Prob\left[A\cap B\right]$ y $\Prob\left[A\cup B\right]$.
+
+\item La probabilidad de que un evento A ocurra es $\Prob\left[A\right]=0.4$. B es un evento independiente de A y la probabilidad de la uni\'on de A y B es $\Prob\left[A\cup B\right]=0.7$. Encuentra $\Prob\left[B\right]$.
+
+\item Los eventos A y B son independientes tales que $\Prob\left[A\right]=0.4$ y $\Prob\left[B\right]=0.25$. Determina: $\Prob\left[A\cap B\right]$, $\Prob\left[A\cap B^{c}\right]$ y $\Prob\left[A^{c}\cap B^{c}\right]$.
+
+\end{enumerate}
+\end{Ejer}
+
+
+\subsection{Teorema de Probabilidad Total y Teorema de Bayes}
+
+\begin{Ejer} Resolver los siguientes ejercicios
+
+\begin{enumerate}
+
+\item Una Compa\~n\'ia de Seguros divide a las personas en dos clases, quienes son propensos a accidentes y quienes no lo son. Sus estad\'isticas muestran que una persona propensa a accidentes, tendr\'a, en no m\'as de un a\~no, un accidente con probabilidad de $0.4$; mientras que esta probabilidad decrece a $0.2$ en personas no propensas a accidentes. Si pensamos que 30 por ciento de las personas es propenso a accidentes cu\'al es la probabilidad de que una persona que compra una nueva p\'oliza tenga un accidente en no m\'as de un a\~no?
+
+\item Se tienen dos tarjetas, una de ellas es negra por ambas caras y la otra muestra una negra y otra blanca. Se meten en una bolsa y se extrae una de las dos al azar, la cual se coloca sobre la mesa. Si la cara hacia arriba es negra,  cu\'al es la probabilidad de que tambi\'en la de abajo sea negra?
+
+\item Un rat\'on de laboratorio se introduce en un laberinto en forma de T. Del lado izquierdo, hay un pedazo de comida protegido para que el animal  no lo huela de lejos, en tanto que del lado derecho hay una peque\~na descarga el\'ectrica, que ser\'a desagradable para \'este, m\'as no mortal. Suponga que la primera vez que se mete el rat\'on hay una probabilidad de 0.5 de que vira a cualquiera de los dos lados. Si en el primer intento fue a la izquierda, entonces hay una probabildad de 0.6 de que vuelva a hacerlo en el segundo; sin embargo, si en el primero dio vuelta a la derecha, y recibi\'o la peque\~na descarga el\'ectrica, entonces hay una probabilidad de 0.75 de que se ir\'a la izquierda en el segundo. Si se observa que el animal efectivamente camin\'o a la izquierda en el segundo intento,  cu\'al es la probabilidad de que haya virado tambi\'en hacia el mismo lado en el primer intento?
+
+\item En cierto pa\'is (no es M\'xico) aquejado por la inflaci\'on, los economistas proponen tres teor\'ias: I: la inflaci\'on desaparecer\'a antes del cambio de gobierno; II: ocurrir\' una depresi\'on y III: llegar\'a una recesi\'on. Estiman que las probabilidades de que se materealicen las tres teor\'ias son, respectivamente: 0.4, 0.35 y 0.25. As\' mismo, consideran que las probabilidades de que este pa\'is salga del subdesarrollo, si ocurren los eventos son de, 0.90, 0.60 y 0.20 en ese orden. Supongamos que el pa\'is de todos modos no sale del subdesarrollo  cu\'al es la probabilidad de que la inflaci\'on haya desaparecido antes del cambio de gobierno?
+
+\item La probabilidad de que una mujer que da a luz por primera vez tenga un beb\'e con alg\'un s\'indrome o defecto cong\'enito depende de muchos factores; entre otros la edad.  La revista { \em Medical Newsletter} julio de 1999 public\' el siguiente cuadro con estad\'isticas de quienes daban a luz por primera vez
+
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & Edad de la Mujer  & Porcentaje de Mujeres & Probabilidad de alg\'un defecto cong\'enito \\\hline
+$A_{1}$ & 15 o menos & 3 & 0.05 \\\hline
+$A_{2}$ & 16 a 22 & 23 & 0.007 \\\hline
+$A_{3}$ & 23 a 29 & 55 & 0.001 \\\hline
+$A_{4}$ & 30 a 36 & 12 & 0.04 \\\hline
+$A_{5}$ & 37 a 43 & 6 & 0.17 \\\hline
+$A_{6}$ & 44 o m\'s & 1 & 0.23 \\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+De acuerdo con tales datos, si el primer beb\'e naci\'o con alg\'un defecto cong\'enito, cu\'al es la probabilidad de que la edad de la se\~nora oscile entre los 37 y los 43 a\~nos.
+
+\item Un ingeniero fabrica piezas de ajedr\'ez de pl\'astico. Las acabadas se van metiendo en tres grandes cajas antes de pegarles fieltro en la base. En la caja 1 hay $100\%$ de piezas de color blanco, en la 2 hay $50\%$ de cada color, y en la 3 hay $100\%$ de negras. el ingeniero encarga a un empleado que baje la caja de las piezas blancas para pegarles el fieltro, pero como las tres est\a'n muy altas, qui\'en har\'a el trabajo no alacanza a ver su contenido, as\'i que saca una pieza de una caja al azar, que resulta ser de color blanco. Cu\'al es la probabilidad de que sea la caja que busca?
+
+
+\item Un ni\~no usa calcetines s\'olo de dos colores: azul y negro. Pero no los tiene ordenados por parejas, sino sueltos en dos cajones de su ropero. En el de arriba hay 6 calcetines negors y 2 azules; en el de abajo, 3 negros y 5 azules. No puede encender la luz para ver, porque despertar\'ia a su hermano menor, as\'i que en la oscuridad toma un calcet\'in de cada caj\'on, se los pone, se viste y se va a la escuela.  Cu\'al es la probabilidad de que se haya puesto calcetines del mismo color?
+
+\item La compa\~n\'ia Lear usa 4 empresas para transporte: A, B, C y D. Se sabe que $20\%$ de los embarques se asignan a la empresa A, $250\%$ a la empresa B, $40\%$ a C y $15\%$ a la D. Los embarques llegan retrasados a sus clientes en $7\%$ si los entrega A, $8\%$ si es B, $5\%$ si es C y $9\%$ si es D. Si sabemos que el embarque de hoy fue entregado con retraso,  cu\'al es la probabilidad de que haya sido entregado por la empresa A?
+
+\item Don gato tiene tres candidatos: Dem\'ostenes, Cucho y Benito Bodoque, para una misi\'on que consiste en vender boletos de una rifa inexistente a unos turistas ingenuos. S\'olo uno de los tres debe hacerlo. Estima que Dem\'ostenes cuenta con $35\%$ de ser elegido, Cucho $45\%$ y Benito $20\%$. Hay una probabilidad de $0.09$ de que los atrape el Sargento Matute si va Dem\'ostenes; de $0.11$ si es Cucho, y $0.07$ si Benito es el escogido. Si Matute lo atrap\'o, cu\'al es la probabilidad de que haya sido elegido Benito como el encargado de vender los boletos?
+
+\item La bella y joven Paola es asediada por dos pretendientes: Fernando y Ricardo. Ella est\' decidida a ser novia de alguno de los dos. Fernando tiene una probabilidad de 0.7 de ser el elegido y Ricardo de 0.3. Si el primero resulta afortunado, hay una probabilidad de 0.40 de que terminen en matrimonio; si fuera el segundo, de 0.30. Si Paola se cas\'i con uno de ellos,  cu\'al es la probabilidad de que haya sido Ricardo?
+\end{enumerate}
+\end{Ejer}
+
+
+
+
+\subsection{Miscel\'anea de ejercicios}
+
+
+\subsubsection*{Operaciones entre conjuntos}
+
+\begin{Ejer} Resolver los siguientes ejercicios
+\begin{enumerate}
+
+\item Proporcione las leyes de D'Morgan para conjuntos.
+
+
+\item Se desea realizar una rifa para recaudar fondos para asistir a un evento, la cantidad m\'inima por recolectar es de 15000 y se desea que el valor m\'aximo por boleto sea de 100 pesos. Se requiere utilizar solamente 4 d\'igitos. Cu\'antos (posibles combinaciones) n\'umeros es posible generar.
+
+
+\item En un torneo del deporte m\'as popular se requieren 21 untos para acceder a la siguiente ronda, son 17 equipos.  Cu\'ales
+son los resultados posibles que aseguran la calificaci\'on si dan 3 puntos por victoria, 1 por empate y 0 por derrota?
+
+
+\item En un auditorio con capacidad para 450 personas se desea hacer un evento con 20 filas y dos cabeceras. Para acceder al evento se requiere que satisfagan 6 de las 10 condiciones solicitadas.  Cu\'antas posibles formas hay de seleccion si hay 3 condiciones indispensables: cu\'antas maneras distintas hay de elegir a los solicitantes? Se piensa aceptar exactamente la misma cantidad de hombres que mujeres. Cu\'antas maneras distintas posibles hay de sentarlas si se quiere que haya:  En cada fila la misma cantidad de hombres que mujeres; de manera alternada una fila de hombres y una de mujeres; siempre en cada fila un hombre seguido de una mujer; el arreglo (H=Hombre, M=Mujer): $HHMMHHMMHH$; el arreglo HMMMHMMMH.
+
+
+\item En el pr\'oximo proceso electoral se inscriben 3 parejas: HM; HH y MM. Hay 500 votantes de los cuales 350 son mujeres y 150 hombres. Suponiendo que pueden votar por 2 duplas: Cu\'antos votos puede obtener cada pareja? Cu\a'ntos votos m\'inimos requiere una dupla para ganar, si son electas 2 de las 3 parejas?
+
+
+\item Una emisora universitaria cuenta con m\'usica de 2 generos, de los cuales hay 9 discos de genero 1 y 27 de genero 2. En promedio cada disco tiene 13 canciones: De cu\'antas maneras posibles puede programar la m\'usica?   Si en promedio las canciones duran 3.5 minutos cuantos programas de 1 hora aproximandamente puede organizar?  Si desea hacer una vez a la semana un programa especial de cada genero con duraci\'on de 1.5 horas.  Cu\'antas maneras distintas hay de realizar los programas y cuantos son?.
+
+
+\item El encargado de sistemas del plantel Casa Libertad piensa generar codigos hexadecimales considerando las \'areas existentes: verde, blanca, amarilla, azul, morada, cafe y naranja. Si hay 10 cub\'iculos en cada una de ellas con dos nodos cada uno. Cu\'antos c\'odigos posibles se pueden generar si el primer elemento debe distingir la zona y el segundo debe incluir el numero de cub\'iculo, y as\'i sucesivamente deben estar considerados todos los elementos descritos.: El area verde tiene m\'as personas laborando, lo mismo que la blanca.  En el \'area azul hay 5 laboratorios con 20 m\'aquinas cada uno.
+
+
+\item Elaborar c\'odigos con 3 numeros y 3 letras, el c\'odigo no puede comenzar con $0$ o la letra \textit{o}.
+
+
+
+\item Un adulto mayor de 50 a\~nos se selecciona al azar en una comunidad, en la cual $9\%$ de quienes rebasan esa edad sufren de diabetes, por lo que se les somete a una prueba simple de nivel de glucosa para detectar o desechar la presencia del padecimiento. Sin embargo, el examen no es totalmente confiable, pues a $3\%$ de las personas que no sufren el mal les se\~nala como positivos, mientras que en $15\%$ de aquellos que s\'i est\'an enfermos, la prueba resulta negativa.
+
+\begin{enumerate}
+\item Cu\'al es la probabilidad de que ese individuo tenga realmente diabetes, dado que el resultado marca positivo?
+\item Cu\'aal es la probabilidad de que no padezca ese mal si marca negativo?
+\end{enumerate}
+
+\item En cierto lugar, $30\%$ de las personas son fumadoras y $70\%$ no fumadoras. Adem\'as se estima que $60\%$ de los fumadores y s\'olo $20\%$ de los no fumadores desarrollan hipertensi\'on. De los fumadores hipertensos, $90\%$ llegan a sufrir problemas cardiacos; de los no hipertensos, s\'olo $15\%$ los manifiestan. En cambio, de los no fumadores hipertensos, $65\%$ llega a padecer malestares cardiacos, y de los no hipertensos, s\'olo $5\%$. Si a un individuo se le diagnostica un malestar cardiaco,  cu\'al es la probabilidad de que sea no fumador hipertenso?
+
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer} Resolver la siguiente lista de ejercicios:
+\begin{enumerate}
+
+\item En una f\'abrica hay m\'aquinas de helado que producen $50\%$ y $50\%$ del total.  La A elabora $5\%$ del helado de baja calidad y la B, $6\%$. Encuentre la probabilidad de que un helado de baja calidad provenga de la m\'aquina A.
+
+\item En un programa familiar de televisi\'on, el anfitri\'on le da al concursante la opci\'n de escoger entre las cajas $C_{1}$ y $C_{2}$, con id\'entica apariencia que supuestamente contiene dinero en billetes. El aspirante tiene que seleccionar una, meter la mano y extraer un billete al azar. S\'olo el anfitri\'on sabe que en la caja $C_{1}$ hay seis billetes de 200 pesos y dos de 500, mientras que en la $C_{2}$ hay cinco de 200 y tres de 500. Cuando el concursante saca el billete de una de las cajas, el maestro de ceremonias estba ditra\'ido saludando a alguien del p\'ublico; en ese momento, el primero le muestra el billete que es de 500 pesos. Cu\'al es la probabilidad de que lo haya sacado de la caja $C_{2}$
+
+    \item Sea $A$ el conjunto de enfermedades cr\'onicas, $B$ el conjunto de factores de riesgo, $C$ el conjunto de estrategias de prevenci\'on, y $D$ el conjunto de profesionales de la salud. 
+    \begin{itemize}
+        \item $A =\{$diabetes, hipertensi\'on, enfermedad pulmonar obstructiva cr\'onica (EPOC), obesidad, c\'ancer$\}$.
+        \item $B = \{\textrm{sedentarismo}, \textrm{tabaquismo}, \textrm{alcoholismo}, \textrm{alimentaci\'on no saludable}, \textrm{estr\'es}\}$
+        \item $C=\{$educaci\'on en salud, actividad f\'isica, terapia ocupacional, programas de alimentaci\'on saludable, control de peso$\}$
+        \item $D=\{$m\'edicos generales, enfermeros, nutricionistas, psic\'ologos, terapeutas ocupacionales$\}$
+    \end{itemize}
+    Realiza las siguientes operaciones:
+    \begin{enumerate}
+        \item $(A \cap B) \cup C$
+        \item $A^c \cap B^c$
+        \item $D - (A \cup B)$
+    \end{enumerate}
+
+    \item Sea $A$ el conjunto de enfermedades infecciosas, $B$ el conjunto de factores de riesgo, $C$ el conjunto de medidas preventivas, y $D$ el conjunto de profesionales de la salud.
+    \begin{itemize}
+        \item $A = \{\textrm{influenza}, \textrm{hepatitis}, \textrm{tuberculosis}, \textrm{dengue}, \textrm{VIH}\}$
+        \item $B=\{$falta de higiene, contacto con personas enfermas, falta de vacunaci\'on, viajes a zonas end\'emicas, consumo de alimentos contaminados$\}$
+        \item $C = \left\{\textrm{vacunaci\'on}, \textrm{medidas de higiene personal}, \textrm{control de vectores}, \textrm{educaci\'on en salud},\right.$, 
+        
+        $\left. \textrm{tratamientos espec\'ificos}\right\}$
+        \item $D = \left\{\textrm{m\'edicos especialistas en enfermedades infecciosas}, \textrm{enfermeros}, \textrm{epidemi\'ologos}\right.$, 
+        
+        $\left.\textrm{especialistas en control de vectores}, \textrm{microbi\'ologos}\right\}$
+    \end{itemize}
+    Realiza las siguientes operaciones:
+    \begin{enumerate}
+        \item $(A \cap B) \cup C$
+        \item $A^c \cap B$
+        \item $D - (A \cup B)$
+    \end{enumerate}
+
+    \item Sea $A$ el conjunto de enfermedades mentales, $B$ el conjunto de factores de riesgo, $C$ el conjunto de terapias, y $D$ el conjunto de profesionales de la salud. 
+    \begin{itemize}
+        \item $A = \{$depresi\'on, ansiedad, trastorno bipolar, esquizofrenia, trastornos alimentarios$\}$
+        \item $B = \{$estr\'es, traumas emocionales, abuso de sustancias, antecedentes familiares, falta de sue\~no$\}$
+        \item $C = \{$psicoterapia, terapia cognitivo-conductual, terapia ocupacional, psicoan\'alisis, terapia de grupo$\}$
+        \item $D = \{$psiquiatras, psic\'ologos, terapeutas ocupacionales, trabajadores sociales, enfermeros psiqui\'atricos$\}$
+    \end{itemize}
+    Realiza las siguientes operaciones:
+    \begin{enumerate}
+        \item $(A \cap B) \cup C$
+        \item $A^c \cap B^c$
+        \item $D - (A \cup B)$
+    \end{enumerate}
+
+    \item Dado que la alimentaci\'on saludable es un factor importante para promover la salud, considera los siguientes conjuntos de alimentos:
+    \[
+    A: \textrm{Vegetales}, \quad 
+    B: \textrm{Frutas}, \quad 
+    C: \textrm{Prote\'inas}, \quad 
+    D: \textrm{Carbohidratos.}
+    \]
+    Indica los alimentos que pertenecen a cada uno de los conjuntos.
+
+    \item La actividad f\'isica es otro factor importante para promover la salud. Considera los siguientes conjuntos de deportes:
+    \begin{eqnarray*}
+    A: \textrm{Deportes acu\'aticos}, 
+    B: \textrm{Deportes de equipo}, \\
+    C: \textrm{Deportes de combate}, 
+    D: \textrm{Deportes de aventura.}
+    \end{eqnarray*}
+    Indica los deportes que pertenecen a cada uno de los conjuntos.
+
+    \item La higiene personal es un h\'abito importante para mantener la salud. Considera los siguientes conjuntos de actividades:
+    \begin{eqnarray*}
+    A: \textrm{Cuidado del cabello}, 
+    B: \textrm{Cuidado de la piel}, \\
+    C: \textrm{Cuidado de los dientes}, 
+    D: \textrm{Cuidado de las u\~nas.}
+    \end{eqnarray*}
+    Indica las actividades que pertenecen a cada uno de los conjuntos.
+
+    \item Las enfermedades cr\'onicas son un problema importante en la promoci\'on de la salud. Considera los siguientes conjuntos de enfermedades:
+    \begin{eqnarray*}
+    A: \textrm{Enfermedades cardiovasculares}, 
+    B: \textrm{Enfermedades respiratorias}, \\ 
+    C: \textrm{Enfermedades metab\'olicas}, 
+    D: \textrm{Enfermedades autoinmunitarias.}
+    \end{eqnarray*}
+    Indica las enfermedades que pertenecen a cada uno de los conjuntos.
+
+    \item La promoci\'on de la salud tambi\'en se relaciona con la salud mental. Considera los siguientes conjuntos de emociones:
+    \begin{eqnarray*}
+    A: \textrm{Emociones positivas}, 
+    B: \textrm{Emociones negativas}, \\
+    C: \textrm{Emociones neutrales}, 
+    D: \textrm{Emociones complejas.}
+    \end{eqnarray*}
+    Indica las emociones que pertenecen a cada uno de los conjuntos.
+
+    \item Proporciona cuatro conjuntos $A, B, C$ y $D$ con a lo m\'as 10 elementos cada uno, donde los elementos sean categor\'ias relacionadas con enfermedades cardiovasculares, como:
+    \begin{eqnarray*}
+    \begin{array}{l}
+        \left\{\textrm{hipertensi\'on}, \textrm{colesterol alto}, \textrm{enfermedad coronaria}, \textrm{fibrilaci\'on auricular},\right.\\
+    \left. \textrm{insuficiencia card\'iaca},\textrm{arritmias}, \textrm{angina de pecho}, \textrm{accidente cerebrovascular}, \right.\\
+    \left.\textrm{enfermedad vascular perif\'erica}\right\}.
+     \end{array}
+    \end{eqnarray*}
+
+    \item Proporciona cuatro conjuntos $A, B, C$ y $D$ con a lo m\'as 10 elementos cada uno, donde los elementos sean categor\'ias relacionadas con enfermedades respiratorias, como:
+    $\{$asma, enfermedad pulmonar obstructiva cr\'onica (EPOC), neumon\'ia, bronquitis,  fibrosis pulmonar,  s\'indrome de apnea del sue\~no,  c\'ancer de pulm\'on,  tuberculosis,  enfermedades pulmonares intersticiales$\}$.
+   
+    \item \textrm{Proporciona cuatro conjuntos } $A, B, C$ \textrm{ y } $D$ \textrm{ con a lo m\'as 10 elementos cada uno, donde los elementos sean categor\'ias relacionadas con enfermedades infecciosas, como:}
+    $\{$VIH/SIDA,  hepatitis B,  hepatitis C,  tuberculosis,  neumon\'ia,  gripe,  dengue,  malaria,  enfermedad de Lyme$\}$
+
+    \item \textrm{Proporciona cuatro conjuntos } $A, B, C$ \textrm{ y } $D$ \textrm{ con a lo m\'as 10 elementos cada uno, donde los elementos sean categor\'ias relacionadas con enfermedades mentales, como:}
+    $\{$depresi\'on,  trastornos de ansiedad,  trastornos bipolares,  esquizofrenia,  trastornos alimentarios,  trastornos de personalidad,  trastornos de estr\'es postraum\'atico,  trastornos obsesivo-compulsivos$\}.$
+
+    \item \textrm{Proporciona cuatro conjuntos } $A, B, C$ \textrm{ y } $D$ \textrm{ con a lo m\'as 10 elementos cada uno, donde los elementos sean categor\'ias relacionadas con enfermedades cr\'onicas, como:}
+    $\{$diabetes,  enfermedades cardiovasculares,  enfermedades respiratorias,  enfermedades neurol\'ogicas,  enfermedades renales,  enfermedades hep\'aticas,  enfermedades autoinmunitarias,  c\'ancer$\}$.
+
+    \item \textrm{Se tienen cuatro conjuntos de enfermedades infecciosas: } $A, B, C, D$.\\
+    \textrm{El conjunto } $A$ \textrm{ contiene las enfermedades transmitidas por vectores, } $B$ \textrm{ las de transmisi\'on sexual, } $C$ \textrm{ las respiratorias y } $D$ \textrm{ las gastrointestinales.}\\
+    \textrm{Se sabe que: } $X \in A \cap B$, $Y \in B \cap C$, $Z \in C \cap D$.\\
+    \textrm{\'En qu\'e conjuntos est\'an las siguientes enfermedades?}
+    \begin{itemize}
+        \item \textrm{Enfermedad } $W$: \textrm{ se transmite por contacto directo.}
+        \item \textrm{Enfermedad } $V$: \textrm{ se transmite por el aire.}
+        \item \textrm{Enfermedad } $U$: \textrm{ se transmite por agua contaminada.}
+    \end{itemize}
+
+    \item \textrm{Se tienen cuatro conjuntos de s\'intomas: } $A, B, C, D$.\\
+    $A$ \textrm{ contiene los s\'intomas asociados a enfermedades respiratorias, } $B$ \textrm{ los asociados a enfermedades cardiovasculares, } $C$ \textrm{ los asociados a enfermedades gastrointestinales y } $D$ \textrm{ los asociados a enfermedades dermatol\'ogicas.}\\
+    \textrm{Se sabe que: } $X \in A \cap B$, $Y \in B \cap C$, $Z \in C \cap D$.\\
+    \textrm{\'Qu\'e s\'intomas est\'an en los siguientes conjuntos?}
+    \[
+    A \cap C, \quad B \cap D, \quad A \cap B \cap D.
+    \]
+\end{enumerate}
+
+
+\end{Ejer}
+
+
+
+\subsubsection*{Operaciones entre intervalos}
+\begin{Ejer}
+Para los siguientes intervalos calcula $A\cap B$, $A\cap C$, $B\cap C$, $A\cup B$, $B\cup C$, $A-B$, $A-C$, $B-C$, $B-A$, $C-B$, $A-(B\cap C)$, $A-(B\cup C)$, $A-(B\cap C)$, $B-(A\cap C)$, $B-(A\cup C)$, $A-B-C)$, $(A\cap B)^{c}$, $(A\cap C)^{c}$, $(C\cap B)^{c}$, $(C\cup B)^{c}$, $A\cap B \cap C$.
+\begin{multicols}{2}
+\begin{enumerate}
+\item $A= [0,2], B= [1,3], C= [2,4]$
+
+\item $A= [-1,1]. B= [0,2], C= [1,3]$
+
+\item $A= [0,1],B= [0,2],C= [1,2]$
+
+\item $A= [0,1], B= [-1,0], C=[-2,-1]$
+
+\item  $A= [-1,1], C= [-2,2], C=[-3,3]$
+
+\item $A=(-5, 0),B=(0, 5),C=(5, 10)$
+
+\item $A=(0, 1),B=(1.5, 2.5),C=(3, 4)$
+
+\item $A= (-\infty, -1),B=(1, 2),C=(3, \infty)$
+
+\item $A= (0, \frac{1}{2}),B= (\frac{1}{2}, 1), C= (1, 2)$
+
+\item $A= (-3, \frac{3}{4}),B= (\frac{2}{5}, 3), C= (-1, 1)$
+
+\item $A= [0,1]$, $B= [-5,5]$, $C= [2,6]$
+
+\item $A= [-\pi,\pi]$, $B= [-3,-1]$, $C=[10,15]$
+
+\item $A= [-\sqrt{2},\sqrt{2}]$, $B= [-\frac{3}{4},\frac{3}{4}]$, $C=[-10,10]$
+
+\item $A= [-2, 0],B=[0, 3],C= [3, 5]$
+
+\item $A= [1, 4],B=[4, 5],C=[5, 7]$
+
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+
+\subsubsection*{Operaciones entre dos conjuntos}
+
+\begin{Ejer} Determinar la operaci\'n entre conjuntos especificada
+\begin{enumerate}
+\item  Si $n(A) = 20$, $n(B) = 50$, y $n(A \cap B) = 10$, entonces $n(A \cup B) = 60$.
+
+\item  Si $n(A) = 30$, $n(B) = 40$, y $n(A \cap B) = 20$, entonces $n(A \cup B) = 50$.
+
+\item  Calcular la cardinalidad del conjunto $A - B$, es decir, los elementos que pertenecen a $A$ pero no a $B$.
+
+\item Calcular la cardinalidad del conjunto $(A \cup B) - (A \cap B)$, es decir, los elementos que pertenecen a $A$ o a $B$, pero no a ambos.
+\item  Calcular la cardinalidad del conjunto $(A - B) \cup (B - A)$, es decir, los elementos que pertenecen a $A$ pero no a $B$, y los elementos que pertenecen a $B$ pero no a $A$.
+
+\item Calcular la cardinalidad del conjunto $(A \cup B) \cap C$, es decir, los elementos que pertenecen a $A$ o a $B$, y que tambi\'en pertenecen a $C$.
+
+\item  Se sabe que $|A|=20$, $|B|=30$, y $|A-B|=10$. Cu\'al es la cardinalidad de $A \cap B$?
+
+\item  Si $|A|=50$, $|B|=70$, y $|A\cap B|=30$,  cu\'al es la cardinalidad de $A-B$?
+
+\item Se sabe que $|A|=100$, $|B|=80$, y $|A\cap B|=40$.  Cu\'al es la cardinalidad de $B-A$?
+
+\item  Si $|A|=25$, $|B|=30$, y $|A\cup B|=50$,  cu\'al es la cardinalidad de $A\cap B$?
+
+\item  Se sabe que $|A|=60$, $|B|=90$, y $|A\cup B|=120$. Cu\'al es la cardinalidad de $A-B$?
+
+\item  Se sabe que $|A|=80$, $|B|=60$, y $|A\cap B|=30$. Cu\'al es la cardinalidad de $A\cup B$?
+
+\item Si $|A|=35$, $|B|=40$, y $|A\cup B|=60$,  cu\'al es la cardinalidad de $A-B$?
+
+\item Se sabe que $|A|=90$, $|B|=70$, y $|A-B|=40$.  Cu\'al es la cardinalidad de $A\cap B$?
+
+\item  Si $|A|=20$, $|B|=30$, y $|A\cap B|=10$,  cu\'al es la cardinalidad de $B-A$?
+\end{enumerate}
+\end{Ejer}
+
+\subsubsection*{Operaciones entre tres conjuntos}
+
+\begin{Ejer} Determinar la operaci\'on entre conjuntos especificada
+\begin{enumerate}
+\item  $A = \{0.2, 0.4, 0.6\}$, $B = \{0.1, 0.2, 0.3, 0.4\}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$, $|A-B|$.
+
+\item $A = \{0.1, 0.3, 0.5, 0.7\}$, $B = \{0.2, 0.4, 0.6\}$, $|A|$, $|B| $, $|A\cap B| $, $|A\cup B| $, $|A-B|$.
+
+\item $A = \{0.2, 0.4, 0.6, 0.8\}$, $B = {0.1, 0.3, 0.5, 0.7}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$,  $|A^{c}\cup B|$.
+
+\item $A = \{0.1, 0.2, 0.3\}$, $B = \{0.2, 0.3, 0.4\}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$,  $|A\cup B^{c}|$.
+
+\item $A = \{0.1, 0.2, 0.3, 0.4\}$, $B = \{0.4, 0.5, 0.6\}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$,  $|A^{c}\cup B^{c}|$.
+
+\item $A = \{0.1, 0.3, 0.5\}$, $B = \{0.2, 0.4, 0.6\}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$,$|A^{c}\cap B|$.
+
+\item $A = \{0.1, 0.3\}$, $B = \{0.2, 0.3, 0.4 \}$, $|A|$, $|B|$, $|A\cap B|$, $|A\cup B|$,  $|A^{c}\cap B|$.
+
+\item Si $n(A) = 10, n(B) = 15$ y $n(A \cap B)$ = 5,  cu\'al es el valor de $n(A \cup B)$?
+
+\item Si $n(A) = 20, n(B) = 30$ y $n(A \cap B)$ = 10,  cu\'al es el valor de $n(A^{c} \cap B)$?
+
+\item Si $n(A) = 8, n(B) = 14$ y $n(A \cap B)$ = 2,  cu\'al es el valor de $n(A \cup B^{c})$?
+
+\item $n(A) = 40, n(B) = 30$, y $n(A \cap B)$ = 20, entonces $n(A \cap B^{c})$.
+
+\item  Si $n(A) = 20$, $n(B) = 50$, y $n(A \cap B) = 10$, entonces $n(A^{c} - B)$.
+
+\item Si $|A|=20$, $|B|=30$, $|C|=15$, $|A\cap B|=5$, $|A\cap C|=8$, $|B\cap C|=3$, y $|A\cap B\cap C|=2$, encuentra $|A\cup B\cup C|$.
+
+\item $|A| = 20$, $|B| = 30$, $|C| = 15$, $|A \cap B| = 8$, $|A \cap C| = 5$, $|B \cap C| = 6$, $|A \cap B \cap C| = 1$ encuentra $|A\cup B\cup C|$, y todas las regiones
+
+\item Si $|A|=30$, $|B|=25$, $|C|=15$, $|B\cap C|=10$, calcular $|A\cup B\cup C|$.
+\end{enumerate}
+\end{Ejer}
+
+\subsubsection*{Aplicaciones}
+
+\begin{Ejer}
+\begin{enumerate}
+\item Si se realiz\'o un estudio para evaluar la efectividad de un tratamiento para la diabetes y se reclutaron 500 pacientes, de los cuales 300 recibieron el tratamiento y 200 recibieron un placebo, cu\'al es la proporci\'on de pacientes que recibieron el tratamiento en comparaci\'on con el placebo?
+
+\item Se realiz\'o un estudio para evaluar la relaci\'on entre la actividad f\'isica y la hipertensi\'on. Se reclutaron 1000 participantes, de los cuales 600 informaron hacer actividad f\'isica regularmente y 400 no lo hicieron. Si se encontr\'o que el $20\%$ de los que hacen actividad f\'isica tienen hipertensi\'on y el $40\%$ de los que no lo hacen tambi\'en la tienen,  cu\'antos participantes tienen hipertensi\'on?
+
+\item  En un estudio de cohortes para evaluar la asociaci\'on entre el consumo de alcohol y la incidencia de c\'ancer de h\'igado, se siguieron durante 10 a\~nos a 5000 participantes que reportaron beber alcohol regularmente y 5000 que reportaron no hacerlo. Despu\'es de los 10 a\~nos, se encontr\'o que 50 participantes en el grupo de bebedores regulares desarrollaron c\'ancer de h\'igado, mientras que solo 10 en el grupo que no bebe alcohol lo hicieron.  Cu\'al es la incidencia de c\'ancer de h\'igado en cada grupo?
+
+\item Se realiz\'o un estudio para evaluar la efectividad de un programa de intervenci\'on para reducir los factores de riesgo de enfermedades cardiovasculares. En el grupo de intervenci\'on se reclutaron 300 participantes y en el grupo control 200 participantes. Despu\'es de 6 meses, se encontr\'o que la proporci\'on de participantes con hipertensi\'on en el grupo de intervenci\'on fue del $25\%$ y en el grupo control fue del $40\%$.  Cu\'al es la reducci\'on relativa de la prevalencia de hipertensi\'on en el grupo de intervenci\'on en comparaci\'on con el grupo control?
+
+\item Se realiz\'o un estudio para evaluar la asociaci\'on entre la exposici\'on a una sustancia qu\'imica y el riesgo de desarrollar asma. Se reclutaron 1000 participantes, de los cuales 500 hab\'ian estado expuestos a la sustancia y 500 no. Despu\'es de un seguimiento de 5 a\~nos, se encontr\'o que 50 participantes en el grupo expuesto desarrollaron asma, mientras que solo 10 en el grupo no expuesto lo hicieron.  Cu\'al es la raz\'on de riesgo de desarrollar asma en el grupo expuesto en comparaci\'on con el grupo no expuesto?
+
+\item En un estudio sobre la efectividad de una vacuna contra la influenza, se vacun\'o a 500 personas. De los cuales, 300 no se infectaron con la gripe y 100 no se vacunaron pero tambi\'en no se infectaron. Adem\'as, 100 personas se vacunaron y a\'un as\'i se infectaron con la gripe.  Cu\'antas personas se infectaron con la gripe pero no se vacunaron?
+
+\item En un estudio para evaluar la eficacia de un tratamiento para la depresi\'on, se reclutaron 200 participantes y se les asign\'o aleatoriamente a un grupo de tratamiento o un grupo de control. Despu\'es de 12 semanas de tratamiento, se encontr\'o que el $60\%$ de los participantes en el grupo de tratamiento experimentaron una reducci\'on en los s\'intomas de la depresi\'on, mientras que solo el $30\%$ de los participantes en el grupo control lo hicieron. Cu\'al es el riesgo relativo de reducci\'on de los s\'intomas de depresi\'on en el grupo de tratamiento en comparaci\'on con el grupo control?
+
+\item Se realiz\'o un estudio para evaluar la eficacia de un nuevo tratamiento en pacientes con diabetes tipo 2. Se seleccionaron dos grupos de pacientes, el grupo A recibi\'o el tratamiento nuevo y el grupo B recibi\'o el tratamiento est\'andar. Se encontr\'o que el grupo A ten\'ia un $30\%$ de pacientes con niveles normales de glucemia despu\'es del tratamiento, mientras que en el grupo B solo el $20\%$ de los pacientes tuvo niveles normales de glucemia. Si se sabe que el grupo A ten\'ia 100 pacientes y el grupo B ten\'ia 200 pacientes, cu\'antos pacientes en total tuvieron niveles normales de glucemia despu\'es del tratamiento?
+
+\item  Un estudio m\'edico evalu\'o la eficacia de dos tratamientos para la hipertensi\'on. El grupo A recibi\'o el tratamiento A y el grupo B recibi\'o el tratamiento B. Se encontr\'o que el $60\%$ de los pacientes en el grupo A lograron controlar su presi\'on arterial, mientras que en el grupo B solo el $50\%$ de los pacientes logr\'o controlar su presi\'on arterial. Si se sabe que el grupo A ten\'ia 200 pacientes y el grupo B ten\'ia 300 pacientes, cu\'antos pacientes en total lograron controlar su presi\'on arterial?
+
+\item Se realiz\'o un estudio para evaluar la relaci\'on entre el consumo de frutas y verduras y el riesgo de enfermedades card\'iacas en una poblaci\'on de 1000 personas. Se encontr\'o que 600 personas consumen frutas regularmente, 400 personas consumen verduras regularmente y 300 personas consumen tanto frutas como verduras.  Cu\'antas personas no consumen ni frutas ni verduras?
+
+\item En un ensayo cl\'inico, se dividi\'o a 200 pacientes en dos grupos: uno recibi\'o un tratamiento con un nuevo medicamento y el otro grupo recibi\'o un placebo. Despu\'es de un seguimiento de 6 meses, se observ\'o que 60 pacientes del grupo de tratamiento mejoraron y 40 pacientes del grupo de placebo mejoraron. Adem\'as, 20 pacientes de ambos grupos mejoraron.  Cu\'antos pacientes no mejoraron en ninguno de los dos grupos?
+
+\item En un hospital, se realizaron pruebas de detecci\'on de c\'ancer a 500 pacientes. De los cuales, 200 dieron positivo para c\'ancer de pulm\'on, 100 dieron positivo para c\'ancer de mama y 50 dieron positivo para ambos c\'anceres.  Cu\'antos pacientes dieron negativo en ambas pruebas?
+
+\item En un estudio sobre el uso de un nuevo tratamiento para la artritis, se dividi\'o a 150 pacientes en tres grupos: uno recibi\'o el nuevo tratamiento, otro recibi\'o un tratamiento est\'andar y el \'ultimo grupo recibi\'o un placebo. Se encontr\'o que 50 pacientes mejoraron con el nuevo tratamiento, 30 con el tratamiento est\'andar y 10 con el placebo. Adem\'as, 5 pacientes mejoraron con el nuevo tratamiento y el placebo, y 10 pacientes mejoraron con el tratamiento est\'andar y el placebo.  Cu\'antos pacientes no mejoraron con ninguno de los tratamientos?
+
+\item En un estudio sobre la relaci\'on entre la actividad f\'isica y la salud mental, se encuest\'o a 1000 personas. Se encontr\'o que 400 personas hacen ejercicio regularmente, 500 personas informan una buena salud mental y 300 personas hacen ejercicio regularmente y tambi\'en informan una buena salud mental.  Cu\'antas personas no hacen ejercicio regularmente ni informan una buena salud mental?
+
+\item Un programa de promoci\'on de la salud se enfoca en tres grupos de personas: j\'ovenes, adultos y ancianos. Si se sabe que hay 100 j\'ovenes, 150 adultos y 75 ancianos en el programa,  cu\'antas personas en total est\'an siendo beneficiadas por el programa?
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer} Resolver los siguientes problemas relacionados con el \'area de promoci\'on de la salud
+\begin{enumerate}
+
+\item En un estudio de promoci\'on de la salud, se encontr\'o que 30 personas no realizaban actividad f\'isica, 25 personas eran fumadoras y 10 personas cumpl\'ian ambas condiciones. Si el estudio incluy\'o a 100 participantes,  cu\'antas personas realizan actividad f\'isica y no fuman?
+
+\item Un hospital est\'a desarrollando un programa de prevenci\'on de enfermedades cardiovasculares en tres poblaciones: hombres, mujeres y personas mayores de 60 a\~nos. Si se sabe que hay 400 hombres, 600 mujeres y 250 personas mayores de 60 a\~nos en el hospital,  cu\'antas personas en total se beneficiar\'an del programa de prevenci\'on?
+
+\item Un equipo de promoci\'on de la salud desea evaluar el impacto de un programa de nutrici\'on en tres grupos de personas: ni\~nos, adultos y ancianos. Si se sabe que hay 50 ni\~nos, 100 adultos y 25 ancianos en el programa,  cu\'antas personas en total est\'an siendo evaluadas?
+
+\item En un estudio sobre h\'abitos alimenticios saludables, se encontr\'o que 40 personas consumen frutas diariamente, 30 personas consumen verduras diariamente y 10 personas consumen ambos tipos de alimentos diariamente. Si el estudio incluy\'o a 100 participantes,  cu\'antas personas no consumen ni frutas ni verduras diariamente?
+
+\item En una comunidad de 500 personas, se realiz\'o una encuesta para saber qui\'enes realizan actividad f\'isica y qui\'enes no. Se encontr\'o que 300 personas realizan actividad f\'isica, 200 personas no realizan actividad f\'isica y 100 personas realizan tanto actividad f\'isica como alguna otra actividad deportiva.  Cu\'antas personas realizan solo alguna actividad deportiva y no realizan actividad f\'isica?
+
+\item Un estudio de una dieta muestra que 400 personas la siguen, 300 personas hacen ejercicio regularmente y 100 personas siguen la dieta y hacen ejercicio regularmente.  Cu\'antas personas no siguen la dieta ni hacen ejercicio regularmente?
+
+\item Se realiz\'o un estudio de h\'abitos de sue\~no en una poblaci\'on de 1000 personas. De ellas, 400 personas duermen m\'as de 8 horas al d\'ia, 300 personas duermen menos de 6 horas al d\'ia y 200 personas duermen entre 6 y 8 horas al d\'ia. Si se sabe que 100 personas duermen m\'as de 8 horas y menos de 6 horas al d\'ia, cu\'antas personas duermen exactamente 8 horas al d\'ia?
+
+\item En un estudio sobre h\'abitos alimenticios, se encuest\'o a 500 personas y se encontr\'o que 200 personas consumen m\'as de 3 porciones de frutas y verduras al d\'ia, 150 personas consumen menos de 2 porciones de frutas y verduras al d\'ia y 100 personas consumen 2 porciones de frutas y verduras al d\'ia. Cu\'antas personas consumen exactamente 3 porciones de frutas y verduras al d\'ia?
+
+\item Un estudio sobre el consumo de tabaco indica que en una poblaci\'on de 1000 personas, 400 personas son fumadoras, 200 personas han dejado de fumar y 100 personas son fumadoras y han intentado dejar de fumar sin \'exito. Cu\'antas personas han dejado de fumar y nunca han fumado?
+
+\item En una encuesta sobre el uso de m\'etodos anticonceptivos, se encontr\'o que en una poblaci\'on de 600 personas, 300 usan alg\'un m\'etodo anticonceptivo, 200 no usan ning\'un m\'etodo anticonceptivo y 100 personas usan m\'etodos anticonceptivos y han tenido embarazos no deseados.  Cu\'antas personas usan m\'etodos anticonceptivos y no han tenido embarazos no deseados?
+
+\item  En un estudio sobre la actividad f\'isica en una poblaci\'on de 800 personas, se encontr\'o que 400 personas realizan actividad f\'isica, 200 personas no realizan actividad f\'isica y 100 personas no realizan actividad f\'isica pero caminan al menos 30 minutos al d\'ia. Cu\'antas personas realizan actividad f\'isica y no caminan al menos 30 minutos al d\'ia?
+
+\item Un estudio sobre el consumo de tabaco indica que en una poblaci\'on de 1200 personas, 500 personas son fumadoras, 300 personas han dejado de fumar y 200 personas son fumadoras y han intentado dejar de fumar sin \'exito.  Cu\'antas personas han dejado de fumar y nunca han fumado?
+
+\item En una encuesta sobre el uso de m\'etodos anticonceptivos, se encontr\'o que en una poblaci\'on de 800 personas, 400 usan alg\'un m\'etodo anticonceptivo, 300 no usan ning\'un m\'etodo anticonceptivo y 150 personas usan m\'etodos anticonceptivos y han tenido embarazos no deseados.  Cu\'antas personas usan m\'etodos anticonceptivos y no han tenido embarazos no deseados?
+
+\item En un estudio sobre la actividad f\'isica en una poblaci\'on de 1000 personas, se encontr\'o que 500 personas realizan actividad f\'isica, 300 personas no realizan actividad f\'isica y 150 personas no realizan actividad f\'isica pero caminan al menos 30 minutos al d\'ia.  Cu\'antas personas realizan actividad f\'isica y no caminan al menos 30 minutos al d\'ia?
+
+\item Un nutricionista quiere evaluar la dieta de sus pacientes y divide a sus pacientes en tres grupos: los que consumen suficiente fibra, los que consumen suficiente prote\'ina y los que consumen suficiente grasa. Si se sabe que hay 30 pacientes que consumen suficiente fibra, 20 pacientes que consumen suficiente prote\'ina y 25 pacientes que consumen suficiente grasa, y que 10 pacientes consumen suficiente fibra y prote\'ina, 15 pacientes consumen suficiente fibra y grasa, 5 pacientes consumen suficiente prote\'ina y grasa, y 3 pacientes consumen suficiente fibra, prote\'ina y grasa,  cu\'antos pacientes hay en total?
+\end{enumerate}
+\end{Ejer}
+
+
+
+\begin{Ejer} Resolver los siguientes problemas del \'area de Nutrici\'on
+\begin{enumerate}
+
+\item En un estudio nutricional se evalu\'o el consumo de ciertas vitaminas en una poblaci\'on. Se sabe que el $40\%$ de la poblaci\'on consume suficiente vitamina A, el $60\%$ consume suficiente vitamina C y el $20\%$ consume suficiente vitamina D. Si adem\'as se sabe que el $15\%$ consume suficiente vitamina A y C, el $5\%$ consume suficiente vitamina A y D, y el $8\%$ consume suficiente vitamina C y D,  cu\'al es el porcentaje de la poblaci\'on que consume suficiente al menos una de estas vitaminas?
+
+\item Un nutricionista quiere evaluar la preferencia de ciertos alimentos en una poblaci\'on de ni\~nos. Se divide a la poblaci\'on en tres grupos: los que prefieren frutas, los que prefieren verduras y los que prefieren l\'acteos. Si se sabe que hay 50 ni\~nos que prefieren frutas, 40 ni\~nos que prefieren verduras y 30 ni\~nos que prefieren l\'acteos, y que 15 ni\~nos prefieren frutas y verduras, 10 ni\~nos prefieren frutas y l\'acteos, y 5 ni\~nos prefieren verduras y l\'acteos,  cu\'antos ni\~nos hay en total en la poblaci\'on?
+
+\item Se realiz\'o un estudio para evaluar el efecto de ciertos nutrientes en la salud dental. Se dividieron a los pacientes en tres grupos seg\'un su consumo: los que consumen suficiente calcio, los que consumen suficiente f\'osforo y los que consumen suficiente vitamina D. Si se sabe que hay 80 pacientes que consumen suficiente calcio, 70 pacientes que consumen suficiente f\'osforo y 60 pacientes que consumen suficiente vitamina D, y que 35 pacientes consumen suficiente calcio y f\'osforo, 30 pacientes consumen suficiente calcio y vitamina D, y 20 pacientes consumen suficiente f\'osforo y vitamina D,  cu\'antos pacientes hay en total?
+
+\item En un estudio se evalu\'o el consumo de frutas y verduras en tres grupos de pacientes con diferentes enfermedades cr\'onicas. Se encontr\'o que 40 pacientes consumen frutas diariamente, 50 pacientes consumen verduras diariamente y 20 pacientes consumen ambas diariamente.  Cu\'antos pacientes consumen frutas o verduras diariamente?
+
+\item En una encuesta se evalu\'o el consumo de l\'acteos y de prote\'inas en dos grupos de personas: vegetarianos y no vegetarianos. Se encontr\'o que 80 vegetarianos consumen l\'acteos diariamente, 100 no vegetarianos consumen prote\'inas diariamente y 60 personas consumen ambos diariamente. Si hay un total de 150 vegetarianos y 250 no vegetarianos,  cu\'antos consumen l\'acteos o prote\'inas diariamente?
+
+\item Se realiz\'o un estudio para evaluar la relaci\'on entre el consumo de fibra y la salud digestiva. Se encontr\'o que 60 personas consumen diariamente alimentos ricos en fibra, 40 personas tienen problemas digestivos y 20 personas consumen alimentos ricos en fibra y tienen problemas digestivos.  Cu\'antas personas consumen alimentos ricos en fibra o tienen problemas digestivos?
+
+\item Se evalu\'o el consumo de alimentos procesados y la prevalencia de obesidad en un grupo de personas. Se encontr\'o que 70 personas consumen diariamente alimentos procesados, 50 personas tienen obesidad y 20 personas consumen alimentos procesados y tienen obesidad.  Cu\'antas personas consumen alimentos procesados o tienen obesidad?
+
+\item En una evaluaci\'on del consumo de vitaminas y minerales se encontr\'o que 80 personas consumen diariamente alimentos ricos en vitaminas, 100 personas consumen diariamente alimentos ricos en minerales y 40 personas consumen ambos diariamente.  Cu\'antas personas consumen alimentos ricos en vitaminas o minerales diariamente?
+
+\item Se realiz\'o un estudio para evaluar el consumo de grasas saturadas y la salud cardiovascular. Se encontr\'o que 60 personas consumen diariamente alimentos ricos en grasas saturadas, 30 personas tienen enfermedades cardiovasculares y 10 personas consumen alimentos ricos en grasas saturadas y tienen enfermedades cardiovasculares.  Cu\'antas personas consumen alimentos ricos en grasas saturadas o tienen enfermedades cardiovasculares?
+
+\item En una encuesta de h\'abitos alimentarios se evalu\'o el consumo de alimentos ultraprocesados y de fibra en dos grupos de personas: sedentarias y activas. Se encontr\'o que 60 personas sedentarias consumen diariamente alimentos ultraprocesados, 40 personas activas consumen diariamente alimentos ricos en fibra y 20 personas sedentarias consumen alimentos ultraprocesados y ricos en fibra diariamente. Si hay un total de 200 personas sedentarias y 300 personas activas,  cu\'antas consumen alimentos ultraprocesados o ricos en fibra diariamente?
+
+\item En un estudio se evaluaron tres grupos de personas: las que no consumen l\'acteos, las que consumen leche y las que consumen queso. Se encontr\'o que 10 personas no consumen l\'acteos, 20 personas consumen leche y 15 personas consumen queso. Si se sabe que 5 personas consumen tanto leche como queso,  cu\'antas personas hay en total?
+
+\item Un nutricionista evalu\'o los h\'abitos alimenticios de tres grupos de personas: vegetarianos, omn\'ivoros y veganos. Se encontr\'o que 25 personas son vegetarianas, 30 personas son omn\'ivoras y 15 personas son veganas. Si se sabe que 10 personas son tanto vegetarianas como omn\'ivoras, 5 personas son tanto vegetarianas como veganas, y 8 personas son tanto omn\'ivoras como veganas,  cu\'antas personas hay en total?
+
+\item En una encuesta sobre el consumo de frutas, se encontr\'o que 40 personas consumen manzanas, 30 personas consumen naranjas y 25 personas consumen pl\'atanos. Si se sabe que 10 personas consumen tanto manzanas como naranjas, 5 personas consumen tanto naranjas como pl\'atanos, y 8 personas consumen tanto manzanas como pl\'atanos,  cu\'antas personas hay en total?
+
+\item En un estudio sobre los h\'abitos alimenticios de los habitantes de una ciudad, se encontr\'o que 60 personas consumen carne, 80 personas consumen verduras y 50 personas consumen frutas. Si se sabe que 20 personas consumen tanto carne como verduras, 10 personas consumen tanto carne como frutas, y 15 personas consumen tanto verduras como frutas,  cu\'antas personas hay en total?
+\item Se tiene un inventario de materiales inflamables en una f\'abrica. El conjunto $A$ representa los materiales inflamables almacenados en la bodega y el conjunto $B$ representa los materiales inflamables en proceso de uso. Si $n(A) = 50$, $n(B) = 20$ y $n(A \cap B) = 10$,  cu\'antos materiales inflamables hay en total en la f\'abrica?
+
+\end{enumerate}
+\end{Ejer}
+
+
+
+
+\begin{Ejer} Resolver los siguientes ejercicios relacionados con protecci\'on civil y gesti\'on de riesgos
+\begin{enumerate}
+
+\item Se tiene un registro de los diferentes tipos de desastres naturales ocurridos en un pa\'is durante un a\~no. El conjunto $A$ representa los desastres naturales relacionados con el clima, el conjunto $B$ representa los desastres naturales relacionados con el medio ambiente y el conjunto $C$ representa los desastres naturales relacionados con la geolog\'ia. Si $n(A) = 25$, $n(B) = 15$, $n(C) = 10$, $n(A \cap B) = 5$, $n(A \cap C) = 3$, $n(B \cap C) = 2$ y $n(A \cap B \cap C) = 1$,  cu\'antos desastres naturales hubo en total durante el a\~no?
+
+\item En un centro comercial se lleva a cabo un simulacro de terremoto. El conjunto $A$ representa los locales comerciales en el primer piso, el conjunto $B$ representa los locales comerciales en el segundo piso y el conjunto $C$ representa los locales comerciales en el tercer piso. Si $n(A) = 20$, $n(B) = 25$, $n(C) = 30$, $n(A \cap B) = 10$, $n(A \cap C) = 5$ y $n(B \cap C) = 8$,  cu\'antos locales comerciales participaron en el simulacro?
+
+\item Se est\'a llevando a cabo un an\'alisis de riesgo en una zona industrial. El conjunto $A$ representa las empresas que manejan materiales peligrosos, el conjunto $B$ representa las empresas que manejan residuos t\'oxicos y el conjunto $C$ representa las empresas que manejan sustancias explosivas. Si $n(A) = 30$, $n(B) = 20$, $n(C) = 25$, $n(A \cap B) = 5$, $n(A \cap C) = 8$ y $n(B \cap C) = 10$,  cu\'antas empresas est\'an en riesgo?
+
+\item Se est\'a realizando una evaluaci\'on de vulnerabilidad en una comunidad. El conjunto $A$ representa las viviendas construidas en zonas de alto riesgo, el conjunto $B$ representa las viviendas construidas en zonas de riesgo medio y el conjunto $C$ representa las viviendas construidas en zonas de bajo riesgo. Si $n(A) = 100$, $n(B) = 150$, $n(C) = 200$, $n(A \cap B) = 50$, $n(A \cap C) = 20$ y $n(B \cap C) = 30$,  cu\'antas viviendas se evaluaron?
+
+\item En un almac\'en de productos qu\'imicos, se tiene un inventario de sustancias corrosivas. El conjunto $A$ representa las sustancias corrosivas almacenadas en el almac\'en principal, y el conjunto $B$ representa las sustancias corrosivas almacenadas en un almac\'en auxiliar. Si $n(A) = 80$, $n(B) = 30$, y $n(A \cap B) = 10$,  cu\'antas sustancias corrosivas hay en total en ambos almacenes?
+
+\item Se realiza un estudio de riesgo s\'ismico en una zona urbana. El conjunto $A$ representa los edificios residenciales, el conjunto $B$ representa los edificios comerciales y el conjunto $C$ representa los edificios industriales. Si $n(A) = 200$, $n(B) = 150$, $n(C) = 100$, $n(A \cap B) = 50$, $n(A \cap C) = 30$ y $n(B \cap C) = 20$,  cu\'antos edificios se evaluaron en total?
+
+\item En un parque industrial, se realiza una inspecci\'on de seguridad. El conjunto $A$ representa las \'areas de almacenamiento, el conjunto $B$ representa las \'areas de producci\'on y el conjunto $C$ representa las \'areas administrativas. Si $n(A) = 40$, $n(B) = 60$, $n(C) = 30$, $n(A \cap B) = 15$, $n(A \cap C) = 10$ y $n(B \cap C) = 5$,  cu\'antas \'areas se inspeccionaron en total?
+
+\item Se lleva a cabo un an\'alisis de riesgo en una red de distribuci\'on de agua potable. El conjunto $A$ representa las tuber\'ias principales, el conjunto $B$ representa las tuber\'ias secundarias y el conjunto $C$ representa las tuber\'ias de conexi\'on a los hogares. Si $n(A) = 80$, $n(B) = 120$, $n(C) = 200$, $n(A \cap B) = 40$, $n(A \cap C) = 60$ y $n(B \cap C) = 100$,  cu\'antas tuber\'ias se incluyeron en el an\'alisis?
+
+\item  En un centro educativo, se realiza un simulacro de evacuaci\'on. El conjunto $A$ representa las aulas de clase, el conjunto $B$ representa las oficinas administrativas y el conjunto $C$ representa los laboratorios. Si $n(A) = 30$, $n(B) = 20$, $n(C) = 15$, $n(A \cap B) = 5$, $n(A \cap C) = 10$ y $n(B \cap C) = 3$,  cu\'antos espacios se evacuaron en total durante el simulacro?
+
+\item Se realiza un estudio de peligrosidad volc\'anica en una regi\'on. El conjunto $A$ representa las \'areas con riesgo de ca\'ida de cenizas, el conjunto $B$ representa las \'areas con riesgo de flujos pirocl\'asticos y el conjunto $C$ representa las \'areas con riesgo de lahares. Si $n(A) = 50$, $n(B) = 40$, $n(C) = 30$, $n(A \cap B) = 10$, $n(A \cap C) = 5$ y $n(B \cap C) = 8$,  cu\'antas \'areas se consideraron en total en el estudio?
+
+\item Se realiza un an\'alisis de vulnerabilidad en una red de suministro el\'ectrico. El conjunto $A$ representa los transformadores, el conjunto $B$ representa las l\'ineas de distribuci\'on y el conjunto $C$ representa los centros de control. Si $n(A) = 100$, $n(B) = 150$, $n(C) = 80$, $n(A \cap B) = 40$, $n(A \cap C) = 20$ y $n(B \cap C) = 30$,  cu\'antos componentes se evaluaron en total?
+
+\item Se lleva a cabo una evaluaci\'on de riesgo en un parque nacional. El conjunto $A$ representa las \'areas con riesgo de incendios forestales, el conjunto $B$ representa las \'areas con riesgo de deslizamientos de tierra y el conjunto $C$ representa las \'areas con riesgo de inundaciones. Si $n(A) = 70$, $n(B) = 60$, $n(C) = 80$, $n(A \cap B) = 20$, $n(A \cap C) = 15$ y $n(B \cap C) = 10$,  cu\'antas \'areas se evaluaron en total en el parque nacional?
+
+\item En una zona costera, se realiza una evaluaci\'on de vulnerabilidad ante tsunamis. El conjunto $A$ representa las \'areas residenciales, el conjunto $B$ representa las \'areas comerciales y el conjunto $C$ representa las \'areas tur\'isticas. Si $n(A) = 120$, $n(B) = 80$, $n(C) = 60$, $n(A \cap B) = 30$, $n(A \cap C) = 20$ y $n(B \cap C) = 10$,  cu\'antas \'areas se consideraron en total en la evaluaci\'on?
+
+\item Se realiza un an\'alisis de amenazas en una planta qu\'imica. El conjunto $A$ representa los procesos de producci\'on, el conjunto $B$ representa los sistemas de almacenamiento y el conjunto $C$ representa las instalaciones de tratamiento de efluentes. Si $n(A) = 50$, $n(B) = 40$, $n(C) = 30$, $n(A \cap B) = 10$, $n(A \cap C) = 5$ y $n(B \cap C) = 8$,  cu\'antos aspectos se consideraron en total en el an\'alisis?
+
+\item En una reserva natural, se tienen tres tipos de especies animales: mam\'iferos, aves y reptiles. Se sabe que 30 animales son mam\'iferos, 20 son aves y 15 son reptiles. Adem\'as, se sabe que 5 animales son mam\'iferos y aves, 10 son aves y reptiles, y 3 son mam\'iferos y reptiles.  Cu\'antos animales hay en total en la reserva natural?
+\end{enumerate}
+\end{Ejer}
+
+
+\begin{Ejer} Resolver los siguientes ejercicios relacionados con el \'area de Ciencias ambientales y cambio clim\'atico:
+\begin{enumerate}
+
+\item En un estudio sobre la calidad del aire se detectaron tres tipos de contaminantes: CO, SO2 y NO2. Se sabe que $50\%$ de la poblaci\'on est\'a expuesta a CO, $30\%$ est\'a expuesta a SO2 y $20\%$ est\'a expuesta a NO2. Adem\'as, se sabe que el $10\%$ est\'a expuesto a CO y SO2, el $5\%$ a CO y NO2, y el $3\%$ a SO2 y NO2.  Cu\'al es el porcentaje de la poblaci\'on que est\'a expuesta a los tres contaminantes?
+
+\item En una zona de cultivos se tienen tres tipos de plantas: A, B y C. Se sabe que el $70\%$ de la superficie cultivada es de plantas A, el $60\%$ es de plantas B y el $40\%$ es de plantas C. Adem\'as, se sabe que el $30\%$ de la superficie cultivada es de plantas A y B, el $20\%$ es de plantas B y C, y el $10\%$ es de plantas A y C.  Qu\'e porcentaje de la superficie cultivada es de plantas A, B y C?
+
+\item  En un estudio sobre la calidad del agua de un r\'io se detectaron tres tipos de contaminantes: bacterias, metales pesados y nutrientes. Se sabe que el $70\%$ de las muestras tomadas conten\'ian bacterias, el $40\%$ conten\'ian metales pesados y el $50\%$ conten\'ian nutrientes. Adem\'as, se sabe que el $30\%$ conten\'ian bacterias y metales pesados, el $20\%$ conten\'ian metales pesados y nutrientes, y el $10\%$ conten\'ian bacterias y nutrientes.  Qu\'e porcentaje de las muestras tomadas conten\'ian los tres tipos de contaminantes?
+
+\item En un ecosistema marino se tienen tres tipos de organismos: algas, crust\'aceos y peces. Se sabe que el $60\%$ de la biomasa total corresponde a algas, el $30\%$ corresponde a crust\'aceos y el $10\%$ corresponde a peces. Adem\'as, se sabe que el $20\%$ corresponde a algas y crust\'aceos, el $5\%$ corresponde a algas y peces, y el $3\%$ corresponde a crust\'aceos y peces.  Qu\'e porcentaje de la biomasa total corresponde a cada tipo de organismo?
+
+\item En un estudio de la biodiversidad de un \'area, se encontraron 45 especies de aves, 35 especies de mam\'iferos y 20 especies de reptiles. Si se sabe que hay 10 especies de animales que son tanto aves como mam\'iferos, y 5 especies que son tanto mam\'iferos como reptiles,  cu\'antas especies hay que son exclusivas de reptiles?
+
+\item Un estudio sobre el uso de recursos naturales en una regi\'on encontr\'o que el $40\%$ de la poblaci\'on utiliza agua subterr\'anea, el $60\%$ utiliza agua de r\'ios y el $20\%$ utiliza ambos recursos. Si la poblaci\'on total es de 100,000 habitantes,  cu\'antos utilizan exclusivamente agua subterr\'anea?
+
+\item Se realiz\'o un estudio sobre la calidad del aire en una ciudad y se encontraron 80 puntos de monitoreo donde se midieron los niveles de tres contaminantes: di\'oxido de azufre (SO2), di\'oxido de nitr\'ogeno (NO2) y material particulado (PM2.5). Se encontr\'o que en 20 puntos se excedi\'o el l\'imite m\'aximo permitido para SO2, en 30 puntos se excedi\'o el l\'imite m\'aximo permitido para NO2 y en 40 puntos se excedi\'o el l\'imite m\'aximo permitido para PM2.5. Si se sabe que en 5 puntos se excedieron los l\'imites de los tres contaminantes,  cu\'antos puntos de monitoreo no excedieron ninguno de los l\'imites?
+
+\item Se tiene un conjunto de 50 especies de plantas, 30 especies de aves y 20 especies de mam\'iferos. Se sabe que hay 10 especies de plantas que son tambi\'en aves, 5 especies de plantas que son tambi\'en mam\'iferos, 5 especies de aves que son tambi\'en mam\'iferos y 2 especies que son tanto plantas como mam\'iferos. Cu\'antas  especies hay que son exclusivas de plantas?
+
+\item En un estudio de la calidad del agua de un r\'io se midieron los niveles de tres contaminantes: mercurio (Hg), plomo (Pb) y cadmio (Cd). Se encontr\'o que en 10 puntos de muestreo se excedi\'o el l\'imite m\'aximo permitido para Hg, en 15 puntos se excedi\'o el l\'imite m\'aximo permitido para Pb y en 20 puntos se excedi\'o el l\'imite m\'aximo permitido para Cd. Si se sabe que en 5 puntos se excedieron los l\'imites de los tres contaminantes, Cu\'antos puntos de muestreo no excedieron ninguno de los l\'imites?
+
+\item Se realiz\'o un estudio sobre la biodiversidad en un \'area protegida y se encontraron 50 especies de aves, 30 especies de mam\'iferos y 20 especies de reptiles. Si se sabe que hay 5 especies de animales que son tanto aves como mam\'iferos, y 2 especies que son tanto mam\'iferos como reptiles, Cu\'antas  especies hay que son exclusivas de reptiles?
+
+\item En una reserva natural, se tienen tres tipos de especies animales: mam\'iferos, aves y reptiles. Se sabe que 30 animales son mam\'iferos, 20 son aves y 15 son reptiles. Adem\'as, se sabe que 5 animales son mam\'iferos y aves, 10 son aves y reptiles, y 3 son mam\'iferos y reptiles. Cu\'antos animales hay en total en la reserva natural?
+
+\item En una zona de cultivos se tienen tres tipos de plantas: A, B y C. Se sabe que el $70\%$ de la superficie cultivada es de plantas A, el $60\%$ es de plantas B y el $40\%$ es de plantas C. Adem\'as, se sabe que el $30\%$ de la superficie cultivada es de plantas A y B, el $20\%$ es de plantas B y C, y el $10\%$ es de plantas A y C. Qu\'e porcentaje de la superficie cultivada es de plantas A, B y C?
+
+\item En un estudio sobre la calidad del agua de un r\'io se detectaron tres tipos de contaminantes: bacterias, metales pesados y nutrientes. Se sabe que el $70\%$ de las muestras tomadas conten\'ian bacterias, el $40\%$ conten\'ian metales pesados y el $50\%$ conten\'ian nutrientes. Adem\'as, se sabe que el $30\%$ conten\'ian bacterias y metales pesados, el $20\%$ conten\'ian metales pesados y nutrientes, y el $10\%$ conten\'ian bacterias y nutrientes. Qu\'e porcentaje de las muestras tomadas conten\'ian los tres tipos de contaminantes?
+
+\item En un ecosistema marino se tienen tres tipos de organismos: algas, crust\'aceos y peces. Se sabe que el $60\%$ de la biomasa total corresponde a algas, el $30\%$ corresponde a crust\'aceos y el $10\%$ corresponde a peces. Adem\'as, se sabe que el $20\%$ corresponde a algas y crust\'aceos, el $5\%$ corresponde a algas y peces, y el $3\%$ corresponde a crust\'aceos y peces. Qu\'e porcentaje de la biomasa total corresponde a cada tipo de organismo?
+
+\item En un grupo de 50 personas, 20 hablan ingl\'es, 25 hablan espa\~nol y 15 hablan franc\'es. De estas personas, 10 hablan ingl\'es y espa\~nol, 8 hablan ingl\'es y franc\'es, y 5 hablan espa\~nol y franc\'es. Cu\'antas  personas hablan solo un idioma?
+\end{enumerate}
+\end{Ejer}
+
+
+
+\subsubsection*{Miscelanea de ejercicios de cardinalidad de conjuntos}
+
+\begin{Ejer}
+Sean $A$, $B$ y $C$ tres conjuntos tales que
+\begin{enumerate}
+\item $n(A) = 30$, $n(B) = 40$, $n(C) = 50$, $n(A \cap B) = 10$, $n(B \cap C) = 20$ y $n(C \cap A) = 15$. Encuentra $n((A \cap B) \cap C)$.
+
+\item $n(A) = 20$, $n(B) = 30$, $n(C) = 40$, $n(A \cap B) = 5$, $n(B \cap C) = 15$ y $n(C \cap A) = 10$. Encuentra $n((A \cap C) - B)$.
+
+\item $n(A) = 50$, $n(B) = 60$, $n(C) = 70$, $n(A \cap B) = 15$, $n(B \cap C) = 20$ y $n(C \cap A) = 25$. Encuentra $n((A \cap C) \cap (B \cap C))$.
+
+\item $n(A) = 30$, $n(B) = 40$, $n(C) = 50$, $n(A \cap B) = 10$, $n(B \cap C) = 20$ y $n(C \cap A) = 15$. Encuentra $n((A \cup B) - C)$.
+
+\item $n(A) = 20$, $n(B) = 30$, $n(C) = 40$, $n(A \cap B) = 5$, $n(B \cap C) = 15$ y $n(C \cap A) = 10$. Encuentra $n((A \cup B) \cap C)$.
+
+\item $n(A) = 50$, $n(B) = 60$, $n(C) = 70$, $n(A \cap B) = 15$, $n(B \cap C) = 20$ y $n(C \cap A) = 25$. Encuentra $n((A \cup C) - (B \cup C))$.
+
+\item $n(A) = 30$, $n(B) = 40$, $n(C) = 50$, $n(A \cap B) = 10$, $n(B \cap C) = 20$ y $n(C \cap A) = 15$. Encuentra $n((A \cap B) - C)$.
+
+\item $n(A) = 20$, $n(B) = 30$, $n(C) = 40$, $n(A \cap B) = 5$, $n(B \cap C) = 15$ y $n(C \cap A) = 10$. Encuentra $n((A \cup B) \cup (A \cup C))$.
+
+\item $n(A) = 50$, $n(B) = 60$, $n(C) = 70$, $n(A \cap B) = 15$, $n(B \cap C) = 20$ y $n(C \cap A) = 25$. Encuentra $n((A \cup B) \cap (B \cup C))$.
+
+\item  $n(A) = 40$, $n(B) = 50$, $n(C) = 60$, $n(A \cap B) = 20$, $n(B \cap C) = 30$ y $n(C \cap A) = 10$. Encuentra $n((A \cap B) \cap C)$.
+
+\item  $n(A) = 30$, $n(B) = 50$, $n(C) = 70$, $n(A \cap B) = 10$, $n(B \cap C) = 20$ y $n(C \cap A) = 15$. Encuentra $n((A \cap C) - B)$.
+
+\item $n(A) = 60$, $n(B) = 70$, $n(C) = 80$, $n(A \cap B) = 30$, $n(B \cap C) = 40$ y $n(C \cap A) = 20$. Encuentra $n((A \cap C) \cap (B \cap C))$.
+
+\item $n(A) = 40$, $n(B) = 50$, $n(C) = 60$, $n(A \cap B) = 15$, $n(B \cap C) = 25$ y $n(C \cap A) = 20$. Encuentra $n((A \cup B) - C)$.
+
+\item $n(A) = 30$, $n(B) = 50$, $n(C) = 70$, $n(A \cap B) = 5$, $n(B \cap C) = 15$ y $n(C \cap A) = 10$. Encuentra $n((A \cup B) \cap C)$.
+
+\item $n(A) = 60$, $n(B) = 70$, $n(C) = 80$, $n(A \cap B) = 20$, $n(B \cap C) = 25$ y $n(C \cap A) = 30$. Encuentra $n((A \cup C) - (B \cup C))$.
+
+\item $|A| = 18$, $|B| = 12$, $|C| = 30$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 5$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cap B) \cap C|$.
+
+\item $|A| = 18$, $|B| = 12$, $|C| = 30$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 5$ y $|A \cap B \cap C| = 2$. Encuentra $|((A \cap B) \cup C) \cap (A \cup B \cup C)|$.
+
+\item $|A| = 18$, $|B| = 12$, $|C| = 30$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 5$ y $|A \cap B \cap C| = 2$. Encuentra $|((A \cap B) \cap C) \cup (A \cup B \cup C)|$.
+
+\item $|A| = 22$, $|B| = 25$, $|C| = 20$, $|A \cap B| = 6$, $|A \cap C| = 4$, $|B \cap C| = 8$ y $|A \cap B \cap C| = 3$. Encuentra $|(A \cap C) - (B \cup C)|$.
+
+\item $|A| = 14$, $|B| = 16$, $|C| = 12$, $|A \cap B| = 2$, $|A \cap C| = 3$, $|B \cap C| = 2$ y $|A \cap B \cap C| = 1$. Encuentra $|(A \cup B \cup C) \cap (A \cap B)|$.
+
+\item $|A| = 30$, $|B| = 25$, $|C| = 18$, $|A \cap B| = 8$, $|A \cap C| = 6$, $|B \cap C| = 3$ y $|A \cap B \cap C| = 2$. Encuentra $|((A \cup B) \cap (A \cup C)) \cap (B \cup C)|$.
+
+\item $|A| = 12$, $|B| = 20$, $|C| = 24$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 6$ y $|A \cap B \cap C| = 1$. Encuentra $|(A \cap B \cap C) \cup (A \cap B)|$.
+
+\item $|A| = 25$, $|B| = 15$, $|C| = 18$, $|A \cap B| = 4$, $|A \cap C| = 5$, $|B \cap C| = 3$ y $|A \cap B \cap C| = 2$. Encuentra $|((A \cap B) \cap C) \cup (A \cap B)|$.
+
+\item $|A| = 18$, $|B| = 12$, $|C| = 30$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 5$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cup B) - (B \cup C)|$.
+
+\item $|A| = 22$, $|B| = 25$, $|C| = 20$, $|A \cap B| = 6$, $|A \cap C| = 4$, $|B \cap C| = 8$ y $|A \cap B \cap C| = 3$. Encuentra $|(A \cap C) \cup (B \cap C)|$.
+
+\item $|A| = 14$, $|B| = 16$, $|C| = 12$, $|A \cap B| = 2$, $|A \cap C| = 3$, $|B \cap C| = 2$ y $|A \cap B \cap C| = 1$. Encuentra $|(A \cup B \cup C) - (A \cup B)|$.
+
+\item $|A| = 30$, $|B| = 25$, $|C| = 18$, $|A \cap B| = 8$, $|A \cap C| = 6$, $|B \cap C| = 3$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cup C) \cap (B \cup C)|$.
+
+\item $|A| = 12$, $|B| = 20$, $|C| = 24$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 6$ y $|A \cap B \cap C| = 1$. Encuentra $|((A \cup B) \cup C) - (A \cup C)|$.
+
+\item $|A| = 25$, $|B| = 15$, $|C| = 18$, $|A \cap B| = 4$, $|A \cap C| = 5$, $|B \cap C| = 3$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cup B) \cap (B \cup C)|$.
+
+\item $|A| = 18$, $|B| = 12$, $|C| = 30$, $|A \cap B| = 3$, $|A \cap C| = 4$, $|B \cap C| = 5$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cap B) \cup (A \cap C) \cup (B \cap C)|$.
+
+\item Si $n(A) = 25$, $n(B) = 60$, y $n(A \cap B) = 15$, entonces $n(A \cup B) = 70$.
+
+\item Si $n(A) = 35$, $n(B) = 40$, y $n(A \cap B) = 25$, entonces $n(A \cup B) = 50$.
+
+\item Si $n(A) = 15$, $n(B) = 50$, y $n(A \cap B) = 5$, entonces $n(A \cup B) = 60$.
+
+\item Si $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=10$, $|A\cap C|=5$, $|B\cap C|=3$, y $|A\cap B\cap C|=2$, encuentra $|A\cup B\cup C - A \cap B \cap C|$.
+
+\item Si $|A|=35$, $|B|=25$, $|C|=15$, $|A\cap B|=10$, $|A\cap C|=5$, $|B\cap C|=8$, y $|A\cap B\cap C|=2$, encuentra $|A\cup B\cup C - (A \cap B \cap C \cap A \cap C)|$.
+
+\item Si $|A|=60$, $|B|=40$, $|C|=30$, $|A\cap B|=15$, $|A\cap C|=8$, $|B\cap C|=5$, y $|A\cap B\cap C|=3$, encuentra $|A\cup B\cup C - (A \cap B \cap C \cap B \cap C)|$.
+
+\item Si $|A|=20$, $|B|=30$, $|C|=40$, $|A\cap B|=10$, $|A\cap C|=15$, $|B\cap C|=20$, y $|A\cap B\cap C|=5$, encuentra $|A\cup B\cup C|$.
+
+\item Si $|A|=100$, $|B|=80$, $|C|=60$, $|A\cap B|=30$, $|A\cap C|=20$, $|B\cap C|=15$, y $|A\cap B\cap C|=5$, encuentra $|A\cap B \cup B\cap C \cup C\cap A|$.
+
+\item Si $|A|=50$, $|B|=40$, $|C|=30$, $|A\cap B|=10$, $|A\cap C|=15$, $|B\cap C|=20$, y $|A\cap B\cap C|=5$, encuentra $|A\cap B \cap C^c|$.
+
+\item Si $|A|=80$, $|B|=70$, $|C|=60$, $|A\cap B|=30$, $|A\cap C|=20$, $|B\cap C|=15$, y $|A\cap B\cap C|=5$, encuentra $|A\cup B \cup C|-|A\cap B \cap C|$.
+
+\item Si $|A|=40$, $|B|=30$, $|C|=20$, $|A\cap B|=10$, $|A\cap C|=15$, $|B\cap C|=20$, y $|A\cap B\cap C|=5$, encuentra $|A^c\cap B^c\cap C^c|$.
+
+\item Si $|A|=55$, $|B|=20$, $|C|=35$, $|A\cap B|=8$, $|A\cap C|=10$, $|B\cap C|=6$, y $|A\cap B\cap C|=3$, encuentra $|A\cup B\cup C - A \cap B \cap C|$.
+
+\item Si $|A|=40$, $|B|=30$, $|C|=25$, $|A\cap B|=12$, $|A\cap C|=5$, $|B\cap C|=7$, y $|A\cap B\cap C|=4$, encuentra $|A\cup B\cup C - (A \cap B \cap C \cap A \cap C)|$.
+
+\item Si $|A|=65$, $|B|=50$, $|C|=40$, $|A\cap B|=20$, $|A\cap C|=12$, $|B\cap C|=8$, y $|A\cap B\cap C|=5$, encuentra $|A\cup B\cup C - (A \cap B \cap C \cap B \cap C)|$.
+
+\item $|A| = 30$, $|B| = 20$, $|C| = 25$, $|A \cap B| = 8$, $|A \cap C| = 6$, $|B \cap C| = 4$ y $|A \cap B \cap C| = 2$. Encuentra $|(A \cup B) \cap (B \cup C)|$.
+
+\item $|A| = 40$, $|B| = 35$, $|C| = 30$, $|A \cap B| = 15$, $|A \cap C| = 10$, $|B \cap C| = 8$ y $|A \cap B \cap C| = 3$. Encuentra $|(A \cup B) \cap (B \cup C)|$.
+
+\item $|A| = 22$, $|B| = 28$, $|C| = 15$, $|A \cap B| = 6$, $|A \cap C| = 3$, $|B \cap C| = 2$ y $|A \cap B \cap C| = 1$. Encuentra $|(A \cup B) \cap (B \cup C)|$.
+
+\item $|A| = 30$, $|B| = 25$, $|C| = 18$, $|A \cap B| = 8$, $|A \cap C| = 6$, $|B \cap C| = 3$ y $|A \cap B \cap C| = 2$. Encuentra $|((A \cap B) \cap C) \cup (A \cup B \cup C)|$.
+
+\item $|A| = 35$, $|B| = 20$, $|C| = 28$, $|A \cap B| = 10$, $|A \cap C| = 8$, $|B \cap C| = 4$ y $|A \cap B \cap C| = 3$. Encuentra $|(A \cap C) - (B \cup C)|$.
+
+\item $|A| = 18$, $|B| = 22$, $|C| = 15$, $|A \cap B| = 4$, $|A \cap C| = 3$, $|B \cap C| = 2$ y $|A \cap B \cap C| = 1$. Encuentra $|(A \cup B \cup C) \cap (A \cap B)|$.
+\end{enumerate}
+\end{Ejer}
+
+\subsubsection*{Aplicaciones}
+
+\begin{Ejer}
+\begin{enumerate}
+\item En un estudio sobre los efectos del tabaquismo en la salud, se entrevist\'o a 1000 personas. De los cuales, 600 fumaban, 400 no fumaban y 200 hab\'ian fumado en el pasado pero actualmente no fumaban. Adem\'as, se encontr\'o que 100 fumadores ten\'ian enfermedades respiratorias y 50 no fumadores tambi\'en las ten\'ian. Cu\'antas  personas no fumaban y no ten\'ian enfermedades respiratorias?
+
+\item En una encuesta sobre la preferencia de bebidas, se encontr\'o que 40 personas prefieren caf\'e, 30 personas prefieren t\'e y 20 personas prefieren jugo. Si se sabe que 10 personas prefieren tanto caf\'e como t\'e, 5 personas prefieren tanto t\'e como jugo, y 8 personas prefieren tanto caf\'e como jugo, Cu\'antas  personas hay en total?
+
+\item En un estudio sobre los h\'abitos alimenticios de una poblaci\'on, se encontr\'o que 100 personas consumen carbohidratos, 80 personas consumen prote\'inas y 60 personas consumen grasas. Si se sabe que 20 personas consumen tanto carbohidratos como prote\'inas, 15 personas consumen tanto carbohidratos como grasas, y 10 personas consumen tanto prote\'inas como grasas, Cu\'antas  personas hay en total?
+
+\item En una encuesta sobre el consumo de l\'acteos, se encontr\'o que 50 personas consumen leche, 30 personas consumen queso y 40 personas consumen yogurt. Si se sabe que 10 personas consumen tanto leche como queso, 5 personas consumen tanto queso como yogurt, y 8 personas consumen tanto leche como yogurt, Cu\'antas  personas hay en total?
+
+\item Un nutricionista quiere saber cu\'antos pacientes de su cl\'inica han reportado alergias alimentarias. En el primer mes, 35 pacientes reportaron alergias a mariscos, 18 reportaron alergias a nueces y 11 reportaron alergias a ambas. Cu\'antos pacientes en total reportaron alergias alimentarias en ese mes?
+
+\item En un estudio nutricional, se clasific\'o a los participantes en tres grupos: vegetarianos, veganos y omn\'ivoros. Se encontr\'o que 24 personas eran vegetarianas, 15 eran veganas y 54 eran omn\'ivoras. Adem\'as, 5 personas eran vegetarianas y veganas, 15 eran vegetarianas y omn\'ivoras, y 8 eran veganas y omn\'ivoras. Cu\'antas  personas participaron en el estudio en total?
+
+\item Un nutricionista quiere saber cu\'antos de sus pacientes tienen una dieta baja en carbohidratos y/o baja en grasas. Descubri\'o que 42 pacientes tienen una dieta baja en carbohidratos, 34 tienen una dieta baja en grasas y 17 tienen ambas. Cu\'antos pacientes en total tienen una dieta baja en carbohidratos y/o baja en grasas?
+
+\item En un estudio sobre la relaci\'on entre la dieta y la salud mental, se pregunt\'o a los participantes si segu\'ian una dieta mediterr\'anea, una dieta vegetariana o ninguna de las dos. Se encontr\'o que 27 personas segu\'ian una dieta mediterr\'anea, 16 segu\'ian una dieta vegetariana y 9 segu\'ian ambas. Adem\'as, 25 personas no segu\'ian ninguna de las dos dietas. Cu\'antas  personas participaron en el estudio en total?
+
+\item En una encuesta sobre el consumo de frutas y verduras, se pregunt\'o a los participantes si com\'ian al menos 3 porciones de frutas y/o 2 porciones de verduras al d\'ia. Se encontr\'o que 45 personas com\'ian al menos 3 porciones de frutas al d\'ia, 36 com\'ian al menos 2 porciones de verduras al d\'ia y 18 com\'ian ambas. Adem\'as, se encontr\'o que 72 personas no cumpl\'ian con ninguno de los dos criterios. Cu\'antas  personas participaron en la encuesta en total?
+
+\item Un nutricionista quiere saber cu\'antos de sus pacientes tienen sobrepeso y/o hipertensi\'on. En su cl\'inica, encontr\'o que 55 pacientes tienen sobrepeso, 42 tienen hipertensi\'on y 21 tienen ambas condiciones. Adem\'as, encontr\'o que 75 pacientes no tienen ni sobrepeso ni hipertensi\'on. Cu\'antos pacientes en total asisten a la cl\'inica?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $60\%$ de las personas encuestadas consumen frutas regularmente y el $35\%$ consumen verduras regularmente. Adem\'as, se encontr\'o que el $25\%$ de las personas encuestadas consumen tanto frutas como verduras regularmente. Qu\'e porcentaje de las personas encuestadas consumen solo frutas o solo verduras regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $80\%$ de las personas encuestadas consumen l\'acteos regularmente y el $60\%$ consumen cereales regularmente. Adem\'as, se encontr\'o que el $40\%$ de las personas encuestadas consumen tanto l\'acteos como cereales regularmente. Qu\'e porcentaje de las personas encuestadas consumen solo l\'acteos o solo cereales regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $70\%$ de las personas encuestadas consumen carne regularmente y el $50\%$ consumen pescado regularmente. Adem\'as, se encontr\'o que el $20\%$ de las personas encuestadas no consumen ni carne ni pescado regularmente. Qu\'e porcentaje de las personas encuestadas consumen tanto carne como pescado regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $75\%$ de las personas encuestadas consumen frutas regularmente, el $60\%$ consumen verduras regularmente y el $40\%$ consumen l\'acteos regularmente. Adem\'as, se encontr\'o que el $20\%$ de las personas encuestadas consumen frutas, verduras y l\'acteos regularmente. Qu\'e porcentaje de las personas encuestadas no consumen ni frutas, ni verduras, ni l\'acteos regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $45\%$ de las personas encuestadas consumen alimentos procesados regularmente y el $60\%$ consumen alimentos frescos regularmente. Adem\'as, se encontr\'o que el $30\%$ de las personas encuestadas consumen tanto alimentos procesados como alimentos frescos regularmente. Qu\'e porcentaje de las personas encuestadas consumen solo alimentos procesados o solo alimentos frescos regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $55\%$ de las personas encuestadas consumen carne regularmente y el $40\%$ consumen pescado regularmente. Adem\'as, se encontr\'o que el $30\%$ de las personas encuestadas consumen tanto carne como pescado regularmente, y el $10\%$ no consumen ni carne ni pescado regularmente. Qu\'e porcentaje de las personas encuestadas consumen solo carne o solo pescado regularmente?
+
+\item En un estudio sobre nutrici\'on se determin\'o que el $80\%$ de las personas encuestadas consumen alimentos ricos en grasas regularmente y el $70\%$ consumen alimentos ricos en az\'ucares regularmente. Adem\'as, se encontr\'o que el $50\%$ de las personas encuestadas consumen tanto alimentos ricos en grasas como alimentos ricos en az\'ucares regularmente. Qu\'e porcentaje de las personas encuestadas consumen solo alimentos ricos en grasas o solo alimentos ricos en az\'ucares regularmente?
+
+\item Si en una reserva natural se tienen identificadas 120 especies de aves, 50 especies de mam\'iferos y 70 especies de reptiles, Cu\'antas  especies de animales hay en total en la reserva?
+
+\item En un bosque se han identificado 25 especies de \'arboles de hoja perenne, 15 especies de \'arboles de hoja caduca y 10 especies de arbustos. Cu\'antas  especies de plantas le\~nosas hay en el bosque?
+
+\item En una playa se han registrado 40 especies de moluscos, 30 especies de crust\'aceos y 20 especies de equinodermos. Cu\'antas  especies de invertebrados marinos hay en total?
+
+\item  En un estudio de la biodiversidad en un humedal se han identificado 60 especies de plantas acu\'aticas, 25 especies de peces y 15 especies de aves acu\'aticas. Cu\'antas  especies de organismos acu\'aticos se han registrado en el humedal?
+
+\item En un jard\'in bot\'anico se tienen 150 especies de plantas con flores, 70 especies de helechos y 30 especies de musgos. Cu\'antas  especies de plantas no vasculares hay en el jard\'in bot\'anico?
+
+\item En un estudio de la fauna de un ecosistema se han registrado 80 especies de insectos, 50 especies de ara\~nas y 30 especies de escorpiones. Cu\'antas  especies de artr\'opodos hay en el ecosistema?
+
+\item En una investigaci\'on sobre la diversidad de hongos en un bosque se han identificado 50 especies de hongos sapr\'ofitos, 30 especies de hongos par\'asitos y 20 especies de hongos mutualistas. Cu\'antas  especies de hongos se han registrado en el bosque?
+
+\item En un estudio sobre la calidad del aire se detectaron tres tipos de contaminantes: CO, SO2 y NO2. Se sabe que $50\%$ de la poblaci\'on est\'a expuesta a CO, $30\%$ est\'a expuesta a SO2 y $20\%$ est\'a expuesta a NO2. Adem\'as, se sabe que el $10\%$ est\'a expuesto a CO y SO2, el $5\%$ a CO y NO2, y el $3\%$ a SO2 y NO2. cu\'al es el porcentaje de la poblaci\'on que est\'a expuesta a los tres contaminantes?
+
+\item En un estudio de la biodiversidad de un \'area, se encontraron 45 especies de aves, 35 especies de mam\'iferos y 20 especies de reptiles. Si se sabe que hay 10 especies de animales que son tanto aves como mam\'iferos, y 5 especies que son tanto mam\'iferos como reptiles, Cu\'antas  especies hay que son exclusivas de reptiles?
+
+\item Un estudio sobre el uso de recursos naturales en una regi\'on encontr\'o que el $40\%$ de la poblaci\'on utiliza agua subterr\'anea, el $60\%$ utiliza agua de r\'ios y el $20\%$ utiliza ambos recursos. Si la poblaci\'on total es de 100,000 habitantes, Cu\'antos utilizan exclusivamente agua subterr\'anea?
+
+\item Se realiz\'o un estudio sobre la calidad del aire en una ciudad y se encontraron 80 puntos de monitoreo donde se midieron los niveles de tres contaminantes: di\'oxido de azufre (SO2), di\'oxido de nitr\'ogeno (NO2) y material particulado (PM2.5). Se encontr\'o que en 20 puntos se excedi\'o el l\'imite m\'aximo permitido para SO2, en 30 puntos se excedi\'o el l\'imite m\'aximo permitido para NO2 y en 40 puntos se excedi\'o el l\'imite m\'aximo permitido para PM2.5. Si se sabe que en 5 puntos se excedieron los l\'imites de los tres contaminantes, Cu\'antos puntos de monitoreo no excedieron ninguno de los l\'imites?
+
+\item  Se tiene un conjunto de 50 especies de plantas, 30 especies de aves y 20 especies de mam\'iferos. Se sabe que hay 10 especies de plantas que son tambi\'en aves, 5 especies de plantas que son tambi\'en mam\'iferos, 5 especies de aves que son tambi\'en mam\'iferos y 2 especies que son tanto plantas como mam\'iferos. Cu\'antas  especies hay que son exclusivas de plantas?
+
+\item  En un estudio de la calidad del agua de un r\'io se midieron los niveles de tres contaminantes: mercurio (Hg), plomo (Pb) y cadmio (Cd). Se encontr\'o que en 10 puntos de muestreo se excedi\'o el l\'imite m\'aximo permitido para Hg, en 15 puntos se excedi\'o el l\'imite m\'aximo permitido para Pb y en 20 puntos se excedi\'o el l\'imite m\'aximo permitido para Cd. Si se sabe que en 5 puntos se excedieron los l\'imites de los tres contaminantes, Cu\'antos puntos de muestreo no excedieron ninguno de los l\'imites?
+
+\item Se realiz\'o un estudio sobre la biodiversidad en un \'area protegida y se encontraron 50 especies de aves, 30 especies de mam\'iferos y 20 especies de reptiles. Si se sabe que hay 5 especies de animales que son tanto aves como mam\'iferos, y 2 especies que son tanto mam\'iferos como reptiles, Cu\'antas  especies hay que son exclusivas de reptiles?
+
+\item En un estudio sobre la calidad del aire, se midi\'o la concentraci\'on de di\'oxido de nitr\'ogeno (NO2) en una ciudad durante una semana. Los resultados se dividieron en tres categor\'ias: baja, media y alta concentraci\'on. Los datos fueron: 120 mediciones en la categor\'ia de baja concentraci\'on, 80 en la categor\'ia de media concentraci\'on y 30 en la categor\'ia de alta concentraci\'on. cu\'al es el porcentaje de mediciones con baja concentraci\'on de NO2?
+
+\item En una reserva natural se identificaron tres tipos de \'arboles: pinos, encinos y cedros. Se realiz\'o un censo y se encontr\'o que hay 150 pinos, 200 encinos y 100 cedros. Adem\'as, se sabe que hay 50 \'arboles que son tanto pinos como encinos, 30 que son tanto encinos como cedros, y 20 que son tanto pinos como cedros. Cu\'antos \'arboles hay en total en la reserva natural?
+
+\item Se llev\'o a cabo un estudio sobre la calidad del agua en un r\'io. Se tomaron muestras en tres sitios diferentes: arriba del puente, debajo del puente y a la salida del r\'io. En el sitio arriba del puente se encontr\'o que el $80\%$ de las muestras eran aptas para el consumo humano, en el sitio debajo del puente el $60\%$ eran aptas y en el sitio a la salida del r\'io el $40\%$ eran aptas. Si se sabe que se tomaron 100 muestras en total, Cu\'antas  fueron aptas para el consumo humano?
+
+\item Se realiz\'o un estudio para determinar la distribuci\'on de especies de mariposas en una zona boscosa. Se identificaron tres especies: A, B y C. De las mariposas encontradas, el $50\%$ eran de la especie A, el $30\%$ de la especie B y el $20\%$ de la especie C. Adem\'as, se encontr\'o que el $10\%$ de las mariposas eran de las especies A y B, el $5\%$ eran de las especies A y C, y el $3\%$ eran de las especies B y C. Si se encontraron 200 mariposas en total, Cu\'antas  eran de la especie B?
+
+\item En un estudio sobre la biodiversidad en un parque nacional se identificaron tres especies de aves: colibr\'ies, loros y guacamayas. Se realizaron observaciones durante una hora en la que se identificaron 10 colibr\'ies, 5 loros y 3 guacamayas. Se observ\'o que el $50\%$ de los colibr\'ies estaban en una zona del parque, el $40\%$ de los loros estaban en esa misma zona y el $20\%$ de las guacamayas estaban en la zona opuesta del parque. Si se sabe que la zona del parque cubre el $30\%$ del \'area total, Cu\'antas  aves se observaron en esa zona?
+
+\item En una f\'abrica de conservas, se produce un lote de 5000 unidades de at\'un enlatado. Si se selecciona una muestra aleatoria de 200 latas para verificar su calidad, cu\'al es la probabilidad de que la proporci\'on muestral de latas defectuosas sea mayor a 0.1?
+
+\item Una cl\'inica dental realiza un estudio para determinar la eficacia de un nuevo tipo de cepillo dental en la prevenci\'on de la caries dental. De un grupo de 500 personas, 250 se les da el cepillo nuevo y a los otros 250 el cepillo tradicional. Despu\'es de un a\~no, se eval\'ua la cantidad de caries en cada grupo y se encuentra que el grupo con el cepillo nuevo tiene en promedio 2 caries menos que el otro grupo.  Es suficiente esta diferencia para afirmar que el nuevo cepillo es m\'as efectivo en la prevenci\'on de caries?
+
+\item  En una compa\~n\'ia de seguros de salud, se realiz\'o un estudio para evaluar la satisfacci\'on de sus clientes con el servicio recibido. De una muestra aleatoria de 500 clientes, 80 dijeron estar insatisfechos. cu\'al es el intervalo de confianza al $95\%$ para la proporci\'on de clientes insatisfechos en la poblaci\'on?
+
+\item En una reserva natural, se llev\'o a cabo un estudio para determinar la biodiversidad de especies de aves. Se identificaron 80 especies distintas. Si se selecciona una muestra aleatoria de 50 aves, cu\'al es la probabilidad de que se encuentren al menos 10 especies diferentes en la muestra?
+
+\item  Una empresa de fabricaci\'on de bater\'ias realiza un estudio para determinar la vida \'util promedio de sus productos. Se selecciona una muestra aleatoria de 100 bater\'ias y se encuentra que su vida \'util promedio es de 3 a\~nos con una desviaci\'on est\'andar de 0.5 a\~nos. cu\'al es el intervalo de confianza al $90\%$ para la vida \'util promedio de las bater\'ias en la poblaci\'on?
+
+\item  Se lleva a cabo un estudio para evaluar el impacto de un programa de entrenamiento en habilidades gerenciales en el desempe\~no de los empleados de una empresa. Se selecciona una muestra aleatoria de 50 empleados y se les asigna aleatoriamente al grupo de entrenamiento o al grupo de control. Despu\'es de un mes, se eval\'ua el desempe\~no de cada empleado y se encuentra que la diferencia de promedio de desempe\~no entre los grupos es de 1 punto en una escala de 1 a 10.  Es suficiente esta diferencia para afirmar que el programa de entrenamiento es efectivo en mejorar el desempe\~no?
+
+\item  Un estudio se realiza para determinar la relaci\'on entre el consumo de caf\'e y el riesgo de enfermedades card\'iacas. Se selecciona una muestra aleatoria de 1000 personas y se les pregunta sobre su consumo diario de caf\'e y si han sido diagnosticados con alguna enfermedad card\'iaca. cu\'al es la probabilidad de que se encuentre una correlaci\'on significativa entre el consumo de caf\'e y el riesgo de enfermedades card\'iacas?
+
+\item  En una poblaci\'on de 5000 personas, se realiz\'o un estudio y se encontr\'o que 1200 tienen hipertensi\'on arterial, 800 tienen diabetes y 300 tienen ambas enfermedades. Cu\'antas  personas en la poblaci\'on no tienen ninguna de las dos enfermedades?
+
+\item  En una f\'abrica de juguetes, se tienen 2000 unidades de un modelo de auto, 1500 unidades de un modelo de avi\'on y 800 unidades de un modelo de barco. Si se selecciona una muestra aleatoria de 500 unidades, cu\'al es la probabilidad de que al menos 200 sean del modelo de auto?
+
+\item  En un examen de matem\'aticas, 60 estudiantes aprobaron, 20 estudiantes no aprobaron y 30 estudiantes tienen una calificaci\'on pendiente. Si se selecciona al azar a un estudiante de esta poblaci\'on, cu\'al es la probabilidad de que haya aprobado o tenga una calificaci\'on pendiente?
+
+\item  En una escuela, hay 120 estudiantes en la carrera de Ingenier\'ia Industrial, 90 en la carrera de Ingenier\'ia Civil y 60 en la carrera de Ingenier\'ia de Sistemas. Si 30 estudiantes estudian dos carreras al mismo tiempo, Cu\'antos estudiantes estudian solamente Ingenier\'ia Industrial?
+
+\item  En un grupo de 100 personas, 40 practican deportes, 30 hacen ejercicio y 20 no realizan ninguna actividad f\'isica. Si 10 personas hacen ambas cosas, Cu\'antas  personas practican deportes pero no hacen ejercicio?
+
+\item  En una tienda de ropa, hay 500 camisas, 700 pantalones y 400 su\'eteres. Si se selecciona una muestra aleatoria de 300 prendas, cu\'al es la probabilidad de que al menos 100 sean su\'eteres?
+
+\item  En una encuesta realizada a una muestra de 500 personas, se encontr\'o que 200 prefieren el color azul, 150 prefieren el color rojo y 100 prefieren el color verde. Si 50 personas prefieren dos colores al mismo tiempo, Cu\'antas  personas prefieren solamente el color azul?
+
+\item En un sal\'on de clase hay 40 estudiantes. 20 de ellos toman matem\'aticas, 15 toman f\'isica y 10 toman qu\'imica. Si 8 estudiantes toman matem\'aticas y f\'isica, 5 toman matem\'aticas y qu\'imica, y 4 toman f\'isica y qu\'imica, Cu\'antos estudiantes no toman ninguna de las tres materias?
+Un estudio de mercado indica que el $40\%$ de las personas prefieren la marca A, el $30\%$ prefieren la marca B y el $25\%$ prefieren la marca C. Si el $10\%$ prefiere la marca A y B, el $8\%$ prefiere la marca A y C, y el $6\%$ prefiere la marca B y C, cu\'al es el porcentaje de personas que prefieren solo la marca A?
+
+\item Se encuest\'o a un grupo de 100 personas para determinar si les gusta el f\'utbol, el baloncesto o ambos. Se encontr\'o que 50 personas les gusta el f\'utbol, 40 personas les gusta el baloncesto, y 25 personas les gusta ambos deportes. Cu\'antas  personas solo les gusta el f\'utbol?
+En una tienda de ropa, 50 clientes compraron pantalones, 40 compraron camisas y 30 compraron zapatos. De estos clientes, 15 compraron pantalones y camisas, 10 compraron pantalones y zapatos, y 8 compraron camisas y zapatos. Cu\'antos clientes compraron solo camisas y zapatos?
+
+\item Se tienen cuatro conjuntos de factores de riesgo: $A$, $B$, $C$, y $D$. El conjunto $A$ contiene los factores de riesgo para enfermedades cardiovasculares, el conjunto $B$ contiene los factores de riesgo para enfermedades respiratorias, el conjunto $C$ contiene los factores de riesgo para enfermedades neurol\'ogicas y el conjunto $D$ contiene los factores de riesgo para enfermedades mentales. Se sabe que el factor de riesgo $X$ est\'a en el conjunto $A$ y $B$, el factor de riesgo $Y$ est\'a en el conjunto $B$ y $C$, el factor de riesgo $Z$ est\'a en el conjunto $C$ y $D$.  En qu\'e conjuntos est\'an los siguientes factores de riesgo?:
+Factor de riesgo $W$, relacionado con el consumo excesivo de alcohol
+Factor de riesgo $V$, relacionado con la exposici\'on a contaminantes ambientales
+Factor de riesgo $U$, relacionado con la falta de actividad f\'isica
+
+\item Sean $A$ y $B$ conjuntos de enfermedades cr\'onicas y $C$ y $D$ conjuntos de factores de riesgo. Indica mediante una expresi\'on matem\'atica la relaci\'on entre $A$, $B$, $C$ y $D$ si sabemos que las enfermedades en $A$ son causadas por los factores de riesgo en $C$ y las enfermedades en $B$ son causadas por los factores de riesgo en $D$.
+
+\item Sean $A$ y $B$ conjuntos de pacientes y $C$ y $D$ conjuntos de diagn\'osticos. Supongamos que un paciente en $A$ tiene el diagn\'ostico en $C$, mientras que un paciente en $B$ tiene el diagn\'ostico en $D$. Expresa en t\'erminos matem\'aticos la relaci\'on entre $A$, $B$, $C$ y $D$.
+
+\item Sea $A$ el conjunto de medicamentos que tratan la hipertensi\'on arterial y $B$ el conjunto de medicamentos que tratan la diabetes. Sean $C$ y $D$ los conjuntos de efectos secundarios que pueden producir los medicamentos en $A$ y $B$, respectivamente. Si sabemos que algunos medicamentos en $A$ tambi\'en pueden tratar la diabetes y que algunos medicamentos en $B$ tambi\'en pueden tratar la hipertensi\'on arterial,  c\'omo podemos expresar la relaci\'on entre $A$, $B$, $C$ y $D$?
+
+\item Sea $A$ el conjunto de enfermedades infecciosas y $B$ el conjunto de tratamientos. Sean $C$ y $D$ conjuntos de efectos secundarios y complicaciones relacionados con los tratamientos en $B$. Si sabemos que algunos tratamientos en $B$ pueden tratar varias enfermedades en $A$ y que algunos tratamientos en $B$ pueden causar complicaciones en $C$ y $D$,  c\'omo podemos expresar la relaci\'on entre $A$, $B$, $C$ y $D$?
+
+\item Sea $A$ el conjunto de pacientes con enfermedades cardiovasculares y $B$ el conjunto de pacientes con enfermedades pulmonares. Sea $C$ el conjunto de factores de riesgo para enfermedades cardiovasculares y $D$ el conjunto de factores de riesgo para enfermedades pulmonares. Si sabemos que algunos factores de riesgo en $C$ tambi\'en pueden causar enfermedades pulmonares en $B$ y que algunos factores de riesgo en $D$ tambi\'en pueden causar enfermedades cardiovasculares en $A$,  c\'omo podemos expresar la relaci\'on entre $A$, $B$, $C$ y $D$?
+
+\item  Dado el conjunto $A$ de los tipos de riesgos naturales (terremotos, inundaciones, deslizamientos de tierra y tsunamis), el conjunto $B$ de las zonas de alto riesgo (costas, \'areas s\'ismicas, r\'ios y laderas de monta\~nas) y el conjunto $C$ de las medidas preventivas (construcci\'on de diques, planes de evacuaci\'on, zonas de seguridad y monitoreo de actividad s\'ismica), determina el conjunto de las medidas preventivas adecuadas para cada zona de alto riesgo.
+
+\item Sup\'on que el conjunto $A$ incluye las acciones de respuesta ante emergencias (rescate, evacuaci\'on, primeros auxilios y lucha contra incendios), el conjunto $B$ incluye los recursos disponibles (equipo de protecci\'on personal, veh\'iculos de emergencia, hospitales y centros de acopio) y el conjunto $C$ incluye los tipos de emergencias (incendios, terremotos, inundaciones y accidentes de tr\'afico). Si se tiene que cada recurso est\'a disponible solo para una acci\'on de respuesta,  cu\'al es el conjunto de las acciones de respuesta para las que se tienen los recursos disponibles?
+
+\item Sup\'on que el conjunto $A$ incluye los tipos de riesgos laborales (accidentes de trabajo, exposici\'on a sustancias t\'oxicas, sobreesfuerzo f\'isico y riesgos psicosociales), el conjunto $B$ incluye los sectores econ\'omicos (construcci\'on, miner\'ia, industria qu\'imica y servicios) y el conjunto $C$ incluye las medidas de prevenci\'on (uso de equipo de protecci\'on personal, capacitaci\'on en seguridad laboral, evaluaciones m\'edicas peri\'odicas y pausas activas). Determina el conjunto de las medidas de prevenci\'on adecuadas para cada sector econ\'omico.
+
+\item Dado el conjunto $A$ de los tipos de riesgos ambientales (contaminaci\'on del aire, del agua, de suelo y de alimentos), el conjunto $B$ de las fuentes de contaminaci\'on (industria, transporte, residuos y actividades agr\'icolas), y el conjunto $C$ de las medidas de prevenci\'on (reducci\'on de emisiones contaminantes, gesti\'on adecuada de residuos, monitoreo de calidad del agua y control de plaguicidas). cu\'al es el conjunto de las medidas de prevenci\'on adecuadas para cada fuente de contaminaci\'on?
+
+\item Sup\'on que el conjunto $A$ incluye los tipos de riesgos asociados a eventos masivos (estampidas, incendios, accidentes de transporte, etc.), el conjunto $B$ incluye los lugares donde ocurren estos eventos (estadios, conciertos, festivales, transporte p\'ublico, etc.), y el conjunto $C$ incluye las medidas de seguridad para prevenir estos riesgos (limitar la capacidad de los lugares, tener salidas de emergencia adecuadas, personal capacitado en primeros auxilios, etc.). cu\'al es el conjunto de las medidas de seguridad adecuadas para cada lugar donde ocurren eventos masivos?
+
+\item Sup\'on que el conjunto $A$ incluye los tipos de riesgos laborales (accidentes de trabajo, exposici\'on a sustancias t\'oxicas, sobreesfuerzo f\'isico y riesgos psicosociales), el conjunto $B$ incluye los departamentos de una empresa (producci\'on, recursos humanos, finanzas y ventas) y el conjunto $C$ incluye las medidas de prevenci\'on (uso de equipo de protecci\'on personal, capacitaci\'on en seguridad laboral, evaluaciones m\'edicas peri\'odicas y pausas activas). Determina el conjunto de las medidas de prevenci\'on adecuadas para cada departamento de la empresa.
+\end{enumerate}
+\end{Ejer}
+

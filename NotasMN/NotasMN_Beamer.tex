@@ -1,0 +1,720 @@
+%____________________________________________________________________________________________________________________________________
+\documentclass{beamer}
+%____________________________________________________________________________________________________________________________________
+\usepackage[latin1]{inputenc}
+% Esto es para que el LaTeX sepa que el texto est\'a en espa\~nol:
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsthm, amsfonts}
+%____________________________________________________________________________________________________________________________________
+\usepackage[T1]{fontenc}
+%\usepackage[ansinew]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx,graphics}
+\usepackage{multicol}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+%___________________________________________________________________________________________________________________%
+\newtheorem{Def}{Definici\'on}[section]
+\newtheorem{Ejem}{Ejemplo}[section]
+\newtheorem{Teo}{Teorema}[section]
+\newtheorem{Dem}{Demostraci\'on}[section]
+\newtheorem{Note}{Nota}[section]
+\newtheorem{Sol}{Soluci\'on}[section]
+\newtheorem{Prop}{Proposici\'on}[section]
+\newtheorem{Coro}{Corolario}[section]
+%___________________________________________________________________________________________________________________
+%
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\newcommand{\rea}{\mathbb{R}}
+\newcommand{\esp}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\indora}{\mbox{$1$\hspace{-0.8ex}$1$}}
+%___________________________________________________________________________________________________________________
+%______________________________________________________________________
+%
+\title{Notas de M\'etodos Num\'ericos} %aqu se pueden usar saltos de lnea \\
+%\subtitle{XII Jornadas de Modelaci\'on Matem\'atica}
+\author{Carlos Mart\'inez-Rodr\'iguez\\
+\small \tiny{Academia de Matem\'aticas}\\
+\small \tiny{Casa Libertad}\\
+\small\tiny{carlos.martinez@uacm.edu.mx}
+}
+\tiny
+%\email{carlosmroder@hotmail.com}
+%\institute{Informes:carlos.martinez@uacm.edu.mx\\
+%Academia de Matem\'aticas\\
+%Modelaci\'on Matem\'atica\\
+ %Colegio de Ciencia y Tecnolog\'ia\\
+% }
+\date{Agosto 2025\\
+%{\tiny{13 hrs (lugar por definir)}}
+}
+%___________________________________________________________________________________________________________________
+%______________________________________________________________________
+%
+\pgfdeclareimage[height=0.5cm]{logo-izq}{LOGOUACM.jpg}
+\pgfdeclareimage[height=0.5cm]{logo-der}{LOGOUACM.jpg}
+\logo{\pgfuseimage{logo-der}} \setbeamertemplate{sidebar left}
+{\logo{\pgfuseimage{logo-izq}}
+\vfill %pone la imgen en la esquina inferior izquierda
+\rlap{\hskip0.1cm\insertlogo} %inserta la imgen
+\vskip15pt}
+
+%\usetheme{Ilmenau}% esta bueno cal=7
+%\usetheme{Warsaw} % me gusta cal=7
+%\usetheme{Malmoe} %muy simple
+\usetheme{boxes}% muy chafa! cal=5
+%\usetheme{Rochester} % me gusta!, calificaci\'on = 6, pues le faltan los pies de p\'agina.
+%\usetheme{Szeged} %No me gusta
+%\usetheme{AnnArbor} % demasiado colorida
+%\usetheme{Copenhagen} % parecida a una anterior, es decir, pelas!
+%\usetheme{Dresden} % leve, cal=5
+%\usetheme{Pittsburgh} %chafa!!!
+%\usetheme{Luebeck}
+\usetheme{Antibes}
+%\usetheme{Madrid}
+%___________________________________________________________________________________________________________________
+%
+\begin{document}
+%\setbeamertemplate{navigation symbols}{}
+%\insertframenumber/\inserttotalframenumber
+
+%___________________________________________________________________________________________________________________
+%
+%1
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+
+
+%===========================================
+\section{Sobre el curso}
+%===========================================
+
+El curso se llevar\'a a cabo tres veces a la semana,  con sesiones de 1.5 horas,  de las cuales una de ellas se realizar\'a en el laboratorio de c\'omputo 3.
+
+%---------------------------------------------------
+\subsection{Requisitos para acreditar la materia}
+%---------------------------------------------------
+
+El curso por su naturaleza implica que la/el estudiante implemente los distintos algoritmos que se revisan en el curso,  por lo tanto es importante que demuestre que efectivamente puede implementar, revisar y mejorar los algoritmos ya existentes.\bigskip
+
+Hay dos maneras de certificar la materia: a) Portafolio y b) Examen de certificaci\'on.  Al menos una semana antes de que termine el curso las y los estudiantes tendr\'an conocimiento de sus calificaciones parciales y por tanto de la calificaci\'on promedio obtenida al momento, para que sea el/la mismo(a) estudiante qui\'en decida si certifica por la modalidad de portafolio,  o por la modalidad de examen de certificaci\'on.\bigskip
+\end{frame}
+
+\begin{frame}
+
+
+El portafolio se conforma de evaluaciones ($40\%$), programas, ($40\%$) tareas ($10\%$), tareitas ($5\%$)y trabajos adicionales ($5\%$). Mientras que la certificaci\'on es un examen elaborado por el comit\'e de certificaci\'on y que ser\'a presentado por todas y todos los estudiantes que se inscriban en esta modalidad en las fechas establecidas por la Coordinaci\'on de Certificaci\'on y Registro.  En cualquiera de las dos modalidades es indispensable que el/la estudiante se registre a este proceso para que su calificaci\'on pueda ser asignada al final del proceso de Certificaci\'on.
+
+\end{frame}
+%---------------------------------------------------
+\subsection{De la naturaleza del curso}
+%---------------------------------------------------
+\begin{frame}
+
+El curso tiene un fuerte sustento en la programaci\'on constante, sin embargo, es importante resaltar que los conceptos te\'oricos deben ser dominados por las y los estudiantes, por lo tanto las evaluaciones y las tareas tendr\'an estas dos componentes principales.  Al contrario de lo que pueda pensarse la asistencia al curso es obligatoria pero no influye directamente en la calificaci\'on obtenida.  Sin embargo,  hay que mencionar que si la asistencia se realiza de manera intermitente es probable que cueste un poco de trabajo reincorporarse a la din\'amica de trabajo que se ir\'a construyendo con el grupo con el transcurso de las clases. 
+\end{frame}
+
+\begin{frame}
+
+%===========================================
+\section{Introducci\'on}
+%===========================================
+
+En este curso estudiaremos los elementos b\'asicos de los m\'etodos num\'ericos, utilizando el programa de distribuci\'on libre \textit{R}. Antes de iniciar propiamente con el estudio de los m\'etodos num\'ericos realizaremos un breve repaso de algunos conceptos de \'algebra lineal, c\'alculo diferencial mismos que son fundamentales en esta materia y de la que se supone las y los estudiantes se encuentran familiarizados con ellos.
+
+\end{frame} 
+
+%===========================================
+\section{Revisi\'on de temas importantes}
+%===========================================
+\begin{frame}
+
+
+%-------------------------------------------
+\subsection{C\'alculo}
+%-------------------------------------------
+
+Comenzamos el cap\'itulo con un repaso de algunos aspectos importantes del c\'alculo que son necesarios a lo largo del texto. Suponemos que los estudiantes que lean este texto conocen la terminolog\'ia, la notaci\'on y los resultados que se dan en un curso t\'ipico de c\'alculo.
+
+%...............................................................
+\subsubsection{L\'imites y continuidad}
+%...............................................................
+
+El l\'imite de una funci\'on nos dice qu\'e tan cerca se encuentran las im\'agenes de una funci\'on si dos elementos de su dominio se encuentran lo suficientemente cerca, es decir, decimos que una funci\'on $f(x)$ definida en el intervalo $(a,b)$ tiene \textbf{l\'imite} $L$ en el punto $x = x_0$, lo que denotamos por $$\lim_{x \to x_0} f(x) = L,$$ si para cualquier $\varepsilon > 0$, existe un n\'umero real $\delta > 0$ tal que $|f(x) - L| < \varepsilon$ siempre que $0 < |x - x_0| < \delta $. Es decir, que los valores de la funci\'on estar\'an cerca de $L$ siempre que $x$ est\'e suficientemente cerca de $x_0$.
+
+\end{frame}
+
+\begin{frame}
+
+Se dice que una funci\'on $f$ es continua en $a$ si cuando $x$ se aproxima al valor de $a$, entonces tambi\'en $f(x)$ se aproxima a $f(a)$, es decir, $f(x)$ es \textbf{continua} en el punto $x = a $ si $$\lim_{x \to a} f(x) = f(a),$$
+y se dice que $f$ es \textbf{continua en el conjunto} $(a,b)$ si es continua en cada uno de los puntos del intervalo. Denotaremos el conjunto de todas las funciones $f$ que son continuas en $E=(a,b)$ por $C(E)$. \bigskip
+
+Se dice que una sucesi\'on $\{x_n\}_{n=1}^\infty$ \textbf{converge} a un n\'umero $x$, si
+$\lim_{n \to \infty} x_n = x$ o bien, $x_n \to x$ cuando $n \to \infty$, si para cualquier $\varepsilon > 0$, existe un n\'umero natural $N(\varepsilon)$ tal que $|x_n - x| < \varepsilon$ para cada $n > N(\varepsilon)$. Cuando una sucesi\'on tiene l\'imite, se dice que la \textbf{sucesi\'on converge}.
+\end{frame} 
+
+
+\begin{frame}
+
+
+
+%........................................................
+\subsubsection{Continuidad y convergencia de sucesiones}
+%........................................................
+
+Si $f(x)$ es una funci\'on definida en un conjunto $S$ de n\'umeros reales y $x_0 \in S$, entonces las siguientes afirmaciones son equivalentes:
+\begin{enumerate}
+\item $f(x) $ es continua en $x = x_0 $,
+\item Si $\{x_n\}_{n=1}^\infty $ es cualquier sucesi\'on en $S $ que converge a $x_0 $, entonces $\lim_{n \to \infty} f(x_n) = f(x_0).$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+
+\begin{Teo}[Teorema del valor intermedio o de Bolzano.]
+Si $f \in C[a, b] $ y $\ell $ es un n\'umero cualquiera entre $f(a) $ y $f(b) $, entonces existe al menos un n\'umero $c \in (a, b) $ tal que $f(c) = \ell $. V\'ease la Figura~\ref{fig:bolzano}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig1.png}
+\caption{Teorema del valor intermedio o de Bolzano}
+\label{fig:bolzano}
+\end{figure}
+\end{Teo}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{Note}
+Todas las funciones con las que se van a trabajar en este curso de m\'etodos num\'ericos ser\'an continuas, ya que esto es lo m\'inimo que debemos exigir para asegurar que la conducta de un m\'etodo se puede predecir.
+\end{Note}
+\end{frame} 
+
+
+\begin{frame}
+
+%........................................................
+\subsubsection{Derivabilidad}
+%........................................................
+
+Si $f(x) $ es una funci\'on definida en un intervalo abierto que contiene un punto $x_0 $, entonces se dice que $f(x) $ es \textbf{derivable} en $x = x_0 $ cuando existe el l\'imite
+$$f'(x_0) = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}.$$
+
+El n\'umero $f'(x_0)$ se llama \textbf{derivada} de $f$ en $x_0$ y coincide con la pendiente de la recta tangente a la gr\'afica de $f$ en el punto $(x_0, f(x_0))$, Figura~\ref{fig:derivada}.
+\end{frame}
+
+\begin{frame}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig2.png}
+\caption{Derivada de una funci\'on en un punto}
+\label{fig:derivada}
+\end{figure}
+\end{frame} 
+
+
+\begin{frame}
+
+\textbf{Derivabilidad implica continuidad.} Si la funci\'on $f(x)$ es derivable en $x = x_0$, entonces $f(x)$ es continua en $x = x_0$. El conjunto de todas las funciones que admiten $n$ derivadas continuas en $S $ se denota por $C^n(S)$, mientras que el conjunto de todas las funciones indefinidamente derivables en $S$ se denota por $C^\infty(S)$. Las funciones polin\'omicas, racionales, trigonom\'etricas, exponenciales y logar\'itmicas est\'an en $C^\infty(S)$, siendo $S$ el conjunto de puntos en los que est\'an definidas.
+\end{frame}
+
+\begin{frame}
+
+\begin{Teo}[Teorema del valor medio o de Lagrange.]
+Si $f\in C[a, b]$ y es derivable en $(a,b)$, entonces existe un punto $c\in (a,b)$ tal que
+$$f'(c) = \frac{f(b) - f(a)}{b - a}.$$
+\end{Teo}
+
+Geom\'etricamente hablando, Figura~\ref{fig:lagrange}, el teorema del valor medio dice que hay al menos un n\'umero $c \in (a, b) $ tal que la pendiente de la recta tangente a la curva $y = f(x) $ en el punto $(c, f(c)) $ es igual a la pendiente de la recta secante que pasa por los puntos $(a, f(a)) $ y $(b, f(b)) $.
+\end{frame}
+
+\begin{frame}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig3.png}
+\caption{Teorema del valor medio o de Lagrange}
+\label{fig:lagrange}
+\end{figure}
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Teo}[Teorema de los valores extremos.]  
+Si $f \in C[a,b] $, entonces existen $c_1 $ y $c_2 $ en $(a,b) $ tales que $f(c_1) \leq f(x) \leq f(c_2) $ para todo $x \in [a,b] $. Si adem\'as, $f $ es derivable en $(a,b) $, entonces los puntos $c_1 $ y $c_2 $ est\'an en los extremos de $[a,b] $ o bien son puntos cr\'iticos.
+\end{Teo}
+\end{frame}
+
+\begin{frame}
+
+%........................................................
+\subsubsection{Integraci\'on}
+%........................................................
+
+
+\begin{Teo}[Primer teorema fundamental o regla de Barrow.]
+  Si $f \in C[a, b] $ y $F $ es una primitiva cualquiera de $f $ en $[a, b] $ (es decir, $F'(x) = f(x) $), entonces $$\int_a^b f(x) \, dx = F(b) - F(a). $$
+\end{Teo}
+
+\begin{Teo}[Segundo teorema fundamental.]
+  Si $f \in C[a, b] $ y $x \in (a, b) $, entonces $$\frac{d}{dx} \int_a^x f(t) \, dt = f(x).$$
+\end{Teo}
+\end{frame}
+
+\begin{frame}
+
+\begin{Teo}[Teorema del valor medio para integrales.]
+  Si $f \in C[a, b] $, $g $ es integrable en $[a, b] $ y $g(x) $ no cambia de signo en $[a, b] $, entonces existe un punto $c \in (a, b) $ tal que  $$\int_a^b f(x)g(x) \, dx = f(c) \int_a^b g(x) \, dx.$$
+\end{Teo}
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Note}
+Cuando $g(x) = 1 $, v\'ease la Figura~\ref{fig:valormedio-integral}, este resultado es el habitual teorema del valor medio para integrales y proporciona el valor medio de la funci\'on $f $ en el intervalo $[a, b] $, que est\'a dado por $$f(c) = \frac{1}{b-a} \int_a^b f(x) \, dx.$$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{Fig4.png}
+\caption{Teorema del valor medio para integrales}
+\label{fig:valormedio-integral}
+\end{figure}
+\end{Note}
+\end{frame} 
+
+
+\begin{frame}
+
+%...............................................................
+\subsubsection{Polinomios de Taylor}
+%...............................................................
+
+\begin{Teo}[Teorema de Taylor.]
+Supongamos que $f \in C^{(n)}[a,b] $ y que $f^{(n+1)} $ existe en $[a,b] $. Sea $x_0 $ un punto en $[a,b] $. Entonces, para cada $x $ en $[a,b] $, existe un punto $\xi(x) $ entre $x_0 $ y $x $ tal que
+$$f(x) = P_n(x) + R_n(x),$$
+donde
+\begin{eqnarray}
+P_n(x) &=& f(x_0) + f'(x_0)h + \frac{f''(x_0)}{2!}h^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}h^n = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} h^k,\\
+R_n(x)&=& \frac{f^{(n+1)}(\xi(x))}{(n+1)!} h^{n+1}, \quad \text{y} \quad h = x - x_0.
+\end{eqnarray}
+\end{Teo}
+\end{frame}
+
+\begin{frame}
+
+
+El polinomio $P_n(x) $ se llama \textbf{n-\'esimo polinomio de Taylor} de $f $ alrededor de $x_0 $ (v\'ease la Figura~\ref{fig:taylor}).   $R_n(x) $ se llama \textbf{error de truncamiento} (o \textit{resto de Taylor}) asociado a $P_n(x) $.   Como el punto $\xi(x) $ en el error de truncamiento $R_n(x) $ depende del punto $x $ en el que se eval\'ua el polinomio $P_n(x) $, podemos verlo como una funci\'on de la variable $x $.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{Fig5.png}
+\caption{Gr\'aficas de $y = f(x) $ y de su polinomio de Taylor $y = P_2(x) $ alrededor de $x_0 $.}
+\label{fig:taylor}
+\end{figure}
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Note}
+La serie infinita que resulta al tomar l\'imite en la expresi\'on de $P_n(x) $ cuando $n \to \infty $ se llama \textbf{serie de Taylor} de $f $ alrededor de $x_0 $. Cuando $x_0 = 0 $, el polinomio de Taylor se suele denominar \textbf{polinomio de Maclaurin}, y la serie de Taylor se llama \textbf{serie de Maclaurin}.\bigskip
+
+La denominaci\'on \textit{error de truncamiento} en el teorema de Taylor se refiere al error que se comete al usar una suma truncada al aproximar la suma de una serie infinita.
+\end{Note}
+\end{frame} 
+
+
+\begin{frame}
+
+%...............................................................
+\subsubsection{Teoremas adicionales}
+%...............................................................
+
+A continuaci\'on enunciaremos algunas de las definiciones y teoremas b\'asicos que utilizaremos a lo largo de estas notas.
+
+\begin{Def}$f$ es de clase $C^1$ en el intervalo $[a;b]$ si $f'$ es continua en $[a;b]$.
+\end{Def}
+
+\begin{Def}$f$ es de clase $C^n$ en el intervalo $[a;b]$ si $f^{(n)}$ es continua en $[a;b]$.
+\end{Def}
+
+\begin{Def}$f$ es de clase $C^\infty$ en el intervalo $I$ si $f$ es infinitas veces derivable y continua en $I$.
+\end{Def}
+\end{frame}
+
+\begin{frame}
+
+\begin{Teo} (Teorema de los valores intermedios). Sea $f$ continua en el intervalo $[a;b]$. Si $k \in \mathbb{R}$ es un n\'umero comprendido entre $f(a)$ y $f(b)$, entonces existe al menos un punto $\xi$ perteneciente al intervalo $(a;b)$ tal que $f(\xi) = k$.
+\end{Teo}
+
+\begin{Teo}[Bolzano]Si $f$ es continua en el intervalo $[a;b]$ y $f(a) \cdot f(b) < 0$, entonces existe un $\xi$ perteneciente al $(a;b)$ tal que $f(\xi) = 0$.
+\end{Teo}
+
+\begin{Teo}[Teorema de acotabilidad] Si $f : [a;b] \mapsto \mathbb{R}$ es continua en $[a;b]$, entonces $f$ est\'a acotada en $[a;b]$.
+\end{Teo}
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Teo}[Teorema de Weierstrass] Si $f : [a;b] \mapsto \mathbb{R}$ es continua en $[a;b]$, entonces $f$ tiene un m\'aximo global y un m\'inimo global en $[a;b]$.
+\end{Teo}
+
+\begin{Teo}[Teorema Generalizado de Rolle] Si $f$ continua en $[a;b]$, y existen las derivadas $f'(x), f''(x), \ldots, f^{(n)}(x)$ en $(a;b)$ y $f(x_0) = f(x_1) = \cdots = f(x_n) = 0$ (con $x_0, x_1, \ldots, x_n \in [a;b]$) entonces existe $\xi$ perteneciente al $(a;b)$ tal que $f^{(n)}(\xi) = 0$.
+\end{Teo}
+\end{frame}
+
+\begin{frame}
+
+\begin{Teo}[Teorema de Lagrange] Si $f$ continua en $[a;b]$ y derivable en $(a;b)$ entonces existe $\xi$ perteneciente al $(a;b)$ tal que $f(b) - f(a) = f'(\xi)(b - a)$.
+\end{Teo}
+
+\begin{Teo}[Teorema del valor medio ponderado] Sea $f$ continua en $[a,b]$ y $g$ una funci\'on integrable Riemann en $[a,b]$. Si $g$ no cambia de signo en $[a,b]$, entonces existe un n\'umero $c \in (a,b)$ tal que:
+$$\int_a^b f(x)g(x)dx = f(c) \int_a^b g(x)dx$$
+\end{Teo}
+\end{frame} 
+
+
+\begin{frame}
+
+%-------------------------------------------
+\subsection{\'algebra Lineal}
+%-------------------------------------------
+
+%...............................................................
+\subsubsection{Matrices}
+%...............................................................
+
+Una \textbf{matriz} es un arreglo multidimensional de escalares, llamados \textit{elementos}, ordenados en filas y columnas.  Una matriz de $ m $ filas y $ n $ columnas, o \textit{matriz (de orden) $ m \times n $}, es un conjunto de $ m \cdot n $ elementos $ a_{ij} $, con $ i = 1, 2, \ldots, m $ y $ j = 1, 2, \ldots, n $, que se representa de la siguiente forma:
+$$A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}$$
+
+Se puede abreviar la representaci\'on de la matriz anterior de la forma $ A = (a_{ij}) $ con $ i = 1, 2, \ldots, m $; $ j = 1, 2, \ldots, n $.
+\end{frame}
+
+\begin{frame}
+
+Hay una relaci\'on directa entre matrices y vectores puesto que podemos pensar una matriz como una composici\'on de vectores fila o de vectores columna. Adem\'as, un vector es un caso especial de matriz: un \textit{vector fila} es una matriz con una sola fila y varias columnas, y un \textit{vector columna} es una matriz con varias filas y una sola columna. 
+\end{frame} 
+
+
+\begin{frame}
+
+%...............................................................
+\subsubsection{Operaciones con matrices}
+%...............................................................
+
+\begin{itemize}
+\item Si $ A = (a_{ij}) $ y $ B = (b_{ij}) $ son dos matrices que tienen el mismo orden, $ m \times n $, decimos que $ A $ y $ B $ son \textbf{iguales} si $ a_{ij} = b_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ y $ B = (b_{ij}) $ son dos matrices que tienen el mismo orden $ m \times n $, la \textbf{suma} de $ A $ y $ B $ es una matriz $ C = (c_{ij}) $ del mismo orden con $ c_{ij} = a_{ij} + b_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times n $, la \textbf{multiplicaci\'on de $ A $ por un escalar} $ \lambda $ es una matriz $ C = (c_{ij}) $ del mismo orden $ m \times n $ con $ c_{ij} = \lambda a_{ij} $ para todo $ i = 1, \ldots, m $ y $ j = 1, \ldots, n $.
+
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times n $, la \textbf{matriz traspuesta} de $ A $ es la matriz que resulta de intercambiar sus filas por sus columnas, se denota por $ A^T $ y es de orden $ n \times m $
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+\item Si $ A = (a_{ij}) $ es una matriz de orden $ m \times p $ y $ B = (b_{ij}) $ es una matriz de orden $ p \times n $, el \textbf{producto de $ A $ por $ B $} es una matriz $ C = (c_{ij}) $ de orden $ m \times n $ con $$c_{ij} = \sum_{k=1}^p a_{ik}b_{kj}, \quad \text{para todo } i = 1, \ldots, m \text{ y } j = 1, \ldots, n.$$ Obs\'ervese que el producto de dos matrices solo est\'a definido si el n\'umero de columnas de la primera matriz coincide con el n\'umero de filas de la segunda.
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}
+
+%...............................................................
+\subsubsection{Matrices especiales}
+%...............................................................
+\begin{itemize}
+
+\item Una matriz $ A = (a_{ij}) $ es \textbf{cuadrada} si tiene el mismo n\'umero de filas que de columnas, y de orden $ n $ si tiene $ n $ filas y $ n $ columnas. Se llama \textbf{diagonal principal} al conjunto de elementos $ a_{11}, a_{22}, \ldots, a_{nn} $.
+
+\item Una \textbf{matriz diagonal} es una matriz cuadrada que tiene alg\'un elemento distinto de cero en la diagonal principal y ceros en el resto de elementos.
+
+\item Una matriz cuadrada con ceros en todos los elementos por encima (debajo) de la diagonal principal se llama \textbf{matriz triangular inferior (superior)}.
+
+\item Una matriz diagonal con unos en la diagonal principal se denomina \textbf{matriz identidad} y se denota por $I$. Es la \'unica matriz cuadrada tal que $ AI = IA = A $ para cualquier matriz cuadrada $A$.
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+\item Una \textbf{matriz sim\'etrica} es una matriz cuadrada $A$ tal que $A=A^T$.
+
+\item La \textbf{matriz cero} es una matriz con todos sus elementos iguales a cero.
+
+\item Decimos que una matriz cuadrada $A$ es \textbf{invertible} (o \textit{regular} o \textit{no singular}) si existe una matriz cuadrada $ B $ tal que $AB = BA = I$. Se dice entonces que $ B $ es la \textbf{matriz inversa} de $A$ y se denota por $A^{-1}$. (Una matriz que no es invertible se dice \textit{singular}.)
+
+\item Si una matriz $ A $ es invertible, su inversa tambi\'en lo es y $A^{-1})^{-1} = A$.
+
+\item Si $A$ y $B$ son dos matrices invertibles, su producto tambi\'en lo es y $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}
+
+
+%...............................................................
+\subsubsection{Determinante de una matriz}
+%...............................................................
+
+El \textbf{determinante} de una matriz solo est\'a definido para matrices cuadradas y su valor es un escalar.  El determinante de una matriz $ A $ cuadrada de orden $ n $ se denota por $ |A| $ o $ \det(A) $, y se define como
+$$\det(A) = \sum_{j} (-1)^{i+j} a_{ij} \cdot \det(A_{ij}),$$
+donde la suma se toma para todas las $ n! $ permutaciones de grado $n$ y $s$ es el n\'umero de intercambios necesarios para poner el segundo sub\'indice en el orden $1, 2, \ldots, n$.
+
+\textbf{Algunas propiedades de los determinantes son:}
+\begin{itemize}
+\item $\det(A^T) = \det(A)$
+\item $\det(AB) = \det(A)\det(B)$
+\item $\det(A^{-1}) = \frac{1}{\det(A)}$
+\item Si dos filas o dos columnas de una matriz coinciden, el determinante de esta matriz es cero.
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+\item Cuando se intercambian dos filas o dos columnas de una matriz, su determinante cambia de signo.
+\item El determinante de una matriz diagonal es el producto de los elementos de la diagonal.
+\item Si denotamos por $A_{ij}$ la matriz de orden $ (n-1) $ que se obtiene de eliminar la fila $i$ y la columna $j$ de la matriz $A$, llamamos \textbf{menor complementario} asociado al elemento $a_{ij}$ de la matriz $A$ al $\det(A_{ij})$.
+
+\item Se llama \textbf{$k$-\'esimo menor principal} de la matriz $A$ al determinante de la submatriz principal de orden $k$.
+
+\item Definimos el \textbf{cofactor} del elemento $a_{ij}$ de la matriz $A$ por $\Delta_{ij} = (-1)^{i+j} \det(A_{ij})$.
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+
+\item Si $A$ es una matriz invertible de orden $ n $, entonces $$A^{-1} = \frac{1}{\det(A)} C,$$ donde $ C $ es la matriz de elementos $\Delta_{ij}$ para todo $i,j = 1,2,\ldots,n$. Obs\'ervese entonces que una matriz cuadrada es invertible si y s\'olo si su determinante es distinto de cero.
+\end{itemize}
+
+%...............................................................
+\subsubsection{Valores propios y vectores propios}
+%...............................................................
+
+\begin{itemize}
+\item Si $A$ es una matriz cuadrada de orden $n$, un n\'umero $\lambda$ es un \textbf{valor propio} de $A$ si existe un vector no nulo $v$ tal que $Av = \lambda v$. Al vector $v$ se le llama \textbf{vector propio} asociado al valor propio $\lambda$.
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+
+\item El valor propio $\lambda$ es soluci\'on de la \textbf{ecuaci\'on caracter\'istica} $$\det(A - \lambda I) = 0,$$ donde $\det(A - \lambda I)$ se llama \textbf{polinomio caracter\'istico}.  Este polinomio es de grado $n$ en $\lambda$  y tiene $n$ valores propios (no necesariamente distintos).
+\end{itemize}
+
+%...............................................................
+\subsubsection{Normas vectoriales y normas matriciales}
+%...............................................................
+Para medir la \textbf{longitud} de los vectores y el \textbf{tama\~no} de las matrices se suele utilizar el concepto de \textbf{norma}, que es una funci\'on que toma valores reales. Un ejemplo simple en el espacio euclidiano tridimensional es un vector $v = (v_1, v_2, v_3)$, donde $v_1, v_2$ y $v_3$ son las distancias a lo largo de los ejes $x, y, z$ respectivamente.  \bigskip
+
+\end{frame}
+
+.
+\begin{frame}
+
+La \textbf{longitud del vector} $v$ (es decir, la distancia del punto $(0,0,0)$ al punto $(v_1, v_2, v_3)$) se calcula como $$\|v\| = \sqrt{v_1^2 + v_2^2 + v_3^2},$$
+donde la notaci\'on $\|v\|$ indica que esta longitud se refiere a la \textit{norma euclidiana} del vector $v$.   De forma similar, para un vector $v$ de dimensi\'on $n$, $v = (v_1, v_2, \ldots, v_n)$, la norma euclidiana se calcula como $$\|v\| = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.$$ Este concepto puede extenderse a una matriz $ m \times n $, $ A = (a_{ij}) $, de la siguiente manera: $$\|A\|_F = \sqrt{ \sum_{i=1}^m \sum_{j=1}^n a_{ij}^2 },$$
+que recibe el nombre de \textbf{norma de Frobenius}.
+\end{frame} 
+
+
+\begin{frame}
+
+Hay otras alternativas a las normas euclidiana y de Frobenius. Dos normas usuales son la \textbf{norma 1} y la \textbf{norma infinito}:
+
+\begin{itemize}
+\item La \textbf{norma 1} de un vector $ v = (v_1, v_2, \ldots, v_n) $ se define como $ \|v\|_1 = \sum_{i=1}^n |v_i| $.  De forma similar, la norma 1 de una matriz $ m \times n $, $ A = (a_{ij}) $, se define como $$\|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|.$$
+
+\item La \textbf{norma infinito} de un vector $ v = (v_1, v_2, \ldots, v_n) $ se define como $ \|v\|_\infty = \max_i |v_i| $.   La norma infinito de una matriz $ m \times n $, $ A = (a_{ij}) $, se define como  $$\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|.$$
+\end{itemize}
+\end{frame}
+
+.
+\begin{frame}
+\begin{itemize}
+
+\item Todas las normas son equivalentes en un espacio vectorial de dimensi\'on finita. 
+
+\end{itemize}
+
+\end{frame} 
+
+
+
+%===========================================
+\section{Operaciones de punto flotante}
+%===========================================
+
+%-------------------------------------------
+\subsection{Sistemas decimal y binario}
+%-------------------------------------------
+\begin{frame}
+
+El sistema num\'erico que se utiliza frecuentemente es el sistema decimal, en la que la base de expresi\'on es el $10$. Sin embargo las computadoras utilizan el sistema binario, sistema de base 2, es decir solamente $\left\{0,1\right\}$.
+
+\begin{Prop}
+Para cualquier n\'umero natural $N$, existen $a_0,a_1,a_2,\ldots,a_K$, con $a_i\in \mathbb{R}$ tales que
+\begin{equation}\label{Ec.Expansion.Binaria}
+N=a_{K}\times2^{K}+a_{K-1}\times2^{K-1}+a_{K-2}\times2^{K-2}+\cdots+a_{1}\times2+a_{0}\times2^0
+\end{equation}
+\end{Prop}
+\end{frame} 
+
+
+\begin{frame}
+
+Para ver lo anterior lo que tenemos que hacer es calcular $\frac{N}{2}$, es decir, $\frac{N}{2}=P_{0}+\frac{a_{0}}{2}$, donde $P_{0}=a_{K}\times2^{K-1}+a_{K-1}\times2^{K-2}+a_{K-2}\times2^{K-3}+\cdots+a_{1}\times2^{0}$, es decir $a_{0}$ es el resto de dividir $N$ entre $2$. Ahora hagamos lo mismo para $P_{0}$: $$\frac{P_{0}}{2}=a_{K}\times2^{K-2}+a_{K-1}\times2^{K-3}+a_{K-2}\times2^{K-4}+\cdots+a_{2}\times2^{0}+\frac{a_{1}}{2},$$ por lo tanto $$\frac{P_{0}}{2}=P_{1}+\frac{a_{1}}{2},$$ donde $$P_{1}=a_{K}\times2^{K-2}+a_{K-1}\times2^{K-3}+a_{K-2}\times2^{K-4}+\cdots+a_{2}\times2^{0},$$ 
+\end{frame}
+
+\begin{frame}
+es decir $P_1$ es el resto de dividir $P_0$ entre $2$. Siguiendo este procedimiento de manera an\'aloga hasta que encontremos un valor $K$ tal que $P_K=0$. Por lo tanto tenemos el siguiente algoritmo:
+
+Para un valor $N$ natural, los t\'erminos $a_{k}$ en la ecuaci\'on \ref{Ec.Expansion.Binaria} se encuentran
+\begin{eqnarray}
+\begin{array}{l}
+N=2P_{0}+a_{0},\\
+P_{0}=2P_{1}+a_{1},\\
+\vdots\\
+P_{K-2}=2P_{K-1}+a_{K-1},\\
+P_{K-1}=2P_{K}+a_{K},\\
+P_{K}=0.
+\end{array}
+\end{eqnarray}
+
+
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Ejem}
+Convertir $24563$ 
+\end{Ejem}
+\begin{eqnarray*}
+24563 &=& 12281 \times 2 + 1, \quad a_{0} = 1\\
+12281 &=& 6140 \times 2 + 1, \quad a_{1} = 1\\
+6140 &=& 3070 \times 2 + 0, \quad a_{2} = 0\\
+3070 &=& 1535 \times 2 + 0, \quad a_{3} = 0\\
+1535 &=& 767 \times 2 + 1, \quad a_{4} = 1\\
+767 &=& 383 \times 2 + 1, \quad a_{5} = 1\\
+383 &=& 191 \times 2 + 1, \quad a_{6} = 1\\
+191 &=& 95 \times 2 + 1, \quad a_{7} = 1\\
+95 &=& 47 \times 2 + 1, \quad a_{8} = 1
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+
+\begin{eqnarray*}
+47 &=& 23 \times 2 + 1, \quad a_{9} = 1\\
+23 &=& 11 \times 2 + 1, \quad a_{10} = 1\\
+11 &=& 5 \times 2 + 1, \quad a_{11} = 1\\
+5 &=& 2 \times 2 + 1, \quad a_{12} = 1\\
+2 &=& 1 \times 2 + 0, \quad a_{13} = 0\\
+1 &=& 0 \times 2 + 1, \quad a_{14} = 1
+\end{eqnarray*}
+Por lo tanto el n\'umero binario es: $(24563)_{10}=(101111111110011)_{2}$.
+
+\end{frame} 
+
+
+\begin{frame}
+\begin{Prop}
+Sea $Q\in\mathbb{R}$, tal que $0<Q<1$, entonces existen t\'erminos $b_{1},b_{2},\ldots,b_{k}$ tales que $Q=0.b_{1}b_{2}b_{3}\cdots b_{k}$, y por tanto
+
+\begin{eqnarray}
+Q=b_{1}\times2^{-1}+b_{2}\times2^{-2}+b_{3}\times2^{-3}+\cdots+b_{k}\times2^{-k}+\cdots
+\end{eqnarray}
+\end{Prop}
+Si multiplicamos $Q$ por $2$, se tiene que
+$$2Q=b_{1}+b_{2}\times2^{-1}+b_{3}\times2^{-2}+b_{4}\times2^{-3}+\cdots+b_{k}\times2^{-k+1}+\cdots$$
+
+Si $F_{1}=frac(2Q)$, con $frac(x)$ la parte fraccionaria de $x$, y $b_{1}=[[2Q]]$, donde $[[x]]$ es la parte entera de $x$, entonces $$F_1=b_{2}\times2^{-1}+b_{3}\times2^{-2}+b_{4}\times2^{-3}+\cdots+b_{k}\times2^{-k+1}+\cdots,$$ 
+\end{frame}
+
+\begin{frame}
+de donde $$2F_1=b_{2}\times2^{0}+b_{3}\times2^{-1}+b_{4}\times2^{-2}+\cdots+b_{k}\times2^{-k+2}+\cdots=b_{2}+F_{2},$$ donde $F_{2}=frac(2F_{1})$, y $b_{2}=[[2F_1]]$. Procediendo de manera an\'aloga para el resto de los t\'erminos se tienen las suceciones $\left\{b_{k}\right\}$ y $\left\{F_{k}\right\}$, dadas por $b_{k}=[[2F_{k-1}]]$ y $F_{k}=frac(2F_{k-1})$, con $b_{1}=[[2Q]]$ y $F_{1}=frac(2Q)$. Por lo tanto se tiene la representaci\'on binaria de Q dada por
+
+\begin{equation}
+Q=\sum_{i=1}^{\infty}b_{i}2^{-i}
+\end{equation}
+\end{frame} 
+
+\begin{frame}
+
+\begin{Ejem}
+Convertir el n\'umero $3.5786$. Sea $Q = 0.5786$, entonces
+\begin{eqnarray*}
+2Q &=& 1.1572, b_{1} = [[1.1572]]= 1, F_{1} = frac(1.1572) = 0.1572\\
+2F_{1}& =& 0.3144, b_{2} = [[0.3144 ]]= 0,F_{2} = frac(0.3144) = 0.3144\\
+2F_{2} &=& 0.6288, b_{3} = [[0.6288 ]]= 0, F_{3} = frac(0.6288) = 0.6288\\
+2F_{3} &=& 1.2576, b_{4} = [[1.2576 ]]= 1 F_{4} = frac(1.2576) = 0.2576\\
+2F_{4} &=& 0.5152, b_{5} = [[0.5152 ]]= 0, F_{5} = frac(0.5152) = 0.5152\\
+2F_{5} &=& 1.0304, b_{6} = [[1.0304 ]] = 1 F_{6} = frac(1.0304) = 0.0304\\
+2F_{6} &=& 0.0608, b_{7} = [[0.0608]]= 0, F_{7} = frac(0.0608) = 0.0608\\
+2F_{7} &=& 0.1216, b_{8} = [[0.1216]] = 0, F_{8} = frac(0.1216) = 0.1216
+\end{eqnarray*}
+
+De lo anterior se tiene que:
+$$0.5786 = (0.10010100\ldots)_2$$
+Por lo tanto:$$3.5786 = (11.10010100\ldots)_2.$$
+
+
+\end{Ejem}
+\end{frame} 
+
+
+\begin{frame}
+
+\begin{Ejem}
+\begin{enumerate}
+\item Convertir los siguientes n\'umeros de base 10 a base 2.
+\begin{enumerate}
+\item $324$
+\item $27$
+\item $1423$
+\item $235.25$
+\item $41.596$
+\end{enumerate}
+\end{enumerate}
+\end{Ejem}
+\end{frame} 
+
+
+%-------------------------------------------
+\subsection{N\'umeros en punto flotante}
+%-------------------------------------------
+
+
+
+
+
+
+
+
+\end{document}
