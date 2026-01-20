@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  18 JAN 2026 22:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  19 JAN 2026 10:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -698,369 +698,708 @@ LaTeX Info: Redefining \% on input line 1.
  [2] [3
 
 ] (./Cap1_IntrodProb.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
 
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
 
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Info: Redefining \. on input line 95.
-LaTeX Info: Redefining \% on input line 95.
+
+./Cap1_IntrodProb.tex:58: Package amsmath Error: \tag not allowed here.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.58 \tag
+         {1}
+? 
+LaTeX Info: Redefining \. on input line 59.
+LaTeX Info: Redefining \% on input line 59.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.95 \]
-        [1]
-LaTeX Info: Redefining \. on input line 174.
-LaTeX Info: Redefining \% on input line 174.
+l.59 \end{eqnarray}
+                    [1]
+
+./Cap1_IntrodProb.tex:79: Package amsmath Error: \tag not allowed here.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \tag
+         {2}
+? 
+
+./Cap1_IntrodProb.tex:84: Package amsmath Error: \tag not allowed here.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84 \tag
+         {3}
+? 
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.174 E
-       s preciso dar una definici\'on de las prop. para que [2]
+l.127 \end{eqnarray}
+                     [2]
 
-./Cap1_IntrodProb.tex:234: LaTeX Error: \begin{document} ended by \end{Ejem}.
+./Cap1_IntrodProb.tex:198: LaTeX Error: \begin{document} ended by \end{Ejem}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.234 \end{Ejem}
+l.198 \end{Ejem}
                 
 ? 
-./Cap1_IntrodProb.tex:234: Extra \endgroup.
+./Cap1_IntrodProb.tex:198: Extra \endgroup.
 <recently read> \endgroup 
                           
-l.234 \end{Ejem}
+l.198 \end{Ejem}
                 
 ? 
-LaTeX Info: Redefining \. on input line 277.
-LaTeX Info: Redefining \% on input line 277.
+LaTeX Info: Redefining \. on input line 213.
+LaTeX Info: Redefining \% on input line 213.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.277 \]
-         [3]
-./Cap1_IntrodProb.tex:316: Undefined control sequence.
-l.316 A_\alpha\cap A_{\alpha^{'}}=\varnothing
+l.213 \end{eqnarray}
+                     [3]
+./Cap1_IntrodProb.tex:280: Undefined control sequence.
+l.280 A_\alpha\cap A_{\alpha^{'}}=\varnothing
                                               \quad \text{para } \alpha\neq\...
 
 ? 
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
+LaTeX Info: Redefining \. on input line 298.
+LaTeX Info: Redefining \% on input line 298.
 [4]
-LaTeX Info: Redefining \. on input line 436.
-LaTeX Info: Redefining \% on input line 436.
+LaTeX Info: Redefining \. on input line 365.
+LaTeX Info: Redefining \% on input line 365.
  [5]
-LaTeX Info: Redefining \. on input line 529.
-LaTeX Info: Redefining \% on input line 529.
+LaTeX Info: Redefining \. on input line 440.
+LaTeX Info: Redefining \% on input line 440.
  [6]
-LaTeX Info: Redefining \. on input line 614.
-LaTeX Info: Redefining \% on input line 614.
+LaTeX Info: Redefining \. on input line 520.
+LaTeX Info: Redefining \% on input line 520.
  [7]
-LaTeX Info: Redefining \. on input line 694.
-LaTeX Info: Redefining \% on input line 694.
+LaTeX Info: Redefining \. on input line 592.
+LaTeX Info: Redefining \% on input line 592.
  [8]
-LaTeX Info: Redefining \. on input line 784.
-LaTeX Info: Redefining \% on input line 784.
+LaTeX Info: Redefining \. on input line 665.
+LaTeX Info: Redefining \% on input line 665.
  [9]
-LaTeX Info: Redefining \. on input line 880.
-LaTeX Info: Redefining \% on input line 880.
+LaTeX Info: Redefining \. on input line 735.
+LaTeX Info: Redefining \% on input line 735.
  [10]
-LaTeX Info: Redefining \. on input line 976.
-LaTeX Info: Redefining \% on input line 976.
+LaTeX Info: Redefining \. on input line 814.
+LaTeX Info: Redefining \% on input line 814.
  [11]
-LaTeX Info: Redefining \. on input line 1075.
-LaTeX Info: Redefining \% on input line 1075.
+LaTeX Info: Redefining \. on input line 882.
+LaTeX Info: Redefining \% on input line 882.
  [12]
-LaTeX Info: Redefining \. on input line 1177.
-LaTeX Info: Redefining \% on input line 1177.
+LaTeX Info: Redefining \. on input line 959.
+LaTeX Info: Redefining \% on input line 959.
  [13]
-LaTeX Info: Redefining \. on input line 1259.
-LaTeX Info: Redefining \% on input line 1259.
+LaTeX Info: Redefining \. on input line 1039.
+LaTeX Info: Redefining \% on input line 1039.
  [14]
-LaTeX Info: Redefining \. on input line 1365.
-LaTeX Info: Redefining \% on input line 1365.
+LaTeX Info: Redefining \. on input line 1114.
+LaTeX Info: Redefining \% on input line 1114.
  [15]
-LaTeX Info: Redefining \. on input line 1445.
-LaTeX Info: Redefining \% on input line 1445.
+LaTeX Info: Redefining \. on input line 1186.
+LaTeX Info: Redefining \% on input line 1186.
  [16]
-LaTeX Info: Redefining \. on input line 1528.
-LaTeX Info: Redefining \% on input line 1528.
+LaTeX Info: Redefining \. on input line 1257.
+LaTeX Info: Redefining \% on input line 1257.
  [17]
-LaTeX Info: Redefining \. on input line 1614.
-LaTeX Info: Redefining \% on input line 1614.
+LaTeX Info: Redefining \. on input line 1329.
+LaTeX Info: Redefining \% on input line 1329.
  [18]
-LaTeX Info: Redefining \. on input line 1694.
-LaTeX Info: Redefining \% on input line 1694.
+LaTeX Info: Redefining \. on input line 1387.
+LaTeX Info: Redefining \% on input line 1387.
  [19]
-Overfull \hbox (18.32495pt too wide) in paragraph at lines 1730--1732
+LaTeX Info: Redefining \. on input line 1439.
+LaTeX Info: Redefining \% on input line 1439.
+
+[20]
+LaTeX Info: Redefining \. on input line 1498.
+LaTeX Info: Redefining \% on input line 1498.
+ [21]
+LaTeX Info: Redefining \. on input line 1559.
+LaTeX Info: Redefining \% on input line 1559.
+ [22]
+LaTeX Info: Redefining \. on input line 1620.
+LaTeX Info: Redefining \% on input line 1620.
+ [23]
+LaTeX Info: Redefining \. on input line 1678.
+LaTeX Info: Redefining \% on input line 1678.
+ [24]
+Overfull \hbox (18.32495pt too wide) in paragraph at lines 1694--1696
 []\OT1/cmr/bx/n/12 Def. \OT1/cmr/m/n/12 La fun-ci^^Son de den-si-dad de pro-ba-
 bi-li-dad con-jun-ta de $\OML/cmm/m/it/12 X[]; X[]$ \OT1/cmr/m/n/12 se de-no-ta
  por $\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; y\OT1/cmr/m/n/12
  )$. 
  []
 
-LaTeX Info: Redefining \. on input line 1789.
-LaTeX Info: Redefining \% on input line 1789.
-[20]
-Overfull \hbox (39.77863pt too wide) in paragraph at lines 1821--1824
+LaTeX Info: Redefining \. on input line 1760.
+LaTeX Info: Redefining \% on input line 1760.
+[25]
+Overfull \hbox (39.77863pt too wide) in paragraph at lines 1785--1788
 []\OT1/cmr/bx/n/12 Def. \OT1/cmr/m/n/12 La va-ria-ble alea-to-ria $(\OML/cmm/m/
 it/12 X[]; [] ; X[]\OT1/cmr/m/n/12 )$ es ab-so-lu-ta-men-te con-ti-nua si exis-
 te $\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; [] ; x[]\OT1/cmr
 /m/n/12 )$
  []
 
-LaTeX Info: Redefining \. on input line 1870.
-LaTeX Info: Redefining \% on input line 1870.
-[21]
-LaTeX Info: Redefining \. on input line 1953.
-LaTeX Info: Redefining \% on input line 1953.
- [22]
-LaTeX Info: Redefining \. on input line 2025.
-LaTeX Info: Redefining \% on input line 2025.
- [23]
-LaTeX Info: Redefining \. on input line 2107.
-LaTeX Info: Redefining \% on input line 2107.
- [24]
-LaTeX Info: Redefining \. on input line 2181.
-LaTeX Info: Redefining \% on input line 2181.
- [25]
-LaTeX Info: Redefining \. on input line 2260.
-LaTeX Info: Redefining \% on input line 2260.
- [26]
-LaTeX Info: Redefining \. on input line 2341.
-LaTeX Info: Redefining \% on input line 2341.
+LaTeX Info: Redefining \. on input line 1839.
+LaTeX Info: Redefining \% on input line 1839.
+[26]
+LaTeX Info: Redefining \. on input line 1906.
+LaTeX Info: Redefining \% on input line 1906.
  [27]
-LaTeX Info: Redefining \. on input line 2426.
-LaTeX Info: Redefining \% on input line 2426.
+LaTeX Info: Redefining \. on input line 1967.
+LaTeX Info: Redefining \% on input line 1967.
  [28]
-LaTeX Info: Redefining \. on input line 2504.
-LaTeX Info: Redefining \% on input line 2504.
+LaTeX Info: Redefining \. on input line 2027.
+LaTeX Info: Redefining \% on input line 2027.
  [29]
-LaTeX Info: Redefining \. on input line 2596.
-LaTeX Info: Redefining \% on input line 2596.
+LaTeX Info: Redefining \. on input line 2087.
+LaTeX Info: Redefining \% on input line 2087.
  [30]
-LaTeX Info: Redefining \. on input line 2706.
-LaTeX Info: Redefining \% on input line 2706.
+LaTeX Info: Redefining \. on input line 2140.
+LaTeX Info: Redefining \% on input line 2140.
  [31]
-LaTeX Info: Redefining \. on input line 2809.
-LaTeX Info: Redefining \% on input line 2809.
+LaTeX Info: Redefining \. on input line 2201.
+LaTeX Info: Redefining \% on input line 2201.
  [32]
-LaTeX Info: Redefining \. on input line 2895.
-LaTeX Info: Redefining \% on input line 2895.
+LaTeX Info: Redefining \. on input line 2264.
+LaTeX Info: Redefining \% on input line 2264.
  [33]
-LaTeX Info: Redefining \. on input line 2973.
-LaTeX Info: Redefining \% on input line 2973.
+LaTeX Info: Redefining \. on input line 2325.
+LaTeX Info: Redefining \% on input line 2325.
  [34]
-LaTeX Info: Redefining \. on input line 3072.
-LaTeX Info: Redefining \% on input line 3072.
+LaTeX Info: Redefining \. on input line 2390.
+LaTeX Info: Redefining \% on input line 2390.
  [35]
-LaTeX Info: Redefining \. on input line 3155.
-LaTeX Info: Redefining \% on input line 3155.
-
-[36]
-LaTeX Info: Redefining \. on input line 3246.
-LaTeX Info: Redefining \% on input line 3246.
+LaTeX Info: Redefining \. on input line 2449.
+LaTeX Info: Redefining \% on input line 2449.
+ [36]
+LaTeX Info: Redefining \. on input line 2515.
+LaTeX Info: Redefining \% on input line 2515.
  [37]
+LaTeX Info: Redefining \. on input line 2592.
+LaTeX Info: Redefining \% on input line 2592.
+ [38]
+LaTeX Info: Redefining \. on input line 2693.
+LaTeX Info: Redefining \% on input line 2693.
+ [39]
+LaTeX Info: Redefining \. on input line 2782.
+LaTeX Info: Redefining \% on input line 2782.
+ [40]
+LaTeX Info: Redefining \. on input line 2853.
+LaTeX Info: Redefining \% on input line 2853.
+
+[41]
+LaTeX Info: Redefining \. on input line 2923.
+LaTeX Info: Redefining \% on input line 2923.
+ [42]
+LaTeX Info: Redefining \. on input line 3020.
+LaTeX Info: Redefining \% on input line 3020.
+ [43]
+LaTeX Info: Redefining \. on input line 3088.
+LaTeX Info: Redefining \% on input line 3088.
+ [44]
+LaTeX Info: Redefining \. on input line 3153.
+LaTeX Info: Redefining \% on input line 3153.
+ [45]
+LaTeX Info: Redefining \. on input line 3222.
+LaTeX Info: Redefining \% on input line 3222.
+ [46]
+./Cap1_IntrodProb.tex:3254: Missing $ inserted.
+<inserted text> 
+                $
+l.3254 X_
+         1, X_2 \ \text{V.A.C.C. con densidad}
+? 
+./Cap1_IntrodProb.tex:3255: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: You can't use `\halign' in math mode.
+\H@eqnarray ...let \\\@eqncr $$\everycr {}\halign 
+                                                  to\displaywidth \bgroup \h...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Missing number, treated as zero.
+<to be read again> 
+                   \bgroup 
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \bgroup 
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Missing } inserted.
+<inserted text> 
+                }
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Missing $ inserted.
+<inserted text> 
+                $
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...$\displaystyle \tabskip \z@skip {##
+                                                  }$\@eqnsel &\global \@eqcn...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Misplaced alignment tab character &.
+\H@eqnarray ...le \tabskip \z@skip {##}$\@eqnsel &
+                                                  \global \@eqcnt \@ne \hski...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...\hskip \tw@ \arraycolsep \hfil ${##
+                                                  }$\hfil &\global \@eqcnt \...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Misplaced alignment tab character &.
+\H@eqnarray ...w@ \arraycolsep \hfil ${##}$\hfil &
+                                                  \global \@eqcnt \tw@ \hski...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...tw@ \arraycolsep $\displaystyle {##
+                                                  }$\hfil \tabskip \@centeri...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Misplaced alignment tab character &.
+\H@eqnarray ...e {##}$\hfil \tabskip \@centering &
+                                                  \global \@eqcnt \thr@@ \hb...
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: You can't use `macro parameter character #' in rest
+ricted horizontal mode.
+\H@eqnarray ... \thr@@ \hb@xt@ \z@ \bgroup \hss ##
+                                                  \egroup \tabskip \z@skip \cr 
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Misplaced \cr.
+\H@eqnarray ...hss ##\egroup \tabskip \z@skip \cr 
+                                                  
+l.3255 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3255: Missing $ inserted.
+<inserted text> 
+                $
+l.3255 \begin{eqnarray}
+                       
+? 
+
+./Cap1_IntrodProb.tex:3257: LaTeX Error: Too many columns in eqnarray environme
+nt.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3257 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3257: Misplaced \cr.
+\@@eqncr ...l \@eqnswtrue \global \@eqcnt \z@ \cr 
+                                                  
+l.3257 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3257: Extra }, or forgotten $.
+\H@endeqnarray ->\@@eqncr \egroup 
+                                  \global \advance \c@equation \m@ne $$\@ign...
+l.3257 \end{eqnarray}
+                     
+? 
+
+./Cap1_IntrodProb.tex:3257: LaTeX Error: \begin{document} ended by \end{eqnarra
+y}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3257 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3257: Missing $ inserted.
+<inserted text> 
+                $
+l.3257 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3257: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.3257 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3259: Missing $ inserted.
+<inserted text> 
+                $
+l.3259 \textbf{Sup.} \quad Y_
+                             1 = g_1(x_1,x_2), \quad Y_2 = g_2(x_1,x_2)
+? 
+./Cap1_IntrodProb.tex:3261: Missing $ inserted.
+<inserted text> 
+                $
+l.3261 
+       
+? 
+./Cap1_IntrodProb.tex:3275: Missing $ inserted.
+<inserted text> 
+                $
+l.3275 B) \quad \text{las funciones } y_
+                                        1,y_2 \text{ tienen derivadas}
+? 
+./Cap1_IntrodProb.tex:3276: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: You can't use `\halign' in math mode.
+\H@eqnarray ...let \\\@eqncr $$\everycr {}\halign 
+                                                  to\displaywidth \bgroup \h...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Missing number, treated as zero.
+<to be read again> 
+                   \bgroup 
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \bgroup 
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Missing } inserted.
+<inserted text> 
+                }
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Missing $ inserted.
+<inserted text> 
+                $
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...$\displaystyle \tabskip \z@skip {##
+                                                  }$\@eqnsel &\global \@eqcn...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Misplaced alignment tab character &.
+\H@eqnarray ...le \tabskip \z@skip {##}$\@eqnsel &
+                                                  \global \@eqcnt \@ne \hski...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...\hskip \tw@ \arraycolsep \hfil ${##
+                                                  }$\hfil &\global \@eqcnt \...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Misplaced alignment tab character &.
+\H@eqnarray ...w@ \arraycolsep \hfil ${##}$\hfil &
+                                                  \global \@eqcnt \tw@ \hski...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: You can't use `macro parameter character #' in math
+ mode.
+\H@eqnarray ...tw@ \arraycolsep $\displaystyle {##
+                                                  }$\hfil \tabskip \@centeri...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Misplaced alignment tab character &.
+\H@eqnarray ...e {##}$\hfil \tabskip \@centering &
+                                                  \global \@eqcnt \thr@@ \hb...
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: You can't use `macro parameter character #' in rest
+ricted horizontal mode.
+\H@eqnarray ... \thr@@ \hb@xt@ \z@ \bgroup \hss ##
+                                                  \egroup \tabskip \z@skip \cr 
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Misplaced \cr.
+\H@eqnarray ...hss ##\egroup \tabskip \z@skip \cr 
+                                                  
+l.3276 \begin{eqnarray}
+                       
+? 
+./Cap1_IntrodProb.tex:3276: Missing $ inserted.
+<inserted text> 
+                $
+l.3276 \begin{eqnarray}
+                       
+? 
+
+./Cap1_IntrodProb.tex:3278: LaTeX Error: Too many columns in eqnarray environme
+nt.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3278 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3278: Misplaced \cr.
+\@@eqncr ...l \@eqnswtrue \global \@eqcnt \z@ \cr 
+                                                  
+l.3278 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3278: Extra }, or forgotten $.
+\H@endeqnarray ->\@@eqncr \egroup 
+                                  \global \advance \c@equation \m@ne $$\@ign...
+l.3278 \end{eqnarray}
+                     
+? 
+
+./Cap1_IntrodProb.tex:3278: LaTeX Error: \begin{document} ended by \end{eqnarra
+y}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3278 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3278: Missing $ inserted.
+<inserted text> 
+                $
+l.3278 \end{eqnarray}
+                     
+? 
+./Cap1_IntrodProb.tex:3278: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.3278 \end{eqnarray}
+                     
+? 
 ./Cap1_IntrodProb.tex:3290: Missing $ inserted.
 <inserted text> 
                 $
-l.3290 X_
-         1, X_2 \ \text{V.A.C.C. con densidad}
-? 
-
-./Cap1_IntrodProb.tex:3291: LaTeX Error: Bad math environment delimiter.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3291 \[
-         
-? 
-./Cap1_IntrodProb.tex:3293: Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.3293 \]
-         
-? 
-
-./Cap1_IntrodProb.tex:3293: LaTeX Error: \begin{document} ended by \end{equatio
-n*}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3293 \]
-         
-? 
-./Cap1_IntrodProb.tex:3293: Missing $ inserted.
-<inserted text> 
-                $
-l.3293 \]
-         
-? 
-./Cap1_IntrodProb.tex:3293: Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.3293 \]
-         
-? 
-./Cap1_IntrodProb.tex:3295: Missing $ inserted.
-<inserted text> 
-                $
-l.3295 \textbf{Sup.} \quad Y_
-                             1 = g_1(x_1,x_2), \quad Y_2 = g_2(x_1,x_2)
-? 
-./Cap1_IntrodProb.tex:3297: Missing $ inserted.
-<inserted text> 
-                $
-l.3297 
-       
-? 
-./Cap1_IntrodProb.tex:3311: Missing $ inserted.
-<inserted text> 
-                $
-l.3311 B) \quad \text{las funciones } y_
-                                        1,y_2 \text{ tienen derivadas}
-? 
-
-./Cap1_IntrodProb.tex:3312: LaTeX Error: Bad math environment delimiter.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3312 \[
-         
-? 
-./Cap1_IntrodProb.tex:3314: Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.3314 \]
-         
-? 
-
-./Cap1_IntrodProb.tex:3314: LaTeX Error: \begin{document} ended by \end{equatio
-n*}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3314 \]
-         
-? 
-./Cap1_IntrodProb.tex:3314: Missing $ inserted.
-<inserted text> 
-                $
-l.3314 \]
-         
-? 
-./Cap1_IntrodProb.tex:3314: Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.3314 \]
-         
-? 
-./Cap1_IntrodProb.tex:3326: Missing $ inserted.
-<inserted text> 
-                $
-l.3326 \textbf{Entonces} \quad Y_
+l.3290 \textbf{Entonces} \quad Y_
                                  1 \text{ y } Y_2 \ \text{son V.A.C.C.}
 ? 
-./Cap1_IntrodProb.tex:3327: Missing $ inserted.
+./Cap1_IntrodProb.tex:3291: Missing $ inserted.
 <inserted text> 
                 $
-l.3327 
+l.3291 
        
 ? 
-LaTeX Info: Redefining \. on input line 3350.
-LaTeX Info: Redefining \% on input line 3350.
-[38]
-LaTeX Info: Redefining \. on input line 3468.
-LaTeX Info: Redefining \% on input line 3468.
- [39]
-LaTeX Info: Redefining \. on input line 3579.
-LaTeX Info: Redefining \% on input line 3579.
- [40]
-LaTeX Info: Redefining \. on input line 3713.
-LaTeX Info: Redefining \% on input line 3713.
- [41]
-LaTeX Info: Redefining \. on input line 3823.
-LaTeX Info: Redefining \% on input line 3823.
- [42]
-LaTeX Info: Redefining \. on input line 3962.
-LaTeX Info: Redefining \% on input line 3962.
- [43]
-LaTeX Info: Redefining \. on input line 4058.
-LaTeX Info: Redefining \% on input line 4058.
- [44]
-LaTeX Info: Redefining \. on input line 4150.
-LaTeX Info: Redefining \% on input line 4150.
- [45]
-LaTeX Info: Redefining \. on input line 4271.
-LaTeX Info: Redefining \% on input line 4271.
- [46]
-LaTeX Info: Redefining \. on input line 4422.
-LaTeX Info: Redefining \% on input line 4422.
- [47]
-LaTeX Info: Redefining \. on input line 4510.
-LaTeX Info: Redefining \% on input line 4510.
+LaTeX Info: Redefining \. on input line 3297.
+LaTeX Info: Redefining \% on input line 3297.
+[47]
+LaTeX Info: Redefining \. on input line 3383.
+LaTeX Info: Redefining \% on input line 3383.
  [48]
-./Cap1_IntrodProb.tex:4516: Missing $ inserted.
-<inserted text> 
-                $
-l.4516 
-       
-? 
-./Cap1_IntrodProb.tex:4516: Display math should end with $$.
-<to be read again> 
-                   \tex_par:D 
-l.4516 
-       
-? 
-./Cap1_IntrodProb.tex:4591: Missing $ inserted.
-<inserted text> 
-                $
-l.4591 
-       
-? 
-./Cap1_IntrodProb.tex:4591: Display math should end with $$.
-<to be read again> 
-                   \tex_par:D 
-l.4591 
-       
-? 
-LaTeX Info: Redefining \. on input line 4599.
-LaTeX Info: Redefining \% on input line 4599.
-[49]
-LaTeX Info: Redefining \. on input line 4688.
-LaTeX Info: Redefining \% on input line 4688.
+LaTeX Info: Redefining \. on input line 3479.
+LaTeX Info: Redefining \% on input line 3479.
+ [49]
+LaTeX Info: Redefining \. on input line 3547.
+LaTeX Info: Redefining \% on input line 3547.
  [50]
-LaTeX Info: Redefining \. on input line 4787.
-LaTeX Info: Redefining \% on input line 4787.
- [51])
+Overfull \hbox (10.64981pt too wide) in alignment at lines 3606--3620
+ [][][] []
+ []
+
+LaTeX Info: Redefining \. on input line 3651.
+LaTeX Info: Redefining \% on input line 3651.
+[51]
+LaTeX Info: Redefining \. on input line 3728.
+LaTeX Info: Redefining \% on input line 3728.
+ [52]
+LaTeX Info: Redefining \. on input line 3806.
+LaTeX Info: Redefining \% on input line 3806.
+ [53]
+LaTeX Info: Redefining \. on input line 3915.
+LaTeX Info: Redefining \% on input line 3915.
+ [54]
+LaTeX Info: Redefining \. on input line 3987.
+LaTeX Info: Redefining \% on input line 3987.
+ [55]
+LaTeX Info: Redefining \. on input line 4064.
+LaTeX Info: Redefining \% on input line 4064.
+ [56]
+LaTeX Info: Redefining \. on input line 4136.
+LaTeX Info: Redefining \% on input line 4136.
+ [57]
+LaTeX Info: Redefining \. on input line 4235.
+LaTeX Info: Redefining \% on input line 4235.
+ [58]
+LaTeX Info: Redefining \. on input line 4367.
+LaTeX Info: Redefining \% on input line 4367.
+ [59]
+LaTeX Info: Redefining \. on input line 4449.
+LaTeX Info: Redefining \% on input line 4449.
+ [60]
+./Cap1_IntrodProb.tex:4480: Missing $ inserted.
+<inserted text> 
+                $
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing } inserted.
+<inserted text> 
+                }
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing } inserted.
+<inserted text> 
+                }
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing { inserted.
+<inserted text> 
+                {
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing $ inserted.
+<inserted text> 
+                $
+l.4480 
+       
+? 
+./Cap1_IntrodProb.tex:4480: Missing $$ inserted.
+<to be read again> 
+                   \tex_par:D 
+l.4480 
+       
+? 
+LaTeX Info: Redefining \. on input line 4517.
+LaTeX Info: Redefining \% on input line 4517.
+[61]
+./Cap1_IntrodProb.tex:4555: Missing $ inserted.
+<inserted text> 
+                $
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing } inserted.
+<inserted text> 
+                }
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing } inserted.
+<inserted text> 
+                }
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing { inserted.
+<inserted text> 
+                {
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing $ inserted.
+<inserted text> 
+                $
+l.4555 
+       
+? 
+./Cap1_IntrodProb.tex:4555: Missing $$ inserted.
+<to be read again> 
+                   \tex_par:D 
+l.4555 
+       
+? 
+LaTeX Info: Redefining \. on input line 4594.
+LaTeX Info: Redefining \% on input line 4594.
+[62]
+LaTeX Info: Redefining \. on input line 4666.
+LaTeX Info: Redefining \% on input line 4666.
+ [63]
+LaTeX Info: Redefining \. on input line 4751.
+LaTeX Info: Redefining \% on input line 4751.
+ [64]
+LaTeX Info: Redefining \. on input line 4839.
+LaTeX Info: Redefining \% on input line 4839.
+ [65])
 LaTeX Info: Redefining \. on input line 155.
 LaTeX Info: Redefining \% on input line 155.
- [52]
+ [66]
 
-./NotasCursoProbabilidad.tex:168: LaTeX Error: \begin{equation*} on input line 
-4587 ended by \end{document}.
+./NotasCursoProbabilidad.tex:168: LaTeX Error: \begin{eqnarray} on input line 4
+551 ended by \end{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -1083,38 +1422,39 @@ Package rerunfilecheck Info: File `NotasCursoProbabilidad.out' has not changed.
  )
 (\end occurred inside a group at level 2)
 
-### semi simple group (level 2) entered at line 4587 (\begingroup)
-### semi simple group (level 1) entered at line 4512 (\begingroup)
+### semi simple group (level 2) entered at line 4551 (\begingroup)
+### semi simple group (level 1) entered at line 4476 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 15946 strings out of 474116
- 253529 string characters out of 5743681
- 1941187 words of memory out of 5000000
- 38014 multiletter control sequences out of 15000+600000
- 567708 words of font info for 70 fonts, out of 8000000 for 9000
+ 16652 strings out of 474116
+ 263258 string characters out of 5743681
+ 1944187 words of memory out of 5000000
+ 38016 multiletter control sequences out of 15000+600000
+ 568067 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,13n,79p,559b,674s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,18n,79p,584b,686s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/c
-mextra/cmex8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6
-.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
-b></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
-/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
-sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
-/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/
-local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on NotasCursoProbabilidad.pdf (55 pages, 331907 bytes).
+cm/cmbxti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/
+cmextra/cmex8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
+usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
+sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
+r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr
+/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on NotasCursoProbabilidad.pdf (69 pages, 378280 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 259 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 1255 PDF objects out of 1440 (max. 8388607)
+ 1136 compressed objects within 12 object streams
+ 766 named destinations out of 1000 (max. 500000)
  9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
