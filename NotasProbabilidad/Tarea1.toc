@@ -7,3 +7,4 @@
 \contentsline {subsection}{\numberline {2.4}Probabilidad Condicional}{11}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Teorema de Probabilidad Total y Teorema de Bayes}{14}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Miscel\'anea de ejercicios}{16}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Ejercicios de conteo}{18}{subsection.2.7}%
