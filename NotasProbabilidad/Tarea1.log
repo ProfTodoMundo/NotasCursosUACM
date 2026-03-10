@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.1)  9 MAR 2026 23:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.1)  10 MAR 2026 10:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -734,7 +734,8 @@ Overfull \hbox (18.00401pt too wide) in paragraph at lines 806--816
  [] 
  []
 
-[15] [16] [17] [18] (./Tarea1.aux
+[15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29]
+[30] [31] [32] [33] [34] [35] [36] [37] (./Tarea1.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
@@ -742,13 +743,13 @@ Package rerunfilecheck Info: File `Tarea1.out' has not changed.
 (rerunfilecheck)             Checksum: A8E28385BC50C04734F25111B8E620A6;1501.
  ) 
 Here is how much of TeX's memory you used:
- 16071 strings out of 476025
- 256540 string characters out of 5790017
+ 16346 strings out of 476025
+ 258743 string characters out of 5790017
  1875388 words of memory out of 5000000
- 36067 multiletter control sequences out of 15000+600000
+ 36070 multiletter control sequences out of 15000+600000
  527687 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,79p,947b,796s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,1031b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
@@ -767,10 +768,10 @@ ve/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive
 023/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/202
 3/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2023/
 texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Tarea1.pdf (18 pages, 340414 bytes).
+Output written on Tarea1.pdf (37 pages, 402427 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 399 compressed objects within 4 object streams
- 221 named destinations out of 1000 (max. 500000)
+ 852 PDF objects out of 1000 (max. 8388607)
+ 769 compressed objects within 8 object streams
+ 493 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
