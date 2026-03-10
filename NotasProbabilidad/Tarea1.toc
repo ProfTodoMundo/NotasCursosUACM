@@ -1,0 +1,9 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Tarea: Ejercicios para examen}{1}{section.1}%
+\contentsline {section}{\numberline {2}Combinatoria}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Propiedades de los N\'umeros Combinatorios}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Teorema del Binomio}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Conteo}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Probabilidad Condicional}{11}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Teorema de Probabilidad Total y Teorema de Bayes}{14}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Miscel\'anea de ejercicios}{16}{subsection.2.6}%
